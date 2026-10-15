@@ -1,0 +1,149 @@
+// Layout primitives and utilities.
+
+.container {
+    width: 100%;
+    max-width: $container-max-width;
+    margin-inline: auto;
+    padding-inline: #{"clamp(1rem, 4vw, 2.5rem)"};
+}
+
+.prose {
+    max-width: $prose-max-width;
+}
+
+.section {
+    padding-block: #{"clamp(2.5rem, 6vw, 5rem)"};
+
+    &.section-small {
+        padding-block: #{"clamp(1.5rem, 4vw, 2.5rem)"};
+    }
+}
+
+.section-muted {
+    background: var(--colorNeutralBackground2);
+}
+
+// Responsive auto-fitting grid. Use --grid-min to tune the column breakpoint.
+.grid {
+    --grid-min: 18rem;
+    --grid-gap: #{"clamp(1rem, 3vw, 2rem)"};
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, var(--grid-min))"}, 1fr));
+    gap: var(--grid-gap);
+    align-items: start;
+
+    &.grid-match {
+        align-items: stretch;
+    }
+
+    &.grid-2 { --grid-min: 22rem; }
+    &.grid-3 { --grid-min: 16rem; }
+    &.grid-4 { --grid-min: 13rem; }
+    &.grid-small { --grid-gap: 1rem; }
+    &.grid-large { --grid-gap: #{"clamp(2rem, 6vw, 5rem)"}; }
+
+    // Two-column split that stacks on small screens
+    &.grid-split {
+        @media (min-width: $breakpoint-medium) {
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+
+            > .order-first {
+                order: -1;
+            }
+        }
+    }
+}
+
+.stack > * + * {
+    margin-top: var(--stack-gap, 1rem);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--row-gap, .75rem);
+
+    &.row-center {
+        justify-content: center;
+    }
+}
+
+// Utilities --------------------------------------------------------------------------------
+
+.text-center { text-align: center; }
+.text-left { text-align: start; }
+.text-small { font-size: var(--fontSizeBase300); line-height: var(--lineHeightBase300); }
+.text-muted { color: var(--colorNeutralForeground3); }
+.text-bold { font-weight: var(--fontWeightSemibold); }
+.text-danger { color: var(--colorStatusDangerForeground1); }
+.text-nowrap { white-space: nowrap; }
+
+.eyebrow {
+    margin-bottom: .25rem;
+    font-size: var(--fontSizeBase200);
+    font-weight: var(--fontWeightSemibold);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--colorBrandForeground1);
+}
+
+.link-reset {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--colorBrandForegroundLinkHover);
+    }
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.no-js .js-only {
+    display: none !important;
+}
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+
+.svg-icon {
+    height: 1em;
+    width: 1em;
+    fill: currentColor;
+    vertical-align: -.125em;
+}
+
+// Reveal-on-scroll, using scroll-driven animations where supported (replaces UIkit parallax)
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .reveal {
+            animation: reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% cover 35%;
+        }
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(3rem) scale(1.04);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+// Generic pages: keep running text at a readable measure while letting grids go wide
+.page-content > :is(p, ul, ol, dl, h2, h3, h4, blockquote, .highlight, fluent-message-bar, fluent-accordion) {
+    max-width: $prose-max-width;
+}

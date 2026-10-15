@@ -1,6 +1,10 @@
 title = 'KeePassXC Password Manager'
 baseURL = 'https://keepassxc.org'
-languageCode = 'en-us'
+locale = 'en-us'
+
+[security]
+# Hugo 0.168+ denies HTML content files by default; this site's pages are .html
+allowContent = ['! ^text/org$']
 
 [frontmatter]
 date = ['publishDate', 'date', 'lastmod']

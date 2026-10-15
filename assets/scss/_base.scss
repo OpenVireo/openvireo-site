@@ -1,0 +1,213 @@
+// Base element styles: typography, links, lists, code, media.
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: $header-height-stuck + 1rem;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--fontFamilyBase);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--colorNeutralForeground1);
+    background: var(--colorNeutralBackground1);
+    -webkit-font-smoothing: antialiased;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+// Typography -------------------------------------------------------------------------------
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1.6em 0 .5em;
+    font-weight: var(--fontWeightSemibold);
+    line-height: 1.25;
+    color: var(--colorNeutralForeground1);
+    text-wrap: balance;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+h1 { font-size: #{"clamp(2rem, 1.4rem + 2vw, var(--fontSizeHero900))"}; letter-spacing: -.01em; }
+h2 { font-size: #{"clamp(1.5rem, 1.2rem + 1vw, var(--fontSizeHero700))"}; }
+h3 { font-size: var(--fontSizeBase600); }
+h4 { font-size: var(--fontSizeBase500); }
+h5, h6 { font-size: var(--fontSizeBase400); }
+
+p, ul, ol, dl, pre, figure, table, blockquote {
+    margin: 0 0 1em;
+}
+
+strong, b {
+    font-weight: var(--fontWeightBold);
+}
+
+small {
+    font-size: var(--fontSizeBase200);
+}
+
+a {
+    color: var(--colorBrandForegroundLink);
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: .2em;
+    transition: color var(--durationFaster) var(--curveEasyEase), text-decoration-color var(--durationFaster) var(--curveEasyEase);
+
+    &:hover {
+        color: var(--colorBrandForegroundLinkHover);
+        text-decoration-color: currentColor;
+    }
+
+    &:active {
+        color: var(--colorBrandForegroundLinkPressed);
+    }
+}
+
+:focus-visible {
+    outline: var(--strokeWidthThick) solid var(--colorStrokeFocus2);
+    outline-offset: 2px;
+    border-radius: var(--borderRadiusSmall);
+}
+
+// Lists ------------------------------------------------------------------------------------
+
+ul, ol {
+    padding-inline-start: 1.5em;
+}
+
+li + li, li > ul, li > ol {
+    margin-top: .3em;
+}
+
+li::marker {
+    color: var(--colorBrandForeground1);
+}
+
+dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: .35em 1.5em;
+
+    @media (max-width: $breakpoint-small) {
+        grid-template-columns: 1fr;
+        gap: 0;
+
+        dd + dt {
+            margin-top: .75em;
+        }
+    }
+}
+
+dt {
+    font-weight: var(--fontWeightBold);
+}
+
+dd {
+    margin: 0;
+
+    ul {
+        margin: 0;
+    }
+}
+
+// Code -------------------------------------------------------------------------------------
+
+code, kbd, samp, pre {
+    font-family: var(--fontFamilyMonospace);
+    font-size: .875em;
+}
+
+:not(pre) > code {
+    padding: .1em .35em;
+    border-radius: var(--borderRadiusSmall);
+    background: var(--colorNeutralBackground3);
+    color: var(--colorNeutralForeground1);
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+pre {
+    padding: 1em 1.25em;
+    overflow-x: auto;
+    border-radius: var(--borderRadiusLarge);
+    line-height: 1.5;
+}
+
+// Rules, media, figures --------------------------------------------------------------------
+
+hr {
+    margin: 2.5em 0;
+    border: 0;
+    border-top: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+}
+
+img, svg, video {
+    max-width: 100%;
+    height: auto;
+}
+
+figure {
+    margin: 2em 0;
+    text-align: center;
+
+    img {
+        border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+        border-radius: var(--borderRadiusMedium);
+        box-shadow: var(--shadow4);
+        transition: box-shadow var(--durationNormal) var(--curveEasyEase);
+    }
+
+    a:is(:hover, :focus-visible) img {
+        box-shadow: var(--shadow16);
+    }
+
+    &.no-border img {
+        border: 0;
+        box-shadow: none;
+        background: none;
+    }
+}
+
+figcaption {
+    margin-top: .75em;
+    color: var(--colorNeutralForeground3);
+    font-size: var(--fontSizeBase300);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+        padding: .5em .75em;
+        border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+        text-align: start;
+    }
+}
+
+details > summary {
+    cursor: pointer;
+}
+
+::selection {
+    background: var(--colorBrandBackground2);
+    color: var(--colorNeutralForeground1);
+}

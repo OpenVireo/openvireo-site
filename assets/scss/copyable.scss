@@ -1,6 +1,8 @@
 .copyable {
     display: flex;
-    margin-top: 5px;
+    align-items: stretch;
+    margin-top: 6px;
+    text-align: start;
 
     code > span {
         display: inline !important;
@@ -12,13 +14,22 @@
         width: 100%;
 
         pre {
-            border-radius: $global-border-radius;
             margin: 0;
+            padding: .55em .9em;
+            font-size: .8125rem;
+
+            code {
+                font-size: inherit;
+            }
+            border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+            border-radius: var(--borderRadiusMedium);
             white-space: pre-wrap;
+            overflow-wrap: anywhere;
         }
+
         &:not(:only-child) pre {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
+            border-start-end-radius: 0;
+            border-end-end-radius: 0;
         }
 
         code[data-lang="shell"]::before {
@@ -32,16 +43,11 @@
         }
     }
 
-    button {
-        cursor: pointer;
-        margin: 0;
-        border: 1px solid $global-border;
-        border-left: 0px;
-        border-top-right-radius: $global-border-radius;
-        border-bottom-right-radius: $global-border-radius;
-        background-color: lighten($button-default-color, 75%);
-    }
-    button:hover {
-        background-color: lighten($button-default-color, 70%);
+    fluent-button {
+        height: auto;
+        min-height: 100%;
+        border-start-start-radius: 0;
+        border-end-start-radius: 0;
+        border-inline-start: 0;
     }
 }

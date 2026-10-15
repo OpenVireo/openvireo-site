@@ -1,0 +1,21 @@
+{{- /*
+    Link styled as a Fluent button (see assets/scss/_buttons.scss for why this isn't
+    <fluent-anchor-button>).
+
+    Parameters:
+      href        (required)
+      text        (required) Label, may contain HTML
+      appearance  primary | outline | subtle | transparent (default: Fluent "secondary")
+      size        small | large | hero
+      icon        Font Awesome classes, e.g. "fa-solid fa-download"
+      class       Extra classes
+      attrs       Extra raw attributes, e.g. `target="_blank"`
+*/ -}}
+{{- $class := slice "btn" -}}
+{{- with .appearance }}{{ $class = $class | append (printf "btn-%s" .) }}{{ end -}}
+{{- with .size }}{{ $class = $class | append (printf "btn-%s" .) }}{{ end -}}
+{{- with .class }}{{ $class = $class | append . }}{{ end -}}
+<a href="{{ .href | safeURL }}" class="{{ delimit $class " " }}"{{ with .attrs }} {{ . | safeHTMLAttr }}{{ end }}>
+    {{- with .icon }}<i class="{{ . }}" aria-hidden="true"></i> {{ end }}{{ .text | safeHTML -}}
+</a>
+{{- /* trim */ -}}

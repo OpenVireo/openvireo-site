@@ -1,0 +1,214 @@
+// Site header: sticky Fluent "acrylic" bar with tab-style navigation.
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: var(--strokeWidthThin) solid transparent;
+    background: color-mix(in srgb, var(--colorNeutralBackground1) 85%, transparent);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    transition: box-shadow var(--durationNormal) var(--curveEasyEase),
+                border-color var(--durationNormal) var(--curveEasyEase);
+
+    &[data-stuck] {
+        border-bottom-color: var(--colorNeutralStroke2);
+        box-shadow: var(--shadow4);
+
+        .header-inner {
+            height: $header-height-stuck;
+        }
+
+        .logo img {
+            height: 2rem;
+        }
+    }
+
+    @supports not (backdrop-filter: blur(1px)) {
+        background: var(--colorNeutralBackground1);
+    }
+}
+
+// Thin brand stripe across the top, a nod to the original green navbar
+.site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: linear-gradient(90deg, map-get($brand-ramp, 70), map-get($brand-ramp, 100));
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--spacingHorizontalL);
+    height: $header-height;
+    transition: height var(--durationNormal) var(--curveEasyEase);
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    margin-inline-end: auto;
+    color: var(--colorNeutralForeground1);
+    font-size: var(--fontSizeBase600);
+    font-weight: var(--fontWeightSemibold);
+    letter-spacing: -.01em;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--colorNeutralForeground1);
+    }
+
+    img {
+        height: 2.6rem;
+        width: auto;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .2));
+        transition: height var(--durationNormal) var(--curveEasyEase);
+    }
+}
+
+// Tab-like nav links with Fluent's selected indicator
+.nav-links-wrapper {
+    align-self: stretch;
+}
+
+.nav-links {
+    display: flex;
+    align-items: stretch;
+    gap: var(--spacingHorizontalXXS);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        margin: 0;
+    }
+
+    a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0 var(--spacingHorizontalM);
+        color: var(--colorNeutralForeground2);
+        font-size: var(--fontSizeBase400);
+        font-weight: var(--fontWeightSemibold);
+        text-decoration: none;
+        border-radius: var(--borderRadiusMedium);
+        transition: color var(--durationFaster) var(--curveEasyEase);
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset-inline: var(--spacingHorizontalM);
+            bottom: 10px;
+            height: 3px;
+            border-radius: var(--borderRadiusCircular);
+            background: var(--colorNeutralStroke1Hover);
+            scale: 0 1;
+            transition: scale var(--durationNormal) var(--curveDecelerateMax);
+        }
+
+        &:hover {
+            color: var(--colorNeutralForeground2Hover);
+
+            &::after {
+                scale: 1 1;
+            }
+        }
+
+        &[aria-current] {
+            color: var(--colorNeutralForeground1);
+
+            &::after {
+                background: var(--colorCompoundBrandStroke);
+                scale: 1 1;
+            }
+        }
+
+        &:focus-visible {
+            outline-offset: -4px;
+        }
+    }
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacingHorizontalXS);
+}
+
+// Hide the desktop nav on small screens (drawer takes over), unless JS is off.
+@media (max-width: #{$breakpoint-large - 1px}) {
+    .js .site-header .nav-links {
+        display: none;
+    }
+
+    .no-js .site-header {
+        .header-inner {
+            flex-wrap: wrap;
+            height: auto;
+            padding-block: .5rem;
+        }
+
+        .nav-links {
+            order: 3;
+            width: 100%;
+            flex-wrap: wrap;
+            height: auto;
+
+            a {
+                padding-block: .4rem;
+
+                &::after {
+                    bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpoint-large) {
+    .nav-toggle {
+        display: none;
+    }
+}
+
+// Mobile navigation drawer
+#nav-drawer {
+    .drawer-nav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin: 0;
+        }
+
+        a {
+            display: block;
+            padding: .7rem 1rem;
+            border-radius: var(--borderRadiusMedium);
+            color: var(--colorNeutralForeground1);
+            font-size: var(--fontSizeBase500);
+            font-weight: var(--fontWeightSemibold);
+            text-decoration: none;
+
+            &:hover {
+                background: var(--colorSubtleBackgroundHover);
+            }
+
+            &[aria-current] {
+                background: var(--colorBrandBackground2);
+                color: var(--colorBrandForeground2);
+            }
+        }
+    }
+
+    &:not(:defined) {
+        display: none;
+    }
+}

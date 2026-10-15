@@ -1,144 +1,141 @@
 {{ define "main" }}
-<section class="uk-section uk-margin-medium-bottom uk-position-relative frontpage-hero-section">
-    <div class="uk-container">
-        <div class="uk-grid" uk-grid>
-            <div>
-                <div class="uk-width-xlarge@m">
-                    <h1 class="uk-margin-remove-bottom frontpage-app-name">KeePassXC</h1>
-                    <div class="uk-text-muted uk-margin-remove-top">Cross-platform Password Manager</div>
-                    <p class="uk-margin-medium-top">Let KeePassXC safely store your passwords and auto-fill them into your favorite apps, so you can forget all about them.</p>
-                    <p>We do the heavy lifting in a no-nonsense, ad-free, tracker-free, and cloud-free manner. Free and open source.</p>
-                    <p>KeePassXC has been awarded a <a href="#certified-security">Security Visa</a> by the French National Cybersecurity Agency (ANSSI).</p>
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <a class="badge-anssi" href="#certified-security">
+                <span class="badge-pill">Certified</span>
+                ANSSI Security Visa (CSPN)
+                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <h1 class="hero-title">KeePassXC</h1>
+            <p class="hero-subtitle">Cross-platform Password Manager</p>
+            <div class="hero-copy">
+                <p>Let KeePassXC safely store your passwords and auto-fill them into your favorite apps, so you can forget all about them.</p>
+                <p>We do the heavy lifting in a no-nonsense, ad-free, tracker-free, and cloud-free manner. Free and open source.</p>
+                <p>KeePassXC has been awarded a <a href="#certified-security">Security Visa</a> by the French National Cybersecurity Agency (ANSSI).</p>
+            </div>
+            <div class="row hero-actions">
+                {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download" "appearance" "primary" "size" "hero" "icon" "fa-solid fa-download") }}
+                {{ partial "button.html" (dict "href" "#project" "text" "Learn More" "size" "hero" "icon" "fa-solid fa-circle-info") }}
+                {{ partial "button.html" (dict "href" (print .Site.BaseURL "donate") "text" "Donate" "appearance" "transparent" "size" "hero" "icon" "fa-solid fa-hand-holding-heart") }}
+            </div>
+        </div>
+        <div class="hero-art">
+            <img src="{{ .Site.BaseURL }}assets/img/frontpage-hero.svg" alt="" width="560" height="420">
+        </div>
+    </div>
+</section>
+
+<section class="section features" aria-label="Highlights">
+    <div class="container">
+        <div class="grid grid-3 grid-match">
+            <div class="card">
+                <div class="card-body">
+                    <span class="icon-tile"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
+                    <h2>Secure</h2>
+                    <p>Your passwords remain encrypted at all times and no data is stored on remote servers, so you stay in full control of your data. No cloud, no ads, no subscriptions.</p>
                 </div>
-                <div class="uk-margin-large-top">
-                    <a class="uk-button uk-button-large uk-button-primary uk-width-expand uk-width-auto@s uk-margin-small-bottom" href="{{ .Site.BaseURL }}download" role="button">
-                        <i class="fa-solid fa-download"></i> Download
-                    </a>
-                    <a class="uk-button uk-button-large uk-button-secondary uk-width-expand uk-width-auto@s uk-margin-small-bottom" href="#project" role="button" uk-scroll="offset: 50">
-                        <i class="fa-solid fa-circle-info"></i> Learn More
-                    </a>
-                    <a class="uk-button uk-button-large uk-button-default uk-width-expand uk-width-auto@s uk-margin-small-bottom" href="{{ .Site.BaseURL }}donate" role="button">
-                        <i class="fa-solid fa-hand-holding-dollar"></i> Donate
-                    </a>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span class="icon-tile"><i class="fa-solid fa-laptop" aria-hidden="true"></i></span>
+                    <h2>Cross-platform</h2>
+                    <p>Every feature is thoroughly tested on Windows, macOS, and Linux, so you can expect a seamless experience no matter which operating system you use.</p>
                 </div>
-
             </div>
-            <div class="uk-width-expand uk-visible@l frontpage-hero">
-                <img src="{{ .Site.BaseURL }}assets/img/frontpage-hero.svg" alt="" uk-parallax="opacity: 1,0; scale: 1,1.2; end: 5vh; easing: -2; media: @m">
-            </div>
-        </div>
-    </div>
-</section>
-
-<hr class="uk-divider-icon">
-
-<section class="uk-section">
-    <div class="uk-container">
-        <div class="uk-grid uk-child-width-1-3@l" uk-grid>
-            <div>
-                <h2><i class="fa-solid fa-shield-halved"></i> Secure</h2>
-                <p>Your passwords remain encrypted at all times and no data is stored on remote servers, so you stay in full control of your data. No cloud, no ads, no subscriptions.
-                </p>
-            </div>
-            <div>
-                <h2><i class="fa-solid fa-universal-access"></i> Cross-platform</h2>
-                <p>Every feature is thoroughly tested on Windows, macOS, and Linux, so you can expect a seamless experience no matter which operating system you use.
-                </p>
-            </div>
-            <div>
-                <h2><i class="fa-solid fa-heart"></i> Open Source</h2>
-                <p>The source code is completely open source under the GPLv3 license and openly available on GitHub. Feel free to inspect, share, and contribute!</p>
+            <div class="card">
+                <div class="card-body">
+                    <span class="icon-tile"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+                    <h2>Open Source</h2>
+                    <p>The source code is completely open source under the GPLv3 license and openly available on GitHub. Feel free to inspect, share, and contribute!</p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<hr class="uk-divider-icon">
+<section class="section media-section" id="project">
+    <div class="container grid grid-split grid-large">
+        <div>
+            <img src="{{ .Site.BaseURL }}assets/img/frontpage-illustration-1.svg" alt="" class="reveal">
+        </div>
+        <div class="order-first">
+            <p class="eyebrow">About</p>
+            <h2>The Project</h2>
 
-<section class="uk-section" id="project">
-    <div class="uk-container">
-        <div class="uk-grid uk-child-width-1-2@m uk-grid-large" uk-grid>
-            <div>
-                <img src="{{ .Site.BaseURL }}assets/img/frontpage-illustration-1.svg" uk-parallax="y: -120,0; opacity: 0,1; scale: 1.1,1; end: 70vh + 70%; easing: 2; media: @m">
-            </div>
-            <div class="uk-flex-first@m">
-                <h2>The Project</h2>
+            <p><strong>KeePassXC</strong> is a modern, secure, and open-source password manager that stores and manages your most sensitive information.</p>
 
-                <p><strong>KeePassXC</strong> is a modern, secure, and open-source password manager that stores and manages your most sensitive information.</p>
+            <p>
+                You can run KeePassXC on Windows, macOS, and Linux systems. KeePassXC is for people with extremely high demands of secure
+                personal data management. It saves many types of information, such as usernames, passwords, URLs, attachments,
+                and notes in an offline, encrypted file that can be stored in any location, including private and public cloud solutions.
+            </p>
+        </div>
+    </div>
+</section>
 
-                <p>
-                    You can run KeePassXC on Windows, macOS, and Linux systems. KeePassXC is for people with extremely high demands of secure
-                    personal data management. It saves many types of information, such as usernames, passwords, URLs, attachments,
-                    and notes in an offline, encrypted file that can be stored in any location, including private and public cloud solutions.
-                </p>
+<section class="section media-section">
+    <div class="container grid grid-split grid-large">
+        <div>
+            <img src="{{ .Site.BaseURL }}assets/img/frontpage-illustration-2.svg" alt="" class="reveal">
+        </div>
+        <div>
+            <p class="eyebrow">Get started</p>
+            <h2>How to Get Started</h2>
+            <p>
+                Our <strong><a href="{{ .Site.BaseURL }}docs/KeePassXC_GettingStarted.html"><i class="fa-solid fa-rocket" aria-hidden="true"></i> Getting Started Guide</a></strong> walks you through the steps of
+                <strong><a href="{{ .Site.BaseURL }}download"><i class="fa-solid fa-download" aria-hidden="true"></i> downloading</a></strong> and installing KeePassXC for Windows, macOS, or Linux.
+                Additionally, many Linux distributions ship their own versions, so in that case please check your distribution's package
+                list.
+            </p>
+
+            <p>
+                Detailed usage documentation is available in the
+                <strong><a href="{{ .Site.BaseURL }}docs/KeePassXC_UserGuide.html"><i class="fa-solid fa-book" aria-hidden="true"></i> User Guide</a></strong>. Also head over to our
+                <strong><a href="{{ .Site.BaseURL }}docs"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Documentation &amp; FAQ page</a></strong> for more information.
+            </p>
+            <div class="row">
+                {{ partial "button.html" (dict "href" (print .Site.BaseURL "docs/KeePassXC_GettingStarted.html") "text" "Getting Started Guide" "appearance" "primary" "size" "large" "icon" "fa-solid fa-rocket") }}
+                {{ partial "button.html" (dict "href" (print .Site.BaseURL "docs/KeePassXC_UserGuide.html") "text" "User Guide" "size" "large" "icon" "fa-solid fa-book") }}
             </div>
         </div>
     </div>
 </section>
 
-<section class="uk-section">
-    <div class="uk-container">
-        <div class="uk-grid uk-child-width-1-2@m uk-grid-large" uk-grid>
-            <div>
-                <img src="{{ .Site.BaseURL }}assets/img/frontpage-illustration-2.svg" uk-parallax="y: -120,0; opacity: 0,1; scale: 1.1,1; end: 70vh + 70%; easing: 2; media: @m">
-            </div>
-            <div>
-                <h2>How to Get Started</h2>
-                <p>
-                    Our <strong>
-                    <a href="{{ .Site.BaseURL }}docs/KeePassXC_GettingStarted.html"><i class="fa-solid fa-rocket"></i> Getting Started Guide</a></strong> walks you through the steps of
-                    <strong><a href="{{  .Site.BaseURL }}download"><i class="fa-solid fa-download"></i> downloading</a></strong> and installing KeePassXC for Windows, macOS, or Linux.
-                    Additionally, many Linux distributions ship their own versions, so in that case please check your distribution's package
-                    list.
-                </p>
+<section class="section media-section" id="certified-security">
+    <div class="container grid grid-split grid-large">
+        <div>
+            <a href="{{ .Site.BaseURL }}audits/#cspn-2025-11-17">
+                <img alt="ANSSI Security Visa" src="{{ .Site.BaseURL }}assets/img/anssi-cspn-security-visa.png" class="reveal" style="max-width: 22rem">
+            </a>
+        </div>
+        <div class="order-first">
+            <p class="eyebrow">Security</p>
+            <h2>Certified Security</h2>
 
-                <p>
-                    Detailed usage documentation is available in the
-                    <strong><a href="{{  .Site.BaseURL }}docs/KeePassXC_UserGuide.html"><i class="fa-solid fa-book"></i> User Guide</a></strong>. Also head over to our
-                    <strong><a href="{{  .Site.BaseURL }}docs"><i class="fa-solid fa-circle-question"></i> Documentation &amp; FAQ page</a></strong> for more information.
-                </p>
-            </div>
+            <p><strong>KeePassXC 2.7.9</strong> has been awarded a security Visa by the French National Cybersecurity Agency (ANSSI).</p>
+            <p>
+                The security Visa has been awarded for passing ANSSI's First-level Security Certification (CSPN). The certificate demonstrates that
+                KeePassXC has been tested for complying with security standards set by ANSSI, and it is recognised in France and in Germany.
+            </p>
+            <p>
+                More information can be found on our <a href="{{ .Site.BaseURL }}audits/">security audits and certifications page</a>.
+            </p>
         </div>
     </div>
 </section>
 
-<section class="uk-section" id="certified-security">
-    <div class="uk-container">
-        <div class="uk-grid uk-child-width-1-2@m uk-grid-large" uk-grid>
-            <div>
-                <a href="{{  .Site.BaseURL }}audits/#cspn-2025-11-17">
-                    <img alt="ANSSI Security Visa" src="{{  .Site.BaseURL }}/assets/img/anssi-cspn-security-visa.png" class="uk-width-1-1 uk-align-center"
-                         uk-parallax="y: -120,0; opacity: 0,1; scale: 1.1,1; end: 70vh + 70%; easing: 2; media: @m">
-                </a>
-            </div>
-            <div class="uk-flex-first@m">
-                <h2>Certified Security</h2>
-
-                <p><strong>KeePassXC 2.7.9</strong> has been awarded a security Visa by the French National Cybersecurity Agency (ANSSI).</p>
-                <p>
-                    The security Visa has been awarded for passing ANSSI's First-level Security Certification (CSPN). The certificate demonstrates that
-                    KeePassXC has been tested for complying with security standards set by ANSSI, and it is recognised in France and in Germany.
-                </p>
-                <p>
-                    More information can be found on our <a href="{{  .Site.BaseURL }}audits/">security audits and certifications page</a>.
-                </p>
-            </div>
+<section class="section section-muted">
+    <div class="container">
+        <div class="row" style="justify-content: space-between; margin-bottom: 1.5rem">
+            <h2 class="mb-0">Recent Blog Posts</h2>
+            {{ partial "button.html" (dict "href" (print .Site.BaseURL "blog/") "text" "All posts" "appearance" "subtle" "icon" "fa-solid fa-arrow-right") }}
         </div>
-    </div>
-</section>
 
-
-<section class="uk-section uk-section-muted">
-    <div class="uk-container">
-        <h2 class="uk-margin-medium-bottom">Recent Blog Posts</h2>
-
-        <div class="uk-grid uk-child-width-1-2@m uk-text-small" uk-grid="masonry: true"
-             uk-parallax="y: -50,0; scale: 1.1,1; opacity: 0,1; end: 70vh + 100%; media: @m">
+        <div class="grid grid-2">
             {{- block "index-post-teasers" . }}
                 {{- range first 4 (where .Site.RegularPages "Section" "blog").ByPublishDate.Reverse }}
-                <div>
                     {{ partial "article-teaser" . }}
-                </div>
                 {{- end }}
             {{ end }}
         </div>

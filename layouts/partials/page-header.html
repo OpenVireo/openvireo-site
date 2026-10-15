@@ -1,0 +1,9 @@
+<div class="page-header">
+    <div class="container">
+        {{ partial "breadcrumbs.html" . }}
+        <h1>{{ .Title }}</h1>
+        {{- if eq .Section "blog" }}{{ if .IsPage }}
+        {{ partial "article-meta.html" . }}
+        {{- end }}{{ end }}
+    </div>
+</div>

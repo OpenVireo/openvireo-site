@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <script>document.documentElement.classList.replace('no-js', 'js');</script>
     {{ block "title" . }}<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Page.Title }} – KeePassXC{{ end }}</title>{{ end }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="KeePassXC Password Manager">
     <meta name="author" content="KeePassXC Team">
-    <meta name="theme-color" content="#417e29">
+    <meta name="theme-color" content="#3c7d20">
+    <meta name="color-scheme" content="light dark">
     <link rel="canonical" href="{{ .Permalink }}">
     <link rel="shortcut icon" href="{{ .Site.BaseURL }}favicon.ico" type="image/x-icon">
     <link rel="icon" href="{{ .Site.BaseURL }}favicon.ico" type="image/x-icon">
@@ -22,33 +23,23 @@
         | css.Sass (dict "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction) "includePaths" (slice "."))
         | fingerprint -}}
     <link href="{{ $style.RelPermalink }}" rel="stylesheet">
-    {{ $script := resources.Get "js/copyable.js" | fingerprint -}}
+    {{ $script := resources.Get "js/site.js"
+        | js.Build (dict "targetPath" "assets/js/site.js" "format" "esm" "target" "es2022" "minify" hugo.IsProduction "sourceMap" (cond hugo.IsProduction "" "inline"))
+        | fingerprint -}}
     <script type="module" src="{{ $script.RelPermalink }}"></script>
-    <noscript>
-    {{ $style := resources.Get "scss/noscript.scss"
-          | resources.ExecuteAsTemplate "assets/css/noscript.css" .
-          | css.Sass (dict "outputStyle" "compressed" "enableSourceMap" (not hugo.IsProduction) "includePaths" (slice "."))
-          | fingerprint -}}
-    <link href="{{ $style.RelPermalink }}" rel="stylesheet">
-    </noscript>
-
-    {{- $uikitMain := resources.Get "node_modules/uikit/dist/js/uikit.min.js" }}
-    {{- $uikitIcons := resources.Get "node_modules/uikit/dist/js/uikit-icons.min.js" }}
-    {{- $uikit := slice $uikitMain $uikitIcons | resources.Concat "assets/js/uikit.min.js" | fingerprint }}
-    <script src="{{ $uikit.RelPermalink }}"></script>
-    {{- $jquery := resources.Get "node_modules/jquery/dist/jquery.min.js" | resources.Copy "assets/js/jquery.min.js" | fingerprint }}
-    <script type="module" src="{{ $jquery.RelPermalink }}"></script>
     {{- block "head" . }}{{ end }}
 </head>
 <body>
+<a class="visually-hidden" href="#main">Skip to content</a>
 {{- partial "navbar.html" . }}
 
 {{- block "before-main" . }}{{ end }}
-<main uk-height-viewport="expand: true">
+<main id="main">
 {{- block "main" . }}{{ end }}
 </main>
 {{- block "after-main" . }}{{ end }}
 
 {{- partial "footer.html" . }}
+{{- partial "lightbox.html" . }}
 </body>
 </html>

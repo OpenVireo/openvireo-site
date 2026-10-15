@@ -1,9 +1,13 @@
 {{ define "main" }}
-<section class="uk-section">
-    <div class="uk-container uk-margin-large-top uk-margin-large-bottom uk-text-center">
-        <h1>404 &ndash; Not Found</h1>
-        <p>Too bad, the requested page could not be found.</p>
-        <p>Go back to the <a href="{{ .Site.BaseURL }}">main page</a>.</p>
+<section class="section">
+    <div class="container text-center">
+        <p class="eyebrow">Error 404</p>
+        <h1>Page not found</h1>
+        <p class="text-muted">Too bad, the requested page could not be found.</p>
+        <div class="row row-center">
+            {{ partial "button.html" (dict "href" .Site.BaseURL "text" "Go to the main page" "appearance" "primary" "size" "large" "icon" "fa-solid fa-house") }}
+            {{ partial "button.html" (dict "href" (print .Site.BaseURL "docs") "text" "Docs / FAQ" "size" "large") }}
+        </div>
     </div>
 </section>
 {{ end }}

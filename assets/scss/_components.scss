@@ -1,0 +1,545 @@
+// Components: cards, Fluent web component tweaks and their no-JS fallbacks, navigation aids.
+
+// Font Awesome icon spacing
+.fa, .fa-brands, .fa-solid, .fa-regular {
+    line-height: inherit;
+}
+
+// Card (Fluent 2 "Card" spec: neutral surface, large radius, shadow4 → shadow8 on hover) ---
+
+.card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--borderRadiusXLarge);
+    background: var(--colorNeutralBackground1);
+    box-shadow: var(--shadow4);
+    border: var(--strokeWidthThin) solid var(--colorTransparentStroke);
+    color: var(--colorNeutralForeground1);
+    transition: box-shadow var(--durationNormal) var(--curveEasyEase);
+
+    @media (forced-colors: active) {
+        border-color: CanvasText;
+    }
+
+    &.card-interactive:hover,
+    &.card-interactive:focus-within {
+        box-shadow: var(--shadow8);
+    }
+
+    &.card-filled {
+        background: var(--colorNeutralBackground2);
+        box-shadow: none;
+        border-color: var(--colorNeutralStroke2);
+    }
+
+    &.card-outline {
+        box-shadow: none;
+        border-color: var(--colorNeutralStroke1);
+    }
+}
+
+.card-header {
+    padding: var(--spacingVerticalL) var(--spacingHorizontalXL);
+
+    &.card-header-brand {
+        background: var(--colorBrandBackground);
+        color: var(--colorNeutralForegroundOnBrand);
+
+        * {
+            color: inherit;
+        }
+    }
+}
+
+.card-body {
+    flex: 1;
+    padding: var(--spacingVerticalXL) var(--spacingHorizontalXL);
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    &.card-body-compact {
+        padding: var(--spacingVerticalL) var(--spacingHorizontalL);
+    }
+}
+
+.card-header + .card-body {
+    padding-top: 0;
+}
+
+.card-header-brand + .card-body {
+    padding-top: var(--spacingVerticalXL);
+}
+
+.card-footer {
+    padding: 0 var(--spacingHorizontalXL) var(--spacingVerticalXL);
+}
+
+.card-title {
+    margin: 0 0 .35em;
+    font-size: var(--fontSizeBase500);
+    line-height: var(--lineHeightBase500);
+    font-weight: var(--fontWeightSemibold);
+
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            color: var(--colorBrandForegroundLinkHover);
+            text-decoration: underline;
+        }
+    }
+}
+
+// Divided list inside cards
+.list-divided {
+    list-style: none;
+    padding: 0;
+
+    > li {
+        margin: 0;
+        padding: .5em 0;
+
+        + li {
+            border-top: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+        }
+    }
+}
+
+.list-plain {
+    list-style: none;
+    padding: 0;
+
+    > li {
+        margin: 0;
+    }
+}
+
+// Icon tile used on feature lists
+.icon-tile {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: var(--borderRadiusXLarge);
+    background: var(--colorBrandBackground2);
+    color: var(--colorBrandForeground2);
+    font-size: 1.35rem;
+}
+
+// Fluent web components --------------------------------------------------------------------
+
+// Shared fallback: until the components are defined (or when JS is off), keep content
+// readable and avoid big layout shifts.
+:is(fluent-accordion, fluent-accordion-item, fluent-message-bar, fluent-tablist, fluent-divider):not(:defined) {
+    display: block;
+}
+
+fluent-divider {
+    margin-block: #{"clamp(2rem, 5vw, 3.5rem)"};
+
+    &:not(:defined) {
+        border-top: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+    }
+}
+
+// Accordion
+fluent-accordion {
+    margin: 0 0 2rem;
+}
+
+fluent-accordion-item {
+    max-width: none;
+    text-align: start;
+    border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+
+    &::part(heading) {
+        padding-block: var(--spacingVerticalXS);
+    }
+
+    &::part(button) {
+        justify-self: stretch;
+        font-family: var(--fontFamilyBase);
+        font-weight: var(--fontWeightSemibold);
+        text-align: start;
+        min-height: 2.75rem;
+        height: auto;
+        padding-block: var(--spacingVerticalS);
+    }
+
+    &[expanded]::part(button) {
+        color: var(--colorBrandForeground1);
+    }
+
+    &::part(content) {
+        padding: 0 var(--spacingHorizontalM) var(--spacingVerticalL) var(--spacingHorizontalXXXL);
+        line-height: 1.65;
+    }
+
+    // Fluent's heading grid is "auto auto 1fr auto"; let the button fill all but the marker column
+    &[marker-position="end"]::part(button) {
+        grid-column: 1 / span 3;
+    }
+
+    &[marker-position="end"]::part(content) {
+        padding-inline-start: var(--spacingHorizontalM);
+    }
+
+    > [slot="heading"] {
+        font-size: var(--fontSizeBase400);
+        line-height: var(--lineHeightBase400);
+    }
+
+    // No JS: render as heading + always-open content
+    &:not(:defined) {
+        padding: 1em 0;
+
+        > [slot="heading"] {
+            display: block;
+            margin-bottom: .5em;
+            font-weight: var(--fontWeightSemibold);
+        }
+    }
+}
+
+// Card that wraps a single accordion (download page "more options")
+.card-accordion {
+    fluent-accordion {
+        margin: 0;
+    }
+
+    fluent-accordion-item {
+        border: 0;
+
+        &::part(heading) {
+            background: var(--colorNeutralBackground2);
+            padding-inline: var(--spacingHorizontalS);
+        }
+
+        &::part(content) {
+            padding: var(--spacingVerticalL) var(--spacingHorizontalXL);
+        }
+
+        &:not(:defined) {
+            padding: 0;
+
+            > [slot="heading"] {
+                padding: .75em var(--spacingHorizontalXL);
+                background: var(--colorNeutralBackground2);
+            }
+
+            > :not([slot]) {
+                margin: 1em var(--spacingHorizontalXL);
+            }
+        }
+    }
+}
+
+// Message bar
+fluent-message-bar {
+    margin: 0 0 1.5rem;
+
+    &:not(:defined) {
+        padding: .75em 1em;
+        border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+        border-radius: var(--borderRadiusMedium);
+        background: var(--colorNeutralBackground3);
+    }
+
+    &[intent="warning"]:not(:defined) {
+        background: var(--colorStatusWarningBackground1);
+        border-color: var(--colorStatusWarningBorder1);
+    }
+
+    &[intent="success"]:not(:defined) {
+        background: var(--colorStatusSuccessBackground1);
+        border-color: var(--colorStatusSuccessBorder1);
+    }
+
+    &[intent="error"]:not(:defined) {
+        background: var(--colorStatusDangerBackground1);
+        border-color: var(--colorStatusDangerBorder1);
+    }
+
+    > [slot="icon"] {
+        padding: 0;
+    }
+}
+
+// Tabs
+fluent-tablist {
+    justify-content: center;
+    flex-wrap: wrap;
+
+    // Tabs are useless without JS: every panel is shown instead.
+    .no-js & {
+        display: none;
+    }
+
+    &:not(:defined) {
+        display: flex;
+        min-height: 44px;
+        visibility: hidden;
+    }
+}
+
+fluent-tab {
+    font-family: var(--fontFamilyBase);
+
+    i[slot="start"] {
+        margin-inline-end: .4em;
+    }
+}
+
+// Tooltip
+fluent-tooltip:not(:defined) {
+    display: none;
+}
+
+// Avatar
+fluent-avatar:not(:defined) {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--colorNeutralBackground3);
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Breadcrumbs (Fluent 2 Breadcrumb spec) ---------------------------------------------------
+
+.breadcrumb {
+    ol {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacingHorizontalXXS);
+        margin: 0 0 1rem;
+        padding: 0;
+        list-style: none;
+        font-size: var(--fontSizeBase300);
+    }
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: var(--spacingHorizontalXXS);
+        margin: 0;
+
+        + li::before {
+            content: "\203A";
+            color: var(--colorNeutralForeground3);
+            padding-inline: var(--spacingHorizontalXS);
+        }
+    }
+
+    a {
+        padding: 2px var(--spacingHorizontalS);
+        border-radius: var(--borderRadiusMedium);
+        color: var(--colorNeutralForeground2);
+        text-decoration: none;
+
+        &:hover {
+            background: var(--colorSubtleBackgroundHover);
+            color: var(--colorNeutralForeground2Hover);
+        }
+    }
+
+    [aria-current="page"] a {
+        color: var(--colorNeutralForeground1);
+        font-weight: var(--fontWeightSemibold);
+    }
+}
+
+// Pagination -------------------------------------------------------------------------------
+
+.pagination {
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacingHorizontalXS);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+    }
+
+    .btn {
+        min-width: 40px;
+    }
+}
+
+// Articles ---------------------------------------------------------------------------------
+
+.article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25em 1.25em;
+    margin-top: .5rem;
+    font-size: var(--fontSizeBase300);
+    color: var(--colorNeutralForeground3);
+
+    em, time {
+        font-style: normal;
+        font-weight: var(--fontWeightSemibold);
+        color: var(--colorNeutralForeground2);
+    }
+
+    i {
+        padding-inline-end: .3em;
+    }
+}
+
+.article-teaser {
+    .card-body > p:first-child {
+        margin-top: 0;
+    }
+}
+
+.blog-content {
+    h2 { font-size: var(--fontSizeBase600); }
+    h3 { font-size: var(--fontSizeBase500); }
+    h4 { font-size: var(--fontSizeBase400); }
+
+    > ul li, > ol li {
+        margin-top: .4em;
+    }
+}
+
+// Page header band -------------------------------------------------------------------------
+
+.page-header {
+    padding-block: #{"clamp(1.5rem, 4vw, 2.5rem)"} #{"clamp(1.5rem, 4vw, 2.5rem)"};
+    background: linear-gradient(var(--colorNeutralBackground2), var(--colorNeutralBackground1));
+    border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke3);
+
+    h1 {
+        margin: 0;
+    }
+}
+
+// Carousel (scroll-snap, replaces UIkit slider/slideshow) ----------------------------------
+
+.carousel {
+    position: relative;
+
+    .carousel-track {
+        --carousel-items: 1;
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: calc((100% - (var(--carousel-items) - 1) * 1rem) / var(--carousel-items));
+        gap: 1rem;
+        margin: 0;
+        padding: .5rem .25rem 1rem;
+        list-style: none;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+
+        > li {
+            margin: 0;
+            scroll-snap-align: start;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+            border-radius: var(--borderRadiusMedium);
+            box-shadow: var(--shadow4);
+        }
+
+        figure {
+            margin: 0;
+        }
+    }
+
+    &.carousel-multi .carousel-track {
+        @media (min-width: $breakpoint-small) { --carousel-items: 2; }
+        @media (min-width: $breakpoint-medium) { --carousel-items: 3; }
+    }
+
+    .carousel-nav {
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+        z-index: 1;
+        box-shadow: var(--shadow8);
+
+        &.prev { inset-inline-start: -.75rem; }
+        &.next { inset-inline-end: -.75rem; }
+    }
+
+    .no-js & .carousel-track {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 16rem)"}, 1fr));
+    }
+}
+
+// Lightbox (built on <fluent-dialog>) ------------------------------------------------------
+
+#lightbox {
+    --dialog-backdrop: rgba(0, 0, 0, .82);
+
+    &::part(dialog) {
+        width: auto;
+        max-width: #{"min(96vw, 1600px)"};
+        max-height: 96vh;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border: 0;
+        overflow: visible;
+    }
+
+    figure {
+        position: relative;
+        margin: 0;
+
+        img {
+            display: block;
+            max-width: #{"min(92vw, 1600px)"};
+            max-height: 84vh;
+            margin-inline: auto;
+            border: 0;
+            border-radius: var(--borderRadiusLarge);
+            background: var(--colorNeutralBackground1);
+            box-shadow: var(--shadow64);
+        }
+    }
+
+    figcaption {
+        color: #fff;
+        font-size: var(--fontSizeBase400);
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: -.5rem;
+        inset-inline-end: -.5rem;
+        translate: 0 -100%;
+    }
+
+    .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        translate: 0 -50%;
+
+        &.prev { inset-inline-start: .75rem; }
+        &.next { inset-inline-end: .75rem; }
+    }
+}
