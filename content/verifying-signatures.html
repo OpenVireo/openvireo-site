@@ -4,11 +4,10 @@ title: "Verifying Signatures"
 permalink: verifying-signatures
 ---
 
-<div class="uk-card uk-card-default uk-margin-medium">
-    <div class="uk-card-body uk-label-warning">
-        <strong>Note:</strong> This guide is for experienced users only. If you downloaded KeePassXC directly from our website, there is no need for further verification of the downloaded files.
-    </div>
-</div>
+<fluent-message-bar intent="warning" layout="multiline">
+    <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
+    <span><strong>Note:</strong> This guide is for experienced users only. If you downloaded KeePassXC directly from our website, there is no need for further verification of the downloaded files.</span>
+</fluent-message-bar>
 
 
 <p>By verifying the signatures of KeePassXC releases, you can prove the <strong>authenticity</strong> and
@@ -18,7 +17,7 @@ permalink: verifying-signatures
 
 <h2>Download Options</h2>
 <p>Every KeePassXC release is published in a variety of package formats:</p>
-<ul class="uk-list uk-list-bullet">
+<ul>
     <li>a <code>*.dmg</code> drag-and-drop installer for macOS</li>
     <li>an <code>*.msi</code> installer and a <code>*.zip</code> archive with binaries for Windows</li>
     <li>a self-contained executable <code>*.AppImage</code> for GNU/Linux.</li>
@@ -27,14 +26,14 @@ permalink: verifying-signatures
 <p>Each of these package files has two related sidecar files, a <code>*.sig</code> containing a PGP signature and
     a <code>*.DIGEST</code> containing the SHA-256 hash for basic integrity checks.</p>
 
-<hr class="uk-divider-icon">
+<fluent-divider></fluent-divider>
 
 <h2>Verifying Releases &ndash; Windows</h2>
 <p>The Windows MSI installation file is protected by an authenticode signature, this means that <strong>authenticity and
     integrity</strong> checks are verified directly by Windows when you run the program.</p>
 <p>You should see the following dialog with <strong>DroidMonkey Apps, LLC</strong> as the verified publisher:</p>
 
-<figure uk-lightbox>
+<figure data-lightbox>
     <a href="{{< baseurl >}}assets/img/docs/KeePassXC_UAC.png"><img src="{{< baseurl >}}assets/img/docs/KeePassXC_UAC.png" alt="Windows UAC access prompt with verified publisher 'DroidMonkey Apps, LLC'"></a>
     <figcaption>Windows UAC access prompt.</figcaption>
 </figure>
@@ -103,14 +102,13 @@ Primary key fingerprint: BF5A 669F 2272 CF43 24C1  FDA8 CFB4 C216 6397 D0D2
 
 <p>In most cases, you should see the above result. But if the verification fails or the fingerprint does not match, do NOT install the package. First, try downloading it again. If the checks are still failing, let us know about the problem by opening an <a href="https://github.com/keepassxreboot/keepassxc/issues">issue</a>.</p>
 
-<div class="uk-card uk-card-default uk-margin-medium">
-    <div class="uk-card-body uk-label-warning">
-        The <strong>"not certified with a trusted signature"</strong> warning is there because in this example we have not taken the extra step of <strong>trusting</strong> that key.
-        It can be ignored if (and only if) you see that the fingerprints are correct (see above).
-    </div>
-</div>
+<fluent-message-bar intent="warning" layout="multiline">
+    <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
+    <span>The <strong>"not certified with a trusted signature"</strong> warning is there because in this example we have not taken the extra step of <strong>trusting</strong> that key.
+        It can be ignored if (and only if) you see that the fingerprints are correct (see above).</span>
+</fluent-message-bar>
 
-<hr class="uk-divider-icon">
+<fluent-divider></fluent-divider>
 
 <h2>Basic Integrity Check</h2>
 <p>If you know what you are doing, can skip the authenticity check and perform only a simple integrity check of the file  using the <code>.DIGEST</code>

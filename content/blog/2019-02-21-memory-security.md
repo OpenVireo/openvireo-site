@@ -19,7 +19,7 @@ Please Note: memory attacks are generally not possible unless an attacker has (p
 ### Windows Memory Protection
 KeePassXC uses modern Windows memory security techniques available to all processes. None of the other password managers featured in the ISE report have implemented this security. If they had, the ISE attacks would have failed outright! We specifically disable reading the memory of KeePassXC. (Note: it is not possible to prevent an administrator from accessing memory) We also disable "core dumps" which can expose secrets if the application crashes. Our memory protections can be readily tested by using [Process Hacker](https://processhacker.sourceforge.io/) as shown in the following screenshots comparing KeePassXC to KeePass:
 
-<div class="uk-grid uk-child-width-1-2@m" uk-grid uk-lightbox>
+<div class="grid grid-2" data-lightbox>
 {{< figure src="blog/images/process_hacker_kpxc.png" alt="Process Hacker KeePassXC" lightbox=false >}}
 {{< figure src="blog/images/process_hacker_keepass.png" alt="Process Hacker KeePass" lightbox=false >}}
 </div>
