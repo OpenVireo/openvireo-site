@@ -12,6 +12,7 @@
     --mk-tint-green: #e3f0dc;
     --mk-tint-mint: #dff0ea;
     --mk-tint-sand: #fbefd9;
+    --mk-badge-surface: #ffffff;
 
     // Elevation: resting panels, hover lift, and the floating hero window
     --mk-shadow-raised: 0 2px 4px rgba(0, 0, 0, .06), 0 18px 40px rgba(0, 0, 0, .12);
@@ -26,13 +27,37 @@
     --mk-display-font-weight: 900;
 }
 
+// Dark mode: Fluent's neutral greys, nudged toward the brand green and a step darker, so
+// page, cards and controls sit with the green hero, bands and footer instead of clashing.
+@function mk-dark-neutral($gray) {
+    @return mix(map-get($brand-ramp, 100), $gray, 6%);
+}
+
 @mixin mk-dark-tokens {
-    --mk-surface-tint: #18201a;
-    --mk-tint-green: #1d2a18;
-    --mk-tint-mint: #172925;
-    --mk-tint-sand: #2b2416;
-    --mk-shadow-raised: 0 2px 4px rgba(0, 0, 0, .3), 0 18px 40px rgba(0, 0, 0, .4);
-    --mk-shadow-lift: 0 2px 4px rgba(0, 0, 0, .3), 0 24px 48px rgba(0, 0, 0, .5);
+    --colorNeutralBackground1: #{mk-dark-neutral(#171717)};
+    --colorNeutralBackground1Hover: #{mk-dark-neutral(#242424)};
+    --colorNeutralBackground1Pressed: #{mk-dark-neutral(#121212)};
+    --colorNeutralBackground1Selected: #{mk-dark-neutral(#202020)};
+    --colorNeutralBackground2: #{mk-dark-neutral(#121212)};
+    --colorNeutralBackground2Hover: #{mk-dark-neutral(#1f1f1f)};
+    --colorNeutralBackground3: #{mk-dark-neutral(#0e0e0e)};
+    --colorNeutralCardBackground: #{mk-dark-neutral(#1e1e1e)};
+    --colorNeutralCardBackgroundHover: #{mk-dark-neutral(#262626)};
+    --colorSubtleBackgroundHover: #{mk-dark-neutral(#242424)};
+    --colorSubtleBackgroundPressed: #{mk-dark-neutral(#1c1c1c)};
+    --colorSubtleBackgroundSelected: #{mk-dark-neutral(#202020)};
+    --colorNeutralStroke1: #{mk-dark-neutral(#575757)};
+    --colorNeutralStroke1Hover: #{mk-dark-neutral(#666666)};
+    --colorNeutralStroke2: #{mk-dark-neutral(#353535)};
+    --colorNeutralStroke3: #{mk-dark-neutral(#2a2a2a)};
+
+    --mk-surface-tint: #{mk-dark-neutral(#202020)};
+    --mk-tint-green: #1f3319;
+    --mk-tint-mint: #173029;
+    --mk-tint-sand: #332a17;
+    --mk-badge-surface: #e4ebe1;
+    --mk-shadow-raised: 0 2px 4px rgba(0, 0, 0, .35), 0 18px 40px rgba(0, 0, 0, .45);
+    --mk-shadow-lift: 0 2px 4px rgba(0, 0, 0, .35), 0 24px 48px rgba(0, 0, 0, .55);
 }
 
 @media (prefers-color-scheme: dark) {

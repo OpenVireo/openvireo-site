@@ -97,11 +97,8 @@
     --mk-hero-overlap: #{"clamp(6rem, 18vw, 14rem)"};
     position: relative;
     padding-top: #{"clamp(3rem, 8vw, 6.5rem)"};
-    // Aubergine panel that stops short of the bottom, so the screenshot overlaps the page below
-    background:
-        radial-gradient(50rem 28rem at 15% 0%, rgba(192, 220, 183, .14), transparent 70%),
-        radial-gradient(45rem 30rem at 95% 30%, rgba(106, 175, 81, .28), transparent 70%),
-        linear-gradient(var(--mk-dark), var(--mk-dark));
+    // Dark panel that stops short of the bottom, so the screenshot overlaps the page below
+    background-image: linear-gradient(var(--mk-dark), var(--mk-dark));
     background-color: var(--colorNeutralBackground1);
     background-repeat: no-repeat;
     background-size: 100% calc(100% - var(--mk-hero-overlap));
@@ -385,7 +382,7 @@
     place-items: center;
     padding: #{"clamp(2rem, 5vw, 3.5rem)"};
     border-radius: var(--mk-radius-panel);
-    background: #ffffff;
+    background: var(--mk-badge-surface);
     box-shadow: var(--mk-shadow-raised);
     transition: translate var(--durationNormal) var(--curveDecelerateMax), box-shadow var(--durationNormal);
 
@@ -455,9 +452,7 @@
 
 .mk-cta {
     padding-block: #{"clamp(4.5rem, 10vw, 8rem)"};
-    background:
-        radial-gradient(40rem 24rem at 50% 120%, rgba(143, 194, 126, .22), transparent 70%),
-        var(--mk-dark);
+    background: var(--mk-dark);
     color: var(--mk-on-dark);
     text-align: center;
 
