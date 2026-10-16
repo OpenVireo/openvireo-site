@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-radius: var(--borderRadius3XLarge);
+    border-radius: var(--mk-radius-card);
     background: var(--colorNeutralBackground1);
     box-shadow: none;
     border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
@@ -25,7 +25,7 @@
     &.card-interactive:hover,
     &.card-interactive:focus-within {
         border-color: transparent;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 20px 40px rgba(0, 0, 0, .12);
+        box-shadow: var(--mk-shadow-lift);
     }
 
     &.card-filled {
@@ -409,6 +409,17 @@ fluent-avatar:not(:defined) {
     .card-body > p:first-child {
         margin-top: 0;
     }
+
+    // Summaries can contain full post markup; keep it at teaser scale
+    .card-body :is(h1, h2, h3, h4) {
+        margin: 1em 0 .4em;
+        font-size: var(--fontSizeBase400);
+        letter-spacing: 0;
+    }
+
+    .card-body figure {
+        margin: 1em 0;
+    }
 }
 
 .blog-content {
@@ -429,10 +440,6 @@ fluent-avatar:not(:defined) {
 
     h1 {
         margin: 0;
-        font-size: #{"clamp(2.4rem, 1.6rem + 3vw, 4rem)"};
-        font-weight: 900;
-        letter-spacing: -.035em;
-        line-height: 1.05;
     }
 }
 

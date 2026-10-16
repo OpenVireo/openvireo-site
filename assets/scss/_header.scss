@@ -155,7 +155,7 @@
             color: var(--colorNeutralForeground1);
 
             &::after {
-                background: var(--mk-cta);
+                background: var(--colorBrandBackground);
                 scale: 1 1;
             }
         }
@@ -172,9 +172,6 @@
     gap: var(--spacingHorizontalS);
 
     .header-cta {
-        min-height: 40px;
-        padding-inline: 1.25rem;
-
         @media (max-width: $breakpoint-small) {
             display: none;
         }
