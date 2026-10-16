@@ -52,6 +52,14 @@
         max-width: 42rem;
         margin: 1.5rem auto;
         text-align: start;
+
+        > .card-header {
+            margin: 0;
+            background: var(--colorNeutralBackground2);
+            font-size: var(--fontSizeBase400);
+            font-weight: var(--fontWeightSemibold);
+            line-height: var(--lineHeightBase400);
+        }
     }
 
     .card-featured {
@@ -61,7 +69,7 @@
         box-shadow: var(--shadow16);
     }
 
-    // Items inside a "more options" accordion
+    // Items inside a "more options" card
     .option-list {
         margin: 0;
         padding: 0;
