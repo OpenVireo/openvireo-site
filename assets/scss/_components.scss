@@ -208,39 +208,6 @@ fluent-accordion-item {
     }
 }
 
-// Card that wraps a single accordion (download page "more options")
-.card-accordion {
-    fluent-accordion {
-        margin: 0;
-    }
-
-    fluent-accordion-item {
-        border: 0;
-
-        &::part(heading) {
-            background: var(--colorNeutralBackground2);
-            padding-inline: var(--spacingHorizontalS);
-        }
-
-        &::part(content) {
-            padding: var(--spacingVerticalL) var(--spacingHorizontalXL);
-        }
-
-        &:not(:defined) {
-            padding: 0;
-
-            > [slot="heading"] {
-                padding: .75em var(--spacingHorizontalXL);
-                background: var(--colorNeutralBackground2);
-            }
-
-            > :not([slot]) {
-                margin: 1em var(--spacingHorizontalXL);
-            }
-        }
-    }
-}
-
 // Message bar
 fluent-message-bar {
     margin: 0 0 1.5rem;
