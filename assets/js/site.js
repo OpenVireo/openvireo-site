@@ -174,6 +174,40 @@ function initTooltips() {
     }
 }
 
+// User Guide: collapse the chapter list on small screens, highlight the section in view -----
+
+function initGuideNav() {
+    const nav = document.querySelector('.guide-nav');
+    if (!nav) {
+        return;
+    }
+    if (matchMedia('(max-width: 959px)').matches) {
+        nav.querySelector('details')?.removeAttribute('open');
+    }
+
+    const links = new Map([...nav.querySelectorAll('.guide-nav-sections a')]
+        .map((a) => [decodeURIComponent(a.hash.slice(1)), a]));
+    const headings = [...links.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+    if (!headings.length) {
+        return;
+    }
+    const update = () => {
+        // The current section is the last heading scrolled past the top third of the viewport
+        const line = window.innerHeight / 3;
+        let current = null;
+        for (const h of headings) {
+            if (h.getBoundingClientRect().top <= line) {
+                current = h;
+            }
+        }
+        for (const [id, a] of links) {
+            a.toggleAttribute('aria-current', current?.id === id);
+        }
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+}
+
 function init() {
     initHeader();
     initNavDrawer();
@@ -182,6 +216,7 @@ function init() {
     initCarousels();
     initTooltips();
     initCopyable();
+    initGuideNav();
 }
 
 if (document.readyState === 'loading') {

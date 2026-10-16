@@ -53,3 +53,18 @@ hugo new blog/202X-XX-XX-blog-post-name.md
 
 This will create a new file `blog/202x-XX-XX-blog-post-name.md` from the `blog` archetype with inserted
 boilerplate and some pre-filled frontmatter fields.
+
+## Update the User Guide
+
+The User Guide is written in AsciiDoc in the [KeePassXC repository](https://github.com/keepassxreboot/keepassxc/tree/develop/docs)
+and built there into a single `KeePassXC_UserGuide.html`. To publish a new version on the website, split that file
+into themed chapter pages:
+
+```bash
+node scripts/build-user-guide.mjs path/to/KeePassXC_UserGuide.html
+```
+
+This regenerates `content/docs/user-guide/` (one page per chapter), extracts the images to
+`static/docs/user-guide/images/`, and rewrites `static/docs/KeePassXC_UserGuide.html` as a redirect so old links and
+`#anchors` still land on the right chapter. If the guide gains a new chapter, add it to the `chapters` table at the
+top of the script (order, icon, and card summary).

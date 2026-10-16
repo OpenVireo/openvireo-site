@@ -1,0 +1,11 @@
+{{- /* /docs/ is a section (so the User Guide can live under it) but renders as a normal page */ -}}
+{{- define "main" }}
+{{ partial "page-header.html" . }}
+<div class="section section-small">
+    <div class="container">
+        <div class="page-content">
+            {{ .Content }}
+        </div>
+    </div>
+</div>
+{{ end }}
