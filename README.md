@@ -77,3 +77,31 @@ For each guide this regenerates `content/docs/<guide>/` (one page per chapter), 
 New chapters publish automatically with a generic icon and a warning; give them a place, icon, and card summary in
 the `guides` table at the top of `scripts/build-guide.mjs`. That script can also convert a prebuilt single-file
 guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide KeePassXC_UserGuide.html`.
+
+## Update the product screenshots
+
+The screenshots on the landing page (also used by the Screenshots page and the download carousel) are captured from
+a KeePassXC build by the `testdocsscreenshots` tool in the keepassxc repository:
+
+```bash
+npm run screenshots                                   # ../keepassxc, built in cmake-build-debug
+npm run screenshots -- path/to/keepassxc --build-dir path/to/build
+npm run screenshots -- --docs                         # also regenerate the checkout's docs/images
+```
+
+The build must be configured with `-DWITH_GUI_TESTS=ON`. KeePassXC opens for a few seconds while the tool drives it
+through a demo database with a fixed clock, so every run shows the same content. Screenshots go straight to
+`static/assets/img/screenshots/` (with thumbnails), files whose picture hasn't changed are left untouched, and the
+`width`/`height` of every `<img>` showing them is kept up to date.
+
+## Refresh everything
+
+To recapture every screenshot (docs and website) and rebuild both guides from the keepassxc checkout in one go:
+
+```bash
+npm run refresh                                       # ../keepassxc, built in cmake-build-debug
+npm run refresh -- path/to/keepassxc --build-dir path/to/build
+```
+
+This builds the guides from the checkout's working tree, so the new docs screenshots are used straight away; commit
+them in the keepassxc repository too. To publish docs from a branch or tag instead, use `npm run docs -- --ref <ref>`.
