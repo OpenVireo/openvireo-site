@@ -7,9 +7,9 @@
 //
 // The checkout and build folder can also be set with KEEPASSXC_SRC and KEEPASSXC_BUILD. The build
 // must be configured with -DWITH_GUI_TESTS=ON. This builds the testdocsscreenshots tool, runs its
-// websiteScreenshots step (which opens KeePassXC for a few seconds and drives it through a demo
-// database) to write each screenshot and its thumbnail into static/assets/img/screenshots/, and
-// updates the width/height attributes of every <img> that shows them.
+// website steps (which open KeePassXC for a few seconds and drive it through a demo database) to
+// write each screenshot and its thumbnail into static/assets/img/screenshots/, and updates the
+// width/height attributes of every <img> that shows them.
 
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
@@ -19,8 +19,25 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const screenshotsDir = join(root, 'static/assets/img/screenshots');
 
-// What the landing page shows (also used by the Screenshots page and the download carousel)
-const screenshots = ['database_view', 'unlock_database', 'autotype_entrylevel', 'database_reports'];
+// What the tool captures: everything on the Screenshots page (the landing page and download
+// carousel use the first four)
+const screenshots = [
+    'database_view',
+    'unlock_database',
+    'autotype_entrylevel',
+    'database_reports',
+    'welcome_screen',
+    'new_db_wizard_1',
+    'new_db_wizard_2',
+    'import_wizard',
+    'csv_import',
+    'edit_entry',
+    'edit_entry_icons',
+    'password_generator_advanced',
+    'passphrase_generator',
+    'sshagent_entry_settings',
+    'theme_comparison',
+];
 
 // Arguments ----------------------------------------------------------------------------------
 
@@ -75,7 +92,8 @@ console.log(`Capturing ${docs ? 'docs and website' : 'website'} screenshots (Kee
 const toolDir = join(buildDir, 'tests/gui');
 let output;
 try {
-    output = execFileSync(join(toolDir, 'testdocsscreenshots'), docs ? [] : ['websiteScreenshots'], {
+    // Steps whose folder isn't set skip themselves, so without --docs only the website ones run
+    output = execFileSync(join(toolDir, 'testdocsscreenshots'), [], {
         cwd: toolDir,
         env,
         stdio: ['ignore', 'pipe', 'inherit'],
@@ -105,7 +123,8 @@ for (const name of screenshots) {
 const updated = [];
 for (const file of htmlFiles([join(root, 'layouts'), join(root, 'content')])) {
     const html = readFileSync(file, 'utf8');
-    const next = html.replace(/<img\b[^>]*>/g, (tag) => {
+    // Tags may hold Hugo shortcodes such as {{< baseurl >}}, whose ">" doesn't end the tag
+    const next = html.replace(/<img\b(?:\{\{[^}]*\}\}|[^>])*>/g, (tag) => {
         const match = tag.match(/screenshots\/((?:thumbs\/)?[\w-]+\.png)/);
         const size = match && sizes[match[1]];
         if (!size) {
