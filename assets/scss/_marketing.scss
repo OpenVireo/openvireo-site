@@ -1,28 +1,27 @@
-// Marketing look: deep aubergine hero and bands, heavy display type, alternating feature
+// Marketing look: deep green hero and bands, heavy display type, alternating feature
 // rows on tinted panels, a stats band, a closing call-to-action and a dark mega-footer.
 // Everything else on the site keeps using the Fluent tokens; these add the marketing palette.
 
+// Built on the KeePassXC brand ramp ($brand-ramp in _fluent-theme.scss).
 :root {
-    --mk-plum: #3b0f3e;
-    --mk-plum-deep: #24082a;
-    --mk-plum-strong: #5b1e63;
-    --mk-plum-strong-hover: #4a1751;
-    --mk-on-plum: #ffffff;
-    --mk-on-plum-muted: #e3d3e6;
-    --mk-accent: #8fc27e;
-    --mk-surface-tint: #f7f3f8;
+    --mk-dark: #{map-get($brand-ramp, 30)};
+    --mk-dark-deep: #{map-get($brand-ramp, 20)};
+    --mk-cta: #{map-get($brand-ramp, 80)};
+    --mk-cta-hover: #{map-get($brand-ramp, 70)};
+    --mk-on-dark: #ffffff;
+    --mk-on-dark-muted: #{map-get($brand-ramp, 150)};
+    --mk-accent: #{map-get($brand-ramp, 120)};
+    --mk-surface-tint: #{map-get($brand-ramp, 160)};
     --mk-tint-green: #e3f0dc;
-    --mk-tint-plum: #f0e3f2;
+    --mk-tint-mint: #dff0ea;
     --mk-tint-sand: #fbefd9;
     --mk-display-font-weight: 900;
 }
 
 @mixin mk-dark-tokens {
-    --mk-plum-strong: #7c2f84;
-    --mk-plum-strong-hover: #8e3b97;
-    --mk-surface-tint: #1c161e;
+    --mk-surface-tint: #18201a;
     --mk-tint-green: #1d2a18;
-    --mk-tint-plum: #2a1b2d;
+    --mk-tint-mint: #172925;
     --mk-tint-sand: #2b2416;
 }
 
@@ -41,7 +40,7 @@
 .mk-display {
     margin: 0 auto;
     max-width: 20ch;
-    color: var(--mk-on-plum);
+    color: var(--mk-on-dark);
     font-size: #{"clamp(2.6rem, 1.4rem + 5vw, 5.25rem)"};
     font-weight: var(--mk-display-font-weight);
     letter-spacing: -.035em;
@@ -60,7 +59,7 @@
 .mk-lead {
     max-width: 40rem;
     margin: 1.5rem auto 0;
-    color: var(--mk-on-plum-muted);
+    color: var(--mk-on-dark-muted);
     font-size: #{"clamp(1.1rem, 1rem + .4vw, 1.3rem)"};
     line-height: 1.6;
 }
@@ -142,13 +141,13 @@
     padding-top: #{"clamp(3rem, 8vw, 6.5rem)"};
     // Aubergine panel that stops short of the bottom, so the screenshot overlaps the page below
     background:
-        radial-gradient(50rem 28rem at 15% 0%, rgba(143, 194, 126, .16), transparent 70%),
-        radial-gradient(45rem 30rem at 95% 30%, rgba(196, 92, 206, .22), transparent 70%),
-        linear-gradient(var(--mk-plum), var(--mk-plum));
+        radial-gradient(50rem 28rem at 15% 0%, rgba(192, 220, 183, .14), transparent 70%),
+        radial-gradient(45rem 30rem at 95% 30%, rgba(106, 175, 81, .28), transparent 70%),
+        linear-gradient(var(--mk-dark), var(--mk-dark));
     background-color: var(--colorNeutralBackground1);
     background-repeat: no-repeat;
     background-size: 100% calc(100% - var(--mk-hero-overlap));
-    color: var(--mk-on-plum);
+    color: var(--mk-on-dark);
     text-align: center;
 }
 
@@ -163,7 +162,7 @@
 
 .mk-hero-note {
     margin: 1.25rem 0 0;
-    color: var(--mk-on-plum-muted);
+    color: var(--mk-on-dark-muted);
     font-size: var(--fontSizeBase300);
 
     i {
@@ -181,7 +180,7 @@
     border: 1px solid rgba(255, 255, 255, .25);
     border-radius: var(--borderRadiusCircular);
     background: rgba(255, 255, 255, .08);
-    color: var(--mk-on-plum);
+    color: var(--mk-on-dark);
     font-size: var(--fontSizeBase300);
     font-weight: 700;
     text-decoration: none;
@@ -189,14 +188,14 @@
 
     &:hover {
         background: rgba(255, 255, 255, .16);
-        color: var(--mk-on-plum);
+        color: var(--mk-on-dark);
     }
 
     .mk-pill-tag {
         padding: .1rem .6rem;
         border-radius: var(--borderRadiusCircular);
         background: var(--mk-accent);
-        color: var(--mk-plum-deep);
+        color: var(--mk-dark-deep);
         font-size: var(--fontSizeBase200);
         font-weight: 800;
         letter-spacing: .04em;
@@ -213,7 +212,7 @@
     overflow: hidden;
     border-radius: var(--borderRadius3XLarge);
     background: #f3f3f3;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .12), 0 30px 80px rgba(36, 8, 42, .45);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .12), 0 30px 80px rgba(14, 25, 10, .5);
 
     .mk-window-bar {
         display: flex;
@@ -334,7 +333,7 @@
 }
 
 .mk-tint-green { background: var(--mk-tint-green); }
-.mk-tint-plum { background: var(--mk-tint-plum); }
+.mk-tint-mint { background: var(--mk-tint-mint); }
 .mk-tint-sand { background: var(--mk-tint-sand); }
 
 .mk-checks {
@@ -369,8 +368,8 @@
 
 .mk-stats {
     padding-block: #{"clamp(3.5rem, 8vw, 6rem)"};
-    background: var(--mk-plum);
-    color: var(--mk-on-plum);
+    background: var(--mk-dark);
+    color: var(--mk-on-dark);
 
     .mk-stats-grid {
         display: grid;
@@ -393,7 +392,7 @@
 
     dd {
         margin-top: .75rem;
-        color: var(--mk-on-plum-muted);
+        color: var(--mk-on-dark-muted);
         font-size: 1.05rem;
     }
 }
@@ -429,12 +428,12 @@
     padding: #{"clamp(2rem, 5vw, 3.5rem)"};
     border-radius: var(--borderRadius4XLarge);
     background: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 24px 48px rgba(59, 15, 62, .14);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 24px 48px rgba(27, 51, 19, .14);
     transition: translate var(--durationNormal) var(--curveDecelerateMax), box-shadow var(--durationNormal);
 
     &:hover {
         translate: 0 -4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 32px 64px rgba(59, 15, 62, .2);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 32px 64px rgba(27, 51, 19, .2);
     }
 
     img {
@@ -500,8 +499,8 @@
     padding-block: #{"clamp(4.5rem, 10vw, 8rem)"};
     background:
         radial-gradient(40rem 24rem at 50% 120%, rgba(143, 194, 126, .22), transparent 70%),
-        var(--mk-plum);
-    color: var(--mk-on-plum);
+        var(--mk-dark);
+    color: var(--mk-on-dark);
     text-align: center;
 
     .mk-lead {

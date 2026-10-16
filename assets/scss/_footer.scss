@@ -1,9 +1,9 @@
-// Dark aubergine mega-footer (palette from _marketing.scss).
+// Dark green mega-footer (palette from _marketing.scss).
 
 .global-footer {
     padding-block: #{"clamp(3.5rem, 8vw, 5.5rem)"} 2rem;
-    background: var(--mk-plum-deep);
-    color: var(--mk-on-plum-muted);
+    background: var(--mk-dark-deep);
+    color: var(--mk-on-dark-muted);
     font-size: var(--fontSizeBase400);
 
     .footer-grid {
@@ -25,14 +25,14 @@
         display: inline-flex;
         align-items: center;
         gap: .6rem;
-        color: var(--mk-on-plum);
+        color: var(--mk-on-dark);
         font-size: var(--fontSizeBase600);
         font-weight: 900;
         letter-spacing: -.03em;
         text-decoration: none;
 
         &:hover {
-            color: var(--mk-on-plum);
+            color: var(--mk-on-dark);
             text-decoration: none;
         }
     }
@@ -44,7 +44,7 @@
 
     h2 {
         margin: 0 0 1rem;
-        color: var(--mk-on-plum);
+        color: var(--mk-on-dark);
         font-size: var(--fontSizeBase300);
         font-weight: 800;
         letter-spacing: .1em;
@@ -62,11 +62,11 @@
     }
 
     a:not(.btn) {
-        color: var(--mk-on-plum-muted);
+        color: var(--mk-on-dark-muted);
         text-decoration: none;
 
         &:hover {
-            color: var(--mk-on-plum);
+            color: var(--mk-on-dark);
             text-decoration: underline;
         }
     }

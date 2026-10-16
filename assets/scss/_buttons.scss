@@ -155,7 +155,7 @@
         }
     }
 
-    // Marketing calls to action: bold, uppercase, on the aubergine palette (see _marketing.scss)
+    // Marketing calls to action: bold, uppercase, on the KeePassXC green palette (see _marketing.scss)
     &:is(.btn-cta, .btn-cta-light, .btn-cta-ghost) {
         border-radius: var(--borderRadiusLarge);
         font-weight: 800;
@@ -170,12 +170,12 @@
     }
 
     &.btn-cta {
-        background-color: var(--mk-plum-strong);
+        background-color: var(--mk-cta);
         border-color: transparent;
         color: #ffffff;
 
         &:hover, &:hover:active {
-            background-color: var(--mk-plum-strong-hover);
+            background-color: var(--mk-cta-hover);
             color: #ffffff;
         }
     }
@@ -183,11 +183,11 @@
     &.btn-cta-light {
         background-color: #ffffff;
         border-color: transparent;
-        color: var(--mk-plum);
+        color: var(--mk-dark);
 
         &:hover, &:hover:active {
-            background-color: #f1e9f2;
-            color: var(--mk-plum);
+            background-color: #eef4eb;
+            color: var(--mk-dark);
         }
     }
 
