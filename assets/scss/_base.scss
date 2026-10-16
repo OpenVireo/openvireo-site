@@ -46,8 +46,14 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-h1 { font-size: #{"clamp(2rem, 1.4rem + 2vw, var(--fontSizeHero900))"}; letter-spacing: -.01em; }
-h2 { font-size: #{"clamp(1.5rem, 1.2rem + 1vw, var(--fontSizeHero700))"}; }
+// One scale everywhere: h1 matches page titles, h2 the section headings
+h1 {
+    font-size: #{"clamp(2.4rem, 1.6rem + 3vw, 4rem)"};
+    font-weight: var(--mk-display-font-weight);
+    letter-spacing: -.035em;
+    line-height: 1.05;
+}
+h2 { font-size: #{"clamp(1.6rem, 1.25rem + 1.2vw, 2.25rem)"}; letter-spacing: -.025em; }
 h3 { font-size: var(--fontSizeBase600); }
 h4 { font-size: var(--fontSizeBase500); }
 h5, h6 { font-size: var(--fontSizeBase400); }

@@ -17,7 +17,11 @@
         padding-block: #{"clamp(1.5rem, 4vw, 2.5rem)"} 1rem;
 
         h2 {
-            margin-bottom: .35rem;
+            margin-bottom: .5rem;
+            font-size: #{"clamp(2rem, 1.4rem + 2.2vw, 3rem)"};
+            font-weight: var(--mk-display-font-weight);
+            letter-spacing: -.035em;
+            line-height: 1.08;
         }
 
         > p {

@@ -1,39 +1,6 @@
 // Marketing look: deep green hero and bands, heavy display type, alternating feature
 // rows on tinted panels, a stats band, a closing call-to-action and a dark mega-footer.
-// Everything else on the site keeps using the Fluent tokens; these add the marketing palette.
-
-// Built on the KeePassXC brand ramp ($brand-ramp in _fluent-theme.scss).
-:root {
-    --mk-dark: #{map-get($brand-ramp, 30)};
-    --mk-dark-deep: #{map-get($brand-ramp, 20)};
-    --mk-cta: #{map-get($brand-ramp, 80)};
-    --mk-cta-hover: #{map-get($brand-ramp, 70)};
-    --mk-on-dark: #ffffff;
-    --mk-on-dark-muted: #{map-get($brand-ramp, 150)};
-    --mk-accent: #{map-get($brand-ramp, 120)};
-    --mk-surface-tint: #{map-get($brand-ramp, 160)};
-    --mk-tint-green: #e3f0dc;
-    --mk-tint-mint: #dff0ea;
-    --mk-tint-sand: #fbefd9;
-    --mk-display-font-weight: 900;
-}
-
-@mixin mk-dark-tokens {
-    --mk-surface-tint: #18201a;
-    --mk-tint-green: #1d2a18;
-    --mk-tint-mint: #172925;
-    --mk-tint-sand: #2b2416;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-        @include mk-dark-tokens;
-    }
-}
-
-:root[data-theme="dark"] {
-    @include mk-dark-tokens;
-}
+// Colours, shadows and radii come from _brand.scss.
 
 // Typography -------------------------------------------------------------------------------
 
@@ -77,15 +44,6 @@
     margin: 1.25rem auto 0;
     color: var(--colorNeutralForeground2);
     font-size: #{"clamp(1.05rem, 1rem + .3vw, 1.25rem)"};
-}
-
-.mk-eyebrow {
-    margin-bottom: .75rem;
-    color: var(--colorBrandForeground1);
-    font-size: var(--fontSizeBase300);
-    font-weight: 800;
-    letter-spacing: .1em;
-    text-transform: uppercase;
 }
 
 .mk-link {
@@ -210,9 +168,9 @@
 
 .mk-window {
     overflow: hidden;
-    border-radius: var(--borderRadius3XLarge);
+    border-radius: var(--mk-radius-card);
     background: #f3f3f3;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .12), 0 30px 80px rgba(14, 25, 10, .5);
+    box-shadow: var(--mk-shadow-float);
 
     .mk-window-bar {
         display: flex;
@@ -314,7 +272,7 @@
         line-height: 1.12;
     }
 
-    .mk-feature-copy > p:not(.mk-eyebrow) {
+    .mk-feature-copy > p:not(.eyebrow) {
         color: var(--colorNeutralForeground2);
         font-size: 1.125rem;
     }
@@ -322,13 +280,13 @@
 
 .mk-feature-media {
     padding: #{"clamp(1.25rem, 4vw, 3rem)"};
-    border-radius: var(--borderRadius4XLarge);
+    border-radius: var(--mk-radius-panel);
 
     img {
         display: block;
         width: 100%;
         border-radius: var(--borderRadius2XLarge);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .08), 0 18px 40px rgba(0, 0, 0, .16);
+        box-shadow: var(--mk-shadow-raised);
     }
 }
 
@@ -412,7 +370,7 @@
         margin-bottom: 1.5rem;
     }
 
-    p:not(.mk-eyebrow) {
+    p:not(.eyebrow) {
         color: var(--colorNeutralForeground2);
         font-size: 1.125rem;
     }
@@ -426,14 +384,14 @@
     display: grid;
     place-items: center;
     padding: #{"clamp(2rem, 5vw, 3.5rem)"};
-    border-radius: var(--borderRadius4XLarge);
+    border-radius: var(--mk-radius-panel);
     background: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 24px 48px rgba(27, 51, 19, .14);
+    box-shadow: var(--mk-shadow-raised);
     transition: translate var(--durationNormal) var(--curveDecelerateMax), box-shadow var(--durationNormal);
 
     &:hover {
-        translate: 0 -4px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 32px 64px rgba(27, 51, 19, .2);
+        translate: 0 var(--mk-lift);
+        box-shadow: var(--mk-shadow-lift);
     }
 
     img {
@@ -454,7 +412,7 @@
     flex-direction: column;
     padding: 2rem;
     border: 1px solid var(--colorNeutralStroke2);
-    border-radius: var(--borderRadius3XLarge);
+    border-radius: var(--mk-radius-card);
     background: var(--colorNeutralBackground1);
     color: var(--colorNeutralForeground1);
     text-decoration: none;
@@ -463,9 +421,9 @@
                 border-color var(--durationNormal);
 
     &:hover {
-        translate: 0 -4px;
+        translate: 0 var(--mk-lift);
         border-color: transparent;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 20px 40px rgba(0, 0, 0, .12);
+        box-shadow: var(--mk-shadow-lift);
         color: var(--colorNeutralForeground1);
     }
 

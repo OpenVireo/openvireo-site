@@ -13,8 +13,8 @@
             No ads, no trackers, no cloud&nbsp;&mdash; just a free and open-source password manager that does the heavy lifting.
         </p>
         <div class="row row-center mk-hero-actions">
-            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download KeePassXC" "appearance" "cta-light" "size" "hero") }}
-            {{ partial "button.html" (dict "href" "#project" "text" "See how it works" "appearance" "cta-ghost" "size" "hero") }}
+            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download KeePassXC" "appearance" "inverse" "size" "hero") }}
+            {{ partial "button.html" (dict "href" "#project" "text" "See how it works" "appearance" "inverse-outline" "size" "hero") }}
         </div>
         <p class="mk-hero-note">
             <i class="fa-brands fa-windows" aria-hidden="true"></i>
@@ -55,7 +55,7 @@
 
         <div class="mk-feature">
             <div class="mk-feature-copy">
-                <p class="mk-eyebrow">Secure by default</p>
+                <p class="eyebrow">Secure by default</p>
                 <h3>Everything stays encrypted. Everything stays yours.</h3>
                 <p>Usernames, passwords, URLs, attachments, and notes are saved in an offline, encrypted file that you can keep anywhere, including your own private or public cloud. Nothing is ever stored on our servers.</p>
                 <ul class="mk-checks">
@@ -72,7 +72,7 @@
 
         <div class="mk-feature mk-feature-reverse">
             <div class="mk-feature-copy">
-                <p class="mk-eyebrow">Fill in a flash</p>
+                <p class="eyebrow">Fill in a flash</p>
                 <h3>Auto-type and browser integration that just works</h3>
                 <p>Let KeePassXC type your credentials into any application, or connect the browser extension to fill logins in Firefox, Chrome, Edge, and more with a single click.</p>
                 <a class="mk-link" href="{{ $base }}docs/KeePassXC_GettingStarted.html#_browser_integration">Set up browser integration <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
@@ -84,7 +84,7 @@
 
         <div class="mk-feature">
             <div class="mk-feature-copy">
-                <p class="mk-eyebrow">Stronger every day</p>
+                <p class="eyebrow">Stronger every day</p>
                 <h3>Generate, check, and fix weak passwords</h3>
                 <p>Create strong passwords and passphrases in a click, then let database reports point out weak, reused, and breached passwords so you know exactly what to fix.</p>
                 <a class="mk-link" href="{{ $base }}screenshots">See more screenshots <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
@@ -111,11 +111,11 @@
     <div class="container">
         <div class="mk-spotlight">
             <div class="mk-spotlight-copy">
-                <p class="mk-eyebrow">Certified security</p>
+                <p class="eyebrow">Certified security</p>
                 <h2 class="mk-heading">Independently tested. Officially certified.</h2>
                 <p><strong>KeePassXC 2.7.9</strong> has been awarded a Security Visa by the French National Cybersecurity Agency (ANSSI) for passing its First-level Security Certification (CSPN).</p>
                 <p>The certificate shows KeePassXC complies with the security standards set by ANSSI, and it is recognised in both France and Germany.</p>
-                {{ partial "button.html" (dict "href" (print $base "audits/") "text" "View audits &amp; certifications" "appearance" "cta" "size" "hero") }}
+                {{ partial "button.html" (dict "href" (print $base "audits/") "text" "View audits &amp; certifications" "appearance" "primary" "size" "hero") }}
             </div>
             <a class="mk-spotlight-badge" href="{{ $base }}audits/#cspn-2025-11-17">
                 <img alt="ANSSI Security Visa" src="{{ $base }}assets/img/anssi-cspn-security-visa.png" loading="lazy">
@@ -159,7 +159,7 @@
             <h2 class="mk-heading">What's new</h2>
             <a class="mk-link" href="{{ $base }}blog/">See all posts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="grid grid-2">
+        <div class="grid grid-2 grid-match">
             {{- block "index-post-teasers" . }}
                 {{- range first 4 (where .Site.RegularPages "Section" "blog").ByPublishDate.Reverse }}
                     {{ partial "article-teaser" . }}

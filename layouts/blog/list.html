@@ -7,7 +7,7 @@
 {{ partial "page-header.html" . }}
 <div class="section section-small blog">
     <div class="container">
-        <div class="grid grid-2">
+        <div class="grid grid-2 grid-match">
         {{ $paginator := .Paginate  (where .Site.RegularPages.ByPublishDate.Reverse "Section" .Page.Section ) }}
         {{- range $paginator.Pages }}
             {{ partial "article-teaser" . }}

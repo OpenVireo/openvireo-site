@@ -81,12 +81,12 @@
 .text-nowrap { white-space: nowrap; }
 
 .eyebrow {
-    margin-bottom: .25rem;
-    font-size: var(--fontSizeBase200);
-    font-weight: var(--fontWeightSemibold);
-    letter-spacing: .08em;
-    text-transform: uppercase;
+    margin-bottom: .75rem;
     color: var(--colorBrandForeground1);
+    font-size: var(--fontSizeBase300);
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
 }
 
 .link-reset {

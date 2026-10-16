@@ -1,0 +1,46 @@
+// Site-wide brand tokens layered on top of the Fluent ones: the dark brand surfaces used by
+// the hero, bands, announcement bar and footer, pastel panel tints, and the shared elevation,
+// radius and display-type values. All colours derive from $brand-ramp (_fluent-theme.scss).
+
+:root {
+    --mk-dark: #{map-get($brand-ramp, 30)};
+    --mk-dark-deep: #{map-get($brand-ramp, 20)};
+    --mk-on-dark: #ffffff;
+    --mk-on-dark-muted: #{map-get($brand-ramp, 150)};
+    --mk-accent: #{map-get($brand-ramp, 120)};
+    --mk-surface-tint: #{map-get($brand-ramp, 160)};
+    --mk-tint-green: #e3f0dc;
+    --mk-tint-mint: #dff0ea;
+    --mk-tint-sand: #fbefd9;
+
+    // Elevation: resting panels, hover lift, and the floating hero window
+    --mk-shadow-raised: 0 2px 4px rgba(0, 0, 0, .06), 0 18px 40px rgba(0, 0, 0, .12);
+    --mk-shadow-lift: 0 2px 4px rgba(0, 0, 0, .06), 0 24px 48px rgba(0, 0, 0, .16);
+    --mk-shadow-float: 0 2px 6px rgba(0, 0, 0, .12), 0 30px 80px rgba(14, 25, 10, .5);
+    --mk-lift: -4px;
+
+    // Radii: cards, media panels
+    --mk-radius-card: var(--borderRadius3XLarge);
+    --mk-radius-panel: var(--borderRadius4XLarge);
+
+    --mk-display-font-weight: 900;
+}
+
+@mixin mk-dark-tokens {
+    --mk-surface-tint: #18201a;
+    --mk-tint-green: #1d2a18;
+    --mk-tint-mint: #172925;
+    --mk-tint-sand: #2b2416;
+    --mk-shadow-raised: 0 2px 4px rgba(0, 0, 0, .3), 0 18px 40px rgba(0, 0, 0, .4);
+    --mk-shadow-lift: 0 2px 4px rgba(0, 0, 0, .3), 0 24px 48px rgba(0, 0, 0, .5);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        @include mk-dark-tokens;
+    }
+}
+
+:root[data-theme="dark"] {
+    @include mk-dark-tokens;
+}

@@ -8,7 +8,7 @@
                     KeePassXC
                 </a>
                 <p>The free, open-source, cross-platform password manager. No cloud, no ads, no trackers.</p>
-                {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download" "appearance" "cta-light") }}
+                {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download" "appearance" "inverse" "size" "large") }}
             </div>
             {{- block "footer-nav" . }}
             <nav aria-labelledby="footer-project">
