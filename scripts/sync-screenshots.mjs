@@ -36,7 +36,6 @@ const screenshots = [
     'password_generator_advanced',
     'passphrase_generator',
     'sshagent_entry_settings',
-    'theme_comparison',
 ];
 
 // Arguments ----------------------------------------------------------------------------------
