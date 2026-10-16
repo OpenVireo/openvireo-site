@@ -1,53 +1,54 @@
+// Dark aubergine mega-footer (palette from _marketing.scss).
+
 .global-footer {
-    padding-block: #{"clamp(2.5rem, 6vw, 4rem)"} 2rem;
-    border-top: 3px solid var(--colorBrandStroke1, var(--colorBrandBackground));
-    background: var(--colorNeutralBackground3);
-    color: var(--colorNeutralForeground2);
-    font-size: var(--fontSizeBase300);
+    padding-block: #{"clamp(3.5rem, 8vw, 5.5rem)"} 2rem;
+    background: var(--mk-plum-deep);
+    color: var(--mk-on-plum-muted);
+    font-size: var(--fontSizeBase400);
 
     .footer-grid {
         display: grid;
-        gap: 2rem;
-        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 11rem)"}, 1fr));
 
         @media (min-width: $breakpoint-medium) {
-            grid-template-columns: 1.4fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
         }
     }
 
+    .footer-about p {
+        max-width: 22rem;
+        margin: 1rem 0 1.5rem;
+    }
+
     .footer-brand {
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: .6rem;
-        margin-bottom: 1rem;
-        font-size: var(--fontSizeBase400);
-        color: var(--colorNeutralForeground1);
+        color: var(--mk-on-plum);
+        font-size: var(--fontSizeBase600);
+        font-weight: 900;
+        letter-spacing: -.03em;
+        text-decoration: none;
 
-        a {
-            color: inherit;
+        &:hover {
+            color: var(--mk-on-plum);
             text-decoration: none;
         }
     }
 
     .footer-logo {
-        height: 2rem;
+        height: 2.25rem;
         width: auto;
     }
 
-    .copyright {
-        color: var(--colorNeutralForeground3);
-
-        div + div {
-            margin-top: .25rem;
-        }
-    }
-
     h2 {
-        margin: 0 0 .75rem;
+        margin: 0 0 1rem;
+        color: var(--mk-on-plum);
         font-size: var(--fontSizeBase300);
-        letter-spacing: .06em;
+        font-weight: 800;
+        letter-spacing: .1em;
         text-transform: uppercase;
-        color: var(--colorNeutralForeground3);
     }
 
     ul {
@@ -56,22 +57,33 @@
         list-style: none;
 
         li + li {
-            margin-top: .4rem;
+            margin-top: .6rem;
         }
     }
 
-    a {
-        color: var(--colorNeutralForeground2);
+    a:not(.btn) {
+        color: var(--mk-on-plum-muted);
         text-decoration: none;
 
         &:hover {
-            color: var(--colorBrandForegroundLinkHover);
+            color: var(--mk-on-plum);
             text-decoration: underline;
         }
     }
 
     i {
         width: 1.25em;
-        color: var(--colorNeutralForeground3);
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: .5rem 2rem;
+        margin-top: #{"clamp(3rem, 6vw, 4.5rem)"};
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, .15);
+        font-size: var(--fontSizeBase300);
+        opacity: .85;
     }
 }

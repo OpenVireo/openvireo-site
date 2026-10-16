@@ -1,0 +1,10 @@
+<section class="mk-cta" aria-labelledby="cta-heading">
+    <div class="container mk-cta-inner">
+        <h2 id="cta-heading" class="mk-display mk-display-sm">Take back control of your passwords</h2>
+        <p class="mk-lead">Free, open source, and ready in minutes.</p>
+        <div class="row row-center">
+            {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download KeePassXC" "appearance" "cta-light" "size" "hero") }}
+            {{ partial "button.html" (dict "href" (print .Site.BaseURL "donate") "text" "Support the project" "appearance" "cta-ghost" "size" "hero") }}
+        </div>
+    </div>
+</section>

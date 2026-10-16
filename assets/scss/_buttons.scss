@@ -155,6 +155,54 @@
         }
     }
 
+    // Marketing calls to action: bold, uppercase, on the aubergine palette (see _marketing.scss)
+    &:is(.btn-cta, .btn-cta-light, .btn-cta-ghost) {
+        border-radius: var(--borderRadiusLarge);
+        font-weight: 800;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+
+        &.btn-hero {
+            min-height: 54px;
+            padding-inline: 2rem;
+            font-size: var(--fontSizeBase400);
+        }
+    }
+
+    &.btn-cta {
+        background-color: var(--mk-plum-strong);
+        border-color: transparent;
+        color: #ffffff;
+
+        &:hover, &:hover:active {
+            background-color: var(--mk-plum-strong-hover);
+            color: #ffffff;
+        }
+    }
+
+    &.btn-cta-light {
+        background-color: #ffffff;
+        border-color: transparent;
+        color: var(--mk-plum);
+
+        &:hover, &:hover:active {
+            background-color: #f1e9f2;
+            color: var(--mk-plum);
+        }
+    }
+
+    &.btn-cta-ghost {
+        background-color: transparent;
+        border: 2px solid rgba(255, 255, 255, .7);
+        color: #ffffff;
+
+        &:hover, &:hover:active {
+            background-color: rgba(255, 255, 255, .1);
+            border-color: #ffffff;
+            color: #ffffff;
+        }
+    }
+
     &.btn-icon {
         min-width: 32px;
         padding: 0;
