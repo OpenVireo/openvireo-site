@@ -1,137 +1,164 @@
 {{ define "main" }}
-<section class="hero">
-    <div class="container hero-grid">
-        <div>
-            <a class="badge-anssi" href="#certified-security">
-                <span class="badge-pill">Certified</span>
-                ANSSI Security Visa (CSPN)
-                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-            </a>
-            <h1 class="hero-title">KeePassXC</h1>
-            <p class="hero-subtitle">Cross-platform Password Manager</p>
-            <div class="hero-copy">
-                <p>Let KeePassXC safely store your passwords and auto-fill them into your favorite apps, so you can forget all about them.</p>
-                <p>We do the heavy lifting in a no-nonsense, ad-free, tracker-free, and cloud-free manner. Free and open source.</p>
-                <p>KeePassXC has been awarded a <a href="#certified-security">Security Visa</a> by the French National Cybersecurity Agency (ANSSI).</p>
-            </div>
-            <div class="row hero-actions">
-                {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download" "appearance" "primary" "size" "hero" "icon" "fa-solid fa-download") }}
-                {{ partial "button.html" (dict "href" "#project" "text" "Learn More" "size" "hero" "icon" "fa-solid fa-circle-info") }}
-                {{ partial "button.html" (dict "href" (print .Site.BaseURL "donate") "text" "Donate" "appearance" "transparent" "size" "hero" "icon" "fa-solid fa-hand-holding-heart") }}
-            </div>
+{{- $base := .Site.BaseURL }}
+<section class="mk-hero">
+    <div class="container mk-hero-inner">
+        <a class="mk-pill" href="#certified-security">
+            <span class="mk-pill-tag">Certified</span>
+            ANSSI Security Visa (CSPN)
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        <h1 class="mk-display">Your passwords.<br>Your device. <span class="mk-highlight">Your rules.</span></h1>
+        <p class="mk-lead">
+            KeePassXC safely stores your passwords and auto-fills them into your favorite apps, so you can forget all about them.
+            No ads, no trackers, no cloud&nbsp;&mdash; just a free and open-source password manager that does the heavy lifting.
+        </p>
+        <div class="row row-center mk-hero-actions">
+            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download KeePassXC" "appearance" "cta-light" "size" "hero") }}
+            {{ partial "button.html" (dict "href" "#project" "text" "See how it works" "appearance" "cta-ghost" "size" "hero") }}
         </div>
-        <div class="hero-art">
-            <img src="{{ .Site.BaseURL }}assets/img/frontpage-hero.svg" alt="" width="560" height="420">
+        <p class="mk-hero-note">
+            <i class="fa-brands fa-windows" aria-hidden="true"></i>
+            <i class="fa-brands fa-apple" aria-hidden="true"></i>
+            <i class="fa-brands fa-linux" aria-hidden="true"></i>
+            Free for Windows, macOS, and Linux
+        </p>
+    </div>
+    <div class="container mk-hero-media">
+        <div class="mk-window">
+            <div class="mk-window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
+            <img src="{{ $base }}assets/img/screenshots/database_view.png" width="1553" height="1181"
+                 alt="The KeePassXC main window showing a password database with groups and entries">
         </div>
     </div>
 </section>
 
-<section class="section features" aria-label="Highlights">
+<section class="mk-trust" aria-label="Works with">
     <div class="container">
-        <div class="grid grid-3 grid-match">
-            <div class="card">
-                <div class="card-body">
-                    <span class="icon-tile"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></span>
-                    <h2>Secure</h2>
-                    <p>Your passwords remain encrypted at all times and no data is stored on remote servers, so you stay in full control of your data. No cloud, no ads, no subscriptions.</p>
-                </div>
+        <p class="mk-trust-label">Works with the apps and browsers you already use</p>
+        <ul class="mk-trust-logos">
+            <li><img src="{{ $base }}assets/img/browser-icons/firefox.svg" alt="" width="28" height="28"> Firefox</li>
+            <li><img src="{{ $base }}assets/img/browser-icons/chrome.svg" alt="" width="28" height="28"> Chrome</li>
+            <li><img src="{{ $base }}assets/img/browser-icons/edge.svg" alt="" width="28" height="28"> Edge</li>
+            <li><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows</li>
+            <li><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS</li>
+            <li><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux</li>
+        </ul>
+    </div>
+</section>
+
+<section class="mk-section" id="project">
+    <div class="container">
+        <header class="mk-section-head">
+            <h2 class="mk-heading">A password manager that<br>answers only to you</h2>
+            <p class="mk-sublead">KeePassXC is a modern, secure, and open-source password manager for people with extremely high demands of secure personal data management.</p>
+        </header>
+
+        <div class="mk-feature">
+            <div class="mk-feature-copy">
+                <p class="mk-eyebrow">Secure by default</p>
+                <h3>Everything stays encrypted. Everything stays yours.</h3>
+                <p>Usernames, passwords, URLs, attachments, and notes are saved in an offline, encrypted file that you can keep anywhere, including your own private or public cloud. Nothing is ever stored on our servers.</p>
+                <ul class="mk-checks">
+                    <li>No cloud, no ads, no subscriptions</li>
+                    <li>Open KeePass KDBX format you can take with you</li>
+                    <li>Hardware key and key file support</li>
+                </ul>
+                <a class="mk-link" href="{{ $base }}docs/KeePassXC_UserGuide.html">Explore the User Guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <span class="icon-tile"><i class="fa-solid fa-laptop" aria-hidden="true"></i></span>
-                    <h2>Cross-platform</h2>
-                    <p>Every feature is thoroughly tested on Windows, macOS, and Linux, so you can expect a seamless experience no matter which operating system you use.</p>
-                </div>
+            <div class="mk-feature-media mk-tint-green">
+                <img src="{{ $base }}assets/img/screenshots/unlock_database.png" alt="Unlocking a KeePassXC database" loading="lazy" width="1553" height="1181">
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <span class="icon-tile"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
-                    <h2>Open Source</h2>
-                    <p>The source code is completely open source under the GPLv3 license and openly available on GitHub. Feel free to inspect, share, and contribute!</p>
-                </div>
+        </div>
+
+        <div class="mk-feature mk-feature-reverse">
+            <div class="mk-feature-copy">
+                <p class="mk-eyebrow">Fill in a flash</p>
+                <h3>Auto-type and browser integration that just works</h3>
+                <p>Let KeePassXC type your credentials into any application, or connect the browser extension to fill logins in Firefox, Chrome, Edge, and more with a single click.</p>
+                <a class="mk-link" href="{{ $base }}docs/KeePassXC_GettingStarted.html#_browser_integration">Set up browser integration <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="mk-feature-media mk-tint-plum">
+                <img src="{{ $base }}assets/img/screenshots/autotype_entrylevel.png" alt="Configuring auto-type for an entry" loading="lazy" width="1553" height="1181">
+            </div>
+        </div>
+
+        <div class="mk-feature">
+            <div class="mk-feature-copy">
+                <p class="mk-eyebrow">Stronger every day</p>
+                <h3>Generate, check, and fix weak passwords</h3>
+                <p>Create strong passwords and passphrases in a click, then let database reports point out weak, reused, and breached passwords so you know exactly what to fix.</p>
+                <a class="mk-link" href="{{ $base }}screenshots">See more screenshots <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="mk-feature-media mk-tint-sand">
+                <img src="{{ $base }}assets/img/screenshots/database_reports.png" alt="A database health report highlighting weak passwords" loading="lazy" width="1553" height="1181">
             </div>
         </div>
     </div>
 </section>
 
-<section class="section media-section" id="project">
-    <div class="container grid grid-split grid-large">
-        <div>
-            <img src="{{ .Site.BaseURL }}assets/img/frontpage-illustration-1.svg" alt="" class="reveal">
-        </div>
-        <div class="order-first">
-            <p class="eyebrow">About</p>
-            <h2>The Project</h2>
-
-            <p><strong>KeePassXC</strong> is a modern, secure, and open-source password manager that stores and manages your most sensitive information.</p>
-
-            <p>
-                You can run KeePassXC on Windows, macOS, and Linux systems. KeePassXC is for people with extremely high demands of secure
-                personal data management. It saves many types of information, such as usernames, passwords, URLs, attachments,
-                and notes in an offline, encrypted file that can be stored in any location, including private and public cloud solutions.
-            </p>
-        </div>
+<section class="mk-stats" aria-label="KeePassXC at a glance">
+    <div class="container">
+        <dl class="mk-stats-grid">
+            <div><dt>0</dt><dd>trackers, ads, or accounts required</dd></div>
+            <div><dt>100%</dt><dd>offline: your data never touches our servers</dd></div>
+            <div><dt>3</dt><dd>platforms, every feature tested on each one</dd></div>
+            <div><dt>GPLv3</dt><dd>free and open source, now and forever</dd></div>
+        </dl>
     </div>
 </section>
 
-<section class="section media-section">
-    <div class="container grid grid-split grid-large">
-        <div>
-            <img src="{{ .Site.BaseURL }}assets/img/frontpage-illustration-2.svg" alt="" class="reveal">
-        </div>
-        <div>
-            <p class="eyebrow">Get started</p>
-            <h2>How to Get Started</h2>
-            <p>
-                Our <strong><a href="{{ .Site.BaseURL }}docs/KeePassXC_GettingStarted.html"><i class="fa-solid fa-rocket" aria-hidden="true"></i> Getting Started Guide</a></strong> walks you through the steps of
-                <strong><a href="{{ .Site.BaseURL }}download"><i class="fa-solid fa-download" aria-hidden="true"></i> downloading</a></strong> and installing KeePassXC for Windows, macOS, or Linux.
-                Additionally, many Linux distributions ship their own versions, so in that case please check your distribution's package
-                list.
-            </p>
-
-            <p>
-                Detailed usage documentation is available in the
-                <strong><a href="{{ .Site.BaseURL }}docs/KeePassXC_UserGuide.html"><i class="fa-solid fa-book" aria-hidden="true"></i> User Guide</a></strong>. Also head over to our
-                <strong><a href="{{ .Site.BaseURL }}docs"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Documentation &amp; FAQ page</a></strong> for more information.
-            </p>
-            <div class="row">
-                {{ partial "button.html" (dict "href" (print .Site.BaseURL "docs/KeePassXC_GettingStarted.html") "text" "Getting Started Guide" "appearance" "primary" "size" "large" "icon" "fa-solid fa-rocket") }}
-                {{ partial "button.html" (dict "href" (print .Site.BaseURL "docs/KeePassXC_UserGuide.html") "text" "User Guide" "size" "large" "icon" "fa-solid fa-book") }}
+<section class="mk-section mk-section-tinted" id="certified-security">
+    <div class="container">
+        <div class="mk-spotlight">
+            <div class="mk-spotlight-copy">
+                <p class="mk-eyebrow">Certified security</p>
+                <h2 class="mk-heading">Independently tested. Officially certified.</h2>
+                <p><strong>KeePassXC 2.7.9</strong> has been awarded a Security Visa by the French National Cybersecurity Agency (ANSSI) for passing its First-level Security Certification (CSPN).</p>
+                <p>The certificate shows KeePassXC complies with the security standards set by ANSSI, and it is recognised in both France and Germany.</p>
+                {{ partial "button.html" (dict "href" (print $base "audits/") "text" "View audits &amp; certifications" "appearance" "cta" "size" "hero") }}
             </div>
-        </div>
-    </div>
-</section>
-
-<section class="section media-section" id="certified-security">
-    <div class="container grid grid-split grid-large">
-        <div>
-            <a href="{{ .Site.BaseURL }}audits/#cspn-2025-11-17">
-                <img alt="ANSSI Security Visa" src="{{ .Site.BaseURL }}assets/img/anssi-cspn-security-visa.png" class="reveal" style="max-width: 22rem">
+            <a class="mk-spotlight-badge" href="{{ $base }}audits/#cspn-2025-11-17">
+                <img alt="ANSSI Security Visa" src="{{ $base }}assets/img/anssi-cspn-security-visa.png" loading="lazy">
             </a>
         </div>
-        <div class="order-first">
-            <p class="eyebrow">Security</p>
-            <h2>Certified Security</h2>
+    </div>
+</section>
 
-            <p><strong>KeePassXC 2.7.9</strong> has been awarded a security Visa by the French National Cybersecurity Agency (ANSSI).</p>
-            <p>
-                The security Visa has been awarded for passing ANSSI's First-level Security Certification (CSPN). The certificate demonstrates that
-                KeePassXC has been tested for complying with security standards set by ANSSI, and it is recognised in France and in Germany.
-            </p>
-            <p>
-                More information can be found on our <a href="{{ .Site.BaseURL }}audits/">security audits and certifications page</a>.
-            </p>
+<section class="mk-section">
+    <div class="container">
+        <header class="mk-section-head">
+            <h2 class="mk-heading">Get started in minutes</h2>
+            <p class="mk-sublead">Everything you need to set up KeePassXC and make the most of it.</p>
+        </header>
+        <div class="mk-cards">
+            <a class="mk-card" href="{{ $base }}docs/KeePassXC_GettingStarted.html">
+                <span class="mk-card-icon mk-tint-green"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span>
+                <h3>Getting Started Guide</h3>
+                <p>Download, install, and create your first database on Windows, macOS, or Linux.</p>
+                <span class="mk-link">Read the guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="mk-card" href="{{ $base }}docs/KeePassXC_UserGuide.html">
+                <span class="mk-card-icon mk-tint-plum"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
+                <h3>User Guide</h3>
+                <p>Detailed documentation for every feature, from auto-type to SSH agent integration.</p>
+                <span class="mk-link">Open the docs <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            <a class="mk-card" href="{{ $base }}docs">
+                <span class="mk-card-icon mk-tint-sand"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span>
+                <h3>Documentation &amp; FAQ</h3>
+                <p>Answers to common questions, plus notes for Linux distribution packages.</p>
+                <span class="mk-link">Browse the FAQ <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
         </div>
     </div>
 </section>
 
-<section class="section section-muted">
+<section class="mk-section mk-section-tinted">
     <div class="container">
-        <div class="row" style="justify-content: space-between; margin-bottom: 1.5rem">
-            <h2 class="mb-0">Recent Blog Posts</h2>
-            {{ partial "button.html" (dict "href" (print .Site.BaseURL "blog/") "text" "All posts" "appearance" "subtle" "icon" "fa-solid fa-arrow-right") }}
+        <div class="mk-section-head mk-section-head-split">
+            <h2 class="mk-heading">What's new</h2>
+            <a class="mk-link" href="{{ $base }}blog/">See all posts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-
         <div class="grid grid-2">
             {{- block "index-post-teasers" . }}
                 {{- range first 4 (where .Site.RegularPages "Section" "blog").ByPublishDate.Reverse }}
@@ -141,4 +168,6 @@
         </div>
     </div>
 </section>
+
+{{ partial "cta-band.html" . }}
 {{ end }}

@@ -1,13 +1,11 @@
-// Site header: sticky Fluent "acrylic" bar with tab-style navigation.
+// Site header: sticky solid bar with bold navigation and a Download call to action.
 
 .site-header {
     position: sticky;
     top: 0;
     z-index: 100;
     border-bottom: var(--strokeWidthThin) solid transparent;
-    background: color-mix(in srgb, var(--colorNeutralBackground1) 85%, transparent);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: var(--colorNeutralBackground1);
     transition: box-shadow var(--durationNormal) var(--curveEasyEase),
                 border-color var(--durationNormal) var(--curveEasyEase);
 
@@ -23,19 +21,52 @@
             height: 2rem;
         }
     }
-
-    @supports not (backdrop-filter: blur(1px)) {
-        background: var(--colorNeutralBackground1);
-    }
 }
 
-// Thin brand stripe across the top, a nod to the original green navbar
-.site-header::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto;
-    height: 3px;
-    background: linear-gradient(90deg, map-get($brand-ramp, 70), map-get($brand-ramp, 100));
+// Announcement strip above the header, linking to the latest blog post
+.announce-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    padding: .55rem 1rem;
+    background: var(--mk-plum-deep);
+    color: var(--mk-on-plum);
+    font-size: var(--fontSizeBase300);
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--mk-on-plum);
+
+        .announce-more {
+            text-decoration: underline;
+        }
+    }
+
+    .announce-tag {
+        padding: .05rem .5rem;
+        border-radius: var(--borderRadiusCircular);
+        background: var(--mk-accent);
+        color: var(--mk-plum-deep);
+        font-size: var(--fontSizeBase200);
+        font-weight: 800;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+    }
+
+    .announce-text {
+        font-weight: 700;
+    }
+
+    .announce-more {
+        color: var(--mk-on-plum-muted);
+        white-space: nowrap;
+
+        @media (max-width: $breakpoint-small) {
+            display: none;
+        }
+    }
 }
 
 .header-inner {
@@ -53,8 +84,8 @@
     margin-inline-end: auto;
     color: var(--colorNeutralForeground1);
     font-size: var(--fontSizeBase600);
-    font-weight: var(--fontWeightSemibold);
-    letter-spacing: -.01em;
+    font-weight: 900;
+    letter-spacing: -.03em;
     text-decoration: none;
 
     &:hover {
@@ -93,9 +124,9 @@
         display: flex;
         align-items: center;
         padding: 0 var(--spacingHorizontalM);
-        color: var(--colorNeutralForeground2);
+        color: var(--colorNeutralForeground1);
         font-size: var(--fontSizeBase400);
-        font-weight: var(--fontWeightSemibold);
+        font-weight: 700;
         text-decoration: none;
         border-radius: var(--borderRadiusMedium);
         transition: color var(--durationFaster) var(--curveEasyEase);
@@ -124,7 +155,7 @@
             color: var(--colorNeutralForeground1);
 
             &::after {
-                background: var(--colorCompoundBrandStroke);
+                background: var(--mk-plum-strong);
                 scale: 1 1;
             }
         }
@@ -138,7 +169,16 @@
 .header-actions {
     display: flex;
     align-items: center;
-    gap: var(--spacingHorizontalXS);
+    gap: var(--spacingHorizontalS);
+
+    .header-cta {
+        min-height: 40px;
+        padding-inline: 1.25rem;
+
+        @media (max-width: $breakpoint-small) {
+            display: none;
+        }
+    }
 }
 
 // Hide the desktop nav on small screens (drawer takes over), unless JS is off.
@@ -206,6 +246,10 @@
                 color: var(--colorBrandForeground2);
             }
         }
+    }
+
+    .drawer-cta {
+        margin-top: 1.5rem;
     }
 
     &:not(:defined) {

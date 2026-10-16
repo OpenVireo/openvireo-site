@@ -11,10 +11,10 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    border-radius: var(--borderRadiusXLarge);
+    border-radius: var(--borderRadius3XLarge);
     background: var(--colorNeutralBackground1);
-    box-shadow: var(--shadow4);
-    border: var(--strokeWidthThin) solid var(--colorTransparentStroke);
+    box-shadow: none;
+    border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
     color: var(--colorNeutralForeground1);
     transition: box-shadow var(--durationNormal) var(--curveEasyEase);
 
@@ -24,7 +24,8 @@
 
     &.card-interactive:hover,
     &.card-interactive:focus-within {
-        box-shadow: var(--shadow8);
+        border-color: transparent;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .06), 0 20px 40px rgba(0, 0, 0, .12);
     }
 
     &.card-filled {
@@ -81,7 +82,8 @@
     margin: 0 0 .35em;
     font-size: var(--fontSizeBase500);
     line-height: var(--lineHeightBase500);
-    font-weight: var(--fontWeightSemibold);
+    font-weight: 800;
+    letter-spacing: -.01em;
 
     a {
         color: inherit;
@@ -422,12 +424,15 @@ fluent-avatar:not(:defined) {
 // Page header band -------------------------------------------------------------------------
 
 .page-header {
-    padding-block: #{"clamp(1.5rem, 4vw, 2.5rem)"} #{"clamp(1.5rem, 4vw, 2.5rem)"};
-    background: linear-gradient(var(--colorNeutralBackground2), var(--colorNeutralBackground1));
-    border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke3);
+    padding-block: #{"clamp(2.5rem, 6vw, 4.5rem)"};
+    background: var(--mk-surface-tint);
 
     h1 {
         margin: 0;
+        font-size: #{"clamp(2.4rem, 1.6rem + 3vw, 4rem)"};
+        font-weight: 900;
+        letter-spacing: -.035em;
+        line-height: 1.05;
     }
 }
 
