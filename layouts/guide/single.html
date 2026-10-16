@@ -1,4 +1,4 @@
-{{- /* One User Guide chapter: chapter navigation, content, previous/next */ -}}
+{{- /* One guide chapter: chapter navigation, content, previous/next */ -}}
 {{- define "main" }}
 {{- $chapters := .CurrentSection.Pages.ByWeight }}
 {{- $index := 0 }}
@@ -13,9 +13,9 @@
 </div>
 
 <div class="container guide-layout">
-    <nav class="guide-nav" aria-label="User Guide chapters">
+    <nav class="guide-nav" aria-label="{{ .CurrentSection.Title }} chapters">
         <details class="guide-nav-details" open>
-            <summary>User Guide chapters</summary>
+            <summary>{{ .CurrentSection.Title }} chapters</summary>
             <ol>
                 {{- range $chapters }}
                 {{- $current := eq . $ }}
@@ -59,7 +59,7 @@
         </nav>
 
         <p class="guide-footnote">
-            This guide covers KeePassXC {{ .CurrentSection.Params.version }}{{ with .CurrentSection.Params.updated }}, last updated {{ (time .).Format "2 January 2006" }}{{ end }}.
+            The {{ .CurrentSection.Title }} guide covers KeePassXC {{ .CurrentSection.Params.version }}{{ with .CurrentSection.Params.updated }}, last updated {{ (time .).Format "2 January 2006" }}{{ end }}.
             Found a mistake? <a href="https://github.com/keepassxreboot/keepassxc/tree/develop/docs">Help improve the docs on GitHub</a>.
         </p>
     </article>
