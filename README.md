@@ -56,16 +56,24 @@ boilerplate and some pre-filled frontmatter fields.
 
 ## Update the User Guide and Getting Started guide
 
-Both guides are written in AsciiDoc in the [KeePassXC repository](https://github.com/keepassxreboot/keepassxc/tree/develop/docs)
-and built there into single files, `KeePassXC_UserGuide.html` and `KeePassXC_GettingStarted.html`. To publish a new
-version on the website, split each file into themed chapter pages:
+Both guides are written in AsciiDoc in the [KeePassXC repository](https://github.com/keepassxreboot/keepassxc/tree/develop/docs).
+The website builds them straight from a checkout of that repository and splits them into themed chapter pages.
+This needs [Asciidoctor](https://asciidoctor.org) (`brew install asciidoctor` or `gem install asciidoctor`).
+
+With the keepassxc repository checked out next to this one (`../keepassxc`):
 
 ```bash
-node scripts/build-guide.mjs user-guide path/to/KeePassXC_UserGuide.html
-node scripts/build-guide.mjs getting-started path/to/KeePassXC_GettingStarted.html
+npm run docs -- --ref 2.8.0      # publish the docs of a release tag (or any branch/commit)
+npm run docs                     # preview the checkout as it is on disk, including uncommitted edits
 ```
 
-For each guide this regenerates `content/docs/<guide>/` (one page per chapter), extracts the images to
+Use `npm run docs -- path/to/keepassxc` (or set `KEEPASSXC_SRC`) if the checkout lives elsewhere. Building from a
+`--ref` exports that commit to a temporary folder, so your working tree and current branch are left alone.
+
+For each guide this regenerates `content/docs/<guide>/` (one page per chapter), copies the screenshots it uses to
 `static/docs/<guide>/images/`, and rewrites the old single-page file in `static/docs/` as a redirect so old links and
-`#anchors` still land on the right chapter. If a guide gains a new chapter, add it to that guide's `chapters` table at
-the top of the script (order, icon, and card summary).
+`#anchors` still land on the right chapter. The landing page records the version and the commit the docs came from.
+
+New chapters publish automatically with a generic icon and a warning; give them a place, icon, and card summary in
+the `guides` table at the top of `scripts/build-guide.mjs`. That script can also convert a prebuilt single-file
+guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide KeePassXC_UserGuide.html`.
