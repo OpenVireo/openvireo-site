@@ -80,7 +80,7 @@ guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide Ke
 
 ## Update the product screenshots
 
-The screenshots on the landing page (also used by the Screenshots page and the download carousel) are captured from
+The screenshots on the landing page, the Screenshots page and the download carousel are captured from
 a KeePassXC build by the `testdocsscreenshots` tool in the keepassxc repository:
 
 ```bash
