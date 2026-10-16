@@ -1,0 +1,442 @@
+// User Guide: chapter landing cards, a sticky chapter sidebar, and themed versions of the
+// Asciidoctor blocks the generated pages contain (see scripts/build-user-guide.mjs).
+
+// Header -----------------------------------------------------------------------------------
+
+.guide-header {
+    .guide-lead {
+        max-width: 40rem;
+        margin: 1rem 0 0;
+        color: var(--colorNeutralForeground2);
+        font-size: #{"clamp(1.05rem, 1rem + .3vw, 1.25rem)"};
+    }
+
+    .guide-header-meta {
+        --row-gap: 1rem 1.5rem;
+        margin-top: 1.75rem;
+    }
+
+    .guide-version {
+        color: var(--colorNeutralForeground2);
+        font-weight: 700;
+
+        i {
+            margin-inline-end: .35rem;
+            color: var(--colorBrandForeground1);
+        }
+    }
+
+    &.guide-header-compact {
+        padding-block: #{"clamp(1.75rem, 4vw, 3rem)"};
+
+        .eyebrow {
+            margin: .75rem 0 .5rem;
+        }
+
+        h1 {
+            font-size: #{"clamp(2rem, 1.4rem + 2.4vw, 3.25rem)"};
+        }
+    }
+}
+
+// Landing page chapter cards ---------------------------------------------------------------
+
+.guide-chapters {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > li {
+        display: flex;
+        margin: 0;
+    }
+
+    .mk-card {
+        width: 100%;
+    }
+
+    .mk-card-icon {
+        margin-bottom: 1.25rem;
+    }
+
+    h2 {
+        margin: 0 0 .5rem;
+        font-size: var(--fontSizeBase600);
+        letter-spacing: -.015em;
+    }
+
+    .guide-chapter-number,
+    .guide-chapter-count {
+        color: var(--colorNeutralForeground3);
+        font-size: var(--fontSizeBase300);
+        font-weight: 700;
+    }
+
+    .guide-chapter-number {
+        margin-bottom: .25rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+}
+
+// Chapter layout ---------------------------------------------------------------------------
+
+.guide-layout {
+    display: grid;
+    gap: 2rem #{"clamp(2rem, 5vw, 4rem)"};
+    padding-block: #{"clamp(2rem, 5vw, 3.5rem)"} #{"clamp(3rem, 8vw, 6rem)"};
+
+    @media (min-width: $breakpoint-medium) {
+        grid-template-columns: 16rem minmax(0, 1fr);
+        align-items: start;
+    }
+}
+
+.guide-nav {
+    font-size: var(--fontSizeBase300);
+
+    @media (min-width: $breakpoint-medium) {
+        position: sticky;
+        top: $header-height-stuck + 1.5rem;
+        max-height: calc(100vh - #{$header-height-stuck + 3rem});
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: thin;
+
+        // The sidebar is always expanded on desktop
+        summary {
+            display: none;
+        }
+    }
+
+    summary {
+        padding: .75rem 1rem;
+        border: 1px solid var(--colorNeutralStroke2);
+        border-radius: var(--borderRadiusXLarge);
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    details[open] summary {
+        margin-bottom: .75rem;
+    }
+
+    ol {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+    }
+
+    a {
+        display: block;
+        padding: .45rem .75rem;
+        border-radius: var(--borderRadiusLarge);
+        color: var(--colorNeutralForeground2);
+        font-weight: 700;
+        text-decoration: none;
+
+        i {
+            margin-inline-end: .35rem;
+            color: var(--colorNeutralForeground3);
+        }
+
+        &:hover {
+            background: var(--colorSubtleBackgroundHover);
+            color: var(--colorNeutralForeground1);
+        }
+    }
+
+    .is-current > a {
+        background: var(--mk-surface-tint);
+        color: var(--colorNeutralForeground1);
+
+        i {
+            color: var(--colorBrandForeground1);
+        }
+    }
+
+    .guide-nav-sections {
+        margin: .35rem 0 .75rem 1.35rem;
+        padding-inline-start: .75rem;
+        border-inline-start: 2px solid var(--colorNeutralStroke2);
+
+        a {
+            padding: .3rem .6rem;
+            font-weight: 400;
+
+            &[aria-current] {
+                color: var(--colorBrandForeground1);
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+// Chapter content --------------------------------------------------------------------------
+
+.guide-content {
+    max-width: 50rem;
+    font-size: 1.0625rem;
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    h3, h4, h5 {
+        position: relative;
+        scroll-margin-top: $header-height-stuck + 1rem;
+    }
+
+    h3 {
+        margin: 3rem 0 1rem;
+        padding-top: 2.5rem;
+        border-top: 1px solid var(--colorNeutralStroke2);
+        font-size: #{"clamp(1.5rem, 1.25rem + 1vw, 2rem)"};
+        letter-spacing: -.025em;
+    }
+
+    .sect2:first-child h3 {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    h4 {
+        margin: 2.25rem 0 .75rem;
+        font-size: var(--fontSizeBase500);
+    }
+
+    h5 {
+        margin: 1.75rem 0 .5rem;
+        font-size: var(--fontSizeBase400);
+    }
+
+    // Heading permalinks, revealed on hover
+    a.anchor {
+        position: absolute;
+        inset-inline-start: -1.25em;
+        bottom: .1em;
+        width: 1em;
+        color: var(--colorNeutralForeground3);
+        font-size: .75em;
+        text-decoration: none;
+        opacity: 0;
+        transition: opacity var(--durationFaster);
+
+        &::before {
+            content: "#";
+        }
+    }
+
+    :is(h3, h4, h5):hover a.anchor,
+    a.anchor:focus-visible {
+        opacity: 1;
+    }
+
+    .paragraph p,
+    .ulist,
+    .olist {
+        margin-bottom: 1em;
+    }
+
+    .olist.loweralpha ol {
+        list-style-type: lower-alpha;
+    }
+
+    // Block titles ("Table 1. …", list titles)
+    .title {
+        margin: 1.5rem 0 .5rem;
+        color: var(--colorNeutralForeground2);
+        font-size: var(--fontSizeBase300);
+        font-weight: 800;
+    }
+
+    // Screenshots
+    .guide-figure {
+        margin: 2rem 0;
+
+        img {
+            display: block;
+            margin-inline: auto;
+            border-radius: var(--borderRadiusXLarge);
+        }
+
+        a {
+            display: block;
+            cursor: zoom-in;
+        }
+    }
+
+    // Callouts (note, tip, warning, …)
+    .callout {
+        display: flex;
+        gap: 1rem;
+        margin: 1.75rem 0;
+        padding: 1.1rem 1.25rem;
+        border-radius: var(--borderRadius2XLarge);
+        background: var(--mk-tint-mint);
+        font-size: 1rem;
+
+        .callout-icon {
+            margin-top: .2rem;
+            font-size: 1.15rem;
+            color: var(--colorBrandForeground1);
+        }
+
+        .callout-body {
+            min-width: 0;
+
+            > :last-child,
+            > :last-child > :last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .callout-label {
+            margin-bottom: .25rem;
+            font-size: var(--fontSizeBase300);
+            font-weight: 800;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        &.callout-tip {
+            background: var(--mk-tint-green);
+        }
+
+        &:is(.callout-warning, .callout-caution, .callout-important) {
+            background: var(--mk-tint-sand);
+
+            .callout-icon {
+                color: var(--colorStatusWarningForeground1, #bc4b09);
+            }
+        }
+    }
+
+    // Tables
+    .table-wrap {
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        border: 1px solid var(--colorNeutralStroke2);
+        border-radius: var(--borderRadiusXLarge);
+    }
+
+    table.tableblock {
+        width: 100%;
+        margin: 0;
+        font-size: var(--fontSizeBase300);
+
+        th, td {
+            padding: .65rem .9rem;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--colorNeutralBackground2);
+            font-weight: 800;
+        }
+
+        tr:last-child td {
+            border-bottom: 0;
+        }
+
+        p.tableblock {
+            margin: 0;
+
+            + p.tableblock {
+                margin-top: .5em;
+            }
+        }
+    }
+
+    // Code and literal blocks
+    .listingblock,
+    .literalblock {
+        margin: 1.25rem 0;
+
+        pre {
+            margin: 0;
+            padding: 1rem 1.25rem;
+            border: 1px solid var(--colorNeutralStroke2);
+            background: var(--colorNeutralBackground3);
+            color: var(--colorNeutralForeground1);
+            font-size: .875rem;
+            white-space: pre;
+        }
+    }
+
+    // Keyboard shortcuts
+    kbd {
+        display: inline-block;
+        min-width: 1.6em;
+        padding: .1em .45em;
+        border: 1px solid var(--colorNeutralStroke1);
+        border-bottom-width: 2px;
+        border-radius: var(--borderRadiusMedium);
+        background: var(--colorNeutralBackground1);
+        font-size: .8em;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    .keyseq {
+        white-space: nowrap;
+    }
+}
+
+// Previous / next chapter ------------------------------------------------------------------
+
+.guide-pager {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 14rem)"}, 1fr));
+    gap: 1rem;
+    margin-top: 4rem;
+}
+
+.guide-pager-link {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--colorNeutralStroke2);
+    border-radius: var(--mk-radius-card);
+    color: var(--colorNeutralForeground1);
+    text-decoration: none;
+    transition: border-color var(--durationNormal), box-shadow var(--durationNormal);
+
+    &:hover {
+        border-color: transparent;
+        box-shadow: var(--mk-shadow-lift);
+        color: var(--colorNeutralForeground1);
+    }
+
+    &.next {
+        grid-column: -2;
+        text-align: end;
+    }
+
+    .guide-pager-dir {
+        color: var(--colorBrandForeground1);
+        font-size: var(--fontSizeBase300);
+        font-weight: 800;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+    }
+
+    .guide-pager-title {
+        font-size: var(--fontSizeBase500);
+        font-weight: 800;
+        letter-spacing: -.015em;
+    }
+}
+
+.guide-footnote {
+    margin-top: 2.5rem;
+    color: var(--colorNeutralForeground3);
+    font-size: var(--fontSizeBase300);
+}

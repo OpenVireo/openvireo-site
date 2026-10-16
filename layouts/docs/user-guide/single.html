@@ -1,0 +1,67 @@
+{{- /* One User Guide chapter: chapter navigation, content, previous/next */ -}}
+{{- define "main" }}
+{{- $chapters := .CurrentSection.Pages.ByWeight }}
+{{- $index := 0 }}
+{{- range $i, $p := $chapters }}{{ if eq $p $ }}{{ $index = $i }}{{ end }}{{ end }}
+
+<div class="page-header guide-header guide-header-compact">
+    <div class="container">
+        {{ partial "breadcrumbs.html" . }}
+        <p class="eyebrow">Chapter {{ add $index 1 }} of {{ len $chapters }}</p>
+        <h1>{{ .Title }}</h1>
+    </div>
+</div>
+
+<div class="container guide-layout">
+    <nav class="guide-nav" aria-label="User Guide chapters">
+        <details class="guide-nav-details" open>
+            <summary>User Guide chapters</summary>
+            <ol>
+                {{- range $chapters }}
+                {{- $current := eq . $ }}
+                <li{{ if $current }} class="is-current"{{ end }}>
+                    <a href="{{ .RelPermalink }}"{{ if $current }} aria-current="page"{{ end }}>
+                        <i class="fa-solid {{ .Params.icon }} fa-fw" aria-hidden="true"></i> {{ .Title }}
+                    </a>
+                    {{- if and $current .Params.sections }}
+                    <ol class="guide-nav-sections">
+                        {{- range .Params.sections }}
+                        <li><a href="#{{ .id }}">{{ .title }}</a></li>
+                        {{- end }}
+                    </ol>
+                    {{- end }}
+                </li>
+                {{- end }}
+            </ol>
+        </details>
+    </nav>
+
+    <article class="guide-content">
+        {{ .Content }}
+
+        <nav class="guide-pager" aria-label="Previous and next chapters">
+            {{- if gt $index 0 }}
+            {{- with index $chapters (sub $index 1) }}
+            <a class="guide-pager-link prev" href="{{ .RelPermalink }}" rel="prev">
+                <span class="guide-pager-dir"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Previous</span>
+                <span class="guide-pager-title">{{ .Title }}</span>
+            </a>
+            {{- end }}
+            {{- end }}
+            {{- if lt (add $index 1) (len $chapters) }}
+            {{- with index $chapters (add $index 1) }}
+            <a class="guide-pager-link next" href="{{ .RelPermalink }}" rel="next">
+                <span class="guide-pager-dir">Next <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                <span class="guide-pager-title">{{ .Title }}</span>
+            </a>
+            {{- end }}
+            {{- end }}
+        </nav>
+
+        <p class="guide-footnote">
+            This guide covers KeePassXC {{ .CurrentSection.Params.version }}{{ with .CurrentSection.Params.updated }}, last updated {{ (time .).Format "2 January 2006" }}{{ end }}.
+            Found a mistake? <a href="https://github.com/keepassxreboot/keepassxc/tree/develop/docs">Help improve the docs on GitHub</a>.
+        </p>
+    </article>
+</div>
+{{ end }}
