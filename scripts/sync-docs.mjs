@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-// Build the User Guide and Getting Started guide straight from a keepassxc checkout and
+// Build the User Guide and Getting Started guide straight from an openvireo checkout and
 // publish them as themed site pages, in one step.
 //
-//   npm run docs                                  # ../keepassxc, as it is on disk
+//   npm run docs                                  # ../openvireo, as it is on disk
 //   npm run docs -- --ref develop                 # a branch, tag, or commit (working tree untouched)
-//   npm run docs -- path/to/keepassxc --ref 2.8.0
+//   npm run docs -- path/to/openvireo --ref 2.8.0
 //
-// The checkout can also be set with KEEPASSXC_SRC. This runs Asciidoctor on the guides'
-// AsciiDoc sources (as the keepassxc docs build does, minus the embedded images), then hands
+// The checkout can also be set with OPENVIREO_SRC. This runs Asciidoctor on the guides'
+// AsciiDoc sources (as the openvireo docs build does, minus the embedded images), then hands
 // the HTML to scripts/build-guide.mjs, which writes content/docs/<guide>/ and copies the
 // screenshots from docs/images under their original names.
 
@@ -29,12 +29,12 @@ const sources = {
 
 const args = process.argv.slice(2);
 let ref = null;
-let repo = process.env.KEEPASSXC_SRC || join(root, '..', 'keepassxc');
+let repo = process.env.OPENVIREO_SRC || join(root, '..', 'openvireo');
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--ref') {
         ref = args[++i];
     } else if (args[i] === '-h' || args[i] === '--help') {
-        console.log('Usage: npm run docs -- [path/to/keepassxc] [--ref <branch|tag|commit>]');
+        console.log('Usage: npm run docs -- [path/to/openvireo] [--ref <branch|tag|commit>]');
         process.exit(0);
     } else {
         repo = args[i];
@@ -50,7 +50,7 @@ function fail(message) {
 const git = (...gitArgs) => execFileSync('git', ['-C', repo, ...gitArgs], { encoding: 'utf8' }).trim();
 
 if (!existsSync(join(repo, 'docs', 'UserGuide.adoc'))) {
-    fail(`${repo} is not a keepassxc checkout (no docs/UserGuide.adoc). Pass its path or set KEEPASSXC_SRC.`);
+    fail(`${repo} is not an openvireo checkout (no docs/UserGuide.adoc). Pass its path or set OPENVIREO_SRC.`);
 }
 try {
     execFileSync('asciidoctor', ['--version'], { stdio: 'ignore' });
@@ -73,7 +73,7 @@ if (ref) {
     } catch {
         fail(`unknown ref "${ref}" in ${repo}`);
     }
-    tempDir = mkdtempSync(join(tmpdir(), 'keepassxc-docs-'));
+    tempDir = mkdtempSync(join(tmpdir(), 'openvireo-docs-'));
     execFileSync('sh', ['-c', `git -C "$1" archive "$2" docs CMakeLists.txt | tar -x -C "$3"`, 'sh', repo, commit, tempDir]);
     docsDir = join(tempDir, 'docs');
     cmakeFile = join(tempDir, 'CMakeLists.txt');
@@ -88,7 +88,7 @@ if (ref) {
     updated = dirty ? new Date().toISOString().slice(0, 10) : git('log', '-1', '--format=%cs', '--', 'docs');
 }
 
-// Same version string the keepassxc build stamps into the guides
+// Same version string the openvireo build stamps into the guides
 const cmake = readFileSync(cmakeFile, 'utf8');
 const part = (name) => cmake.match(new RegExp(`set\\(KEEPASSXC_VERSION_${name} "(\\d+)"\\)`))?.[1];
 const version = [part('MAJOR'), part('MINOR'), part('PATCH')].every(Boolean)

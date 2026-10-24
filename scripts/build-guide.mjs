@@ -2,7 +2,7 @@
 // Split an Asciidoctor-built OpenVireo guide into one themed Hugo page per chapter.
 //
 // Normally this runs as part of `npm run docs` (scripts/sync-docs.mjs), which builds the guides
-// from a keepassxc checkout first. It can also convert a prebuilt single-file guide, such as one
+// from an openvireo checkout first. It can also convert a prebuilt single-file guide, such as one
 // from a release package, with images embedded as data URIs:
 //
 //   node scripts/build-guide.mjs user-guide      path/to/OpenVireo_UserGuide.html
@@ -251,7 +251,7 @@ export function buildGuide(name, source, { assetDir, origin, updated: updatedDat
     const written = new Set();
 
     // Images are either embedded data URIs (a prebuilt single-file guide) or paths relative to
-    // assetDir (a build from a keepassxc checkout, which keeps the source file names).
+    // assetDir (a build from an openvireo checkout, which keeps the source file names).
     function saveImage(src, alt) {
         let bytes;
         let fileName;
@@ -419,7 +419,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     const [name, input] = process.argv.slice(2);
     if (!guides[name] || !input) {
         console.error(`Usage: node scripts/build-guide.mjs <${Object.keys(guides).join('|')}> path/to/guide.html`);
-        console.error('To build straight from a keepassxc checkout, use scripts/sync-docs.mjs (npm run docs).');
+        console.error('To build straight from an openvireo checkout, use scripts/sync-docs.mjs (npm run docs).');
         process.exit(1);
     }
     const result = buildGuide(name, readFileSync(input, 'utf8'), { assetDir: dirname(input) });

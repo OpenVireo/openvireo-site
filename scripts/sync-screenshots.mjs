@@ -1,11 +1,11 @@
 #!/usr/bin/env node
-// Recreate the website's product screenshots from a keepassxc build and put them in place.
+// Recreate the website's product screenshots from an openvireo build and put them in place.
 //
-//   npm run screenshots                                   # ../keepassxc, built in cmake-build-debug
-//   npm run screenshots -- path/to/keepassxc --build-dir path/to/build
+//   npm run screenshots                                   # ../openvireo, built in cmake-build-debug
+//   npm run screenshots -- path/to/openvireo --build-dir path/to/build
 //   npm run screenshots -- --docs                         # also regenerate the checkout's docs/images
 //
-// The checkout and build folder can also be set with KEEPASSXC_SRC and KEEPASSXC_BUILD. The build
+// The checkout and build folder can also be set with OPENVIREO_SRC and OPENVIREO_BUILD. The build
 // must be configured with -DWITH_GUI_TESTS=ON. This builds the testdocsscreenshots tool, runs its
 // website steps (which open KeePassXC for a few seconds and drive it through a demo database) to
 // write each screenshot and its thumbnail into static/assets/img/screenshots/, and updates the
@@ -41,8 +41,8 @@ const screenshots = [
 // Arguments ----------------------------------------------------------------------------------
 
 const args = process.argv.slice(2);
-let repo = process.env.KEEPASSXC_SRC || join(root, '..', 'keepassxc');
-let buildDir = process.env.KEEPASSXC_BUILD || null;
+let repo = process.env.OPENVIREO_SRC || join(root, '..', 'openvireo');
+let buildDir = process.env.OPENVIREO_BUILD || null;
 let docs = false;
 for (let i = 0; i < args.length; i++) {
     if (args[i] === '--build-dir') {
@@ -50,7 +50,7 @@ for (let i = 0; i < args.length; i++) {
     } else if (args[i] === '--docs') {
         docs = true;
     } else if (args[i] === '-h' || args[i] === '--help') {
-        console.log('Usage: npm run screenshots -- [path/to/keepassxc] [--build-dir path/to/build] [--docs]');
+        console.log('Usage: npm run screenshots -- [path/to/openvireo] [--build-dir path/to/build] [--docs]');
         process.exit(0);
     } else {
         repo = args[i];
@@ -65,7 +65,7 @@ function fail(message) {
 }
 
 if (!existsSync(join(repo, 'tests/gui/TestDocsScreenshots.cpp'))) {
-    fail(`${repo} has no screenshot tool (tests/gui/TestDocsScreenshots.cpp). Pass the keepassxc checkout or set KEEPASSXC_SRC.`);
+    fail(`${repo} has no screenshot tool (tests/gui/TestDocsScreenshots.cpp). Pass the openvireo checkout or set OPENVIREO_SRC.`);
 }
 const cache = join(buildDir, 'CMakeCache.txt');
 if (!existsSync(cache)) {
@@ -105,7 +105,7 @@ try {
 // The tool's summary: "<n> screenshots updated, <m> unchanged" and the updated files
 const summary = output.split('\n').filter((line) => line.includes('QINFO') || line.startsWith('  /'));
 for (const line of summary) {
-    console.log(line.replace(/^QINFO\s*:\s*\S+\s*/, '').replace(root + '/', '').replace(repo + '/', 'keepassxc/'));
+    console.log(line.replace(/^QINFO\s*:\s*\S+\s*/, '').replace(root + '/', '').replace(repo + '/', 'openvireo/'));
 }
 
 // Keep width/height attributes in step, so pages reserve the right space -----------------------

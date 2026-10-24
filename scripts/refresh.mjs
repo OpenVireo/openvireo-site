@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-// Refresh everything taken from a keepassxc checkout, in one go:
+// Refresh everything taken from an openvireo checkout, in one go:
 //   1. every screenshot: the docs images in the checkout's docs/images and the website's
 //      product screenshots (one KeePassXC session, see sync-screenshots.mjs)
 //   2. the User Guide and Getting Started pages, rebuilt from the checkout's working tree so the
 //      new screenshots are used without committing them first (see sync-docs.mjs)
 //
 //   npm run refresh
-//   npm run refresh -- path/to/keepassxc --build-dir path/to/build
+//   npm run refresh -- path/to/openvireo --build-dir path/to/build
 //
-// Defaults and environment variables (KEEPASSXC_SRC, KEEPASSXC_BUILD) are those of the two
+// Defaults and environment variables (OPENVIREO_SRC, OPENVIREO_BUILD) are those of the two
 // scripts. To publish docs from a branch or tag instead, run `npm run docs -- --ref <ref>` after
 // committing the screenshots there.
 
@@ -20,7 +20,7 @@ const scripts = dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 
 if (args.includes('-h') || args.includes('--help')) {
-    console.log('Usage: npm run refresh -- [path/to/keepassxc] [--build-dir path/to/build]');
+    console.log('Usage: npm run refresh -- [path/to/openvireo] [--build-dir path/to/build]');
     process.exit(0);
 }
 
