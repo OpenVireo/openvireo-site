@@ -34,7 +34,7 @@ export const guides = {
         chapters: {
             _interface_overview: {
                 weight: 10, icon: 'fa-table-columns',
-                summary: 'Find your way around the main window, toolbar, themes, settings, shortcuts, and command-line options.',
+                summary: 'Find your way around the main window, database picker, command bar, themes, settings, shortcuts, and command-line options.',
             },
             _database_operations: {
                 weight: 20, icon: 'fa-database',
@@ -47,6 +47,14 @@ export const guides = {
             _remote_database_support: {
                 weight: 35, icon: 'fa-arrows-rotate',
                 summary: 'Sync a database stored elsewhere using your own download and upload commands, such as scp or rsync.',
+            },
+            _keepassxc_sync_server: {
+                weight: 36, icon: 'fa-server',
+                summary: 'Sync a database automatically with your own KeePassXC Sync Server, pair devices, and open older versions.',
+            },
+            _keepassxc_accounts: {
+                weight: 37, icon: 'fa-user-shield',
+                summary: 'Sign in to sync your vaults everywhere, share them with people and organizations, and set up service accounts.',
             },
             _password_generator: {
                 weight: 40, icon: 'fa-dice',
@@ -120,7 +128,11 @@ export const guides = {
             },
             _interface_overview: {
                 weight: 30, icon: 'fa-table-columns',
-                summary: 'Find your way around the main window, toolbar, view options, settings, and shortcuts.',
+                summary: 'Find your way around the main window, database picker, command bar, view options, settings, and shortcuts.',
+            },
+            _keepassxc_accounts: {
+                weight: 35, icon: 'fa-user-shield',
+                summary: 'Choose how to use KeePassXC: with an account, with your own sync server, or without an account.',
             },
             _database_operations: {
                 weight: 40, icon: 'fa-database',
@@ -146,6 +158,7 @@ export const guides = {
         // Links in the source whose target doesn't exist here; a /path points to another guide
         linkAliases: {
             'Database Maintenance': '/docs/user-guide/database-settings/#_database_maintenance',
+            'KeePassXC Sync Server': '/docs/user-guide/keepassxc-sync-server/',
         },
     },
 };
