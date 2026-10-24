@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// Split an Asciidoctor-built KeePassXC guide into one themed Hugo page per chapter.
+// Split an Asciidoctor-built OpenVireo guide into one themed Hugo page per chapter.
 //
 // Normally this runs as part of `npm run docs` (scripts/sync-docs.mjs), which builds the guides
 // from a keepassxc checkout first. It can also convert a prebuilt single-file guide, such as one
 // from a release package, with images embedded as data URIs:
 //
-//   node scripts/build-guide.mjs user-guide      path/to/KeePassXC_UserGuide.html
-//   node scripts/build-guide.mjs getting-started path/to/KeePassXC_GettingStarted.html
+//   node scripts/build-guide.mjs user-guide      path/to/OpenVireo_UserGuide.html
+//   node scripts/build-guide.mjs getting-started path/to/OpenVireo_GettingStarted.html
 //
 // For a guide named <name> it writes:
 //   content/docs/<name>/<chapter>.html   one page per chapter, with its section list
@@ -28,8 +28,8 @@ import { fileURLToPath } from 'node:url';
 export const guides = {
     'user-guide': {
         title: 'User Guide',
-        description: 'Everything KeePassXC can do, explained chapter by chapter.',
-        oldFile: 'KeePassXC_UserGuide.html',
+        description: 'Everything OpenVireo can do, explained chapter by chapter.',
+        oldFile: 'OpenVireo_UserGuide.html',
         related: { title: 'New here? Getting Started', url: '/docs/getting-started/', icon: 'fa-rocket' },
         chapters: {
             _interface_overview: {
@@ -48,11 +48,11 @@ export const guides = {
                 weight: 35, icon: 'fa-arrows-rotate',
                 summary: 'Sync a database stored elsewhere using your own download and upload commands, such as scp or rsync.',
             },
-            _keepassxc_sync_server: {
+            _openvireo_sync_server: {
                 weight: 36, icon: 'fa-server',
-                summary: 'Sync a database automatically with your own KeePassXC Sync Server, pair devices, and open older versions.',
+                summary: 'Sync a database automatically with your own OpenVireo Sync Server, pair devices, and open older versions.',
             },
-            _keepassxc_accounts: {
+            _openvireo_accounts: {
                 weight: 37, icon: 'fa-user-shield',
                 summary: 'Sign in to sync your vaults everywhere, share them with people and organizations, and set up service accounts.',
             },
@@ -74,19 +74,19 @@ export const guides = {
             },
             _browser_integration: {
                 weight: 80, icon: 'fa-globe',
-                summary: 'Connect the KeePassXC-Browser extension to fill in logins on websites automatically.',
+                summary: 'Connect the OpenVireo Browser extension to fill in logins on websites automatically.',
             },
             _passkeys: {
                 weight: 90, icon: 'fa-fingerprint',
-                summary: 'Create passkeys and sign in with them, stored safely in your KeePassXC database.',
+                summary: 'Create passkeys and sign in with them, stored safely in your OpenVireo database.',
             },
             _auto_type: {
                 weight: 100, icon: 'fa-keyboard',
-                summary: 'Let KeePassXC type your usernames and passwords into any application or website.',
+                summary: 'Let OpenVireo type your usernames and passwords into any application or website.',
             },
             _secret_service_integration: {
                 weight: 110, icon: 'fa-user-secret',
-                summary: 'Use KeePassXC as the Secret Service provider for other applications on Linux.',
+                summary: 'Use OpenVireo as the Secret Service provider for other applications on Linux.',
             },
             _ssh_agent_integration: {
                 weight: 120, icon: 'fa-key',
@@ -94,7 +94,7 @@ export const guides = {
             },
             _command_line_tool: {
                 weight: 130, icon: 'fa-terminal',
-                summary: 'Access and manage your database from a terminal with keepassxc-cli.',
+                summary: 'Access and manage your database from a terminal with openvireo-cli.',
             },
             _reference: {
                 weight: 140, icon: 'fa-book-bookmark',
@@ -102,37 +102,37 @@ export const guides = {
             },
             _license_and_disclaimers: {
                 weight: 150, icon: 'fa-scale-balanced',
-                summary: 'KeePassXC’s licence, warranty disclaimer, and limitation of liability.',
+                summary: 'OpenVireo’s licence, warranty disclaimer, and limitation of liability.',
             },
         },
         // Links in the source whose target doesn't exist, mapped to the section they mean
         // (a /path value points to another guide)
         linkAliases: {
             'Setting up SSH Agent integration': '_setup_ssh_agent_integration',
-            'KeePassXC \u2013 SSH Agent integration': '_ssh_agent_integration',
+            'OpenVireo \u2013 SSH Agent integration': '_ssh_agent_integration',
         },
     },
     'getting-started': {
         title: 'Getting Started',
-        description: 'Download KeePassXC, create your first database, and connect your browser in a few easy steps.',
-        oldFile: 'KeePassXC_GettingStarted.html',
+        description: 'Download OpenVireo, create your first database, and connect your browser in a few easy steps.',
+        oldFile: 'OpenVireo_GettingStarted.html',
         related: { title: 'Read the full User Guide', url: '/docs/user-guide/', icon: 'fa-book' },
         chapters: {
             _welcome: {
                 weight: 10, icon: 'fa-door-open',
-                summary: 'What KeePassXC is, how it keeps your information safe, and the features it offers.',
+                summary: 'What OpenVireo is, how it keeps your information safe, and the features it offers.',
             },
-            _downloading_keepassxc: {
+            _downloading_openvireo: {
                 weight: 20, icon: 'fa-download',
-                summary: 'Download and install KeePassXC on Windows, macOS, or Linux.',
+                summary: 'Download and install OpenVireo on Windows, macOS, or Linux.',
             },
             _interface_overview: {
                 weight: 30, icon: 'fa-table-columns',
                 summary: 'Find your way around the main window, database picker, command bar, view options, settings, and shortcuts.',
             },
-            _keepassxc_accounts: {
+            _openvireo_accounts: {
                 weight: 35, icon: 'fa-user-shield',
-                summary: 'Choose how to use KeePassXC: with an account, with your own sync server, or without an account.',
+                summary: 'Choose how to use OpenVireo: with an account, with your own sync server, or without an account.',
             },
             _database_operations: {
                 weight: 40, icon: 'fa-database',
@@ -144,21 +144,21 @@ export const guides = {
             },
             _browser_integration: {
                 weight: 60, icon: 'fa-globe',
-                summary: 'Install and connect the KeePassXC-Browser extension to fill in logins on websites.',
+                summary: 'Install and connect the OpenVireo Browser extension to fill in logins on websites.',
             },
             _contact_us: {
                 weight: 70, icon: 'fa-comments',
-                summary: 'Report bugs, request features, and get in touch with the KeePassXC team.',
+                summary: 'Report bugs, request features, and get in touch with the OpenVireo project.',
             },
             _license_and_disclaimers: {
                 weight: 80, icon: 'fa-scale-balanced',
-                summary: 'KeePassXC\u2019s licence, warranty disclaimer, and limitation of liability.',
+                summary: 'OpenVireo\u2019s licence, warranty disclaimer, and limitation of liability.',
             },
         },
         // Links in the source whose target doesn't exist here; a /path points to another guide
         linkAliases: {
             'Database Maintenance': '/docs/user-guide/database-settings/#_database_maintenance',
-            'KeePassXC Sync Server': '/docs/user-guide/keepassxc-sync-server/',
+            'OpenVireo Sync Server': '/docs/user-guide/openvireo-sync-server/',
         },
     },
 };
@@ -385,11 +385,14 @@ ${transform(chapter)}
 
     // Redirect stub for the old single-page URL, preserving deep links -----------------------
 
-    writeFileSync(redirectFile, `<!DOCTYPE html>
+    // Also write <name>/index.html so the extension-less URL (/docs/OpenVireo_UserGuide) works on any static host
+    const redirectDir = join(root, 'static/docs', guide.oldFile.replace(/\.html$/, ''));
+    mkdirSync(redirectDir, { recursive: true });
+    for (const file of [redirectFile, join(redirectDir, 'index.html')]) writeFileSync(file, `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>KeePassXC: ${guide.title}</title>
+<title>OpenVireo: ${guide.title}</title>
 <meta name="robots" content="noindex">
 <link rel="canonical" href="${baseUrl}/">
 <meta http-equiv="refresh" content="0; url=${baseUrl}/">
@@ -402,7 +405,7 @@ location.replace(page ? '${baseUrl}/' + page + '/#' + anchor : '${baseUrl}/');
 </script>
 </head>
 <body>
-<p>The ${guide.title} guide has moved to <a href="${baseUrl}/">keepassxc.org${baseUrl}</a>.</p>
+<p>The ${guide.title} guide has moved to <a href="${baseUrl}/">openvireo.com${baseUrl}</a>.</p>
 </body>
 </html>
 `);

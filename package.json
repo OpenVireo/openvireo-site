@@ -1,17 +1,17 @@
 {
-  "name": "keepassxc.org",
+  "name": "openvireo-site",
   "version": "1.0.0",
-  "description": "KeePassXC Website",
+  "description": "OpenVireo website (openvireo.com), forked from the KeePassXC website",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keepassxreboot/keepassxc-org.git"
+    "url": "git+https://github.com/openvireo/openvireo-site.git"
   },
-  "author": "KeePassXC Team",
+  "author": "OpenVireo",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/keepassxreboot/keepassxc-org/issues"
+    "url": "https://github.com/openvireo/openvireo-site/issues"
   },
-  "homepage": "https://github.com/keepassxreboot/keepassxc-org#readme",
+  "homepage": "https://github.com/openvireo/openvireo-site#readme",
   "scripts": {
     "docs": "node scripts/sync-docs.mjs",
     "screenshots": "node scripts/sync-screenshots.mjs",

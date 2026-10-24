@@ -8,26 +8,24 @@ menu:
 
 <section class="card">
     <div class="card-body">
-        <h2 class="card-title">New to KeePassXC?</h2>
+        <h2 class="card-title">New to OpenVireo?</h2>
         <ul>
             <li>Our <strong><a href="getting-started/"><i class="fa-solid fa-rocket"></i> Getting Started Guide</a></strong> will get you
                 up and running quickly.</li>
             <li>Looking for more comprehensive documentation? Our <strong><a href="user-guide/"><i class="fa-solid fa-book"></i> User Guide</a></strong> is there to help.</li>
             <li>Need help troubleshooting the browser integration? Check the
                 <strong><a href="getting-started/browser-integration/"><i class="fa-solid fa-globe"></i> Setup Browser Integration</a></strong> section.</li>
-            <li><strong><a href="https://github.com/keepassxreboot/keepassxc/wiki" target="_blank"><i class="fa-solid fa-gears"></i> Build instructions</a></strong> and other
-                technical guides can be found in the GitHub Wiki.</li>
-            <li>Looking for an audit of KeePassXC? Read the <a href="#faq-audit">FAQ entry</a> or 
-                <strong><a href="/assets/pdf/KeePassXC-Review-V1-Molotnikov.pdf" target="_blank"><i class="fa-solid fa-book"></i>Download the Audit Report</a></strong>.</li>
+            <li><strong><a href="https://github.com/openvireo/openvireo#readme" target="_blank"><i class="fa-solid fa-gears"></i> Build instructions</a></strong> are in the
+                OpenVireo README. The upstream <a href="https://github.com/keepassxreboot/keepassxc/wiki" target="_blank">KeePassXC wiki</a> has further technical guides that mostly apply to OpenVireo too.</li>
         </ul>
 
         <h2 id="contribute" class="card-title" style="margin-top: 1.5rem">Looking for ways to contribute?</h2>
         You can contribute to the project by
-        <a href="https://github.com/keepassxreboot/keepassxc/blob/develop/.github/CONTRIBUTING.md#bug-reports">reporting bugs</a>,
-        <a href="https://github.com/keepassxreboot/keepassxc/blob/develop/.github/CONTRIBUTING.md#feature-requests">proposing new features</a>,
-        <a href="https://github.com/keepassxreboot/keepassxc/blob/develop/.github/CONTRIBUTING.md#your-first-code-contribution">writing code</a>,
-        <a href="https://github.com/keepassxreboot/keepassxc/blob/develop/.github/CONTRIBUTING.md#translations">translating</a>, and / or
-        <a href="{{< baseurl >}}donate/">donating</a>.
+        <a href="https://github.com/openvireo/openvireo/blob/develop/.github/CONTRIBUTING.md#bug-reports">reporting bugs</a>,
+        <a href="https://github.com/openvireo/openvireo/blob/develop/.github/CONTRIBUTING.md#feature-requests">proposing new features</a>,
+        <a href="https://github.com/openvireo/openvireo/blob/develop/.github/CONTRIBUTING.md#your-first-code-contribution">writing code</a>,
+        <a href="https://github.com/openvireo/openvireo/blob/develop/.github/CONTRIBUTING.md#translations">translating</a>, and / or
+        <a href="{{< baseurl >}}donate/">supporting the project</a>.
     </div>
 </section>
 
@@ -44,7 +42,7 @@ menu:
 
                 <p>But using different passwords for all websites is difficult without a way of storing them somewhere safe.
                     Especially with arbitrary password rules for various services, it becomes increasingly hard to use both strong
-                    and diverse passwords. KeePassXC stores your passwords for you in an encrypted database file, so you only
+                    and diverse passwords. OpenVireo stores your passwords for you in an encrypted database file, so you only
                     need to remember one master password. Of course, the security of all your services depends on the strength
                     of your master password now, but with a sufficiently strong password, the password database should be
                     infeasible to crack.</p>
@@ -57,55 +55,58 @@ menu:
         <fluent-accordion-item id="faq-security-who-should-use">
             <span slot="heading">Who should use this?</span>
                 <p>Password managers (in general) exist to help users limit the scope of hacked accounts by making it simple 
-                    to use a unique password per website or application. KeePassXC is specifically for individuals who want 
+                    to use a unique password per website or application. OpenVireo is specifically for individuals who want 
                     to improve their password security but don't want to use an online service to store their passwords.</p>
                 
-                <p>Because KeePassXC uses a local (encrypted) database, it is a good choice for users who are concerned 
+                <p>Because OpenVireo uses a local (encrypted) database, it is a good choice for users who are concerned 
                     about the security of their passwords in the cloud.</p>
         </fluent-accordion-item>
-        <fluent-accordion-item id="faq-keepassx">
-            <span slot="heading">Why KeePassXC instead of KeePassX?</span>
-                <p>KeePassX is no longer developed - as announced on the KeePassX website on 2021-12-09. Our decision to fork KeePassX
-                    was made some years prior, due to a sharp decline in code frequency at the time, combined with our wish to provide
-                    you with everything you love about KeePassX plus many new <a href="/#project">features and bugfixes</a>.</p>
+        <fluent-accordion-item id="faq-keepassxc">
+            <span slot="heading">How is OpenVireo related to KeePassXC?</span>
+                <p>OpenVireo is a fork of <a href="https://keepassxc.org/" target="_blank">KeePassXC</a>, the community-developed,
+                    cross-platform password manager created by the KeePassXC Team. OpenVireo keeps everything KeePassXC does and adds
+                    optional accounts with end-to-end encrypted sync and sharing, a self-hosted sync server, and OpenVireo Web.
+                    OpenVireo is an independent project: it is not affiliated with or endorsed by the KeePassXC Team, so please report
+                    OpenVireo problems to <a href="https://github.com/openvireo/openvireo/issues">OpenVireo's issue tracker</a>, not to KeePassXC.</p>
+                <p>Because both use the standard KDBX format, databases created with OpenVireo open in KeePassXC and other KeePass clients, and vice versa.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-keepass">
-            <span slot="heading">Why KeePassXC instead of KeePass?</span>
+            <span slot="heading">Why OpenVireo instead of KeePass?</span>
                 <p>KeePass is a very proven and feature-rich password manager and there is nothing fundamentally wrong with it.
                     However, it is written in C# and therefore requires Microsoft's .NET platform.
                     On systems other than Windows, you can run KeePass using the Mono runtime libraries, but you won't get
                     the native look and feel which you are used to.</p>
-                <p>KeePassXC, on the other hand, is developed in C++ and runs natively on Linux, macOS and Windows giving you the
+                <p>OpenVireo, on the other hand, is developed in C++ and runs natively on Linux, macOS and Windows giving you the
                     best-possible platform integration.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-format">
-            <span slot="heading">Which password database formats are compatible with KeePassXC?</span>
-                <p>KeePassXC currently uses the KeePass 2.x (.kdbx) password database formats KDBX 3.1 and KDBX 4 as its native file formats.
+            <span slot="heading">Which password database formats are compatible with OpenVireo?</span>
+                <p>OpenVireo currently uses the KeePass 2.x (.kdbx) password database formats KDBX 3.1 and KDBX 4 as its native file formats.
                     KDBX 2 files can be opened, but will be upgraded to a newer format. KeePass 1.x (.kdb) databases can be imported into
-                    a .kdbx file, but saving a .kdbx file as .kdb would be lossy, and saving to .kdb is not supported by KeePassXC.</p>
+                    a .kdbx file, but saving a .kdbx file as .kdb would be lossy, and saving to .kdb is not supported by OpenVireo.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-cloudsync">
             <span slot="heading">How do I sync my passwords between devices?</span>
                 <p>You have three options, and none of them is required:</p>
                 <ul>
-                    <li><strong>A KeePassXC account</strong> syncs your vaults automatically between KeePassXC on your computers and
-                        KeePass Web, and lets you share them. Everything is encrypted on your devices with your master password and a
+                    <li><strong>An OpenVireo account</strong> syncs your vaults automatically between OpenVireo on your computers and
+                        OpenVireo Web, and lets you share them. Everything is encrypted on your devices with your master password and a
                         Secret Key only you have, so the servers only ever store encrypted vaults.
-                        <a href="{{< baseurl >}}docs/user-guide/keepassxc-accounts/">Learn more</a>.</li>
-                    <li><strong>Your own KeePassXC Sync Server</strong> syncs a database automatically, merges changes field by field,
+                        <a href="{{< baseurl >}}docs/user-guide/openvireo-accounts/">Learn more</a>.</li>
+                    <li><strong>Your own OpenVireo Sync Server</strong> syncs a database automatically, merges changes field by field,
                         and keeps older versions, on a server you run yourself.
-                        <a href="{{< baseurl >}}docs/user-guide/keepassxc-sync-server/">Learn more</a>.</li>
+                        <a href="{{< baseurl >}}docs/user-guide/openvireo-sync-server/">Learn more</a>.</li>
                     <li><strong>Any cloud folder</strong> such as Dropbox, Google Drive, OneDrive, or Nextcloud: store your database file
                         in it and let your synchronization service do the rest.</li>
                 </ul>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-general-plugins">
-            <span slot="heading">Does KeePassXC support (KeePass2) plugins?</span>
-                <p>No, KeePassXC does not support plugins at the moment and probably never will. KeePassXC already provides many of the features that
+            <span slot="heading">Does OpenVireo support (KeePass2) plugins?</span>
+                <p>No, OpenVireo does not support plugins at the moment and probably never will. OpenVireo already provides many of the features that
                     need third-party plugins in KeePass2, so for most things you don't even need plugins, nor should you ever want them.
                     Plugins are inherently dangerous. Many KeePass2 plugins are barely maintained (if at all), some have known vulnerabilities that
                     have never been (and probably never will be) fixed, and none of them are as thoroughly tested and reviewed as we test and review
@@ -113,18 +114,18 @@ menu:
                     plugins is inherently incompatible with the security demands of a password manager.</p>
 
                 <p>If you really need external functionality not
-                    available in KeePassXC, you can look for "plugins" that use the KeePassXC-Browser API, which is a much more secure way of sharing
-                    passwords with third-party applications than loading those applications as plugins directly into KeePassXC.</p>
+                    available in OpenVireo, you can look for "plugins" that use the OpenVireo Browser API, which is a much more secure way of sharing
+                    passwords with third-party applications than loading those applications as plugins directly into OpenVireo.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-general-wordlist">
             <span slot="heading">How can I add additional word lists to the passphrase generator?</span>
                 <p>You can add additional word lists to the passphrase generator by copying the word list file to the
-                    <code>share/wordlists</code> folder inside your KeePassXC installation directory and then restarting KeePassXC.</p>
+                    <code>share/wordlists</code> folder inside your OpenVireo installation directory and then restarting OpenVireo.</p>
 
-                <p>On Linux, the default install location is <code>/usr/share/keepassxc</code>, 
-                    on macOS it is <code>/Applications/KeePassXC.app/Contents/Resources</code> and 
-                    on Windows <code>C:\Program Files\KeePassXC</code> (or <code>C:\Program Files (x86)\KeePassXC</code> for 32-bit).</p>
+                <p>On Linux, the default install location is <code>/usr/share/openvireo</code>, 
+                    on macOS it is <code>/Applications/OpenVireo.app/Contents/Resources</code> and 
+                    on Windows <code>C:\Program Files\OpenVireo</code>.</p>
         </fluent-accordion-item>
     </fluent-accordion>
 
@@ -137,92 +138,56 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-security-totp">
-            <span slot="heading">KeePassXC allows me to store my TOTP secrets. Doesn't this undermine any advantage of two-factor authentication?</span>
+            <span slot="heading">OpenVireo allows me to store my TOTP secrets. Doesn't this undermine any advantage of two-factor authentication?</span>
                 <p>Yes. But only if you store them in the same database as your password. We believe that storing both together
                     can still be more secure than not using 2FA at all, but to maximize the security gain from using 2FA,
                     you should always store TOTP secrets in a separate database, secured with a different password, possibly even on a different computer.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-audit">
-            <span slot="heading">Has KeePassXC ever had an external security audit?</span>
-                <p>Yes, an audit was conducted by Zaur Molotnikov, an independent security consultant, and completed on January 19, 2023. This
-                    audit was conducted free of charge to the KeePassXC Team and the findings and writeup were reviewed for correctness.
-                    <strong><a href="/assets/pdf/KeePassXC-Review-V1-Molotnikov.pdf" target="_blank"><i class="fa-solid fa-book"></i>Download the Audit Report</a></strong>.
-                </p>
-
-                <p>Keep in mind that:</p>
-                <ul>
-                    <li>An audit is not 100% proof that software is safe and secure. Some flaws can be overlooked even by the best auditors.</li>
-                    <li>An audit is valid only for a “snapshot” of the code. If new code is added, new vulnerabilities can be introduced.</li>
-                    <li>Audits are expensive and time consuming, you can consult with <a href="https://ostif.org/" target="_blank">OSTIF</a> or 
-                        <a href="https://www.opentech.fund/" target="_blank">OTF</a> for funding additional KeePassXC audits.</li>
-                </ul>
+            <span slot="heading">Has OpenVireo had an external security audit?</span>
+                <p>Not yet. Upstream KeePassXC has been reviewed independently (see the
+                    <a href="https://keepassxc.org/audits/" target="_blank">KeePassXC audits page</a>), and much of OpenVireo's code comes from
+                    KeePassXC, but those reviews and certifications apply to the KeePassXC releases they name. They do not cover OpenVireo or the
+                    features it adds, such as accounts, sync, and sharing.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-security-network">
-            <span slot="heading">I see that KeePassXC requires network access. What for?</span>
-                <p>KeePassXC needs network access for downloading website icons (favicons) for password entries. This feature is optional
-                    and opt-in. KeePassXC will never access any network resource without your explicit prior consent. If you
-                    don't use this feature, you may also compile KeePassXC without any networking code (see
+            <span slot="heading">I see that OpenVireo requires network access. What for?</span>
+                <p>OpenVireo needs network access for downloading website icons (favicons) for password entries. This feature is optional
+                    and opt-in. OpenVireo will never access any network resource without your explicit prior consent. If you
+                    don't use this feature, you may also compile OpenVireo without any networking code (see
                     next question).</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-security-no-network">
-            <span slot="heading">Can I get a KeePassXC version without any networking code?</span>
-                <p>Yes, you can compile KeePassXC without any networking code. Simply configure CMake with <code>-DWITH_XC_NETWORKING=OFF</code>
-                    (see <a href="https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC">Building KeePassXC</a>).</p>
+            <span slot="heading">Can I get an OpenVireo version without any networking code?</span>
+                <p>Yes, you can compile OpenVireo without any networking code. Simply configure CMake with <code>-DWITH_XC_NETWORKING=OFF</code>
+                    (see the upstream <a href="https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC">Building KeePassXC</a> guide, which applies to OpenVireo too).</p>
         </fluent-accordion-item>
     </fluent-accordion>
 
-    <h3>AppImage and Snap package</h3>
+    <h3>AppImage</h3>
     <fluent-accordion>
         <fluent-accordion-item id="faq-appsnap-run-appimage">
             <span slot="heading">How do I execute an AppImage?</span>
                 <p>The AppImage is a self-contained executable archive, comparable to an Android APK or macOS DMG. To execute
                     it, simply give the downloaded <code>*.AppImage</code> file execution permissions:</p>
-                {{< highlight bash >}}chmod +x ./KeePassXC-*.AppImage{{< / highlight >}}
+                {{< highlight bash >}}chmod +x ./OpenVireo-*.AppImage{{< / highlight >}}
                 <p>After that you can execute it either from the terminal or by double clicking it just like any other program.</p>
         </fluent-accordion-item>
 
-        <fluent-accordion-item id="faq-appsnap-support">
-            <span slot="heading">What systems can I use the AppImage or Snap package on?</span>
-                <p>The AppImage should run out of the box on almost any moderately modern Linux distribution. The Snap is supported on all
-                    systems, which have <code>snapd</code> installed. This is primarily Ubuntu, but also Debian, Fedora, OpenSUSE,
-                    Arch Linux and many more. For a full list and more information visit <a href="https://snapcraft.io/">snapcraft.io</a>. Note
-                    that not all systems that can run Snaps also support confinement via AppArmor.</p>
-        </fluent-accordion-item>
-
         <fluent-accordion-item id="faq-appsnap-appimage-cli">
-            <span slot="heading">How do I use the KeePassXC CLI tool with the AppImage?</span>
-                <p>Starting with version 2.2.2, you can run the KeePassXC CLI tool from the AppImage by executing it with the
+            <span slot="heading">How do I use the OpenVireo CLI tool with the AppImage?</span>
+                <p>You can run the OpenVireo CLI tool from the AppImage by executing it with the
                     <code>cli</code> argument:</p>
-                {{< highlight bash >}}./KeePassXC-*.AppImage cli{{< / highlight >}}
+                {{< highlight bash >}}./OpenVireo-*.AppImage cli{{< / highlight >}}
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-appsnap-theme">
             <span slot="heading">Why doesn't my theme work?</span>
-                <p>Since Snaps and AppImages are self-contained and mostly isolated from your system, they cannot know what
-                    theme you are currently running. This is a known issue with both Snaps and AppImages.</p>
-        </fluent-accordion-item>
-
-        <fluent-accordion-item id="faq-appsnap-yubikey">
-            <span slot="heading">How do I get my YubiKey to work with the Snap?</span>
-                <p>Due to a Snap's isolation and security settings, you must manually enable the <code>raw-usb</code> interface in order
-                    to use your YubiKey. Issue the following command from a terminal to enable this interface:</p>
-                {{< highlight bash >}}sudo snap connect "keepassxc:raw-usb" "core:raw-usb"{{< / highlight >}}
-        </fluent-accordion-item>
-
-        <fluent-accordion-item id="faq-appsnap-homedir">
-            <span slot="heading">Why can't I see anything outside my home directory?</span>
-                <p>Due to Snap's isolation and security settings, you cannot access any files outside your home directory.
-                Furthermore, you cannot access any hidden files within your home directory. The only exception is mounted
-                    USB drives, but you must type in <code>/media/</code> into the file open dialog to see them.</p>
-                <p>If you still cannot access the <code>/media/</code> directory then you may need to enable this permission in the Ubuntu store.
-                    Open the Ubuntu store, choose the KeePassXC app, and click permissions.</p>
-                <figure data-lightbox>
-                    <a href="{{< baseurl >}}assets/img/docs/snap_permissions.png"><img src="{{< baseurl >}}assets/img/docs/snap_permissions.png" style="height: 360px"></a>
-                    <figcaption>Snap Permission Settings</figcaption>
-                </figure>
+                <p>Since AppImages are self-contained and mostly isolated from your system, they cannot know what
+                    theme you are currently running. This is a known issue with AppImages.</p>
         </fluent-accordion-item>
     </fluent-accordion>
 
@@ -237,7 +202,7 @@ menu:
                     changes, it is as if you forgot your password and you will lose access to your database.</p>
                 <p>On the other hand, if the data
                     is not random enough, then it's a really bad password. So, for instance, a static and never-changing holiday picture
-                    is okay, your personal notes file is not. Generally, we recommend you let KeePassXC generate a dedicated key file for you.
+                    is okay, your personal notes file is not. Generally, we recommend you let OpenVireo generate a dedicated key file for you.
                     Go to <em>Database -&gt; Database Settings -&gt; Security</em>. There you click on <em>Add Key File</em> and then
                     on <em>Generate</em>. Select the location where to save the key file, make sure the path to the new file
                     is inserted into the Key File field, and save your database. Don't forget to keep a backup of the key file in
@@ -262,7 +227,7 @@ menu:
     <h3>Nitrokey</h3>
     <fluent-accordion>
         <fluent-accordion-item id="faq-Nitrokey-2fa">
-            <span slot="heading">How to use my Nitrokey with KeePassXC?</span>
+            <span slot="heading">How to use my Nitrokey with OpenVireo?</span>
                 <p>You can find the instructions in <a href="https://docs.nitrokey.com/software/nk-app2/keepassxc">Nitrokey's documentation</a>. 
                 <p>
         </fluent-accordion-item>       
@@ -271,10 +236,10 @@ menu:
     <h3>YubiKey / OnlyKey</h3>
     <fluent-accordion>
         <fluent-accordion-item id="faq-yubikey-2fa">
-            <span slot="heading">Does KeePassXC support two-factor authentication (2FA) with YubiKeys or OnlyKeys?</span>
-                <p>Yes and no. No, because technically speaking, KeePassXC is not a service and therefore does not use "authentication". Instead,
+            <span slot="heading">Does OpenVireo support two-factor authentication (2FA) with YubiKeys or OnlyKeys?</span>
+                <p>Yes and no. No, because technically speaking, OpenVireo is not a service and therefore does not use "authentication". Instead,
                     you are "decrypting" your database, which is different from "authentication". Nonetheless, you can improve the security of your database
-                    by use of a YubiKey in a slightly different way. KeePassXC generates a challenge and uses the YubiKey's response to this challenge to
+                    by use of a YubiKey in a slightly different way. OpenVireo generates a challenge and uses the YubiKey's response to this challenge to
                     enhance the encryption key of your database.</p>
                 <p>So in a sense, it makes your password stronger, but technically it doesn't qualify as a
                     separate second factor, since this is not an authentication scheme and also because the expected response doesn't change every time you
@@ -283,11 +248,11 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-yubikey-howto">
-            <span slot="heading">How do I configure my YubiKey / OnlyKey for use with KeePassXC?</span>
-                <p>To use a YubiKey for securing your KeePassXC database, you have to configure one of your slots for HMAC-SHA1 Challenge-Response mode
+            <span slot="heading">How do I configure my YubiKey / OnlyKey for use with OpenVireo?</span>
+                <p>To use a YubiKey for securing your OpenVireo database, you have to configure one of your slots for HMAC-SHA1 Challenge-Response mode
                     <strong>(see <a href="https://www.youtube.com/watch?v=vYUVzWDgmVc" target="_blank">this video</a>)</strong>.
                     Instructions on how to use your OnlyKey are found <a href="https://docs.onlykey.io/usersguide.html#using-onlykey-with-a-software-password-manager" target="_blank">here</a>.
-                    Once your hardware key is set up, open your database in KeePassXC, go to
+                    Once your hardware key is set up, open your database in OpenVireo, go to
                     <em>Database -> Database Security</em>, click on <em>Add additional protection</em>, then <em>Add Challenge Response</em>.
                     Once your key/slot is recognized, press ok and then save your database.
                     <br/><br/>
@@ -300,10 +265,10 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-yubikey-no-extra-file">
-            <span slot="heading">When I use KeeChallenge with KeePass2, it creates an extra file. Why do I have no such file when using KeePassXC?</span>
+            <span slot="heading">When I use KeeChallenge with KeePass2, it creates an extra file. Why do I have no such file when using OpenVireo?</span>
                 <p>Our implementation differs from how KeeChallenge handles YubiKeys. KeeChallenge uses the HMAC secret
                     directly to enhance the database. To make this work, they need to store the secret in a side-car file,
-                    encrypted with the response of a challenge-response pair that is calculated ahead of time. In KeePassXC,
+                    encrypted with the response of a challenge-response pair that is calculated ahead of time. In OpenVireo,
                     we do not require any knowledge of the HMAC secret. We use the database's master seed (a random byte string that is part of your database)
                     as challenge and then use the response to encrypt the database. That way we do not need an extra file and also gain
                     the advantage that the required response changes every time you save the database, which resembles
@@ -311,9 +276,9 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-yubikey-incompatible">
-            <span slot="heading">When I secure my database in KeePass2 with a YubiKey, I can't open it in KeePassXC (or vice versa), why?</span>
+            <span slot="heading">When I secure my database in KeePass2 with a YubiKey, I can't open it in OpenVireo (or vice versa), why?</span>
                 <p>Due to the fact that our YubiKey implementation differs from KeeChallenge's, they are inherently incompatible
-                    (see question above). If you need compatibility between KeePass2 and KeePassXC, you cannot use YubiKeys
+                    (see question above). If you need compatibility between KeePass2 and OpenVireo, you cannot use YubiKeys
                     at the moment.</p>
         </fluent-accordion-item>
 
@@ -326,11 +291,11 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-yubikey-otp">
-            <span slot="heading">But the feature list says KeePassXC supports TOTP. I am confused.</span>
+            <span slot="heading">But the feature list says OpenVireo supports TOTP. I am confused.</span>
                 <p>We do support generation of timed one-time passwords (TOTP), but do not (and cannot) support it for securing
-                    your KeePassXC database. KeePassXC allows you to store TOTP secrets for online services inside a database
+                    your OpenVireo database. OpenVireo allows you to store TOTP secrets for online services inside a database
                     and generates the corresponding timed one-time passwords for you. For TOTP, see also the question
-                    <a href="#faq-security-totp">KeePassXC allows me to store my TOTP secrets. Doesn't this undermine any advantage of
+                    <a href="#faq-security-totp">OpenVireo allows me to store my TOTP secrets. Doesn't this undermine any advantage of
                     two-factor authentication?</a></p>
         </fluent-accordion-item>
 
@@ -342,7 +307,7 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-yubikey-multiple-yubikeys">
-            <span slot="heading">Can I register multiple YubiKeys with my KeePassXC database?</span>
+            <span slot="heading">Can I register multiple YubiKeys with my OpenVireo database?</span>
                 <p>You can only use a single secret for encrypting the database. So you can use multiple YubiKeys, but they
                     all have to be programmed with the same secret (see question above).</p>
         </fluent-accordion-item>
@@ -351,10 +316,9 @@ menu:
     <h3>Browser integration</h3>
     <fluent-accordion>
         <fluent-accordion-item id="faq-browser">
-            <span slot="heading">Does KeePassXC support browser extensions?</span>
-                <p>Yes. KeePassXC supports the extension KeePassXC-Browser.
-                    You can download it for <a href="https://addons.mozilla.org/en-US/firefox/addon/keepassxc-browser/">Mozilla Firefox</a> and
-                    <a href="https://chrome.google.com/webstore/detail/keepassxc-browser/oboonakemofpalcgghocfoadofidjkkk">Google Chrome / Chromium / Vivaldi</a>.
+            <span slot="heading">Does OpenVireo support browser extensions?</span>
+                <p>Yes. OpenVireo works with its own extension, OpenVireo Browser, for Firefox, Chrome, Chromium, Vivaldi, Brave, and Microsoft Edge.
+                    Download it from the <a href="https://github.com/openvireo/openvireo-browser/releases">OpenVireo Browser releases on GitHub</a>.
                     Firefox ESR (52.x) is supported, but the following features are disabled because of WebExtension API limitations:</p>
                 <ul>
                     <li>Showing context menus on password fields (<code>menus.ContextType</code>)
@@ -363,10 +327,10 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-browser-howto">
-            <span slot="heading">How do I connect browser extensions with KeePassXC?</span>
-                <p>You can enable Browser Integration (KeePassXC-Browser) from the application settings.
-                    See the page <a href="getting-started/browser-integration/#_configure_keepassxc_browser">How to connect KeePassXC-Browser with KeePassXC</a> for more
-                    detailed information for the new Browser Integration. For troubleshooting see the following <a href="https://github.com/keepassxreboot/keepassxc-browser/wiki/Troubleshooting-guide">wiki page</a>.</p>
+            <span slot="heading">How do I connect browser extensions with OpenVireo?</span>
+                <p>You can enable Browser Integration (OpenVireo Browser) from the application settings.
+                    See the page <a href="getting-started/browser-integration/#_configure_openvireo_browser">How to connect OpenVireo Browser with OpenVireo</a> for more
+                    detailed information for the new Browser Integration. For troubleshooting see the upstream KeePassXC-Browser <a href="https://github.com/keepassxreboot/keepassxc-browser/wiki/Troubleshooting-guide">wiki page</a>, which also applies to OpenVireo Browser.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-browser-string-fields">
@@ -375,7 +339,7 @@ menu:
                 <ol>
                     <li>From the extension popup menu, click "Choose custom login fields". You can skip the Username, Password, and TOTP fields if not needed.</li>
                     <li>On Step 4 (Confirm Selection), choose the additional string fields you need to fill.  Note that they are numbered sequentially.</li>
-                    <li>After choosing the String Fields, go to your KeePassXC client and create advanced attributes with a prefix of 'KPH: ' in the order you chose them above.  NOTE: The space after the colon is required.</li>
+                    <li>After choosing the String Fields, go to your OpenVireo client and create advanced attributes with a prefix of 'KPH: ' in the order you chose them above.  NOTE: The space after the colon is required.</li>
                     <li>If you wish, you may add a short name after the prefix to help you remember its purpose.</li>
                 </ol>
                 <p>An example using the page <code>https://meine.deutsche-bank.de/trxm/db/init.do</code>:</p>
@@ -399,7 +363,7 @@ menu:
         <fluent-accordion-item id="faq-ssh-agent-how">
             <span slot="heading">How does the SSH Agent integration work?</span>
                 <p>The SSH Agent integration is supported on all target platforms (Linux, macOS and Windows) and it acts as a client
-                    for an existing agent. It can automatically add SSH keys from your KeePassXC database to a running SSH agent
+                    for an existing agent. It can automatically add SSH keys from your OpenVireo database to a running SSH agent
                     when unlocked and remove them when locked.</p>
                 <ul>
                     <li>On Linux, most desktops are already running an agent without any set up required.</li>
@@ -433,11 +397,11 @@ menu:
         <fluent-accordion-item id="faq-ssh-agent-not-working">
             <span slot="heading">Why are the agent buttons greyed out / why doesn't it work?</span>
                 <p>On Linux or macOS, you need to have <code>ssh-agent</code> running and the <code>SSH_AUTH_SOCK</code> environment
-                    variable available for KeePassXC at launch.</p>
+                    variable available for OpenVireo at launch.</p>
                 <p><a href="https://wiki.archlinux.org/index.php/SSH_keys#SSH_agents">Arch Linux wiki</a> has a generic guide
                     how to manually run <code>ssh-agent</code> if it's not already set up. Sometimes other applications like
                     <em>GNOME Keyring</em> or <code>gpg-agent</code> already provide a compatible agent that also works with
-                    KeePassXC.</p>
+                    OpenVireo.</p>
                 <p>On Windows, either Pageant needs to be running, see <a href="#faq-ssh-agent-how">How does the SSH Agent integration work?</a>
                     or, alternatively, you need to enable and start the Windows <code>OpenSSH Authentication Agent</code>
                     (commonly referred to as <code>ssh-agent</code>). This process is documented in
@@ -456,13 +420,13 @@ menu:
                     the entry username field is used as the public key comment. It is also sent to the agent when adding a key
                     and is visible in the agent when listing keys.</p>
                 <p>If you are using Ed25519 keys or have converted your old key to the new OpenSSH file format, the comment is
-                    embedded in the key file which is then used by KeePassXC. You can use <code>ssh-keygen</code> to modify the comment.</p>
+                    embedded in the key file which is then used by OpenVireo. You can use <code>ssh-keygen</code> to modify the comment.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-ssh-agent-keeagent">
-            <span slot="heading">I'm already using KeeAgent, is KeePassXC compatible with it?</span>
+            <span slot="heading">I'm already using KeeAgent, is OpenVireo compatible with it?</span>
                 <p>Yes, mostly. KeeAgent supports more key types and provides a custom agent, but otherwise you can use the
-                    same database with KeeAgent and KeePassXC.</p>
+                    same database with KeeAgent and OpenVireo.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-ssh-agent-pageant">
@@ -508,8 +472,8 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-ssh-agent-git-bash">
-            <span slot="heading">How do I use KeePassXC SSH Agent integration with Git (Bash) on Windows?</span>
-                <p>KeePassXC on Windows can be used with <a href="user-guide/ssh-agent-integration/#_openssh_agent_and_pageant_on_windows">Pageant</a>
+            <span slot="heading">How do I use OpenVireo SSH Agent integration with Git (Bash) on Windows?</span>
+                <p>OpenVireo on Windows can be used with <a href="user-guide/ssh-agent-integration/#_openssh_agent_and_pageant_on_windows">Pageant</a>
                     or with Windows OpenSSH.<br> Git for Windows supports both options since version
                     <a href="https://github.com/git-for-windows/git/releases/tag/v2.33.0.windows.1" target="_blank">2.33.0</a>.</p>
                 <p>You will be prompted during installation of Git for Windows to pick the option you prefer – depending on
@@ -531,7 +495,7 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-platform-mobile">
-            <span slot="heading">Does KeePassXC work on mobile phones? If not, which app would you recommend?</span>
+            <span slot="heading">Does OpenVireo work on mobile phones? If not, which app would you recommend?</span>
                 <p>We don't have our own mobile app, but you can have the same functionality on both Android and iOS!</p>
                 <ul>
                     <li>
@@ -543,10 +507,10 @@ menu:
                         <a href="https://apps.apple.com/us/app/keepassium-keepass-passwords/id1435127111">KeePassium</a>.
                     </li>
                 </ul>
-                <p>For KeePassXC, porting it properly to mobile platforms would require a full rewrite.
-                    You may be able to compile KeePassXC for the mobile OS of your choice, but it isn't at all optimized
+                <p>For OpenVireo, porting it properly to mobile platforms would require a full rewrite.
+                    You may be able to compile OpenVireo for the mobile OS of your choice, but it isn't at all optimized
                     for mobile screen sizes and form factors, let alone multi-touch input. We also don't see any advantage in
-                    providing a mobile version of KeePassXC when there are already excellent options.</p>
+                    providing a mobile version of OpenVireo when there are already excellent options.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-ubuntushortcuts">
@@ -557,11 +521,11 @@ menu:
                     <li>Set the environment variable <code>UBUNTU_MENUPROXY=''</code>
                     <li>Set the environment variable <code>QT_QPA_PLATFORMTHEME=''</code>
                 </ul>
-                <p><strong>Note:</strong> When you choose the first or third option, KeePassXC will lose the Unity look and feel.</p>
+                <p><strong>Note:</strong> When you choose the first or third option, OpenVireo will lose the Unity look and feel.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-msvc-runtime-missing">
-            <span slot="heading">I am getting "System Error: VCRUNTIME140_1.dll was not found" when starting KeePassXC. Why?</span>
+            <span slot="heading">I am getting "System Error: VCRUNTIME140_1.dll was not found" when starting OpenVireo. Why?</span>
                 <p>This error indicates that you are missing the MSVC runtime library (Microsoft Visual C++ Redistributable). You can <a href="https://aka.ms/vc14/vc_redist.x64.exe">download the latest version from Microsoft</a>. A download link can also be found on our <a href="{{< baseurl >}}download/#windows">downloads page</a>.
         </fluent-accordion-item>
     </fluent-accordion>

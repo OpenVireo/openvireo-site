@@ -5,9 +5,9 @@
             <div class="footer-about">
                 <a class="footer-brand" href="{{ .Site.BaseURL }}">
                     <img src="{{ .Site.BaseURL }}assets/img/keepassxc.svg" class="footer-logo" alt="" width="36" height="36">
-                    KeePassXC
+                    OpenVireo
                 </a>
-                <p>The free, open-source, cross-platform password manager. No cloud, no ads, no trackers.</p>
+                <p>The free, open-source, cross-platform password manager. No ads, no trackers, and sync only if you want it.</p>
                 {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download" "appearance" "inverse" "size" "large") }}
             </div>
             {{- block "footer-nav" . }}
@@ -17,8 +17,7 @@
                     {{- range .Site.Menus.footer }}
                         <li><a href="{{ .URL }}{{ .Params.fragment }}">{{ .Name }}</a></li>
                     {{- end }}
-                    <li><a href="{{ .Site.BaseURL }}team#contact">Contact</a></li>
-                    <li><a href="{{ .Site.BaseURL }}team#legal">Legal Info / Impressum</a></li>
+                    <li><a href="{{ .Site.BaseURL }}about/#contact">Contact</a></li>
                 </ul>
             </nav>
             <nav aria-labelledby="footer-resources">
@@ -33,21 +32,19 @@
             <nav aria-labelledby="footer-community">
                 <h2 id="footer-community">Community</h2>
                 <ul>
-                    <li><a rel="me" href="https://github.com/keepassxreboot/keepassxc"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></li>
-                    <li><a rel="me" href="https://bsky.app/profile/keepassxc.org"><i class="fa-brands fa-bluesky" aria-hidden="true"></i> Bluesky</a></li>
-                    <li><a rel="me" href="https://fosstodon.org/@keepassxc"><i class="fa-brands fa-mastodon" aria-hidden="true"></i> Mastodon</a></li>
+                    <li><a rel="me" href="https://github.com/openvireo/openvireo"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></li>
+                    <li><a href="https://github.com/openvireo/openvireo-browser"><i class="fa-solid fa-puzzle-piece" aria-hidden="true"></i> OpenVireo Browser</a></li>
+                    <li><a href="{{ .Site.Params.webAppURL }}"><i class="fa-solid fa-globe" aria-hidden="true"></i> OpenVireo Web</a></li>
                 </ul>
             </nav>
             {{- end }}
         </div>
         <div class="footer-bottom">
             {{- block "footer-copyright" . }}
-            <span>&copy; 2016 &ndash; {{ dateFormat "2006" now }} KeePassXC Team</span>
-            <span>KeePassXC is released under the GPLv3.</span>
+            <span>&copy; {{ dateFormat "2006" now }} OpenVireo contributors. Released under the GPLv3.</span>
+            <span>OpenVireo is a fork of <a href="https://keepassxc.org/">KeePassXC</a>, &copy; 2016 &ndash; {{ dateFormat "2006" now }} KeePassXC Team. It is an independent project, not affiliated with or endorsed by the KeePassXC Team. <a href="{{ .Site.BaseURL }}about/">About</a></span>
             {{- end }}
         </div>
     </div>
 </footer>
 {{ end }}
-
-{{- partial "footer_js.html" . }}

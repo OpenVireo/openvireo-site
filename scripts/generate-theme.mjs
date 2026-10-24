@@ -1,5 +1,5 @@
 // Generates assets/scss/_fluent-theme.scss: Fluent 2 design tokens (light + dark) built
-// from a KeePassXC-green brand ramp. Re-run after changing BRAND or upgrading @fluentui/tokens:
+// from a OpenVireo green brand ramp. Re-run after changing BRAND or upgrading @fluentui/tokens:
 //
 //     node scripts/generate-theme.mjs
 //

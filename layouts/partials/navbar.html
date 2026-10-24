@@ -19,7 +19,7 @@
     <div class="container header-inner">
         <a class="logo" href="{{ .Site.BaseURL }}">
             <img src="{{ .Site.BaseURL }}assets/img/keepassxc.svg" alt="" width="36" height="36">
-            <span>KeePassXC</span>
+            <span>OpenVireo</span>
         </a>
 
         <nav aria-label="Main" class="nav-links-wrapper">
@@ -29,7 +29,7 @@
         </nav>
 
         <div class="header-actions">
-            <a class="btn btn-subtle btn-icon btn-large" href="https://github.com/keepassxreboot/keepassxc" aria-label="KeePassXC on GitHub" title="KeePassXC on GitHub">
+            <a class="btn btn-subtle btn-icon btn-large" href="https://github.com/openvireo/openvireo" aria-label="OpenVireo on GitHub" title="OpenVireo on GitHub">
                 <i class="fa-brands fa-github" aria-hidden="true"></i>
             </a>
             {{ partial "button.html" (dict "href" (print $webApp "?view=signin") "text" "Sign in" "appearance" "subtle" "size" "large" "class" "header-cta") }}
@@ -52,7 +52,7 @@
                 {{- partial "nav-links.html" . }}
             </ul>
         </nav>
-        {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download KeePassXC" "appearance" "primary" "size" "hero" "class" "btn-block drawer-cta") }}
+        {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download OpenVireo" "appearance" "primary" "size" "hero" "class" "btn-block drawer-cta") }}
         <div class="row drawer-account">
             {{ partial "button.html" (dict "href" (print $webApp "?view=signin") "text" "Sign in" "appearance" "outline" "size" "large") }}
             {{ partial "button.html" (dict "href" (print $webApp "?view=signup") "text" "Create account" "appearance" "subtle" "size" "large") }}
