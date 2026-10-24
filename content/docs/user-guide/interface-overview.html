@@ -1,14 +1,14 @@
 ---
 title: "Interface Overview"
-description: "Find your way around the main window, toolbar, themes, settings, shortcuts, and command-line options."
+description: "Find your way around the main window, database picker, command bar, themes, settings, shortcuts, and command-line options."
 weight: 10
 icon: "fa-table-columns"
 anchor: "_interface_overview"
 sections:
   - id: "_application_layout"
     title: "Application Layout"
-  - id: "_toolbar"
-    title: "Toolbar"
+  - id: "_command_bar"
+    title: "Command Bar"
   - id: "_screenshot_security"
     title: "Screenshot Security"
   - id: "_view_options"
@@ -28,23 +28,29 @@ sections:
 <div class="sect2">
 <h3 id="_application_layout"><a class="anchor" href="#_application_layout"></a>Application Layout</h3>
 <div class="paragraph">
-<p>The KeePassXC interface is designed for simplicity and easy access to your information. The main database view is split into four main partitions detailed below. You can open multiple databases at the same time, they will appear in tabs.</p>
+<p>The KeePassXC interface is designed for simplicity and easy access to your information. The main database view is split into four main partitions detailed below.</p>
+</div>
+<div class="paragraph">
+<p>You can open multiple databases at the same time. The database picker in the top-left corner shows the current database; click it to switch to another open database, to open your account&#8217;s vaults (see <a href="../keepassxc-accounts/#_keepassxc_accounts">KeePassXC Accounts</a>), to create or open a database, to open the Database Settings, or to lock or close databases.</p>
 </div>
 <figure class="guide-figure" data-lightbox>
 <a href="/docs/user-guide/images/main_interface.png" data-caption="Main database interface"><img src="/docs/user-guide/images/main_interface.png" alt="main interface" width="1600" height="1031" loading="lazy"></a>
 <figcaption>Main database interface</figcaption>
 </figure>
 <div class="paragraph">
-<p><strong>(A) Groups</strong> – Organize your entries into discrete groups to bring order to all of your sensitive information. Groups can be nested under each other to create a hierarchy. Settings from parent groups get applied to their children. You can hide this panel on the View menu.</p>
+<p><strong>(A) Sidebar</strong> – Organize your entries into discrete groups to bring order to all of your sensitive information. Groups can be nested under each other to create a hierarchy. Settings from parent groups get applied to their children. Below the groups, the tags used in the database list their entries with one click; any number of custom tags can be added when editing an entry. At the bottom are the Password Generator, Database Reports, and the application Settings. You can hide this panel on the View menu.</p>
 </div>
 <div class="paragraph">
-<p><strong>(B) Searches and Tags</strong> – Dynamic groups of entries that can be quickly displayed with one click. Any number of custom tags can be added when editing an entry. This panel also includes useful pre-defined and custom saved searches, such as finding expired and weak passwords.</p>
+<p><strong>(B) Search</strong> – Search the database as you type. The buttons next to the search box set the search options (case sensitive, limit the search to the selected group, press Enter to search), save the search, and show the search tips (also <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>J</kbd></span>). See <a href="../database-operations/#_search">Search</a>.</p>
 </div>
 <div class="paragraph">
-<p><strong>(C) Entries</strong> – Entries contain all the information for a website or application you are storing in KeePassXC. This view shows all the entries in the selected group. Each column can be resized, reordered, and shown or hidden based on your preference. Right-click the header row to see all available options.</p>
+<p><strong>(C) Entries</strong> – Entries contain all the information for a website or application you are storing in KeePassXC. This list shows all the entries in the selected group with their username and URL, and marks expired entries and weak passwords.</p>
 </div>
 <div class="paragraph">
-<p><strong>(D) Preview</strong> – Shows a preview of the selected group or entry. You can interact with most information stored in an entry from here without opening the entry for editing. You can temporarily hide this preview using the down-arrow button on the right hand side or completely disable it from the View menu.</p>
+<p><strong>(D) Entry details</strong> – Shows the selected entry. You can copy the username, password, one-time code, and URL, reveal the password, and open the URL without opening the entry for editing. Tags, expiry, attachments, and notes are shown below. Editing an entry opens it in place of this card.</p>
+</div>
+<div class="paragraph">
+<p>When a database syncs with a sync server or belongs to a KeePassXC account, a sync status chip at the far right of the header shows whether it is synced, syncing, offline, or needs your attention; click it to sync again or to act on the problem. In account mode an account button next to it shows who is signed in and opens the account menu.</p>
 </div>
 <aside class="callout callout-tip">
 <i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
@@ -73,21 +79,14 @@ sections:
 </aside>
 </div>
 <div class="sect2">
-<h3 id="_toolbar"><a class="anchor" href="#_toolbar"></a>Toolbar</h3>
+<h3 id="_command_bar"><a class="anchor" href="#_command_bar"></a>Command Bar</h3>
 <div class="paragraph">
-<p>The toolbar provides a quick way to perform common tasks with your database. Some entries in the toolbar are dynamically disabled based on the information contained in the selected entry. Every common action in KeePassXC can be controlled with a keyboard shortcut as well.</p>
+<p>The command bar above the entries shows the selected group and its number of entries, and provides a quick way to perform common tasks: <em>New Entry</em>, <em>Perform Auto-Type</em>, <em>Edit Entry</em>, <em>Delete Entry</em>, and <em>Lock Database</em>. The <em>More commands</em> button (…) holds Clone Entry, Download Favicon, New Group, Edit Group, and Save Database. Commands that don&#8217;t apply to the selected entry are disabled. While you edit an entry, the command bar shows <em>Cancel</em> and <em>Save</em>. Every common action in KeePassXC can be controlled with a keyboard shortcut as well, and all of them are in the menus.</p>
 </div>
 <figure class="guide-figure" data-lightbox>
-<a href="/docs/user-guide/images/toolbar.png" data-caption="Toolbar overview"><img src="/docs/user-guide/images/toolbar.png" alt="toolbar" width="1193" height="72" loading="lazy"></a>
-<figcaption>Toolbar overview</figcaption>
+<a href="/docs/user-guide/images/toolbar.png" data-caption="Command bar"><img src="/docs/user-guide/images/toolbar.png" alt="toolbar" width="1193" height="72" loading="lazy"></a>
+<figcaption>Command bar</figcaption>
 </figure>
-<div class="paragraph">
-<p><strong>(A) Database</strong> – Open Database, Save Database, Lock Database<br>
-<strong>(B) Entries</strong> – Create Entry, Edit Entry, Delete Selected Entries<br>
-<strong>(C) Entry Data</strong> – Copy Username, Copy Password, Copy URL, Perform Auto-Type<br>
-<strong>(D) Tools</strong> – Database Settings, Reports, Password Generator, Application Settings<br>
-<strong>(E) Search</strong></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_screenshot_security"><a class="anchor" href="#_screenshot_security"></a>Screenshot Security</h3>
@@ -103,7 +102,7 @@ sections:
 <div class="sect3">
 <h4 id="_themes"><a class="anchor" href="#_themes"></a>Themes</h4>
 <div class="paragraph">
-<p>KeePassXC ships with light and dark themes specifically designed to meet accessibility standards. In most cases, the appropriate theme for your system will be determined automatically, but you can always set a specific theme by using the <em>View</em> menu. When a new theme is selected you will be prompted to restart KeePassXC to apply the theme immediately.</p>
+<p>KeePassXC ships with light and dark themes specifically designed to meet accessibility standards. By default (<em>Automatic</em>) the theme follows your system&#8217;s light or dark appearance, but you can always choose <em>Light</em>, <em>Dark</em>, or <em>Classic</em> (the platform&#8217;s native look) with the <em>Theme</em> setting <strong>(A)</strong> under <em>Tools</em> &#8594; <em>Settings</em> &#8594; <em>General</em> &#8594; <em>User Interface</em>, or from the <em>View</em> &#8594; <em>Theme</em> menu.</p>
 </div>
 <figure class="guide-figure" data-lightbox>
 <a href="/docs/user-guide/images/theme_selection.png" data-caption="Setting the theme"><img src="/docs/user-guide/images/theme_selection.png" alt="theme selection" width="1421" height="965" loading="lazy"></a>
@@ -114,7 +113,7 @@ sections:
 <div class="sect2">
 <h3 id="_application_settings"><a class="anchor" href="#_application_settings"></a>Application Settings</h3>
 <div class="paragraph">
-<p>Users can configure KeePassXC to their personal tastes with a wide variety of general and security settings that apply to the whole application. These settings are accessible from <em>Tools</em> &#8594; <em>Settings</em> or the cog wheel icon from the toolbar. Settings include: startup options, file management, entry management, user interface, language, security controls, and integration settings (Auto-Type, Browser, etc).</p>
+<p>Users can configure KeePassXC to their personal tastes with a wide variety of general and security settings that apply to the whole application. These settings are accessible from <em>Tools</em> &#8594; <em>Settings</em> or <em>Settings</em> at the bottom of the sidebar, and open in a window over the database. Settings include: startup options, file management, entry management, user interface, language, security controls, and integration settings (Auto-Type, Browser, etc).</p>
 </div>
 </div>
 <div class="sect2">
@@ -272,20 +271,20 @@ On macOS please substitute <kbd>Ctrl</kbd> with <kbd>Cmd</kbd> (AKA <kbd>⌘</kb
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Select Next Database Tab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select Next Database</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Tab</kbd></span><br>
 <em>or</em><br>
 <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>PgDn</kbd></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Select Previous Database Tab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Select Previous Database</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Tab</kbd></span><br>
 <em>or</em><br>
 <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>PgUp</kbd></span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Select the nth database</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>&lt;n&gt;</kbd></span>, where <kbd>&lt;n&gt;</kbd> is the number of the database tab</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>&lt;n&gt;</kbd></span>, where <kbd>&lt;n&gt;</kbd> is the database&#8217;s position in the database picker</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Toggle Passwords Hidden</p></td>
@@ -312,6 +311,10 @@ On macOS please substitute <kbd>Ctrl</kbd> with <kbd>Cmd</kbd> (AKA <kbd>⌘</kb
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clear Search</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><kbd>Esc</kbd></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Show Search Tips</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>J</kbd></span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Show Keyboard Shortcuts</p></td>

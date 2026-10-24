@@ -88,11 +88,19 @@ menu:
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-cloudsync">
-            <span slot="heading">Why is there no cloud synchronization feature built into KeePassXC?</span>
-                <p>Cloud synchronization with Dropbox, Google Drive, OneDrive, ownCloud, Nextcloud etc. can be easily accomplished by
-                    simply storing your KeePassXC database inside your shared cloud folder and letting your synchronization service of
-                    choice do the rest. We prefer this approach, because it is simple, not tied to a specific cloud provider and keeps
-                    the complexity of our code low.</p>
+            <span slot="heading">How do I sync my passwords between devices?</span>
+                <p>You have three options, and none of them is required:</p>
+                <ul>
+                    <li><strong>A KeePassXC account</strong> syncs your vaults automatically between KeePassXC on your computers and
+                        KeePass Web, and lets you share them. Everything is encrypted on your devices with your master password and a
+                        Secret Key only you have, so the servers only ever store encrypted vaults.
+                        <a href="{{< baseurl >}}docs/user-guide/keepassxc-accounts/">Learn more</a>.</li>
+                    <li><strong>Your own KeePassXC Sync Server</strong> syncs a database automatically, merges changes field by field,
+                        and keeps older versions, on a server you run yourself.
+                        <a href="{{< baseurl >}}docs/user-guide/keepassxc-sync-server/">Learn more</a>.</li>
+                    <li><strong>Any cloud folder</strong> such as Dropbox, Google Drive, OneDrive, or Nextcloud: store your database file
+                        in it and let your synchronization service do the rest.</li>
+                </ul>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-general-plugins">
@@ -124,8 +132,8 @@ menu:
     <fluent-accordion>
         <fluent-accordion-item id="faq-security-kdbx4">
             <span slot="heading">How can I migrate my database to KDBX 4?</span>
-                <p>In the <em>Database</em> application menu, select <em>Database security...</em>. Select the <em>Encryption Settings</em> tab
-                    and choose <em>KDBX 4.0 (recommended)</em>. Press OK and save the database.</p>
+                <p>In the <em>Database</em> application menu, select <em>Database security...</em>. Select <em>Encryption Settings</em>
+                    and choose <em>KDBX 4.0 (recommended)</em>. Click Save and save the database.</p>
         </fluent-accordion-item>
 
         <fluent-accordion-item id="faq-security-totp">

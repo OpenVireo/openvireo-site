@@ -40,7 +40,7 @@ sections:
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Open your KeePassXC application. Click the create new database button <strong>(A)</strong>:</p>
+<p>Open your KeePassXC application. The first time, the start screen asks how you want to use KeePassXC; choose <em>Use without an account</em> for a database file of your own (see <a href="../keepassxc-accounts/#_ways_to_use_keepassxc">Ways to Use KeePassXC</a> for the other choices). Click the <em>Create Database</em> button <strong>(A)</strong>:</p>
 <figure class="guide-figure" data-lightbox>
 <a href="/docs/user-guide/images/welcome_screen.png" data-caption="Create database – Welcome screen"><img src="/docs/user-guide/images/welcome_screen.png" alt="welcome screen" width="1600" height="1031" loading="lazy"></a>
 <figcaption>Create database – Welcome screen</figcaption>
@@ -56,14 +56,14 @@ sections:
 <li>
 <p>Click Continue. The Encryption Settings screen appears, we don&#8217;t recommend making any changes besides increasing or decreasing the decryption time using the slider. Setting the Decryption Time slider at higher values means that the database will have higher level of protection but the time taken by the database to open will increase.</p>
 <figure class="guide-figure" data-lightbox>
-<a href="/docs/user-guide/images/new_db_wizard_2.png" data-caption="Create database – Encryption settings"><img src="/docs/user-guide/images/new_db_wizard_2.png" alt="new db wizard 2" width="1258" height="965" style="max-width: 80%" loading="lazy"></a>
+<a href="/docs/user-guide/images/new_db_wizard_2.png" data-caption="Create database – Encryption settings"><img src="/docs/user-guide/images/new_db_wizard_2.png" alt="new db wizard 2" width="982" height="813" style="max-width: 80%" loading="lazy"></a>
 <figcaption>Create database – Encryption settings</figcaption>
 </figure>
 </li>
 <li>
 <p>Click the Continue button. The Database Credentials screen appears, enter your desired database password. We recommend using a long, randomized password.</p>
 <figure class="guide-figure" data-lightbox>
-<a href="/docs/user-guide/images/new_db_wizard_3.png" data-caption="Create database – Database credentials"><img src="/docs/user-guide/images/new_db_wizard_3.png" alt="new db wizard 3" width="1258" height="965" style="max-width: 80%" loading="lazy"></a>
+<a href="/docs/user-guide/images/new_db_wizard_3.png" data-caption="Create database – Database credentials"><img src="/docs/user-guide/images/new_db_wizard_3.png" alt="new db wizard 3" width="982" height="813" style="max-width: 80%" loading="lazy"></a>
 <figcaption>Create database – Database credentials</figcaption>
 </figure>
 <div class="paragraph">
@@ -187,7 +187,7 @@ By default, KeePassXC will show entries that are expired or will be expiring wit
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Navigate to Entries &gt; New Entry (or press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>N</kbd></span>). The following screen appears:</p>
+<p>Click <em>New Entry</em> in the command bar, navigate to Entries &gt; New Entry, or press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>N</kbd></span>. The entry opens in a window over the database:</p>
 <figure class="guide-figure" data-lightbox>
 <a href="/docs/user-guide/images/edit_entry.png" data-caption="Adding a new entry"><img src="/docs/user-guide/images/edit_entry.png" alt="edit entry" width="1600" height="1031" loading="lazy"></a>
 <figcaption>Adding a new entry</figcaption>
@@ -210,13 +210,13 @@ By default, KeePassXC will show entries that are expired or will be expiring wit
 </div>
 </li>
 <li>
-<p><em>(Optional)</em> Add tags to the entry to quickly search for it using the tags panel on the main database view. You can easily add new tags or select existing ones from the drop-down list.</p>
+<p><em>(Optional)</em> Add tags to the entry to quickly find it using the tags in the sidebar. You can easily add new tags or select existing ones from the drop-down list.</p>
 </li>
 <li>
 <p><em>(Optional)</em> Select the <em>Expires</em> check-box to set the expiry date for the password. You can manually enter the date and time or click the <em>Presets</em> button to select an expiry date and time for your password.</p>
 </li>
 <li>
-<p>Click <strong>OK</strong> to add the entry to your database.</p>
+<p>Click <strong>Save</strong> to add the entry to your database.</p>
 </li>
 </ol>
 </div>
@@ -232,13 +232,13 @@ By default, KeePassXC will show entries that are expired or will be expiring wit
 <p>Select the entry you want to edit.</p>
 </li>
 <li>
-<p>Press <kbd>Enter</kbd>, click the edit toolbar icon, or right-click and select Edit Entry from the menu.</p>
+<p>Press <kbd>Enter</kbd>, click the <em>Edit Entry</em> (pencil) button in the command bar, or right-click and select Edit Entry from the menu. The entry details become editable in place.</p>
 </li>
 <li>
 <p>Make the desired changes.</p>
 </li>
 <li>
-<p>Click <strong>OK</strong>.</p>
+<p>Click <strong>Save</strong> in the command bar, or <strong>Cancel</strong> to discard the changes.</p>
 </li>
 </ol>
 </div>
@@ -412,7 +412,7 @@ You can disable the recycle bin within the Database Settings. If the recycle bin
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">kdbx://</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>kdbx://~/dbs/passwords.kdbx</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Opens the specified database file. Set the entry&#8217;s username to the keyfile path (if required) and password to the database password. The database will open in a new tab.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Opens the specified database file. Set the entry&#8217;s username to the keyfile path (if required) and password to the database password. The database will open alongside the others; switch to it with the database picker.</p></td>
 </tr>
 </tbody>
 </table>

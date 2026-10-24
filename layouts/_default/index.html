@@ -10,7 +10,7 @@
         <h1 class="mk-display">Your passwords.<br>Your device. <span class="mk-highlight">Your rules.</span></h1>
         <p class="mk-lead">
             KeePassXC safely stores your passwords and auto-fills them into your favorite apps, so you can forget all about them.
-            No ads, no trackers, no cloud&nbsp;&mdash; just a free and open-source password manager that does the heavy lifting.
+            No ads, no trackers, no cloud unless you want one&nbsp;&mdash; just a free and open-source password manager that does the heavy lifting.
         </p>
         <div class="row row-center mk-hero-actions">
             {{ partial "button.html" (dict "href" (print $base "download") "text" "Download KeePassXC" "appearance" "inverse" "size" "hero") }}
@@ -62,9 +62,9 @@
             <div class="mk-feature-copy">
                 <p class="eyebrow">Secure by default</p>
                 <h3>Everything stays encrypted. Everything stays yours.</h3>
-                <p>Usernames, passwords, URLs, attachments, and notes are saved in an offline, encrypted file that you can keep anywhere, including your own private or public cloud. Nothing is ever stored on our servers.</p>
+                <p>Usernames, passwords, URLs, attachments, and notes are saved in an encrypted file that you can keep anywhere, including your own private or public cloud. Without an account, nothing is ever stored on our servers; with one, only your encrypted vaults are.</p>
                 <ul class="mk-checks">
-                    <li>No cloud, no ads, no subscriptions</li>
+                    <li>No ads, no trackers, no cloud required</li>
                     <li>Open KeePass KDBX format you can take with you</li>
                     <li>Hardware key and key file support</li>
                 </ul>
@@ -89,6 +89,23 @@
 
         <div class="mk-feature">
             <div class="mk-feature-copy">
+                <p class="eyebrow">Sync and share, if you want to</p>
+                <h3>Your vaults on every device, encrypted end to end</h3>
+                <p>Sign in with a free KeePassXC account to sync your vaults between KeePassXC on your computers and KeePass Web in your browser, share them with family or your team, and give CI jobs and servers service accounts of their own. Everything is encrypted on your devices with your master password and a Secret Key that only you have, so our servers only ever see ciphertext.</p>
+                <ul class="mk-checks">
+                    <li>Shared vaults and organizations with roles and an audit log</li>
+                    <li>Prefer your own infrastructure? Sync with your own KeePassXC Sync Server</li>
+                    <li>Or skip it entirely: KeePassXC works fully without an account</li>
+                </ul>
+                <a class="mk-link" href="{{ $base }}docs/user-guide/keepassxc-accounts/">Learn about accounts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="mk-feature-media mk-tint-green">
+                <img src="{{ $base }}assets/img/screenshots/account_start_screen.png" alt="Signing in to a KeePassXC account on the start screen" loading="lazy" width="1600" height="1220">
+            </div>
+        </div>
+
+        <div class="mk-feature mk-feature-reverse">
+            <div class="mk-feature-copy">
                 <p class="eyebrow">Stronger every day</p>
                 <h3>Generate, check, and fix weak passwords</h3>
                 <p>Create strong passwords and passphrases in a click, then let database reports point out weak, reused, and breached passwords so you know exactly what to fix.</p>
@@ -105,7 +122,7 @@
     <div class="container">
         <dl class="mk-stats-grid">
             <div><dt>0</dt><dd>trackers, ads, or accounts required</dd></div>
-            <div><dt>100%</dt><dd>offline: your data never touches our servers</dd></div>
+            <div><dt>100%</dt><dd>encrypted on your device: our servers never see your passwords</dd></div>
             <div><dt>3</dt><dd>platforms, every feature tested on each one</dd></div>
             <div><dt>GPLv3</dt><dd>free and open source, now and forever</dd></div>
         </dl>
@@ -145,7 +162,7 @@
             <a class="mk-card" href="{{ $base }}docs/user-guide/">
                 <span class="mk-card-icon mk-tint-mint"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
                 <h3>User Guide</h3>
-                <p>Detailed documentation for every feature, from auto-type to SSH agent integration.</p>
+                <p>Detailed documentation for every feature, from accounts and sync to auto-type and SSH agent integration.</p>
                 <span class="mk-link">Open the docs <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
             </a>
             <a class="mk-card" href="{{ $base }}docs">
