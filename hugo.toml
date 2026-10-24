@@ -1,11 +1,11 @@
-title = 'KeePassXC Password Manager'
-baseURL = 'https://keepassxc.org'
+title = 'OpenVireo Password Manager'
+baseURL = 'https://openvireo.com'
 locale = 'en-us'
 
 [params]
-# The KeePassXC web app (accounts and synced vaults); it takes /?view=signin|signup
+# The OpenVireo web app (OpenVireo Web) (accounts and synced vaults); it takes /?view=signin|signup
 # Override per build with HUGO_PARAMS_WEBAPPURL
-webAppURL = 'https://app.keepassxc.org/'
+webAppURL = 'https://app.openvireo.com/'
 
 [security]
 # Hugo 0.168+ denies HTML content files by default; this site's pages are .html

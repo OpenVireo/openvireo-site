@@ -6,21 +6,25 @@ permalink: verifying-signatures
 
 <fluent-message-bar intent="warning" layout="multiline">
     <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
-    <span><strong>Note:</strong> This guide is for experienced users only. If you downloaded KeePassXC directly from our website, there is no need for further verification of the downloaded files.</span>
+    <span><strong>No signed releases yet.</strong> OpenVireo has not published a release or its release signing key yet. This page
+        will list the key fingerprint once the first release is out. Until then, there is nothing to verify, and any file claiming to
+        be a signed OpenVireo release is not from us.</span>
 </fluent-message-bar>
 
-
-<p>By verifying the signatures of KeePassXC releases, you can prove the <strong>authenticity</strong> and
-    <strong>integrity</strong> of the downloaded file.
-    This guarantees that the file you just downloaded was originally created by the KeePassXC Team and that its contents haven't been tampered with on the way.</p>
+<p>By verifying the signatures of OpenVireo releases, you can prove the <strong>authenticity</strong> and
+    <strong>integrity</strong> of the downloaded file: it was created by the OpenVireo project and its contents haven't been
+    tampered with on the way.</p>
 <p>A more detailed explanation is available in the <a href="https://www.qubes-os.org/doc/verifying-signatures/">Qubes-OS project documentation</a>.</p>
 
+<p><strong>Note:</strong> OpenVireo releases are signed with OpenVireo's own key, not with the KeePassXC release key.
+    A KeePassXC signature on a file means it is a KeePassXC release, not an OpenVireo one.</p>
+
 <h2>Download Options</h2>
-<p>Every KeePassXC release is published in a variety of package formats:</p>
+<p>OpenVireo releases are published on <a href="https://github.com/openvireo/openvireo/releases">GitHub Releases</a> in these package formats:</p>
 <ul>
     <li>a <code>*.dmg</code> drag-and-drop installer for macOS</li>
     <li>an <code>*.msi</code> installer and a <code>*.zip</code> archive with binaries for Windows</li>
-    <li>a self-contained executable <code>*.AppImage</code> for GNU/Linux.</li>
+    <li>a self-contained executable <code>*.AppImage</code> for GNU/Linux</li>
     <li>a <code>*.tar.xz</code> source tarball</li>
 </ul>
 <p>Each of these package files has two related sidecar files, a <code>*.sig</code> containing a PGP signature and
@@ -28,107 +32,51 @@ permalink: verifying-signatures
 
 <fluent-divider></fluent-divider>
 
-<h2>Verifying Releases &ndash; Windows</h2>
-<p>The Windows MSI installation file is protected by an authenticode signature, this means that <strong>authenticity and
-    integrity</strong> checks are verified directly by Windows when you run the program.</p>
-<p>You should see the following dialog with <strong>DroidMonkey Apps, LLC</strong> as the verified publisher:</p>
-
-<figure data-lightbox>
-    <a href="{{< baseurl >}}assets/img/docs/KeePassXC_UAC.png"><img src="{{< baseurl >}}assets/img/docs/KeePassXC_UAC.png" alt="Windows UAC access prompt with verified publisher 'DroidMonkey Apps, LLC'"></a>
-    <figcaption>Windows UAC access prompt.</figcaption>
-</figure>
-
-<p>To verify the portal ZIP file, you must download and install <a href="https://www.gpg4win.org/" target="_blank">Gpg4win</a>. Then follow the verification <a href="#verify-pgp">instructions below</a>.</p>
-
-<h2>Verifying Releases &ndash; macOS</h2>
-<p>The macOS release is signed with our Apple Developer ID, which is checked by the operating system on launch. You won't be able
-    to open KeePassXC after the installation if the signature check fails.</p>
+<h2>Verifying Releases &ndash; Windows and macOS</h2>
+<p>Signed Windows installers and notarized macOS apps are checked by the operating system when you run them. You can also
+    verify any package, on any platform, with its PGP signature as described below.</p>
 
 <h2 id="verify-pgp">Verifying Releases via PGP &ndash; Linux, macOS, and Windows</h2>
-<p>A more thorough check can be made using the <code>*.sig</code> sidecar file.
-    This contains an OpenPGP (GPG) <em>signature</em> created with one of our <em>release keys</em>.
-    Signing files with any other key will give a different signature. Following these verification instructions will ensure the downloaded files really came from us.</p>
+<p>The <code>*.sig</code> sidecar file contains an OpenPGP (GPG) <em>signature</em> created with the OpenVireo release key.</p>
 
 <h3>Step 1: Import the public key</h3>
-<p>We will use the <code>gpg</code> program to check the signatures.
-    Before you can do that you need to tell <code>gpg</code> about our public key, by <em>importing</em> it.</p>
 <p>On Windows and macOS you will need to install the <code>gpg</code> program. On Windows, we recommend
     <a href="https://www.gpg4win.org/" target="_blank">Gpg4win</a>. On macOS we recommend
-    <a href="https://gpgtools.org/" target="_blank">GPG Tools</a> or gnupg installed via HomeBrew.</p>
-<p>The KeePassXC public key can be retrieved with:</p>
-
-{{< highlight bash >}}$ gpg --keyserver keys.openpgp.org --recv-keys BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2{{< / highlight >}}
-
-<p>These are the fingerprints of the master key and the current signing sub keys:</p>
-{{< highlight bash >}}
-$ gpg --list-keys BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
-pub   rsa4096 2017-01-03 [SC]
-      BF5A669F2272CF4324C1FDA8CFB4C2166397D0D2
-uid           [ unknown] KeePassXC Release <release@keepassxc.org>
-sub   rsa2048 2017-01-03 [S] [expires: 2024-12-04]
-      C1E4CBA3AD78D3AFD894F9E0B7A66F03B59076A8
-sub   rsa2048 2017-01-03 [S] [expires: 2024-12-04]
-      71D4673D73C7F83C17DAE6A2D8538E98A26FD9C4
-{{< / highlight >}}
-
-<p>Note that we have a <em>master</em> key and some <em>sub</em> keys. The actual signatures are created with one of the <em>sub keys</em>.
-    As the naming implies, they are closely related to one another&mdash;importing the master PGP key is sufficient for verifying signatures  made with any of its sub keys.
-</p>
+    <a href="https://gpgtools.org/" target="_blank">GPG Tools</a> or gnupg installed via Homebrew.</p>
+<p>The OpenVireo release key fingerprint will be published here with the first release.</p>
 
 <h3>Step 2: Verify the PGP signature</h3>
-<p>Once you have imported the key, you can decide whether you want to mark it as <em>trusted</em>. This is not strictly necessary for the checks we are making here.
-    For more information, see the <a href="https://www.qubes-os.org/doc/verifying-signatures/">Qubes-OS project documentation</a>.
-</p>
+<p>Once you have imported the key, verify the <strong>authenticity and integrity</strong> of a downloaded package from its detached signature:</p>
 
-<p>You can then verify the <strong>authenticity and integrity</strong> of a downloaded package from its detached signature by running the following command:</p>
+{{< highlight bash >}}$ gpg --verify OpenVireo-*.sig{{< / highlight >}}
 
-{{< highlight bash >}}$ gpg --verify KeePassXC-*.sig{{< / highlight >}}
-
-<p>The output should look like this (the file name will differ obviously):</p>
-
-{{< highlight text "hl_lines=4 7" >}}gpg: assuming signed data in 'KeePassXC-*'
-gpg: Signature made Thu 22 Oct 2020 01:57:33 CEST
-gpg:                using RSA key C1E4CBA3AD78D3AFD894F9E0B7A66F03B59076A8
-gpg: Good signature from "KeePassXC Release <release@keepassxc.org>" [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: BF5A 669F 2272 CF43 24C1  FDA8 CFB4 C216 6397 D0D2
-     Subkey fingerprint: C1E4 CBA3 AD78 D3AF D894  F9E0 B7A6 6F03 B590 76A8
-{{< / highlight >}}
-
-<p>You want to see that <strong>"Good signature"</strong> line. It shows that the <code>.sig</code> file must have been created from
-    the downloaded file with a PGP key with the primary fingerprint <strong><code>BF5A 669F 2272 CF43 24C1 FDA8 CFB4 C216 6397 D0D2</code></strong>.
-</p>
-
-<p>In most cases, you should see the above result. But if the verification fails or the fingerprint does not match, do NOT install the package. First, try downloading it again. If the checks are still failing, let us know about the problem by opening an <a href="https://github.com/keepassxreboot/keepassxc/issues">issue</a>.</p>
+<p>You want to see a <strong>"Good signature"</strong> line, and the primary key fingerprint in the output must match the
+    OpenVireo release key fingerprint published on this page. If the verification fails or the fingerprint does not match, do NOT
+    install the package. First, try downloading it again. If the checks are still failing, let us know by opening an
+    <a href="https://github.com/openvireo/openvireo/issues">issue</a>.</p>
 
 <fluent-message-bar intent="warning" layout="multiline">
     <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
-    <span>The <strong>"not certified with a trusted signature"</strong> warning is there because in this example we have not taken the extra step of <strong>trusting</strong> that key.
-        It can be ignored if (and only if) you see that the fingerprints are correct (see above).</span>
+    <span>gpg may warn that the key is <strong>"not certified with a trusted signature"</strong> if you have not marked the key as trusted.
+        It can be ignored if (and only if) the fingerprint is correct.</span>
 </fluent-message-bar>
 
 <fluent-divider></fluent-divider>
 
 <h2>Basic Integrity Check</h2>
-<p>If you know what you are doing, can skip the authenticity check and perform only a simple integrity check of the file  using the <code>.DIGEST</code>
+<p>You can also perform a simple integrity check of the file using the <code>.DIGEST</code>
     sidecar file. This will ONLY tell you that the file has been downloaded correctly without errors. It will NOT tell you
-    if you can TRUST the download! If you have already followed any of the verification steps above, you do not need to do this.</p>
+    if you can TRUST the download!</p>
 
 <h3>Linux and macOS</h3>
-<p>Open a terminal window and change directory to the folder you downloaded the files to, e.g. <code>cd /home/username/Downloads</code></p>
-<p>The <code>*.DIGEST</code> file can be used to check your package downloaded correctly, with the following command:</p>
+<p>Open a terminal window and change directory to the folder you downloaded the files to, e.g. <code>cd ~/Downloads</code>, then run:</p>
 
-{{< highlight bash >}}$ shasum -a 256 -c KeePassXC-*.DIGEST
-KeePassXC-*: OK{{< /highlight >}}
-
-<p>The <code>shasum</code> program recalculates the SHA-256 hash digest of the package file
-    and compares it with the value in the <code>.DIGEST</code> file. If they match (output is <code>OK</code>), the package  was downloaded without errors.</p>
+{{< highlight bash >}}$ shasum -a 256 -c OpenVireo-*.DIGEST
+OpenVireo-*: OK{{< /highlight >}}
 
 <h3>Windows</h3>
-<p>Open a PowerShell window (hit <em>WIN+R</em>, type in <em>powershell</em>, press <em>Enter</em>) and change directory to the folder you downloaded the files to, e.g. <code>cd C:\Users\username\Downloads</code></p>
-<p>Copy/Paste the following command into the PowerShell window:</p>
+<p>Open a PowerShell window, change directory to the folder you downloaded the files to, e.g. <code>cd C:\Users\username\Downloads</code>, and run:</p>
 
-{{< highlight powershell >}}(Get-FileHash .\KeePassXC-*-Win64.msi).Hash -eq (Get-Content .\KeePassXC-*-Win64.msi.DIGEST).split(" ")[0].ToUpper(){{< / highlight >}}
+{{< highlight powershell >}}(Get-FileHash .\OpenVireo-*-Win64.msi).Hash -eq (Get-Content .\OpenVireo-*-Win64.msi.DIGEST).split(" ")[0].ToUpper(){{< / highlight >}}
 
 <p>You should see <code>True</code> appear. If not, then the download is invalid or your files are not together.</p>

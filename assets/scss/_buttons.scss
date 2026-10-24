@@ -1,7 +1,7 @@
 // Link buttons: plain <a class="btn"> elements styled to match <fluent-button> exactly.
 //
 // We deliberately don't use <fluent-anchor-button> for navigation: its <a> lives in shadow
-// DOM, so without JavaScript (common among KeePassXC's privacy-minded users) download links
+// DOM, so without JavaScript (common among OpenVireo's privacy-minded users) download links
 // would be dead. Real anchors keep every link working, while these rules mirror the Fluent
 // button behaviour, with the site's bolder type and rounder corners on top.
 // Large and hero sizes are the uppercase calls to action used across the site.

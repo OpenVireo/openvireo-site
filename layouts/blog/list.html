@@ -9,6 +9,9 @@
     <div class="container">
         <div class="grid grid-2 grid-match">
         {{ $paginator := .Paginate  (where .Site.RegularPages.ByPublishDate.Reverse "Section" .Page.Section ) }}
+        {{- if not $paginator.Pages }}
+            <p>No posts yet. News about OpenVireo releases will appear here.</p>
+        {{- end }}
         {{- range $paginator.Pages }}
             {{ partial "article-teaser" . }}
         {{- end }}

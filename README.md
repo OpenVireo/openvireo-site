@@ -1,6 +1,10 @@
-# KeePassXC.org
+# OpenVireo website
 
-Website sources for https://keepassxc.org.
+Website sources for https://openvireo.com.
+
+OpenVireo is a fork of [KeePassXC](https://keepassxc.org), and this site is a fork of the KeePassXC website
+([keepassxreboot/keepassxc-org](https://github.com/keepassxreboot/keepassxc-org)). It is not affiliated with or
+endorsed by the KeePassXC Team.
 
 ## Prerequisites
 
@@ -56,7 +60,7 @@ boilerplate and some pre-filled frontmatter fields.
 
 ## Update the User Guide and Getting Started guide
 
-Both guides are written in AsciiDoc in the [KeePassXC repository](https://github.com/keepassxreboot/keepassxc/tree/develop/docs).
+Both guides are written in AsciiDoc in the [OpenVireo desktop repository](https://github.com/openvireo/openvireo/tree/develop/docs).
 The website builds them straight from a checkout of that repository and splits them into themed chapter pages.
 This needs [Asciidoctor](https://asciidoctor.org) (`brew install asciidoctor` or `gem install asciidoctor`).
 
@@ -76,12 +80,12 @@ For each guide this regenerates `content/docs/<guide>/` (one page per chapter), 
 
 New chapters publish automatically with a generic icon and a warning; give them a place, icon, and card summary in
 the `guides` table at the top of `scripts/build-guide.mjs`. That script can also convert a prebuilt single-file
-guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide KeePassXC_UserGuide.html`.
+guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide OpenVireo_UserGuide.html`.
 
 ## Update the product screenshots
 
 The screenshots on the landing page, the Screenshots page and the download carousel are captured from
-a KeePassXC build by the `testdocsscreenshots` tool in the keepassxc repository:
+an OpenVireo build by the `testdocsscreenshots` tool in the keepassxc repository:
 
 ```bash
 npm run screenshots                                   # ../keepassxc, built in cmake-build-debug
@@ -89,7 +93,7 @@ npm run screenshots -- path/to/keepassxc --build-dir path/to/build
 npm run screenshots -- --docs                         # also regenerate the checkout's docs/images
 ```
 
-The build must be configured with `-DWITH_GUI_TESTS=ON`. KeePassXC opens for a few seconds while the tool drives it
+The build must be configured with `-DWITH_GUI_TESTS=ON`. OpenVireo opens for a few seconds while the tool drives it
 through a demo database with a fixed clock, so every run shows the same content. Screenshots go straight to
 `static/assets/img/screenshots/` (with thumbnails), files whose picture hasn't changed are left untouched, and the
 `width`/`height` of every `<img>` showing them is kept up to date.

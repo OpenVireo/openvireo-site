@@ -2,18 +2,18 @@
 {{- $base := .Site.BaseURL }}
 <section class="mk-hero">
     <div class="container mk-hero-inner">
-        <a class="mk-pill" href="#certified-security">
-            <span class="mk-pill-tag">Certified</span>
-            ANSSI Security Visa (CSPN)
+        <a class="mk-pill" href="{{ $base }}about/#fork">
+            <span class="mk-pill-tag">Fork</span>
+            Built on KeePassXC
             <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
         </a>
         <h1 class="mk-display">Your passwords.<br>Your device. <span class="mk-highlight">Your rules.</span></h1>
         <p class="mk-lead">
-            KeePassXC safely stores your passwords and auto-fills them into your favorite apps, so you can forget all about them.
+            OpenVireo safely stores your passwords and auto-fills them into your favorite apps, so you can forget all about them.
             No ads, no trackers, no cloud unless you want one&nbsp;&mdash; just a free and open-source password manager that does the heavy lifting.
         </p>
         <div class="row row-center mk-hero-actions">
-            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download KeePassXC" "appearance" "inverse" "size" "hero") }}
+            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download OpenVireo" "appearance" "inverse" "size" "hero") }}
             {{ partial "button.html" (dict "href" "#project" "text" "See how it works" "appearance" "inverse-outline" "size" "hero") }}
         </div>
         <p class="mk-hero-note">
@@ -32,7 +32,7 @@
         <div class="mk-window">
             <div class="mk-window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
             <img src="{{ $base }}assets/img/screenshots/database_view.png" width="1600" height="1220"
-                 alt="The KeePassXC main window showing a password database with groups and entries">
+                 alt="The OpenVireo main window showing a password database with groups and entries">
         </div>
     </div>
 </section>
@@ -55,7 +55,7 @@
     <div class="container">
         <header class="mk-section-head">
             <h2 class="mk-heading">A password manager that<br>answers only to you</h2>
-            <p class="mk-sublead">KeePassXC is a modern, secure, and open-source password manager for people with extremely high demands of secure personal data management.</p>
+            <p class="mk-sublead">OpenVireo is a modern, secure, and open-source password manager for people with extremely high demands of secure personal data management. It is a fork of KeePassXC, so your KeePass databases work as they always have.</p>
         </header>
 
         <div class="mk-feature">
@@ -71,7 +71,7 @@
                 <a class="mk-link" href="{{ $base }}docs/user-guide/">Explore the User Guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
             <div class="mk-feature-media mk-tint-green">
-                <img src="{{ $base }}assets/img/screenshots/unlock_database.png" alt="Unlocking a KeePassXC database" loading="lazy" width="1600" height="1220">
+                <img src="{{ $base }}assets/img/screenshots/unlock_database.png" alt="Unlocking an OpenVireo database" loading="lazy" width="1600" height="1220">
             </div>
         </div>
 
@@ -79,7 +79,7 @@
             <div class="mk-feature-copy">
                 <p class="eyebrow">Fill in a flash</p>
                 <h3>Auto-type and browser integration that just works</h3>
-                <p>Let KeePassXC type your credentials into any application, or connect the browser extension to fill logins in Firefox, Chrome, Edge, and more with a single click.</p>
+                <p>Let OpenVireo type your credentials into any application, or connect the OpenVireo Browser extension to fill logins in Firefox, Chrome, Edge, and more with a single click.</p>
                 <a class="mk-link" href="{{ $base }}docs/getting-started/browser-integration/">Set up browser integration <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
             <div class="mk-feature-media mk-tint-mint">
@@ -91,16 +91,16 @@
             <div class="mk-feature-copy">
                 <p class="eyebrow">Sync and share, if you want to</p>
                 <h3>Your vaults on every device, encrypted end to end</h3>
-                <p>Sign in with a free KeePassXC account to sync your vaults between KeePassXC on your computers and KeePass Web in your browser, share them with family or your team, and give CI jobs and servers service accounts of their own. Everything is encrypted on your devices with your master password and a Secret Key that only you have, so our servers only ever see ciphertext.</p>
+                <p>Sign in with a free OpenVireo account to sync your vaults between OpenVireo on your computers and OpenVireo Web in your browser, share them with family or your team, and give CI jobs and servers service accounts of their own. Everything is encrypted on your devices with your master password and a Secret Key that only you have, so our servers only ever see ciphertext.</p>
                 <ul class="mk-checks">
                     <li>Shared vaults and organizations with roles and an audit log</li>
-                    <li>Prefer your own infrastructure? Sync with your own KeePassXC Sync Server</li>
-                    <li>Or skip it entirely: KeePassXC works fully without an account</li>
+                    <li>Prefer your own infrastructure? Sync with your own OpenVireo Sync Server</li>
+                    <li>Or skip it entirely: OpenVireo works fully without an account</li>
                 </ul>
-                <a class="mk-link" href="{{ $base }}docs/user-guide/keepassxc-accounts/">Learn about accounts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <a class="mk-link" href="{{ $base }}docs/user-guide/openvireo-accounts/">Learn about accounts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </div>
             <div class="mk-feature-media mk-tint-green">
-                <img src="{{ $base }}assets/img/screenshots/account_start_screen.png" alt="Signing in to a KeePassXC account on the start screen" loading="lazy" width="1600" height="1220">
+                <img src="{{ $base }}assets/img/screenshots/account_start_screen.png" alt="Signing in to an OpenVireo account on the start screen" loading="lazy" width="1600" height="1220">
             </div>
         </div>
 
@@ -118,7 +118,7 @@
     </div>
 </section>
 
-<section class="mk-stats" aria-label="KeePassXC at a glance">
+<section class="mk-stats" aria-label="OpenVireo at a glance">
     <div class="container">
         <dl class="mk-stats-grid">
             <div><dt>0</dt><dd>trackers, ads, or accounts required</dd></div>
@@ -129,28 +129,12 @@
     </div>
 </section>
 
-<section class="mk-section mk-section-tinted" id="certified-security">
-    <div class="container">
-        <div class="mk-spotlight">
-            <div class="mk-spotlight-copy">
-                <p class="eyebrow">Certified security</p>
-                <h2 class="mk-heading">Independently tested. Officially certified.</h2>
-                <p><strong>KeePassXC 2.7.9</strong> has been awarded a Security Visa by the French National Cybersecurity Agency (ANSSI) for passing its First-level Security Certification (CSPN).</p>
-                <p>The certificate shows KeePassXC complies with the security standards set by ANSSI, and it is recognised in both France and Germany.</p>
-                {{ partial "button.html" (dict "href" (print $base "audits/") "text" "View audits &amp; certifications" "appearance" "primary" "size" "hero") }}
-            </div>
-            <a class="mk-spotlight-badge" href="{{ $base }}audits/#cspn-2025-11-17">
-                <img alt="ANSSI Security Visa" src="{{ $base }}assets/img/anssi-cspn-security-visa.png" loading="lazy">
-            </a>
-        </div>
-    </div>
-</section>
 
 <section class="mk-section">
     <div class="container">
         <header class="mk-section-head">
             <h2 class="mk-heading">Get started in minutes</h2>
-            <p class="mk-sublead">Everything you need to set up KeePassXC and make the most of it.</p>
+            <p class="mk-sublead">Everything you need to set up OpenVireo and make the most of it.</p>
         </header>
         <div class="mk-cards">
             <a class="mk-card" href="{{ $base }}docs/getting-started/">
@@ -175,6 +159,7 @@
     </div>
 </section>
 
+{{- with where .Site.RegularPages "Section" "blog" }}
 <section class="mk-section mk-section-tinted">
     <div class="container">
         <div class="mk-section-head mk-section-head-split">
@@ -183,13 +168,14 @@
         </div>
         <div class="grid grid-2 grid-match">
             {{- block "index-post-teasers" . }}
-                {{- range first 4 (where .Site.RegularPages "Section" "blog").ByPublishDate.Reverse }}
+                {{- range first 4 .ByPublishDate.Reverse }}
                     {{ partial "article-teaser" . }}
                 {{- end }}
             {{ end }}
         </div>
     </div>
 </section>
+{{- end }}
 
 {{ partial "cta-band.html" . }}
 {{ end }}
