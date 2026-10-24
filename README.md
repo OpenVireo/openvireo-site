@@ -64,14 +64,14 @@ Both guides are written in AsciiDoc in the [OpenVireo desktop repository](https:
 The website builds them straight from a checkout of that repository and splits them into themed chapter pages.
 This needs [Asciidoctor](https://asciidoctor.org) (`brew install asciidoctor` or `gem install asciidoctor`).
 
-With the keepassxc repository checked out next to this one (`../keepassxc`):
+With the openvireo repository checked out next to this one (`../openvireo`):
 
 ```bash
 npm run docs -- --ref 2.8.0      # publish the docs of a release tag (or any branch/commit)
 npm run docs                     # preview the checkout as it is on disk, including uncommitted edits
 ```
 
-Use `npm run docs -- path/to/keepassxc` (or set `KEEPASSXC_SRC`) if the checkout lives elsewhere. Building from a
+Use `npm run docs -- path/to/openvireo` (or set `OPENVIREO_SRC`) if the checkout lives elsewhere. Building from a
 `--ref` exports that commit to a temporary folder, so your working tree and current branch are left alone.
 
 For each guide this regenerates `content/docs/<guide>/` (one page per chapter), copies the screenshots it uses to
@@ -85,11 +85,11 @@ guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide Op
 ## Update the product screenshots
 
 The screenshots on the landing page, the Screenshots page and the download carousel are captured from
-an OpenVireo build by the `testdocsscreenshots` tool in the keepassxc repository:
+an OpenVireo build by the `testdocsscreenshots` tool in the openvireo repository:
 
 ```bash
-npm run screenshots                                   # ../keepassxc, built in cmake-build-debug
-npm run screenshots -- path/to/keepassxc --build-dir path/to/build
+npm run screenshots                                   # ../openvireo, built in cmake-build-debug
+npm run screenshots -- path/to/openvireo --build-dir path/to/build
 npm run screenshots -- --docs                         # also regenerate the checkout's docs/images
 ```
 
@@ -100,12 +100,12 @@ through a demo database with a fixed clock, so every run shows the same content.
 
 ## Refresh everything
 
-To recapture every screenshot (docs and website) and rebuild both guides from the keepassxc checkout in one go:
+To recapture every screenshot (docs and website) and rebuild both guides from the openvireo checkout in one go:
 
 ```bash
-npm run refresh                                       # ../keepassxc, built in cmake-build-debug
-npm run refresh -- path/to/keepassxc --build-dir path/to/build
+npm run refresh                                       # ../openvireo, built in cmake-build-debug
+npm run refresh -- path/to/openvireo --build-dir path/to/build
 ```
 
 This builds the guides from the checkout's working tree, so the new docs screenshots are used straight away; commit
-them in the keepassxc repository too. To publish docs from a branch or tag instead, use `npm run docs -- --ref <ref>`.
+them in the openvireo repository too. To publish docs from a branch or tag instead, use `npm run docs -- --ref <ref>`.
