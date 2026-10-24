@@ -124,6 +124,16 @@
         margin-inline-end: .2rem;
         opacity: .8;
     }
+
+    a {
+        color: var(--mk-on-dark);
+        font-weight: var(--fontWeightSemibold);
+        text-underline-offset: .2em;
+    }
+
+    & + & {
+        margin-top: .5rem;
+    }
 }
 
 .mk-pill {

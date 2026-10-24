@@ -249,6 +249,15 @@
         margin-top: 1.5rem;
     }
 
+    .drawer-account {
+        margin-top: .75rem;
+        gap: var(--spacingHorizontalS);
+
+        .btn {
+            flex: 1;
+        }
+    }
+
     &:not(:defined) {
         display: none;
     }
