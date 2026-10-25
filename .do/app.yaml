@@ -1,0 +1,26 @@
+# DigitalOcean App Platform spec for openvireo.com. App Platform builds the Dockerfile and serves the
+# files in output_dir as a static site from its CDN; the nginx stage of the image is not run.
+# Apply with: doctl apps create --spec .do/app.yaml (or doctl apps update <app-id> --spec .do/app.yaml)
+name: openvireo-site
+domains:
+- domain: openvireo.com
+  type: PRIMARY
+- domain: www.openvireo.com
+  type: ALIAS
+static_sites:
+- name: openvireo-site
+  dockerfile_path: Dockerfile
+  output_dir: /usr/share/nginx/html
+  error_document: 404.html
+  github:
+    repo: openvireo/openvireo-site
+    branch: develop
+    deploy_on_push: true
+  envs:
+  # Passed to the Dockerfile as build args
+  - key: BASE_URL
+    value: https://openvireo.com/
+    scope: BUILD_TIME
+  - key: WEB_APP_URL
+    value: https://app.openvireo.com/
+    scope: BUILD_TIME
