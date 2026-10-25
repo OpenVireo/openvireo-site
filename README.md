@@ -109,3 +109,20 @@ npm run refresh -- path/to/openvireo --build-dir path/to/build
 
 This builds the guides from the checkout's working tree, so the new docs screenshots are used straight away; commit
 them in the openvireo repository too. To publish docs from a branch or tag instead, use `npm run docs -- --ref <ref>`.
+
+## Deploy to DigitalOcean
+
+The site is hosted as a static site on [DigitalOcean App Platform](https://docs.digitalocean.com/products/app-platform/).
+App Platform builds the `Dockerfile` (so it gets Hugo extended and the NPM dependencies) and serves the files the
+build stage puts in `/usr/share/nginx/html` from its CDN. The app is described by [`.do/app.yaml`](.do/app.yaml):
+it builds `develop` on every push and serves `openvireo.com` and `www.openvireo.com`.
+
+To create the app, or to apply changes to the spec:
+
+```bash
+doctl apps create --spec .do/app.yaml
+doctl apps update <app-id> --spec .do/app.yaml   # app ids are listed by `doctl apps list`
+```
+
+App Platform needs access to the repository through its GitHub app, and the domains need DNS records pointing at
+the app (the control panel shows them under **Settings → Domains**).
