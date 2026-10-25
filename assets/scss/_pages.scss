@@ -218,33 +218,6 @@
     }
 }
 
-// Donate -----------------------------------------------------------------------------------
-
-.donate-grid {
-    margin-block: 1rem 2rem;
-
-    .card-title i, .card-title .svg-icon {
-        margin-inline-end: .4rem;
-        color: var(--colorBrandForeground1);
-    }
-
-    code {
-        font-size: .72rem;
-    }
-
-    .bank-details {
-        font-size: .8rem;
-        color: var(--colorNeutralForeground2);
-    }
-
-    .qr-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-    }
-}
-
 // Audits -----------------------------------------------------------------------------------
 
 .audit {
