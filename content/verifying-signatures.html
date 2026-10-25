@@ -4,11 +4,10 @@ title: "Verifying Signatures"
 permalink: verifying-signatures
 ---
 
-<fluent-message-bar intent="warning" layout="multiline">
-    <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
-    <span><strong>No signed releases yet.</strong> OpenVireo has not published a release or its release signing key yet. This page
-        will list the key fingerprint once the first release is out. Until then, there is nothing to verify, and any file claiming to
-        be a signed OpenVireo release is not from us.</span>
+<fluent-message-bar intent="info" layout="multiline">
+    <i class="fa-solid fa-circle-info" slot="icon" aria-hidden="true"></i>
+    <span><strong>No signed releases yet.</strong> The release signing key below is published, but OpenVireo has not made a
+        release with it yet. Until the first release is out, any file claiming to be a signed OpenVireo release is not from us.</span>
 </fluent-message-bar>
 
 <p>By verifying the signatures of OpenVireo releases, you can prove the <strong>authenticity</strong> and
@@ -19,6 +18,15 @@ permalink: verifying-signatures
 <p><strong>Note:</strong> OpenVireo releases are signed with OpenVireo's own key, not with the KeePassXC release key.
     A KeePassXC signature on a file means it is a KeePassXC release, not an OpenVireo one.</p>
 
+<h2 id="release-key">Release Signing Key</h2>
+<table>
+    <tr><th scope="row">Key</th><td>OpenVireo Release Signing &lt;admin@openvireo.com&gt; (Ed25519)</td></tr>
+    <tr><th scope="row">Fingerprint</th><td><code>23F6 403E 9392 E946 475E 7FD3 B556 83A4 3E98 C11C</code></td></tr>
+    <tr><th scope="row">Signing subkey</th><td><code>21E5 ED15 6C06 2545 CC3D 285B B3AB CB66 FF7A E649</code></td></tr>
+    <tr><th scope="row">Download</th><td><a href="/openvireo-release.asc">openvireo-release.asc</a>, or from
+        <a href="https://keys.openpgp.org/search?q=23F6403E9392E946475E7FD3B55683A43E98C11C">keys.openpgp.org</a></td></tr>
+</table>
+
 <h2>Download Options</h2>
 <p>OpenVireo releases are published on <a href="https://github.com/openvireo/openvireo/releases">GitHub Releases</a> in these package formats:</p>
 <ul>
@@ -27,31 +35,37 @@ permalink: verifying-signatures
     <li>a self-contained executable <code>*.AppImage</code> for GNU/Linux</li>
     <li>a <code>*.tar.xz</code> source tarball</li>
 </ul>
-<p>Each of these package files has two related sidecar files, a <code>*.sig</code> containing a PGP signature and
-    a <code>*.DIGEST</code> containing the SHA-256 hash for basic integrity checks.</p>
+<p>Each release also contains <code>SHA256SUMS.txt</code>, the SHA-256 hashes of all its files, and
+    <code>SHA256SUMS.txt.asc</code>, a PGP signature of that list made with the OpenVireo release key.</p>
 
 <fluent-divider></fluent-divider>
 
 <h2>Verifying Releases &ndash; Windows and macOS</h2>
-<p>Signed Windows installers and notarized macOS apps are checked by the operating system when you run them. You can also
-    verify any package, on any platform, with its PGP signature as described below.</p>
+<p>Windows installers and programs are code signed, and macOS apps are signed and notarized by Apple; the operating system checks
+    them when you run them. You can also verify any package, on any platform, with the PGP signature as described below.</p>
 
 <h2 id="verify-pgp">Verifying Releases via PGP &ndash; Linux, macOS, and Windows</h2>
-<p>The <code>*.sig</code> sidecar file contains an OpenPGP (GPG) <em>signature</em> created with the OpenVireo release key.</p>
+<p>Download <code>SHA256SUMS.txt</code> and <code>SHA256SUMS.txt.asc</code> from the release into the same folder as the package.</p>
 
 <h3>Step 1: Import the public key</h3>
 <p>On Windows and macOS you will need to install the <code>gpg</code> program. On Windows, we recommend
     <a href="https://www.gpg4win.org/" target="_blank">Gpg4win</a>. On macOS we recommend
     <a href="https://gpgtools.org/" target="_blank">GPG Tools</a> or gnupg installed via Homebrew.</p>
-<p>The OpenVireo release key fingerprint will be published here with the first release.</p>
+
+{{< highlight bash >}}$ curl -sSL https://openvireo.com/openvireo-release.asc | gpg --import
+# or
+$ gpg --keyserver hkps://keys.openpgp.org --recv-keys 23F6403E9392E946475E7FD3B55683A43E98C11C{{< / highlight >}}
 
 <h3>Step 2: Verify the PGP signature</h3>
-<p>Once you have imported the key, verify the <strong>authenticity and integrity</strong> of a downloaded package from its detached signature:</p>
+<p>Verify the <strong>authenticity</strong> of the checksum list, then check the package against it:</p>
 
-{{< highlight bash >}}$ gpg --verify OpenVireo-*.sig{{< / highlight >}}
+{{< highlight bash >}}$ gpg --verify SHA256SUMS.txt.asc SHA256SUMS.txt
+$ shasum -a 256 -c SHA256SUMS.txt --ignore-missing
+OpenVireo-*: OK{{< / highlight >}}
 
 <p>You want to see a <strong>"Good signature"</strong> line, and the primary key fingerprint in the output must match the
-    OpenVireo release key fingerprint published on this page. If the verification fails or the fingerprint does not match, do NOT
+    <a href="#release-key">fingerprint above</a>. Then every package you downloaded must be listed as <code>OK</code>.
+    If the verification fails or the fingerprint does not match, do NOT
     install the package. First, try downloading it again. If the checks are still failing, let us know by opening an
     <a href="https://github.com/openvireo/openvireo/issues">issue</a>.</p>
 
@@ -64,19 +78,20 @@ permalink: verifying-signatures
 <fluent-divider></fluent-divider>
 
 <h2>Basic Integrity Check</h2>
-<p>You can also perform a simple integrity check of the file using the <code>.DIGEST</code>
-    sidecar file. This will ONLY tell you that the file has been downloaded correctly without errors. It will NOT tell you
-    if you can TRUST the download!</p>
+<p>Without gpg, you can still check a download against <code>SHA256SUMS.txt</code>. This will ONLY tell you that the file has
+    been downloaded correctly without errors. It will NOT tell you if you can TRUST the download!</p>
 
 <h3>Linux and macOS</h3>
 <p>Open a terminal window and change directory to the folder you downloaded the files to, e.g. <code>cd ~/Downloads</code>, then run:</p>
 
-{{< highlight bash >}}$ shasum -a 256 -c OpenVireo-*.DIGEST
+{{< highlight bash >}}$ shasum -a 256 -c SHA256SUMS.txt --ignore-missing
 OpenVireo-*: OK{{< /highlight >}}
 
 <h3>Windows</h3>
-<p>Open a PowerShell window, change directory to the folder you downloaded the files to, e.g. <code>cd C:\Users\username\Downloads</code>, and run:</p>
+<p>Open a PowerShell window, change directory to the folder you downloaded the files to, e.g. <code>cd C:\Users\username\Downloads</code>, and run
+    (replace the file name with the one you downloaded):</p>
 
-{{< highlight powershell >}}(Get-FileHash .\OpenVireo-*-Win64.msi).Hash -eq (Get-Content .\OpenVireo-*-Win64.msi.DIGEST).split(" ")[0].ToUpper(){{< / highlight >}}
+{{< highlight powershell >}}$f = "OpenVireo-2.8.0-x64.msi"
+(Get-FileHash $f).Hash -eq ((Select-String -SimpleMatch $f SHA256SUMS.txt).Line -split " ")[0].ToUpper(){{< / highlight >}}
 
 <p>You should see <code>True</code> appear. If not, then the download is invalid or your files are not together.</p>
