@@ -25,6 +25,7 @@
         <p class="text-small text-muted" style="margin-top: .75rem">
             {{- if .v }}Version {{ .v }} &ndash; <a href="{{ .releases }}">All Releases</a>
             {{- else }}No OpenVireo release has been published yet. Downloads will appear on <a href="{{ .releases }}">GitHub Releases</a>.{{ end }}
+            &ndash; <a href="{{ site.BaseURL }}download/nightly/">Nightly builds</a>
         </p>
 {{- end }}
 

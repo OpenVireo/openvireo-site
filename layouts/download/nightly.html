@@ -1,0 +1,149 @@
+{{- define "partials/nightly-option.html" }}
+    {{- /* One package of the nightly release; the script links it to the matching asset or hides it */ -}}
+    <li data-asset="{{ .pattern }}">
+        <div class="option-title">{{ .title | safeHTML }}</div>
+        <div class="option-actions">
+            {{ partial "button.html" (dict "href" .release "text" "Download" "size" "small" "icon" "fa-solid fa-download") }}
+            <span class="text-muted text-small asset-size"></span>
+        </div>
+    </li>
+{{- end }}
+
+{{- define "main" }}
+{{- $repo := "OpenVireo/openvireo" }}
+{{- $release := printf "https://github.com/%s/releases/tag/nightly" $repo }}
+{{- $base := .Site.BaseURL }}
+
+<div class="section section-small download-page">
+    <div class="container text-center">
+        <div class="download-main">
+            <h1 style="font-size: clamp(2rem, 1.4rem + 2.2vw, 3rem)">OpenVireo Nightly Builds</h1>
+            <p>A fresh build of the <code>develop</code> branch, made every night. Try new features before they are released.</p>
+            <p class="text-small text-muted" id="nightly-info">
+                Built every day at 03:00 UTC &ndash; <a href="{{ $release }}">Nightly release on GitHub</a>
+            </p>
+        </div>
+
+        <fluent-message-bar intent="warning" layout="multiline" style="max-width: 42rem; margin: 0 auto; text-align: start">
+            <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
+            <span><strong>Nightly builds are untested.</strong> They may have bugs that damage or lose your data. Back up your
+                databases before opening them with a nightly build, and use the <a href="{{ $base }}download">stable release</a>
+                for passwords you can't afford to lose.</span>
+        </fluent-message-bar>
+
+        <p id="nightly-error" class="text-small text-muted" style="margin-top: 1rem" hidden></p>
+
+        <div class="card card-options">
+            <h2 class="card-header"><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS 12+</h2>
+            <div class="card-body">
+                <ul class="option-list">
+                    {{ partial "nightly-option.html" (dict "title" "Apple Silicon" "pattern" `-arm64(-unsigned)?\.dmg$` "release" $release) }}
+                    {{ partial "nightly-option.html" (dict "title" "Intel" "pattern" `-x86_64(-unsigned)?\.dmg$` "release" $release) }}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card card-options">
+            <h2 class="card-header"><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows 10 / 11</h2>
+            <div class="card-body">
+                <ul class="option-list">
+                    {{ partial "nightly-option.html" (dict "title" "Installer (64-bit)" "pattern" `-(x64|AMD64)\.msi$` "release" $release) }}
+                    {{ partial "nightly-option.html" (dict "title" "Portable ZIP (64-bit)" "pattern" `-(x64|AMD64)\.zip$` "release" $release) }}
+                    {{ partial "nightly-option.html" (dict "title" "Installer (ARM64)" "pattern" `-ARM64\.msi$` "release" $release) }}
+                    {{ partial "nightly-option.html" (dict "title" "Portable ZIP (ARM64)" "pattern" `-ARM64\.zip$` "release" $release) }}
+                </ul>
+                <p class="text-small text-muted mb-0" style="margin-top: .75rem">Requires the
+                    <a href="https://aka.ms/vc14/vc_redist.x64.exe">MSVC Redistributable</a>.</p>
+            </div>
+        </div>
+
+        <div class="card card-options">
+            <h2 class="card-header"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux</h2>
+            <div class="card-body">
+                <ul class="option-list">
+                    {{ partial "nightly-option.html" (dict "title" "AppImage (x86_64)" "pattern" `-x86_64\.AppImage$` "release" $release) }}
+                    {{ partial "nightly-option.html" (dict "title" "AppImage (aarch64)" "pattern" `-aarch64\.AppImage$` "release" $release) }}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card card-options">
+            <h2 class="card-header"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Checking your download</h2>
+            <div class="card-body">
+                <ul class="option-list">
+                    {{ partial "nightly-option.html" (dict "title" "Checksums (SHA256SUMS.txt)" "pattern" `^SHA256SUMS\.txt$` "release" $release) }}
+                    {{ partial "nightly-option.html" (dict "title" "Checksum signature (SHA256SUMS.txt.asc)" "pattern" `^SHA256SUMS\.txt\.asc$` "release" $release) }}
+                </ul>
+                <p class="text-small text-muted mb-0" style="margin-top: .75rem">Nightlies are signed with the same key as releases.
+                    See <a href="{{ $base }}verifying-signatures">Verifying Signatures</a>.</p>
+            </div>
+        </div>
+
+        <div class="card card-options">
+            <h2 class="card-header"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Staying up to date</h2>
+            <div class="card-body">
+                <p class="text-small mb-0">On macOS and Windows, a nightly build updates itself to the next nightly. To go back to
+                    stable releases, choose <strong>Stable releases</strong> under <strong>Settings &rarr; General &rarr; Update
+                    channel</strong>; the next stable release will replace your nightly. On Linux, the AppImage can be updated
+                    with <a href="https://github.com/AppImageCommunity/AppImageUpdate">AppImageUpdate</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    // Nightly file names contain the date, so look up the current ones; without this the buttons open the release page
+    const info = document.getElementById('nightly-info');
+    const error = document.getElementById('nightly-error');
+    const showError = (html) => { error.innerHTML = html; error.hidden = false; };
+    // The site's .card and list item styles override the hidden attribute
+    const hide = (el) => { el.style.display = 'none'; };
+    const formatSize = (bytes) => `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+
+    try {
+        const response = await fetch('https://api.github.com/repos/{{ $repo }}/releases/tags/nightly',
+                                     { headers: { Accept: 'application/vnd.github+json' } });
+        if (response.status === 404) {
+            showError('There is no nightly build right now. Check back tomorrow.');
+            for (const card of document.querySelectorAll('.card-options')) {
+                if (card.querySelector('[data-asset]')) {
+                    hide(card);
+                }
+            }
+        } else if (!response.ok) {
+            throw new Error(response.statusText);
+        } else {
+            const release = await response.json();
+            const built = new Date(release.published_at || release.created_at);
+            info.textContent = `${release.name} – built ${built.toLocaleString(undefined, { dateStyle: 'long', timeStyle: 'short' })} – `;
+            const link = document.createElement('a');
+            link.href = release.html_url;
+            link.textContent = 'Nightly release on GitHub';
+            info.append(link);
+
+            for (const item of document.querySelectorAll('[data-asset]')) {
+                const pattern = new RegExp(item.dataset.asset);
+                // Prefer a signed package over an unsigned one of the same platform
+                const matches = release.assets.filter((a) => pattern.test(a.name))
+                    .sort((a, b) => a.name.includes('-unsigned') - b.name.includes('-unsigned'));
+                if (!matches.length) {
+                    hide(item);
+                    continue;
+                }
+                const asset = matches[0];
+                item.querySelector('a.btn').href = asset.browser_download_url;
+                item.querySelector('.asset-size').textContent = `${asset.name} · ${formatSize(asset.size)}`;
+            }
+            for (const card of document.querySelectorAll('.card-options')) {
+                const items = card.querySelectorAll('[data-asset]');
+                if (items.length && [...items].every((i) => i.style.display === 'none')) {
+                    hide(card);
+                }
+            }
+        }
+    } catch {
+        showError('Could not load the list of files. The download buttons open the '
+                  + '<a href="{{ $release }}">nightly release on GitHub</a> instead.');
+    }
+</script>
+{{ end }}
