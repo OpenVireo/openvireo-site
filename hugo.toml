@@ -6,6 +6,8 @@ locale = 'en-us'
 # The OpenVireo web app (OpenVireo Web) (accounts and synced vaults); it takes /?view=signin|signup
 # Override per build with HUGO_PARAMS_WEBAPPURL
 webAppURL = 'https://app.openvireo.com/'
+# The account server's website (billing, account recovery). Override per build with HUGO_PARAMS_ACCOUNTSURL
+accountsURL = 'https://accounts.openvireo.com/'
 
 [security]
 # Hugo 0.168+ denies HTML content files by default; this site's pages are .html
