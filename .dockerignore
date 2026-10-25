@@ -1,0 +1,8 @@
+# Local build output and dependencies; the image installs and builds its own
+.git
+node_modules
+public
+resources
+.hugo_build.lock
+.idea
+.DS_Store
