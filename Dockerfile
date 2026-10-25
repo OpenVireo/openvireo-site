@@ -20,7 +20,9 @@ COPY . ./
 ARG BASE_URL=http://localhost:1313/
 # Where the site's Sign in / Create account links go (the openvireo-web app)
 ARG WEB_APP_URL=http://localhost:3000/
-RUN HUGO_PARAMS_WEBAPPURL="${WEB_APP_URL}" hugo --minify --baseURL "${BASE_URL}"
+# The account server's website, for the account recovery page
+ARG ACCOUNTS_URL=http://localhost:8000/
+RUN HUGO_PARAMS_WEBAPPURL="${WEB_APP_URL}" HUGO_PARAMS_ACCOUNTSURL="${ACCOUNTS_URL}" hugo --minify --baseURL "${BASE_URL}"
 
 FROM nginx:1.27-bookworm
 COPY --from=build /app/public /usr/share/nginx/html

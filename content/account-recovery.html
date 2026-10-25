@@ -1,0 +1,52 @@
+---
+layout: pages
+title: "Lost Your Password or Emergency Kit"
+permalink: account-recovery
+---
+
+<p>Your vaults are encrypted on your devices with a key made from your <strong>master password</strong> and your
+    <strong>Secret Key</strong>. OpenVireo never has either of them, so nobody, including us, can open your vaults or
+    reset your password for you. That is what keeps them safe if our servers are ever breached.</p>
+
+<h2 id="first">First, check these</h2>
+<ul>
+    <li><strong>Is OpenVireo still unlocked somewhere?</strong> Where your account is still unlocked, open the web app's
+        <em>Account</em> page (in OpenVireo for desktop: <em>Account</em> &#8594; <em>Manage Account…</em>) and change your
+        master password there. Your vaults stay as they are.</li>
+    <li><strong>Do you only need a new device?</strong> Signing in on a new device needs your master password and the
+        Secret Key from your Emergency Kit. A device you have signed in on before only needs the password.</li>
+    <li><strong>Lost the Emergency Kit but not the password?</strong> In the web app on a browser that is still signed
+        in, the <em>Account</em> page's <em>Emergency Kit</em> section downloads it again.</li>
+</ul>
+
+<h2 id="request">Ask for account recovery</h2>
+<p>If none of that works, <a href="{{< accounts-url "recover" >}}">request account recovery</a>. A person on our team
+    reviews every request. You can ask for one of two things:</p>
+<ul>
+    <li><strong>Billing access only.</strong> We email you a one-time link to your subscription, invoices and payment
+        details, for example to cancel. Nothing about your vaults changes.</li>
+    <li><strong>A reset of your account.</strong> You choose a new master password and get a new Secret Key and Emergency
+        Kit. Your email address, subscription and organization memberships stay.</li>
+</ul>
+<p>We first email you a link to confirm the request, so we know the address is yours. Telling us details we can check,
+    such as the name on your card or the date of your last invoice, helps us approve it sooner.</p>
+
+<h2 id="reset">What a reset does</h2>
+<p>Because nobody can decrypt your vaults without your old keys, a reset starts your account with new ones:</p>
+<ul>
+    <li>Your personal vaults, and your access to vaults others shared with you, are <strong>put away for 30 days</strong>.
+        You won't see them after the reset.</li>
+    <li>Every device is signed out, and two-step verification is turned off. You can turn it on again afterwards.</li>
+    <li>In each organization, an owner or admin has to confirm you again before you see its vaults. If you are an
+        organization's only owner or admin, nobody can open its vaults until you restore your old keys.</li>
+</ul>
+<p>For your security, the reset link starts working <strong>24 hours</strong> after we approve it, and we tell you by
+    email when that is. If you didn't ask for a reset, use the cancel link in that email.</p>
+
+<h2 id="restore">Getting your old vaults back</h2>
+<p>If you find your old Emergency Kit and remember your old master password within 30 days of the reset, sign in with
+    your new password, open the web app's <em>Account</em> page and use <em>Restore vaults from before your reset</em>. Your
+    old vaults come back, and your new password and Secret Key stay. After 30 days, the old vaults are deleted for good.</p>
+
+<p>Shared vaults whose owners changed their keys since the reset can't be restored this way; ask the owner to share
+    them with you again.</p>
