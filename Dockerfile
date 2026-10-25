@@ -4,9 +4,10 @@ FROM node:24-bookworm-slim AS build
 
 # Hugo extended (the stylesheets go through css.Sass); hugo.toml needs 0.168 or later
 ARG HUGO_VERSION=0.168.0
+# Set by BuildKit; builders that leave it empty (DigitalOcean App Platform) get the image's own architecture
 ARG TARGETARCH
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl \
-    && curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${TARGETARCH}.tar.gz" \
+    && curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${TARGETARCH:-$(dpkg --print-architecture)}.tar.gz" \
        | tar -xz -C /usr/local/bin hugo \
     && rm -rf /var/lib/apt/lists/*
 
