@@ -387,6 +387,43 @@
     .keyseq {
         white-space: nowrap;
     }
+
+    // Markdown pages (the developer docs) ----------------------------------------------------
+
+    > h3:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+    }
+
+    > p,
+    > ul,
+    > ol {
+        margin-bottom: 1em;
+    }
+
+    li > ul,
+    li > ol {
+        margin-top: .35em;
+    }
+
+    // Names such as SYNC_BEHIND_PROXY stay on one line; the table scrolls instead
+    table.tableblock td:is(:first-child, :nth-child(2)) code {
+        white-space: nowrap;
+    }
+
+    // Fenced code (Chroma, inline styles)
+    .highlight {
+        margin: 1.25rem 0;
+
+        pre {
+            margin: 0;
+            padding: 1rem 1.25rem;
+            overflow-x: auto;
+            border-radius: var(--borderRadiusXLarge);
+            font-size: .875rem;
+        }
+    }
 }
 
 // Previous / next chapter ------------------------------------------------------------------
