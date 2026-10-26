@@ -94,7 +94,7 @@ export const guides = {
             },
             _command_line_tool: {
                 weight: 130, icon: 'fa-terminal',
-                summary: 'Access and manage your database from a terminal with openvireo-cli.',
+                summary: 'Access and manage your database from a terminal with openvireo-kdbx.',
             },
             _reference: {
                 weight: 140, icon: 'fa-book-bookmark',
