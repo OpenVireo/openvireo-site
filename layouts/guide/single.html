@@ -59,8 +59,13 @@
         </nav>
 
         <p class="guide-footnote">
+            {{- with .CurrentSection.Params.versionLabel }}
+            The {{ $.CurrentSection.Title }} docs cover {{ . }}{{ with $.CurrentSection.Params.updated }}, last updated {{ (time .).Format "2 January 2006" }}{{ end }}.
+            Found a mistake? <a href="{{ or $.Params.source $.CurrentSection.Params.source }}">Edit this page on GitHub</a>.
+            {{- else }}
             The {{ .CurrentSection.Title }} guide covers OpenVireo, based on KeePassXC {{ .CurrentSection.Params.version }}{{ with .CurrentSection.Params.updated }}, last updated {{ (time .).Format "2 January 2006" }}{{ end }}.
             Found a mistake? <a href="https://github.com/openvireo/openvireo/tree/develop/docs">Help improve the docs on GitHub</a>.
+            {{- end }}
         </p>
     </article>
 </div>

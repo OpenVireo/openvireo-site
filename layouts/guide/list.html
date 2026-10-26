@@ -6,7 +6,7 @@
         <h1>{{ .Title }}</h1>
         <p class="guide-lead">{{ .Description }}</p>
         <div class="row guide-header-meta">
-            <span class="guide-version"><i class="fa-solid fa-tag" aria-hidden="true"></i> OpenVireo (based on KeePassXC {{ .Params.version }})</span>
+            <span class="guide-version"><i class="fa-solid fa-tag" aria-hidden="true"></i> {{ with .Params.versionLabel }}{{ . }}{{ else }}OpenVireo (based on KeePassXC {{ $.Params.version }}){{ end }}</span>
             {{- with .Params.related }}
             {{ partial "button.html" (dict "href" (strings.TrimPrefix "/" .url | print $.Site.BaseURL) "text" .title "appearance" "primary" "size" "large" "icon" (print "fa-solid " .icon)) }}
             {{- end }}
