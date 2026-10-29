@@ -21,11 +21,13 @@ permalink: verifying-signatures
 <h2 id="release-key">Release Signing Key</h2>
 <table>
     <tr><th scope="row">Key</th><td>OpenVireo Release Signing &lt;admin@openvireo.com&gt; (Ed25519)</td></tr>
-    <tr><th scope="row">Fingerprint</th><td><code>23F6 403E 9392 E946 475E 7FD3 B556 83A4 3E98 C11C</code></td></tr>
-    <tr><th scope="row">Signing subkey</th><td><code>21E5 ED15 6C06 2545 CC3D 285B B3AB CB66 FF7A E649</code></td></tr>
+    <tr><th scope="row">Fingerprint</th><td><code>FE27 78BF 0747 05E0 994B BAF9 FEBA 3556 2DE1 04CB</code></td></tr>
+    <tr><th scope="row">Signing subkey</th><td><code>437C F8F9 2DE0 7741 D60B 10F9 1570 A2B8 733C D494</code></td></tr>
     <tr><th scope="row">Download</th><td><a href="/openvireo-release.asc">openvireo-release.asc</a>, or from
-        <a href="https://keys.openpgp.org/search?q=23F6403E9392E946475E7FD3B55683A43E98C11C">keys.openpgp.org</a></td></tr>
+        <a href="https://keys.openpgp.org/search?q=FE2778BF074705E0994BBAF9FEBA35562DE104CB">keys.openpgp.org</a></td></tr>
 </table>
+<p>The previous release key, <code>23F6 403E 9392 E946 475E 7FD3 B556 83A4 3E98 C11C</code>, was revoked on
+    29 October 2026 and no longer signs releases. Do not trust a signature made with it.</p>
 
 <h2>Download Options</h2>
 <p>OpenVireo releases are published on <a href="https://github.com/openvireo/openvireo/releases">GitHub Releases</a> in these package formats:</p>
@@ -54,7 +56,7 @@ permalink: verifying-signatures
 
 {{< highlight bash >}}$ curl -sSL https://openvireo.com/openvireo-release.asc | gpg --import
 # or
-$ gpg --keyserver hkps://keys.openpgp.org --recv-keys 23F6403E9392E946475E7FD3B55683A43E98C11C{{< / highlight >}}
+$ gpg --keyserver hkps://keys.openpgp.org --recv-keys FE2778BF074705E0994BBAF9FEBA35562DE104CB{{< / highlight >}}
 
 <h3>Step 2: Verify the PGP signature</h3>
 <p>Verify the <strong>authenticity</strong> of the checksum list, then check the package against it:</p>
