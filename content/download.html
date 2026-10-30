@@ -4,12 +4,12 @@ menu:
   main:
     weight: 1
 type: download
-# OpenVireo has not published a release yet. Set version.version (e.g. "1.0.0") once the first
-# release is on https://github.com/openvireo/openvireo/releases; the page then links each package
-# (OpenVireo-<version>[suffix]-arm64.dmg, ...) and its .sig/.DIGEST sidecars directly. While it
-# is empty every button points to the releases page.
+# version.version is the release on https://github.com/openvireo/openvireo/releases that the page
+# links to (OpenVireo-<version>[suffix]-arm64.dmg, ..., plus the release's SHA256SUMS.txt[.asc]).
+# Left empty, every button points to the releases page. beta: true labels it as a beta (0.x).
 version:
-  version:
+  version: 0.9.0
+  beta: true
   suffix:
     macos:
       dmg_intel:
