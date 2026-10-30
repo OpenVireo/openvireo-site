@@ -1,10 +1,8 @@
 {{- define "partials/download-sidecars.html" }}
-    {{- /* PGP signature + digest links for a release asset URL */ -}}
-    <a href="{{ .url }}.sig"><i class="fa-solid fa-key" aria-hidden="true"></i> PGP Signature</a>
-    <a href="{{ .url }}.DIGEST"><i class="fa-solid fa-hashtag" aria-hidden="true"></i> SHA-256 Digest</a>
-    {{- if .verify }}
+    {{- /* Checksum list + its PGP signature for a release directory URL (one pair per release) */ -}}
+    <a href="{{ .rel }}SHA256SUMS.txt"><i class="fa-solid fa-hashtag" aria-hidden="true"></i> SHA-256 Checksums</a>
+    <a href="{{ .rel }}SHA256SUMS.txt.asc"><i class="fa-solid fa-key" aria-hidden="true"></i> PGP Signature</a>
     <a href="{{ .base }}verifying-signatures"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Verifying Signatures</a>
-    {{- end }}
 {{- end }}
 
 {{- define "partials/download-option.html" }}
@@ -13,9 +11,6 @@
         <div class="option-title">{{ .title | safeHTML }}</div>
         <div class="option-actions">
             {{ partial "button.html" (dict "href" .url "text" (.label | default "Download") "size" "small" "icon" "fa-solid fa-download") }}
-            {{- if not .nosig }}
-            {{ partial "download-sidecars.html" (dict "url" .url) }}
-            {{- end }}
         </div>
         {{- with .note }}<p class="text-muted text-small mb-0" style="margin-top: .5rem">{{ . }}</p>{{ end }}
     </li>
@@ -23,7 +18,7 @@
 
 {{- define "partials/download-version.html" }}
         <p class="text-small text-muted" style="margin-top: .75rem">
-            {{- if .v }}Version {{ .v }} &ndash; <a href="{{ .releases }}">All Releases</a>
+            {{- if .v }}Version {{ .v }}{{ if .beta }} beta{{ end }} &ndash; <a href="{{ .releases }}">All Releases</a>
             {{- else }}No OpenVireo release has been published yet. Downloads will appear on <a href="{{ .releases }}">GitHub Releases</a>.{{ end }}
             &ndash; <a href="{{ site.BaseURL }}download/nightly/">Nightly builds</a>
         </p>
@@ -51,22 +46,33 @@
 {{- $gh := print $releases "/download/" }}
 {{- $v := .Params.version.version | default "" }}
 {{- $sfx := .Params.version.suffix }}
+{{- $beta := .Params.version.beta | default false }}
 {{- $base := .Site.BaseURL }}
-{{- $macArm := $releases }}{{ $macIntel := $releases }}{{ $winMsi := $releases }}{{ $winZip := $releases }}{{ $appImage := $releases }}{{ $tarball := $releases }}
+{{- $macArm := $releases }}{{ $macIntel := $releases }}{{ $winMsi := $releases }}{{ $winZip := $releases }}{{ $appImage := $releases }}{{ $appImageArm := $releases }}{{ $tarball := $releases }}
+{{- $rel := "" }}
 {{- with $v }}
-{{- $rel := printf "%s%s/" $gh . }}
+{{- $rel = printf "%s%s/" $gh . }}
 {{- $macArm = printf "%sOpenVireo-%s%s-arm64.dmg" $rel . ($sfx.macos.dmg_arm64 | default "") }}
 {{- $macIntel = printf "%sOpenVireo-%s%s-x86_64.dmg" $rel . ($sfx.macos.dmg_intel | default "") }}
-{{- $winMsi = printf "%sOpenVireo-%s%s-Win64.msi" $rel . ($sfx.windows.msi | default "") }}
-{{- $winZip = printf "%sOpenVireo-%s%s-Win64.zip" $rel . ($sfx.windows.portable | default "") }}
+{{- $winMsi = printf "%sOpenVireo-%s%s-x64.msi" $rel . ($sfx.windows.msi | default "") }}
+{{- $winZip = printf "%sOpenVireo-%s%s-x64.zip" $rel . ($sfx.windows.portable | default "") }}
 {{- $appImage = printf "%sOpenVireo-%s%s-x86_64.AppImage" $rel . ($sfx.linux.appimage | default "") }}
+{{- $appImageArm = printf "%sOpenVireo-%s%s-aarch64.AppImage" $rel . ($sfx.linux.appimage | default "") }}
 {{- $tarball = printf "%sopenvireo-%s%s-src.tar.xz" $rel . ($sfx.source.tarball | default "") }}
 {{- end }}
-{{- $nosig := not $v }}
 
 <div class="section section-small download-page">
     <div class="container text-center">
         <h1 class="visually-hidden">Download</h1>
+
+        {{- if and $v $beta }}
+        <fluent-message-bar intent="warning" layout="multiline" style="max-width: 42rem; margin: 0 auto 1.5rem; text-align: start">
+            <i class="fa-solid fa-flask" slot="icon" aria-hidden="true"></i>
+            <span><strong>OpenVireo {{ $v }} is a beta.</strong> It is built on KeePassXC's tested code, but OpenVireo's own
+                features are new. Back up your databases before opening them, and
+                <a href="https://github.com/openvireo/openvireo/issues">report any problems</a> you find.</span>
+        </fluent-message-bar>
+        {{- end }}
 
         <fluent-tablist id="os-tabbar" aria-label="Platform">
             <fluent-tab id="tab-macos" aria-controls="macos"><i class="fa-brands fa-apple" slot="start" aria-hidden="true"></i>macOS</fluent-tab>
@@ -84,10 +90,10 @@
                     <p>Keep your passwords safe on the computer you trust, and sync them only if you want to.</p>
 
                     {{ partial "button.html" (dict "href" $macArm "text" "Download for macOS" "appearance" "primary" "size" "hero" "icon" "fa-solid fa-download" "class" (cond (ne $v "") "download" "")) }}
-                    {{ partial "download-version.html" (dict "v" $v "releases" $releases) }}
+                    {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     {{- if $v }}
                     <div class="download-links">
-                        {{ partial "download-sidecars.html" (dict "url" $macArm "verify" true "base" $base) }}
+                        {{ partial "download-sidecars.html" (dict "rel" $rel "base" $base) }}
                     </div>
                     {{- end }}
                 </div>
@@ -96,8 +102,8 @@
                     <h3 class="card-header">More options</h3>
                     <div class="card-body">
                         <ul class="option-list">
-                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-apple"></i> OpenVireo for Apple Silicon Macs` "url" $macArm "nosig" $nosig) }}
-                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-apple"></i> OpenVireo for Intel Macs` "url" $macIntel "nosig" $nosig) }}
+                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-apple"></i> OpenVireo for Apple Silicon Macs` "url" $macArm) }}
+                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-apple"></i> OpenVireo for Intel Macs` "url" $macIntel) }}
                         </ul>
                     </div>
                 </div>
@@ -110,11 +116,11 @@
                     <p>Keep your passwords safe on the computer you trust, and sync them only if you want to.</p>
 
                     {{ partial "button.html" (dict "href" $winMsi "text" "Download for Windows" "appearance" "primary" "size" "hero" "icon" "fa-solid fa-download" "class" (cond (ne $v "") "download" "")) }}
-                    {{ partial "download-version.html" (dict "v" $v "releases" $releases) }}
+                    {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     <p class="text-bold requires-msvc">Requires <a href="https://aka.ms/vc14/vc_redist.x64.exe">MSVC Redistributable</a></p>
                     {{- if $v }}
                     <div class="download-links">
-                        {{ partial "download-sidecars.html" (dict "url" $winMsi "verify" true "base" $base) }}
+                        {{ partial "download-sidecars.html" (dict "rel" $rel "base" $base) }}
                     </div>
                     {{- end }}
                 </div>
@@ -123,8 +129,8 @@
                     <h3 class="card-header">More options</h3>
                     <div class="card-body">
                         <ul class="option-list">
-                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-windows"></i> Installer (64-bit, Windows 10 / 11)` "url" $winMsi "nosig" $nosig) }}
-                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-windows"></i> Portable ZIP (64-bit, Windows 10 / 11)` "url" $winZip "nosig" $nosig) }}
+                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-windows"></i> Installer (64-bit, Windows 10 / 11)` "url" $winMsi) }}
+                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-windows"></i> Portable ZIP (64-bit, Windows 10 / 11)` "url" $winZip) }}
                         </ul>
                     </div>
                 </div>
@@ -137,14 +143,24 @@
                     <p>Keep your passwords safe on the computer you trust, and sync them only if you want to.</p>
 
                     {{ partial "button.html" (dict "href" $appImage "text" "Download AppImage" "appearance" "primary" "size" "hero" "icon" "fa-solid fa-download" "class" (cond (ne $v "") "download" "")) }}
-                    {{ partial "download-version.html" (dict "v" $v "releases" $releases) }}
+                    {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     {{- if $v }}
                     <div class="download-links">
-                        {{ partial "download-sidecars.html" (dict "url" $appImage "verify" true "base" $base) }}
+                        {{ partial "download-sidecars.html" (dict "rel" $rel "base" $base) }}
                     </div>
                     {{- end }}
                     <p class="text-small text-muted">Flatpak, Snap, and distribution packages are not available yet.
                         Packages named <code>keepassxc</code> install upstream KeePassXC, not OpenVireo.</p>
+                </div>
+
+                <div class="card card-options" id="linux-packages-more">
+                    <h3 class="card-header">More options</h3>
+                    <div class="card-body">
+                        <ul class="option-list">
+                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-linux"></i> AppImage (x86_64)` "url" $appImage) }}
+                            {{ partial "download-option.html" (dict "title" `<i class="fa-brands fa-linux"></i> AppImage (ARM64 / aarch64)` "url" $appImageArm) }}
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -155,10 +171,10 @@
                     <p>OpenVireo is free and open source under the GPLv3. Build it yourself, or browse the code on GitHub.</p>
 
                     {{ partial "button.html" (dict "href" (cond (ne $v "") $tarball "https://github.com/openvireo/openvireo") "text" (cond (ne $v "") "Download Source Code" "View Source on GitHub") "appearance" "primary" "size" "hero" "icon" (cond (ne $v "") "fa-solid fa-download" "fa-brands fa-github")) }}
-                    {{ partial "download-version.html" (dict "v" $v "releases" $releases) }}
+                    {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     {{- if $v }}
                     <div class="download-links">
-                        {{ partial "download-sidecars.html" (dict "url" $tarball "verify" true "base" $base) }}
+                        {{ partial "download-sidecars.html" (dict "rel" $rel "base" $base) }}
                     </div>
                     {{- end }}
                 </div>
