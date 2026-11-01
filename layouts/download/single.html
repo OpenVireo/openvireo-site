@@ -74,6 +74,12 @@
         </fluent-message-bar>
         {{- end }}
 
+        <fluent-message-bar id="ios-bar" intent="info" layout="multiline" hidden style="max-width: 42rem; margin: 0 auto 1.5rem; text-align: start">
+            <i class="fa-solid fa-mobile-screen" slot="icon" aria-hidden="true"></i>
+            <span><strong>On an iPhone?</strong> <a href="{{ $base }}ios/">OpenVireo for iPhone is coming soon</a>.
+                Until then, use <a href="{{ .Site.Params.webAppURL }}">OpenVireo in your browser</a>.</span>
+        </fluent-message-bar>
+
         <fluent-tablist id="os-tabbar" aria-label="Platform">
             <fluent-tab id="tab-macos" aria-controls="macos"><i class="fa-brands fa-apple" slot="start" aria-hidden="true"></i>macOS</fluent-tab>
             <fluent-tab id="tab-windows" aria-controls="windows"><i class="fa-brands fa-windows" slot="start" aria-hidden="true"></i>Windows</fluent-tab>
@@ -81,6 +87,11 @@
             <fluent-tab id="tab-code" aria-controls="code"><i class="fa-solid fa-code" slot="start" aria-hidden="true"></i>Source Code</fluent-tab>
             <fluent-tab id="tab-browser" aria-controls="browser"><i class="fa-solid fa-globe" slot="start" aria-hidden="true"></i>Browser Extension</fluent-tab>
         </fluent-tablist>
+
+        <p class="text-small text-muted ios-note">
+            <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> Looking for iPhone?
+            <a href="{{ $base }}ios/">OpenVireo for iPhone is coming soon</a>
+        </p>
 
         <div id="tab-body">
             <!-- macOS -->
@@ -315,6 +326,11 @@
         }
         selectTab(osTabActive);
 
+        // iPhones (and iPads, which report themselves as macOS with a touch screen) can't use these downloads
+        if (uap.os.name === 'iOS' || (uap.os.name === 'macOS' && navigator.maxTouchPoints > 1)) {
+            document.getElementById('ios-bar').hidden = false;
+        }
+
         // Adjust macOS download links to processor architecture
         if (uap.cpu.architecture === 'amd64') {
             const t = document.getElementById('macos');
@@ -347,6 +363,7 @@
         btn.addEventListener('click', () => {
             tabbar.hidden = true;
             tabBody.hidden = true;
+            document.querySelector('.ios-note').hidden = true;
             document.getElementById('screenshot-carousel').hidden = true;
             document.getElementById('download-started').hidden = false;
         });
