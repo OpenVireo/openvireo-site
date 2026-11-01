@@ -113,6 +113,20 @@ through a demo database with a fixed clock, so every run shows the same content.
 `static/assets/img/screenshots/` (with thumbnails), files whose picture hasn't changed are left untouched, and the
 `width`/`height` of every `<img>` showing them is kept up to date.
 
+### iPhone screenshots
+
+The iPhone screenshots on `/ios/` and the Screenshots page come from the openvireo-ios repository's screenshot tests:
+
+```bash
+npm run screenshots:ios                               # ../openvireo-ios
+npm run screenshots:ios -- path/to/openvireo-ios
+```
+
+This needs macOS with Xcode and the iPhone 17 Pro Max simulator, and no server: the tests drive the app through
+sign-up, a demo database, an organization and an import, with a fixed clock and a clean status bar. Screenshots and
+400 px thumbnails go to `static/assets/img/screenshots/ios/`, unchanged ones are left untouched. When the app is
+live, set `app_store_url` in `content/ios.html` to replace "coming soon" with the App Store link.
+
 ## Refresh everything
 
 To recapture every screenshot (docs and website) and rebuild both guides from the openvireo checkout in one go:

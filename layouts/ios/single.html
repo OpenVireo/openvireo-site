@@ -1,0 +1,159 @@
+{{- /*
+    /ios/: the iPhone app. Screenshots come from openvireo-ios (npm run screenshots:ios); `app_store_url` in the
+    front matter turns "coming soon" into the App Store link.
+*/ -}}
+
+{{- define "partials/ios-phone.html" }}
+    {{- /* A screenshot in a phone frame: name (under assets/img/screenshots/ios/), alt, optional class */ -}}
+    <div class="phone{{ with .class }} {{ . }}{{ end }}">
+        <img src="{{ site.BaseURL }}assets/img/screenshots/ios/{{ .name }}.png" alt="{{ .alt }}" width="1320" height="2868"{{ if not .eager }} loading="lazy"{{ end }}>
+    </div>
+{{- end }}
+
+{{- define "main" }}
+{{- $base := .Site.BaseURL }}
+{{- $store := .Params.app_store_url }}
+{{- $shots := slice
+    (dict "name" "welcome" "caption" "Welcome")
+    (dict "name" "create_account" "caption" "Create an account")
+    (dict "name" "emergency_kit" "caption" "Your Emergency Kit")
+    (dict "name" "new_database" "caption" "New database on your iPhone")
+    (dict "name" "local_unlock" "caption" "Unlock a KeePass file")
+    (dict "name" "items" "caption" "All your items")
+    (dict "name" "entry" "caption" "Entry with a one-time password")
+    (dict "name" "edit_entry" "caption" "Edit an entry")
+    (dict "name" "generator" "caption" "Password generator")
+    (dict "name" "organization" "caption" "Organization members")
+    (dict "name" "import" "caption" "Import a .kdbx file")
+}}
+
+<section class="mk-hero ios-hero">
+    <div class="container mk-hero-inner">
+        {{- if not $store }}
+        <p class="mk-pill"><span class="mk-pill-tag">Coming soon</span> The iPhone app is on its way</p>
+        {{- end }}
+        <h1 class="mk-display">OpenVireo for <span class="mk-highlight">iPhone</span></h1>
+        <p class="mk-lead">
+            Your KeePass files and your synced vaults, in your pocket. Open .kdbx files from Files, or sign in to an
+            end-to-end encrypted account and keep every device up to date.
+        </p>
+        <div class="row row-center mk-hero-actions">
+            {{- if $store }}
+            {{ partial "button.html" (dict "href" $store "text" "Download on the App Store" "appearance" "inverse" "size" "hero" "icon" "fa-brands fa-apple") }}
+            {{- else }}
+            <span class="btn btn-inverse btn-hero btn-disabled" aria-disabled="true">
+                <i class="fa-brands fa-apple" aria-hidden="true"></i> Coming soon to the App Store
+            </span>
+            {{- end }}
+            {{ partial "button.html" (dict "href" .Site.Params.webAppURL "text" "Use OpenVireo in your browser" "appearance" "inverse-outline" "size" "hero") }}
+        </div>
+        <p class="mk-hero-note">
+            <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> For iPhone with iOS 18 or later
+        </p>
+    </div>
+    <div class="container ios-hero-phones">
+        {{ partial "ios-phone.html" (dict "name" "entry" "alt" "An entry with its username, password and one-time password" "class" "phone-side" "eager" true) }}
+        {{ partial "ios-phone.html" (dict "name" "items" "alt" "The OpenVireo iPhone app listing the entries of a database" "eager" true) }}
+        {{ partial "ios-phone.html" (dict "name" "emergency_kit" "alt" "The Emergency Kit with the account's Secret Key" "class" "phone-side" "eager" true) }}
+    </div>
+</section>
+
+<section class="mk-section">
+    <div class="container">
+        <header class="mk-section-head">
+            <h2 class="mk-heading">Everything you need,<br>wherever you are</h2>
+            <p class="mk-sublead">The iPhone app reads and writes the same KeePass databases as OpenVireo on your computer, and the same encrypted vaults as the web app.</p>
+        </header>
+
+        <div class="mk-feature">
+            <div class="mk-feature-copy">
+                <p class="eyebrow">No account needed</p>
+                <h3>Your KeePass files on your iPhone</h3>
+                <p>Open .kdbx files from Files, iCloud Drive or any storage app, or create a new database right on your phone. Changes are saved back to the file, so it keeps working with OpenVireo and KeePassXC on your computer.</p>
+                <ul class="mk-checks">
+                    <li>Passwords, notes, attachments and custom fields</li>
+                    <li>One-time passwords, with a QR code scanner</li>
+                    <li>A password generator for random passwords, passphrases and PINs</li>
+                </ul>
+            </div>
+            <div class="mk-feature-media mk-tint-green ios-feature-phones">
+                {{ partial "ios-phone.html" (dict "name" "new_database" "alt" "Creating a new KeePass database on the iPhone") }}
+                {{ partial "ios-phone.html" (dict "name" "edit_entry" "alt" "Editing an entry") }}
+            </div>
+        </div>
+
+        <div class="mk-feature mk-feature-reverse">
+            <div class="mk-feature-copy">
+                <p class="eyebrow">Sync if you want to</p>
+                <h3>An account that can't read your passwords</h3>
+                <p>Create a free account to sync your vaults between your iPhone, your computers and the web app. Everything is encrypted on your device with your master password and a Secret Key that only you hold, on your Emergency Kit.</p>
+                <a class="mk-link" href="{{ $base }}pricing/">Compare plans <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            </div>
+            <div class="mk-feature-media mk-tint-mint ios-feature-phones">
+                {{ partial "ios-phone.html" (dict "name" "create_account" "alt" "Creating an OpenVireo account") }}
+                {{ partial "ios-phone.html" (dict "name" "emergency_kit" "alt" "The Emergency Kit with the account's Secret Key") }}
+            </div>
+        </div>
+
+        <div class="mk-feature">
+            <div class="mk-feature-copy">
+                <p class="eyebrow">Bring what you have</p>
+                <h3>Move your .kdbx into your account</h3>
+                <p>Import a KeePass file into a vault: merge it, add it as copies under a group, or make it a new synced vault. The file itself is opened read-only and never changed.</p>
+            </div>
+            <div class="mk-feature-media mk-tint-sand ios-feature-phones ios-feature-single">
+                {{ partial "ios-phone.html" (dict "name" "import" "alt" "Importing a .kdbx file into a vault") }}
+            </div>
+        </div>
+
+        <div class="mk-feature mk-feature-reverse">
+            <div class="mk-feature-copy">
+                <p class="eyebrow">For teams</p>
+                <h3>Organizations in your pocket</h3>
+                <p>Invite people, confirm new members after comparing their fingerprints, and choose who can open each of your organization's vaults, all from your phone.</p>
+            </div>
+            <div class="mk-feature-media mk-tint-green ios-feature-phones ios-feature-single">
+                {{ partial "ios-phone.html" (dict "name" "organization" "alt" "An organization's members and invitations") }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mk-section mk-section-tinted">
+    <div class="container">
+        <header class="mk-section-head">
+            <h2 class="mk-heading">Screenshots</h2>
+        </header>
+        <ul class="ios-gallery" data-lightbox aria-label="iPhone screenshots">
+            {{- range $shots }}
+            <li>
+                <a href="{{ $base }}assets/img/screenshots/ios/{{ .name }}.png" data-caption="{{ .caption }}">
+                    <img src="{{ $base }}assets/img/screenshots/ios/thumbs/{{ .name }}.png" alt="{{ .caption }}" width="400" height="869" loading="lazy">
+                </a>
+                <span>{{ .caption }}</span>
+            </li>
+            {{- end }}
+        </ul>
+
+        <div class="mk-cards ios-cards">
+            <div class="mk-card">
+                <span class="mk-card-icon mk-tint-green"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+                <h3>AutoFill</h3>
+                <p>Fill passwords and passkeys in Safari and your apps, from your account vaults and your KeePass files.</p>
+            </div>
+            <div class="mk-card">
+                <span class="mk-card-icon mk-tint-mint"><i class="fa-solid fa-face-smile" aria-hidden="true"></i></span>
+                <h3>Face ID</h3>
+                <p>Unlock with a glance. OpenVireo locks itself again when you leave it, after the time you choose.</p>
+            </div>
+            <div class="mk-card">
+                <span class="mk-card-icon mk-tint-sand"><i class="fa-solid fa-server" aria-hidden="true"></i></span>
+                <h3>Your own server</h3>
+                <p>Run the open-source sync server yourself and keep your KeePass files in step on every device.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ partial "cta-band.html" . }}
+{{ end }}

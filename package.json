@@ -15,6 +15,7 @@
   "scripts": {
     "docs": "node scripts/sync-docs.mjs",
     "screenshots": "node scripts/sync-screenshots.mjs",
+    "screenshots:ios": "node scripts/sync-ios-screenshots.mjs",
     "refresh": "node scripts/refresh.mjs",
     "docs:dev": "node scripts/sync-dev-docs.mjs"
   },

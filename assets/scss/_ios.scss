@@ -1,0 +1,143 @@
+// The iPhone page (/ios/) and the iPhone screenshots elsewhere ------------------------------
+
+// A screenshot in a phone frame. The screen's corners follow the iPhone's (55 pt on a 440 × 956 pt screen).
+.phone {
+    padding: 3.2%;
+    border-radius: 15% / 7%;
+    background: #0d110b;
+    box-shadow: var(--mk-shadow-raised), inset 0 0 0 1px rgba(255, 255, 255, .12);
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 12.5% / 5.75%;
+    }
+}
+
+// "Coming soon": shaped like the hero buttons, but not a link
+.btn.btn-disabled {
+    border: 2px solid transparent;
+    background-color: rgba(255, 255, 255, .14);
+    color: #ffffff;
+    cursor: default;
+    pointer-events: none;
+}
+
+.ios-hero-phones {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: #{"clamp(1rem, 4vw, 2.5rem)"};
+    max-width: 56rem;
+    margin-top: #{"clamp(3rem, 6vw, 4.5rem)"};
+
+    .phone {
+        width: #{"min(17rem, 30%)"};
+    }
+
+    .phone-side {
+        width: #{"min(14.5rem, 26%)"};
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: $breakpoint-small) {
+        .phone {
+            width: 62%;
+        }
+
+        .phone-side {
+            display: none;
+        }
+    }
+}
+
+// Two phones side by side in a feature row, the second lower
+.ios-feature-phones {
+    display: flex;
+    justify-content: center;
+    gap: #{"clamp(1rem, 3vw, 2rem)"};
+
+    .phone {
+        width: #{"min(15rem, 46%)"};
+    }
+
+    .phone + .phone {
+        margin-top: 3rem;
+    }
+
+    &.ios-feature-single .phone {
+        width: #{"min(16rem, 70%)"};
+    }
+}
+
+.ios-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(#{"min(100%, 11rem)"}, 1fr));
+    gap: 2rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+        display: flex;
+        flex-direction: column;
+        gap: .75rem;
+        text-align: center;
+    }
+
+    a {
+        display: block;
+        padding: 4%;
+        border-radius: 15% / 7%;
+        background: #0d110b;
+        box-shadow: var(--mk-shadow-raised);
+        transition: translate var(--durationNormal) var(--curveDecelerateMax);
+
+        &:hover {
+            translate: 0 var(--mk-lift);
+        }
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 12.5% / 5.75%;
+    }
+
+    span {
+        color: var(--colorNeutralForeground2);
+        font-size: var(--fontSizeBase300);
+    }
+}
+
+.ios-cards {
+    margin-top: #{"clamp(3rem, 6vw, 5rem)"};
+
+    .mk-card:hover {
+        translate: none;
+        border-color: var(--colorNeutralStroke2);
+        box-shadow: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ios-gallery a {
+        transition: none;
+    }
+}
+
+// The download page's pointer to /ios/, under the platform tabs
+.download-page .ios-note {
+    margin: 1rem 0 0;
+
+    i {
+        margin-inline-end: .25rem;
+    }
+}
+
+// The Screenshots page's iPhone section, after the desktop gallery
+.screenshots-heading {
+    margin-top: 4rem;
+}

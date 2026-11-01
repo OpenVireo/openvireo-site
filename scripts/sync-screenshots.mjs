@@ -12,9 +12,10 @@
 // width/height attributes of every <img> that shows them.
 
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
-import { dirname, join, relative, resolve } from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { pngSize, updateImageSizes } from './lib/screenshots.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const screenshotsDir = join(root, 'static/assets/img/screenshots');
@@ -119,46 +120,9 @@ for (const name of screenshots) {
         sizes[file] = pngSize(join(screenshotsDir, file));
     }
 }
-const updated = [];
-for (const file of htmlFiles([join(root, 'layouts'), join(root, 'content')])) {
-    const html = readFileSync(file, 'utf8');
-    // Tags may hold Hugo shortcodes such as {{< baseurl >}}, whose ">" doesn't end the tag
-    const next = html.replace(/<img\b(?:\{\{[^}]*\}\}|[^>])*>/g, (tag) => {
-        const match = tag.match(/screenshots\/((?:thumbs\/)?[\w-]+\.png)/);
-        const size = match && sizes[match[1]];
-        if (!size) {
-            return tag;
-        }
-        return tag.replace(/\bwidth="\d+"/, `width="${size[0]}"`).replace(/\bheight="\d+"/, `height="${size[1]}"`);
-    });
-    if (next !== html) {
-        writeFileSync(file, next);
-        updated.push(relative(root, file));
-    }
-}
+const updated = updateImageSizes(root, sizes);
 if (updated.length) {
     console.log(`Updated image sizes in ${updated.join(', ')}`);
 }
 
 console.log('\nDone. Review the changes with `git status` and preview them with `hugo serve`.');
-
-// Helpers --------------------------------------------------------------------------------------
-
-// Width and height from a PNG's IHDR chunk
-function pngSize(file) {
-    const header = readFileSync(file).subarray(0, 24);
-    return [header.readUInt32BE(16), header.readUInt32BE(20)];
-}
-
-function* htmlFiles(dirs) {
-    for (const dir of dirs) {
-        for (const entry of readdirSync(dir)) {
-            const path = join(dir, entry);
-            if (statSync(path).isDirectory()) {
-                yield* htmlFiles([path]);
-            } else if (path.endsWith('.html')) {
-                yield path;
-            }
-        }
-    }
-}
