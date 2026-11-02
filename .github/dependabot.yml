@@ -4,3 +4,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      # Font Awesome 7's SCSS uses Sass modules, which Hugo's built-in LibSass can't compile (it broke the
+      # site build in 1d43494). Take major updates by hand together with a switch to Dart Sass.
+      - dependency-name: "@fortawesome/fontawesome-free"
+        update-types: ["version-update:semver-major"]
