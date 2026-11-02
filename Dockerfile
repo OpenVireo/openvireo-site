@@ -26,6 +26,7 @@ RUN HUGO_PARAMS_WEBAPPURL="${WEB_APP_URL}" HUGO_PARAMS_ACCOUNTSURL="${ACCOUNTS_U
 
 FROM nginx:1.27-bookworm
 COPY --from=build /app/public /usr/share/nginx/html
-RUN printf 'server {\n  listen 1313;\n  root /usr/share/nginx/html;\n  error_page 404 /404.html;\n}\n' \
-    > /etc/nginx/conf.d/default.conf
+COPY nginx/default.conf.template /etc/nginx/templates/default.conf.template
+# Strict-Transport-Security value for every response, set at run time; empty sends none
+ENV HSTS=""
 EXPOSE 1313

@@ -1,0 +1,16 @@
+# The nginx image runs envsubst on this at start (/etc/nginx/templates), filling in ${HSTS}.
+server {
+  listen 1313;
+  root /usr/share/nginx/html;
+  error_page 404 /404.html;
+
+  # Redirects (a directory without its trailing slash) stay relative, so they don't name the
+  # container's port or http when TLS is terminated in front
+  absolute_redirect off;
+
+  gzip on;
+  gzip_types text/css application/javascript application/json image/svg+xml application/xml text/xml;
+
+  # Strict-Transport-Security; nginx sends no header when HSTS is empty
+  add_header Strict-Transport-Security "${HSTS}" always;
+}
