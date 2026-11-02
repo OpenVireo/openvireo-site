@@ -1,17 +1,21 @@
-# DigitalOcean App Platform spec for openvireo.com. App Platform builds the Dockerfile and serves the
-# files in output_dir as a static site from its CDN; the nginx stage of the image is not run.
-# Apply with: doctl apps create --spec .do/app.yaml (or doctl apps update <app-id> --spec .do/app.yaml)
+# DigitalOcean App Platform spec for openvireo.com. App Platform builds the Dockerfile and runs its nginx
+# stage as a service. It is a service rather than a static site because static sites can't set response
+# headers, and the site sends Strict-Transport-Security (HSTS below).
+# Apply with: ./deploy-do.sh (or doctl apps update <app-id> --spec .do/app.yaml)
 name: openvireo-site
 domains:
 - domain: openvireo.com
   type: PRIMARY
 - domain: www.openvireo.com
   type: ALIAS
-static_sites:
+services:
 - name: openvireo-site
   dockerfile_path: Dockerfile
-  output_dir: /usr/share/nginx/html
-  error_document: 404.html
+  http_port: 1313
+  instance_count: 1
+  instance_size_slug: apps-s-1vcpu-0.5gb
+  health_check:
+    http_path: /
   github:
     repo: openvireo/openvireo-site
     branch: develop
@@ -27,3 +31,9 @@ static_sites:
   - key: ACCOUNTS_URL
     value: https://accounts.openvireo.com/
     scope: BUILD_TIME
+  # Raised in steps: max-age=300, then 604800 with includeSubDomains, then a year with includeSubDomains and
+  # preload (and submit openvireo.com at hstspreload.org). includeSubDomains covers every *.openvireo.com, so
+  # all of them must be https-only first.
+  - key: HSTS
+    value: max-age=300
+    scope: RUN_TIME

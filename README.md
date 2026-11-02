@@ -141,10 +141,12 @@ them in the openvireo repository too. To publish docs from a branch or tag inste
 
 ## Deploy to DigitalOcean
 
-The site is hosted as a static site on [DigitalOcean App Platform](https://docs.digitalocean.com/products/app-platform/).
-App Platform builds the `Dockerfile` (so it gets Hugo extended and the NPM dependencies) and serves the files the
-build stage puts in `/usr/share/nginx/html` from its CDN. The app is described by [`.do/app.yaml`](.do/app.yaml):
-it builds `develop` on every push and serves `openvireo.com` and `www.openvireo.com`.
+The site runs on [DigitalOcean App Platform](https://docs.digitalocean.com/products/app-platform/) as a service:
+App Platform builds the `Dockerfile` (Hugo extended and the NPM dependencies, then nginx with
+[`nginx/default.conf.template`](nginx/default.conf.template)) and runs the image. It is a service and not a static
+site because App Platform static sites can't set response headers, and the site sends `Strict-Transport-Security`
+from the `HSTS` environment variable (empty sends none, as in the local image). The app is described by
+[`.do/app.yaml`](.do/app.yaml): it builds `develop` on every push and serves `openvireo.com` and `www.openvireo.com`.
 
 To create the app, or to apply changes to the spec:
 
