@@ -103,4 +103,4 @@ can't recover them for you if you lose both your master password and your Emerge
 
 Found a problem? Please report security issues through a
 [GitHub security advisory](https://github.com/openvireo/openvireo/security/advisories/new) or to
-security@openvireo.com.
+admin@openvireo.com.
