@@ -1,0 +1,50 @@
+---
+layout: pages
+title: "Share Links"
+permalink: share-links
+---
+
+<p>A share link gives a copy of an entry, or some text, to someone who doesn't use OpenVireo. They open it in any
+    browser, with no account, no app and no sign-in. You make links in the web app, OpenVireo for desktop and OpenVireo
+    for iOS, from an entry of a vault in your account.</p>
+
+<h2 id="making">Making a link</h2>
+<ul>
+    <li><strong>Web app:</strong> select an entry and click the link button above it.</li>
+    <li><strong>Desktop:</strong> right-click an entry and choose <em>Share Link…</em>.</li>
+    <li><strong>iOS:</strong> open an entry and tap the link button.</li>
+    <li><strong>Command line:</strong> <code>ov share ov://Vault/Entry</code>.</li>
+</ul>
+<p>Choose which fields to include, when the link expires (1 hour to 30 days) and how often it can be opened (any number
+    of times, once, or 5 times). You can also require a passcode, which you send separately. To share text that isn't in
+    a vault, use <em>Share text</em> under <em>Shared links</em>.</p>
+
+<h2 id="recipient">What the person who opens it sees</h2>
+<p>A page that says something was shared with them, with a <em>Reveal</em> button. Nothing is shown until they press
+    it, so a chat app or mail scanner that previews the link doesn't use up a one-time link. After that they see the
+    fields you chose, each with a copy button, and the current code if you shared a one-time code.</p>
+
+<h2 id="security">Why the link has a # in it</h2>
+<p>The part after <code>#</code> is the key that decrypts what you shared. Browsers never send that part to any
+    server, so it stays between you and the person you send the link to. Your device encrypts the copy with that key
+    before it uploads anything, and our servers keep only the encrypted copy. We can't read what you shared.</p>
+<p>Anyone who has the whole link can open it until it expires or reaches its limit, so send it the way you'd send the
+    secret itself. A passcode adds a second secret: the link alone, or the passcode alone, opens nothing, and five wrong
+    passcodes end the link.</p>
+<p>A link holds a copy. Changing or deleting the entry later doesn't change what the link shows. Sharing a one-time
+    code shares its secret, so the person can make codes for that account even after the link ends.</p>
+
+<h2 id="managing">Seeing and revoking your links</h2>
+<p><em>Shared links</em> (on the web: <em>Account</em>; desktop: <em>Account</em> &#8594; <em>Shared Links…</em>; iOS:
+    <em>Settings</em>) lists your links, how often each was opened, and when. Revoking a link stops it at once and
+    deletes the encrypted copy. A link also ends when it expires, when it has been opened as often as you allowed, when
+    you lose access to its vault, or when your organization turns share links off.</p>
+
+<h2 id="organizations">In organizations</h2>
+<p>Owners and admins choose who can make links from the organization's vaults: everyone, only owners and admins, or
+    nobody. Links from organization vaults are in its audit log, without the address of whoever opened them.</p>
+
+<h2 id="plans">Plans</h2>
+<p>Every plan can make share links. On the free plan you can have 5 open links at a time, each lasting up to 7 days;
+    Premium and every organization plan have no limit on links, up to 30 days each. See <a href="/pricing/">pricing</a>.
+</p>

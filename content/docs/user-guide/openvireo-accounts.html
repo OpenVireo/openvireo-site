@@ -156,6 +156,34 @@ You need your master password <strong>and</strong> your Secret Key to sign in on
 <p>To change someone&#8217;s access select them and click <em>Change</em>. Removing a member gives the vault a new key, sealed only to the remaining members, so that what the removed member kept can&#8217;t open the vault&#8217;s future versions.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="_sharing_an_entry_with_a_link"><a class="anchor" href="#_sharing_an_entry_with_a_link"></a>Sharing an Entry with a Link</h4>
+<div class="paragraph">
+<p>A share link gives a copy of an entry to anyone, who opens it in a browser without an account. Right-click an entry of an account vault and choose <em>Share Link…</em>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Tick the fields to include. Username, password and website are ticked; notes, the one-time code and custom fields are not. Sharing the one-time code shares its secret, so whoever opens the link can make codes for that account even after the link ends.</p>
+</li>
+<li>
+<p>Choose when the link expires (1 hour to 30 days; 7 days at most on the free plan) and how often it can be opened (any number of times, once, or 5 times).</p>
+</li>
+<li>
+<p>Optionally tick <em>Require a passcode</em> and send the passcode another way than the link.</p>
+</li>
+<li>
+<p>Click <em>Make Link</em>, then <em>Copy Link</em> or show the QR code.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The entry is encrypted on your computer with a new key that is only in the link, after the <code>#</code>, which browsers don&#8217;t send to any server, so OpenVireo can&#8217;t read what you shared. The link holds a copy: editing or deleting the entry later doesn&#8217;t change it. Nothing is shown until the person clicks <em>Reveal</em>, so a chat app&#8217;s link preview doesn&#8217;t use up a one-time link.</p>
+</div>
+<div class="paragraph">
+<p><em>Account</em> &#8594; <em>Shared Links…</em> lists your links with how often each was opened, revokes a link at once, and shares some text that isn&#8217;t in a vault (<em>Share Text…</em>). A link also stops working when it expires, has been opened as often as allowed, after five wrong passcodes, when you lose access to its vault, or when your organization turns share links off (owners and admins choose who can make share links in the web app, under <em>Organizations</em> &#8594; <em>Share links</em>).</p>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_organizations"><a class="anchor" href="#_organizations"></a>Organizations</h3>
