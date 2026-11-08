@@ -8,7 +8,7 @@ self_host: {v: "yes", note: "Official sync server, free, no limits. Sync only: n
 desktop: {v: "yes", note: "Native app for Windows, macOS and Linux"}
 mobile: {v: "partial", note: "iPhone, with AutoFill. No Android app"}
 web: {v: "yes", note: "OpenVireo Web"}
-browser: {v: "partial", note: "Firefox, Chrome and Edge. No Safari"}
+browser: {v: "yes", note: "Firefox, Chrome and Edge, and Safari through macOS AutoFill"}
 autotype: {v: "yes", note: "Auto-type on Windows, macOS and Linux"}
 passkeys: {v: "yes", note: "Desktop, browser extension and iPhone AutoFill"}
 totp: {v: "yes", note: "Free, in every app"}
