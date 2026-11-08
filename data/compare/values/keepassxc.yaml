@@ -1,0 +1,28 @@
+# KeePassXC's column. OpenVireo is a fork of KeePassXC; keep this column fair. Every value needs `source` and
+# `checked`; see 1password.yaml.
+open_source: {v: "yes", note: "GPLv3", source: "https://keepassxc.org/", checked: "2026-11-08"}
+no_account: {v: "yes", note: "No accounts at all", source: "https://keepassxc.org/", checked: "2026-11-08"}
+open_format: {v: "yes", note: "KeePass (KDBX)", source: "https://keepassxc.org/", checked: "2026-11-08"}
+sync: {v: "no", note: "Keep the file in Dropbox, Nextcloud or similar", source: "https://keepassxc.org/docs/", checked: "2026-11-08"}
+self_host: {v: "na", note: "No server", source: "https://keepassxc.org/docs/", checked: "2026-11-08"}
+desktop: {v: "yes", note: "Native app for Windows, macOS and Linux", source: "https://keepassxc.org/", checked: "2026-11-08"}
+mobile: {v: "no", note: "No official app; third-party KeePass apps open the same file", source: "https://keepassxc.org/docs/", checked: "2026-11-08"}
+web: {v: "no", note: "None", source: "https://keepassxc.org/", checked: "2026-11-08"}
+browser: {v: "partial", note: "Firefox, Chrome and Edge. No Safari", source: "https://github.com/keepassxreboot/keepassxc-browser", checked: "2026-11-08"}
+autotype: {v: "yes", note: "Auto-type on Windows, macOS and Linux", source: "https://keepassxc.org/", checked: "2026-11-08"}
+passkeys: {v: "yes", note: "Desktop and browser extension", source: "https://keepassxc.org/", checked: "2026-11-08"}
+totp: {v: "yes", note: "Free", source: "https://keepassxc.org/", checked: "2026-11-08"}
+ssh: {v: "yes", note: "In the desktop app", source: "https://keepassxc.org/", checked: "2026-11-08"}
+hw_unlock: {v: "yes", note: "YubiKey challenge-response and key files", source: "https://keepassxc.org/", checked: "2026-11-08"}
+two_secret: {v: "na", note: "No account; your file, password and optional key file", source: "https://keepassxc.org/", checked: "2026-11-08"}
+account_2fa: {v: "na", note: "No accounts", source: "https://keepassxc.org/", checked: "2026-11-08"}
+audit: {v: "yes", note: "Independent audit in 2023; ANSSI CSPN certification for 2.7.9", source: "https://keepassxc.org/docs/", checked: "2026-11-08"}
+sharing: {v: "partial", note: "KeeShare: sync a shared file", source: "https://keepassxc.org/", checked: "2026-11-08"}
+share_links: {v: "no", note: "None", source: "https://keepassxc.org/", checked: "2026-11-08"}
+emergency: {v: "na", note: "No accounts", source: "https://keepassxc.org/", checked: "2026-11-08"}
+machines: {v: "partial", note: "keepassxc-cli against a local file", source: "https://keepassxc.org/", checked: "2026-11-08"}
+price_free: {v: "yes", note: "Free, with no paid plans", source: "https://keepassxc.org/", checked: "2026-11-08"}
+price_personal: {v: "na", note: "No plans", source: "https://keepassxc.org/", checked: "2026-11-08"}
+price_family: {v: "na", note: "No plans", source: "https://keepassxc.org/", checked: "2026-11-08"}
+price_team: {v: "na", note: "No plans", source: "https://keepassxc.org/", checked: "2026-11-08"}
+price_business: {v: "na", note: "No plans", source: "https://keepassxc.org/", checked: "2026-11-08"}

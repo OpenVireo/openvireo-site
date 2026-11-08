@@ -1,0 +1,102 @@
+---
+title: OpenVireo vs Bitwarden
+seoTitle: "OpenVireo vs Bitwarden: open source, compared honestly"
+description: OpenVireo and Bitwarden compared. Open KeePass files, a Secret Key and desktop auto-type, against Bitwarden's apps on every platform, lower Premium price and published audits.
+cardText: Both are open source with a free plan. Bitwarden has apps everywhere and years of audits; OpenVireo adds a Secret Key and keeps your passwords in a KeePass file.
+icon: fa-shield-halved
+tint: mint
+weight: 2
+competitor: bitwarden
+lead: >-
+  Bitwarden and OpenVireo are both open source and both have a free plan. Bitwarden is a hosted service with
+  apps on every platform and a long record of published audits. OpenVireo keeps your passwords in an open
+  KeePass file, works without an account, and protects your account with a Secret Key as well as your password.
+draft: true
+faq:
+  - q: Can I import my Bitwarden vault into OpenVireo?
+    a: Yes. Export your vault from Bitwarden as an unencrypted .json file, then import it in the OpenVireo desktop app. See <a href="/docs/user-guide/importing-databases/#_bitwarden">Importing from Bitwarden</a>.
+  - q: Is OpenVireo fully open source like Bitwarden?
+    a: Not entirely. The desktop app, browser extension, sync server and SDK are open source. OpenVireo Web, the iPhone app and the account service are not. Bitwarden's apps are open source, with some business server features under its own source-available licence.
+  - q: Is OpenVireo cheaper than Bitwarden?
+    a: Not for one person. Bitwarden Premium is $19.80 a year and OpenVireo Premium is $30 a year. For a team, both charge $4 per member a month. What OpenVireo includes free, such as one-time codes and a service account, Bitwarden puts in paid plans or a separate product.
+  - q: Can I host OpenVireo myself, like Bitwarden?
+    a: Yes. The <a href="/docs/sync-server/">OpenVireo Sync Server</a> is free with no limits. It syncs each user's own devices; it doesn't share vaults between users. For sharing, use a hosted account's organizations.
+  - q: Does OpenVireo have an Android app?
+    a: Not yet. OpenVireo runs on Windows, macOS, Linux, iPhone and in the browser. Bitwarden has an Android app.
+---
+
+<h2 id="short">The short version</h2>
+<p><strong>Pick Bitwarden</strong> if you need Android or Safari, want the cheapest paid plan for one person,
+    want emergency access, or want a service with years of published audits.</p>
+<p><strong>Pick OpenVireo</strong> if you want your passwords in an open KeePass file, an app that works with no
+    account, a Secret Key on top of your password, or desktop features such as auto-type into any app.</p>
+
+<h2 id="different">Where OpenVireo is different</h2>
+<div class="cmp-points">
+    <div class="cmp-point">
+        <h3>A Secret Key as well as your password</h3>
+        <p>OpenVireo mixes a random 128-bit Secret Key, made on your device, into your account keys. If the
+            server's data were ever stolen, guessing your password wouldn't be enough. Bitwarden's keys come from
+            your master password alone.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Your data stays in an open format</h3>
+        <p>Every OpenVireo vault is a KeePass (KDBX) file that dozens of apps can open, and you can use it without
+            an account at all. Bitwarden needs an account and exports to JSON or CSV.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Made for desktop power users</h3>
+        <p>Auto-type logins into any app on Windows, macOS and Linux, and unlock with a YubiKey or a key file.
+            Bitwarden fills logins in browsers and on mobile.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>One-time codes on the free plan</h3>
+        <p>OpenVireo generates TOTP codes in every app, on every plan. Bitwarden stores the keys for free but
+            needs a paid plan to generate codes.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Secrets for your servers included</h3>
+        <p>Every OpenVireo organization gets service accounts for the CLI, the GitHub Action and Kubernetes, one on
+            Free. Bitwarden sells this as a separate product, Secrets Manager.</p>
+    </div>
+</div>
+
+<h2 id="ahead">Where Bitwarden is ahead</h2>
+<ul class="cmp-ahead">
+    <li><strong>More platforms.</strong> Bitwarden has an Android app and a Safari extension. OpenVireo has neither
+        yet.</li>
+    <li><strong>Lower price for one person.</strong> Bitwarden Premium is $19.80 a year; OpenVireo Premium is $30.
+        Families is about the same: $47.88 against $50, both for 6 people.</li>
+    <li><strong>Published audits, every year.</strong> Bitwarden publishes reports from firms such as Cure53 every
+        year. OpenVireo has had no third-party audit.</li>
+    <li><strong>Emergency access.</strong> Bitwarden lets a trusted contact reach your vault if something happens to
+        you. OpenVireo doesn't have this.</li>
+    <li><strong>Security keys for sign-in, free.</strong> Bitwarden accepts FIDO2 security keys on every plan.
+        OpenVireo accounts use an authenticator app.</li>
+    <li><strong>More of it is open source.</strong> All of Bitwarden's apps are open source. OpenVireo's web app,
+        iPhone app and account service are not.</li>
+    <li><strong>Finer sharing.</strong> Bitwarden shares collections of items inside an organization. OpenVireo
+        shares whole vaults, and single items only through share links.</li>
+</ul>
+
+<h2 id="security">How the security compares</h2>
+<p>Both encrypt your data on your device, so the server only stores ciphertext. The difference is what protects
+    that ciphertext if the server's data ever leaked. With Bitwarden, it's the strength of your master password.
+    With OpenVireo, it's your password combined with a 128-bit Secret Key that never leaves your devices. The
+    same design is used by 1Password. OpenVireo also signs you in with OPAQUE, so your password never reaches the
+    server, not even during sign-in.</p>
+<p>Bitwarden encrypts each item separately, which allows sharing at the item and collection level. OpenVireo
+    encrypts each vault as one KeePass file, which keeps it readable by any KeePass app.</p>
+<p>Bitwarden backs its design with a public record of third-party audits. OpenVireo doesn't have one, so you'll
+    need to judge it on its <a href="https://github.com/openvireo">open-source code</a> and design.</p>
+
+<h2 id="switch">Switching from Bitwarden</h2>
+<ol class="cmp-steps">
+    <li>In Bitwarden, export your vault in the <strong>.json</strong> format (not the encrypted one).</li>
+    <li><a href="/download/">Install OpenVireo</a>, choose <strong>Database › Import…</strong> and pick
+        <strong>Bitwarden</strong> in the Import Wizard. See
+        <a href="/docs/user-guide/importing-databases/#_bitwarden">Importing from Bitwarden</a>.</li>
+    <li>Securely delete the export file. It isn't encrypted.</li>
+    <li>To use your passwords on your iPhone and in the browser, <a href="/docs/user-guide/openvireo-accounts/#_moving_a_database_to_your_account">move
+        the database to a free account</a>.</li>
+</ol>

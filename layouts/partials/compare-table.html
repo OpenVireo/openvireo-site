@@ -1,0 +1,57 @@
+{{- /*
+    A comparison table built from data/compare (products.yaml, rows.yaml, values/<id>.yaml), so the hub
+    and every comparison page show the same facts.
+
+    Parameters:
+      products  slice of product dicts from products.yaml, in column order (OpenVireo first)
+      groups    slice of group ids from rows.yaml to show, e.g. (slice "pricing")
+      caption   accessible name for the table
+
+    Each cell shows a mark (icon plus word, never colour alone) and a short note. With two products the table
+    stacks into cards on narrow screens (_compare.scss); with more it scrolls inside its own frame.
+*/ -}}
+{{- $products := .products }}
+{{- $groups := .groups }}
+{{- $data := site.Data.compare }}
+{{- $pair := eq (len $products) 2 }}
+<div class="cmp-scroll" role="region" aria-label="{{ .caption }}" tabindex="0">
+<table class="cmp-table{{ if $pair }} cmp-table-pair{{ end }}">
+    <caption class="visually-hidden">{{ .caption }}</caption>
+    <thead>
+    <tr>
+        <td class="cmp-corner"></td>
+        {{- range $products }}
+        <th scope="col"{{ if .self }} class="cmp-self"{{ end }}>{{ .name }}</th>
+        {{- end }}
+    </tr>
+    </thead>
+    {{- range $data.rows.groups }}
+    {{- if in $groups .id }}
+    {{- $gid := .id }}
+    <tbody>
+    {{- if gt (len $groups) 1 }}
+    <tr class="cmp-group"><th scope="rowgroup" colspan="{{ add 1 (len $products) }}">{{ .label }}</th></tr>
+    {{- end }}
+    {{- range where $data.rows.rows "group" $gid }}
+    {{- $rid := .id }}
+    <tr>
+        <th scope="row">{{ .label }}</th>
+        {{- range $products }}
+        {{- $val := index $data.values .id $rid }}
+        <td class="cmp-cell cmp-{{ $val.v }}{{ if .self }} cmp-self{{ end }}" data-product="{{ .name }}">
+            {{- if eq $val.v "yes" }}<span class="cmp-mark"><i class="fa-solid fa-check" aria-hidden="true"></i> Yes</span>
+            {{- else if eq $val.v "no" }}<span class="cmp-mark"><i class="fa-solid fa-xmark" aria-hidden="true"></i> No</span>
+            {{- else if eq $val.v "partial" }}<span class="cmp-mark"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Partly</span>
+            {{- else if eq $val.v "na" }}<span class="cmp-mark"><i class="fa-solid fa-minus" aria-hidden="true"></i> N/A</span>
+            {{- end }}
+            <span class="cmp-note">{{ $val.note }}</span>
+        </td>
+        {{- end }}
+    </tr>
+    {{- end }}
+    </tbody>
+    {{- end }}
+    {{- end }}
+</table>
+</div>
+{{- /* trim */ -}}

@@ -154,6 +154,32 @@
     </div>
 </section>
 
+{{- /* Only once the comparison pages are published (they're drafts until the iPhone app launches) */}}
+{{- with site.GetPage "/compare" }}
+<section class="mk-section mk-section-compare" aria-labelledby="compare-heading">
+    <div class="container">
+        <header class="mk-section-head">
+            <h2 class="mk-heading" id="compare-heading">Coming from another password manager?</h2>
+            <p class="mk-sublead">See how OpenVireo compares, including where the others are ahead. Then bring your passwords with you: OpenVireo imports from 1Password, Bitwarden, Proton Pass and any KeePass app.</p>
+        </header>
+        <div class="mk-cards">
+            {{- range .Pages.ByWeight }}
+            <a class="mk-card" href="{{ .RelPermalink }}">
+                <span class="mk-card-icon mk-tint-{{ .Params.tint | default "green" }}"><i class="fa-solid {{ .Params.icon | default "fa-scale-balanced" }}" aria-hidden="true"></i></span>
+                <h3>{{ .Title }}</h3>
+                <p>{{ .Params.cardText | default .Description }}</p>
+                <span class="mk-link">Compare <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+            </a>
+            {{- end }}
+        </div>
+        <p class="mk-section-foot">
+            <a class="mk-link" href="{{ .RelPermalink }}">All of them in one table <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+            <a class="mk-link" href="{{ $base }}docs/user-guide/importing-databases/">How importing works <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</section>
+{{- end }}
+
 {{- with where .Site.RegularPages "Section" "blog" }}
 <section class="mk-section mk-section-tinted">
     <div class="container">

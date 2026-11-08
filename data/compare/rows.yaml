@@ -1,0 +1,43 @@
+# Rows of the comparison tables, in display order, grouped by `group`.
+# Every product in products.yaml needs a value for every row (scripts/check-compare.mjs checks).
+# The `pricing` group is shown as its own table.
+groups:
+  - id: ownership
+    label: Ownership and openness
+  - id: apps
+    label: Apps
+  - id: features
+    label: Everyday features
+  - id: security
+    label: Security
+  - id: sharing
+    label: Sharing and teams
+  - id: pricing
+    label: Pricing
+rows:
+  - {id: open_source, group: ownership, label: Open source}
+  - {id: no_account, group: ownership, label: Works without an account}
+  - {id: open_format, group: ownership, label: Open file format}
+  - {id: sync, group: ownership, label: Built-in sync}
+  - {id: self_host, group: ownership, label: Self-host the server}
+  - {id: desktop, group: apps, label: Desktop apps}
+  - {id: mobile, group: apps, label: Mobile apps}
+  - {id: web, group: apps, label: Web app}
+  - {id: browser, group: apps, label: Browser extensions}
+  - {id: autotype, group: features, label: Type logins into any desktop app}
+  - {id: passkeys, group: features, label: Passkeys}
+  - {id: totp, group: features, label: One-time codes (TOTP)}
+  - {id: ssh, group: features, label: SSH agent}
+  - {id: hw_unlock, group: features, label: Unlock with a hardware key or key file}
+  - {id: two_secret, group: security, label: Secret Key as well as your password}
+  - {id: account_2fa, group: security, label: Security keys for account sign-in}
+  - {id: audit, group: security, label: Published third-party audit}
+  - {id: sharing, group: sharing, label: Share with family or a team}
+  - {id: share_links, group: sharing, label: Send one item to someone without an account}
+  - {id: emergency, group: sharing, label: Emergency access}
+  - {id: machines, group: sharing, label: Secrets for CI jobs and servers}
+  - {id: price_free, group: pricing, label: Free plan}
+  - {id: price_personal, group: pricing, label: One person}
+  - {id: price_family, group: pricing, label: Families}
+  - {id: price_team, group: pricing, label: Teams}
+  - {id: price_business, group: pricing, label: Business}

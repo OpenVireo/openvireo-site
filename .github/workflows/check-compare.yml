@@ -1,0 +1,27 @@
+# Checks the data behind the comparison pages (/compare/): on every change to it, and weekly so facts that
+# haven't been rechecked for 90 days fail the run (scripts/check-compare.mjs --strict).
+name: Check comparison data
+
+on:
+  push:
+    paths: ['data/compare/**', 'scripts/check-compare.mjs']
+  pull_request:
+    paths: ['data/compare/**', 'scripts/check-compare.mjs']
+  schedule:
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: node scripts/check-compare.mjs ${{ github.event_name == 'schedule' && '--strict' || '' }}

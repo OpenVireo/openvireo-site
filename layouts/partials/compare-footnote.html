@@ -1,0 +1,40 @@
+{{- /*
+    The "last checked" line, the sources and the trademark notices under a comparison.
+    Parameter: a slice of competitor product dicts (from data/compare/products.yaml).
+*/ -}}
+{{- $sources := slice }}
+{{- $dates := slice }}
+{{- $names := slice }}
+{{- range . }}
+    {{- $names = $names | append .name }}
+    {{- range $id, $val := index site.Data.compare.values .id }}
+        {{- with $val.source }}{{ $sources = $sources | append . }}{{ end }}
+        {{- with $val.checked }}{{ $dates = $dates | append . }}{{ end }}
+    {{- end }}
+{{- end }}
+{{- $sources = $sources | uniq | sort }}
+<aside class="cmp-footnote" aria-label="Sources and trademarks">
+    {{- with $dates }}
+    <p>
+        We checked every fact about {{ delimit $names ", " " and " }} against their own websites and
+        documentation; the oldest check was on {{ index (sort .) 0 | time.AsTime | time.Format "2 January 2006" }}.
+        Prices are in US dollars and change often, so check before you buy.
+        If something here is wrong or out of date,
+        <a href="https://github.com/openvireo/openvireo-site/issues/new?title=Comparison%20pages%3A%20">open an issue</a>
+        and we'll fix it.
+    </p>
+    {{- end }}
+    <details>
+        <summary>Sources</summary>
+        <ul>
+            {{- range $sources }}
+            <li><a href="{{ . }}" rel="noopener">{{ . }}</a></li>
+            {{- end }}
+        </ul>
+    </details>
+    <p>
+        {{- range . }}{{ .trademark }} {{ end -}}
+        OpenVireo is not affiliated with, endorsed by or sponsored by any of them.
+    </p>
+</aside>
+{{- /* trim */ -}}

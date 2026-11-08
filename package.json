@@ -17,7 +17,8 @@
     "screenshots": "node scripts/sync-screenshots.mjs",
     "screenshots:ios": "node scripts/sync-ios-screenshots.mjs",
     "refresh": "node scripts/refresh.mjs",
-    "docs:dev": "node scripts/sync-dev-docs.mjs"
+    "docs:dev": "node scripts/sync-dev-docs.mjs",
+    "check:compare": "node scripts/check-compare.mjs"
   },
   "dependencies": {
     "@fluentui/web-components": "^3.1.3",

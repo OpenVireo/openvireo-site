@@ -1,0 +1,96 @@
+{{- /*
+    /compare/<competitor>/: OpenVireo next to one other password manager.
+
+    Front matter:
+      competitor  product id from data/compare/products.yaml
+      seoTitle    the <title>
+      lead        the summary under the heading (HTML allowed)
+      faq         list of {q, a}; a may hold HTML. Also emitted as FAQPage JSON-LD.
+    The page body (.Content) holds the prose sections; the tables come from data/compare.
+*/ -}}
+{{- define "title" }}<title>{{ .Params.seoTitle | default .Title }}</title>{{ end }}
+
+{{- define "head" }}
+{{- with .Params.faq }}
+{{- $items := slice }}
+{{- range . }}
+    {{- $items = $items | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" (.a | plainify | htmlUnescape))) }}
+{{- end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $items | jsonify | safeJS }}</script>
+{{- end }}
+{{- end }}
+
+{{- define "main" }}
+{{- $products := site.Data.compare.products }}
+{{- $self := index (where $products "id" "openvireo") 0 }}
+{{- $them := index (where $products "id" .Params.competitor) 0 }}
+{{- $both := slice $self $them }}
+<div class="page-header cmp-header">
+    <div class="container">
+        {{ partial "breadcrumbs.html" . }}
+        <p class="eyebrow">Compare</p>
+        <h1>{{ .Title }}</h1>
+        {{- with .Params.lead }}
+        <p class="cmp-lead">{{ . | safeHTML }}</p>
+        {{- end }}
+        <div class="row cmp-header-actions">
+            {{ partial "button.html" (dict "href" (print site.BaseURL "download") "text" "Download OpenVireo" "appearance" "primary" "size" "large") }}
+            {{ partial "button.html" (dict "href" "#switch" "text" (print "Switching from " $them.name) "appearance" "outline" "size" "large") }}
+        </div>
+    </div>
+</div>
+
+<div class="section section-small">
+    <div class="container">
+        <section class="cmp-section" aria-labelledby="at-a-glance">
+            <h2 id="at-a-glance">At a glance</h2>
+            {{ partial "compare-table.html" (dict "products" $both "groups" (slice "ownership" "apps" "features" "security" "sharing") "caption" (print "OpenVireo and " $them.name " feature by feature")) }}
+        </section>
+
+        <div class="page-content cmp-content">
+            {{ .Content }}
+        </div>
+
+        <section class="cmp-section" aria-labelledby="pricing">
+            <h2 id="pricing">Pricing side by side</h2>
+            {{ partial "compare-table.html" (dict "products" $both "groups" (slice "pricing") "caption" (print "OpenVireo and " $them.name " pricing")) }}
+            <p class="cmp-after-table">
+                The OpenVireo apps, local databases and a self-hosted sync server are free on every plan.
+                Plans pay for the hosted service. <a href="{{ site.BaseURL }}pricing/">See OpenVireo pricing</a>.
+            </p>
+        </section>
+
+        {{- with .Params.faq }}
+        <section class="cmp-section page-content" aria-labelledby="faq">
+            <h2 id="faq">Questions</h2>
+            {{- range . }}
+            <details>
+                <summary>{{ .q }}</summary>
+                <p>{{ .a | safeHTML }}</p>
+            </details>
+            {{- end }}
+        </section>
+        {{- end }}
+
+        <section class="cmp-section cmp-others" aria-labelledby="other-comparisons">
+            <h2 id="other-comparisons">Other comparisons</h2>
+            <ul>
+                {{- range where $products "page" "!=" nil }}
+                {{- if ne .id $them.id }}
+                {{- with site.GetPage .page }}
+                <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+                {{- end }}
+                {{- end }}
+                {{- end }}
+                {{- with site.GetPage "/compare" }}
+                <li><a href="{{ .RelPermalink }}">All of them in one table</a></li>
+                {{- end }}
+            </ul>
+        </section>
+
+        {{ partial "compare-footnote.html" (slice $them) }}
+    </div>
+</div>
+
+{{ partial "cta-band.html" . }}
+{{- end }}

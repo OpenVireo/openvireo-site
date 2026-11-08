@@ -1,0 +1,28 @@
+# OpenVireo's column. v: yes | no | partial | na | text. Keep it as honest as the competitors' columns:
+# when a feature ships or a gap closes, change it here and every comparison page follows.
+open_source: {v: "partial", note: "Desktop app, browser extension, sync server and SDK are open source. The web app, iOS app and account service are not"}
+no_account: {v: "yes", note: "Local KeePass files, no sign-up"}
+open_format: {v: "yes", note: "KeePass (KDBX)"}
+sync: {v: "yes", note: "Hosted account, or your own sync server"}
+self_host: {v: "yes", note: "Official sync server, free, no limits. Sync only: no sharing between its users"}
+desktop: {v: "yes", note: "Native app for Windows, macOS and Linux"}
+mobile: {v: "partial", note: "iPhone, with AutoFill. No Android app"}
+web: {v: "yes", note: "OpenVireo Web"}
+browser: {v: "partial", note: "Firefox, Chrome and Edge. No Safari"}
+autotype: {v: "yes", note: "Auto-type on Windows, macOS and Linux"}
+passkeys: {v: "yes", note: "Desktop, browser extension and iPhone AutoFill"}
+totp: {v: "yes", note: "Free, in every app"}
+ssh: {v: "yes", note: "In the desktop app"}
+hw_unlock: {v: "yes", note: "YubiKey challenge-response and key files"}
+two_secret: {v: "yes", note: "128-bit Secret Key; OPAQUE sign-in"}
+account_2fa: {v: "no", note: "Authenticator app (TOTP) only"}
+audit: {v: "no", note: "None"}
+sharing: {v: "yes", note: "Shared vaults in organizations, with roles and an audit log"}
+share_links: {v: "yes", note: "Share links. Free: 5 open links, up to 7 days"}
+emergency: {v: "no", note: "No. Account recovery instead"}
+machines: {v: "yes", note: "Service accounts on every plan: CLI, GitHub Action, Kubernetes"}
+price_free: {v: "yes", note: "Sync 1 vault, open shared vaults, a 2-member organization"}
+price_personal: {v: "text", note: "$3 a month, or $30 a year"}
+price_family: {v: "text", note: "$5 a month, or $50 a year, for 6 people"}
+price_team: {v: "text", note: "$4 per member a month, or $40 a year"}
+price_business: {v: "text", note: "$8 per member a month, or $80 a year"}

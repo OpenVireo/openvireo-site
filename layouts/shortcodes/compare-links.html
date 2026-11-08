@@ -1,0 +1,7 @@
+{{- /* "How does this compare?" links to /compare/, shown only once those pages are published */ -}}
+{{- with site.GetPage "/compare" }}
+<p>How do these plans compare?
+    {{- $links := slice }}
+    {{- range .Pages.ByWeight }}{{ $links = $links | append (printf `<a href="%s">%s</a>` .RelPermalink .Title) }}{{ end }}
+    See {{ delimit $links ", " ", and " | safeHTML }}, or <a href="{{ .RelPermalink }}">all of them in one table</a>.</p>
+{{- end }}

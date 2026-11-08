@@ -1,0 +1,63 @@
+{{- /*
+    /compare/: every product in data/compare in one matrix, plus a card per comparison page.
+    Front matter: seoTitle, lead (HTML allowed).
+*/ -}}
+{{- define "title" }}<title>{{ .Params.seoTitle | default .Title }}</title>{{ end }}
+
+{{- define "main" }}
+{{- $products := site.Data.compare.products }}
+{{- $competitors := where $products "id" "!=" "openvireo" }}
+<div class="page-header cmp-header">
+    <div class="container">
+        {{ partial "breadcrumbs.html" . }}
+        <p class="eyebrow">Compare</p>
+        <h1>{{ .Title }}</h1>
+        {{- with .Params.lead }}
+        <p class="cmp-lead">{{ . | safeHTML }}</p>
+        {{- end }}
+    </div>
+</div>
+
+<div class="section section-small">
+    <div class="container">
+        {{- with .Pages }}
+        <section class="cmp-section" aria-labelledby="comparisons">
+            <h2 id="comparisons" class="visually-hidden">Comparisons</h2>
+            <div class="mk-cards cmp-cards">
+                {{- range .ByWeight }}
+                <a class="mk-card" href="{{ .RelPermalink }}">
+                    <span class="mk-card-icon mk-tint-{{ .Params.tint | default "green" }}"><i class="fa-solid {{ .Params.icon | default "fa-scale-balanced" }}" aria-hidden="true"></i></span>
+                    <h3>{{ .Title }}</h3>
+                    <p>{{ .Params.cardText | default .Description }}</p>
+                    <span class="mk-link">Read the comparison <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                </a>
+                {{- end }}
+            </div>
+        </section>
+        {{- end }}
+
+        <div class="page-content cmp-content">
+            {{ .Content }}
+        </div>
+
+        <section class="cmp-section" aria-labelledby="matrix">
+            <h2 id="matrix">Feature by feature</h2>
+            <p class="cmp-scroll-hint">The table scrolls sideways on small screens.</p>
+            {{ partial "compare-table.html" (dict "products" $products "groups" (slice "ownership" "apps" "features" "security" "sharing") "caption" "OpenVireo, 1Password, Bitwarden, Vaultwarden and KeePassXC feature by feature") }}
+        </section>
+
+        <section class="cmp-section" aria-labelledby="pricing">
+            <h2 id="pricing">Pricing</h2>
+            {{ partial "compare-table.html" (dict "products" $products "groups" (slice "pricing") "caption" "Pricing of each password manager") }}
+            <p class="cmp-after-table">
+                The OpenVireo apps, local databases and a self-hosted sync server are free on every plan.
+                <a href="{{ site.BaseURL }}pricing/">See OpenVireo pricing</a>.
+            </p>
+        </section>
+
+        {{ partial "compare-footnote.html" $competitors }}
+    </div>
+</div>
+
+{{ partial "cta-band.html" . }}
+{{- end }}

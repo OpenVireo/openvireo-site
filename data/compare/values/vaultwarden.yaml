@@ -1,0 +1,28 @@
+# Vaultwarden's column: the self-hosted server, used with Bitwarden's apps. Every value needs `source` and
+# `checked`; see 1password.yaml.
+open_source: {v: "yes", note: "AGPL-3.0 server, written in Rust", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+no_account: {v: "partial", note: "An account on your own server", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+open_format: {v: "partial", note: "Bitwarden's JSON or CSV export", source: "https://bitwarden.com/help/export-your-data/", checked: "2026-11-08"}
+sync: {v: "yes", note: "Through your own server", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+self_host: {v: "yes", note: "Lightweight and unofficial; Bitwarden's paid features included", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+desktop: {v: "yes", note: "Bitwarden's desktop apps", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+mobile: {v: "yes", note: "Bitwarden's iOS and Android apps", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+web: {v: "yes", note: "Bitwarden's web vault, bundled", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+browser: {v: "yes", note: "Bitwarden's extensions, including Safari", source: "https://bitwarden.com/download/", checked: "2026-11-08"}
+autotype: {v: "no", note: "Browser and mobile autofill", source: "https://bitwarden.com/download/", checked: "2026-11-08"}
+passkeys: {v: "yes", note: "Through Bitwarden's apps", source: "https://bitwarden.com/help/storing-passkeys/", checked: "2026-11-08"}
+totp: {v: "yes", note: "Through Bitwarden's apps, no licence needed", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+ssh: {v: "partial", note: "Bitwarden's desktop app; needs a recent server", source: "https://bitwarden.com/help/ssh-agent/", checked: "2026-11-08"}
+hw_unlock: {v: "no", note: "Security keys are for two-step sign-in", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+two_secret: {v: "no", note: "Master password only", source: "https://bitwarden.com/help/bitwarden-security-white-paper/", checked: "2026-11-08"}
+account_2fa: {v: "yes", note: "FIDO2, YubiKey OTP and Duo", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+audit: {v: "no", note: "None", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+sharing: {v: "yes", note: "Organizations, collections and groups", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+share_links: {v: "yes", note: "Send", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+emergency: {v: "yes", note: "Included", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+machines: {v: "no", note: "Secrets Manager is not supported", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+price_free: {v: "text", note: "The software is free; you pay for the server", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+price_personal: {v: "na", note: "No plans", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+price_family: {v: "na", note: "No plans", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+price_team: {v: "na", note: "No plans", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}
+price_business: {v: "na", note: "No plans", source: "https://github.com/dani-garcia/vaultwarden", checked: "2026-11-08"}

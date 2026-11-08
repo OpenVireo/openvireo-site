@@ -1,0 +1,92 @@
+---
+title: OpenVireo vs Vaultwarden
+seoTitle: "OpenVireo Sync Server vs Vaultwarden: self-hosting compared"
+description: Self-hosting your passwords? OpenVireo Sync Server and Vaultwarden compared, including what each server can see, sharing between users and which apps you get.
+cardText: For self-hosters. A server that only stores encrypted KeePass files, against a lightweight Bitwarden-compatible server with sharing between users.
+icon: fa-server
+tint: sand
+weight: 3
+competitor: vaultwarden
+lead: >-
+  Vaultwarden is a lightweight, unofficial server that's compatible with Bitwarden's apps, which you run yourself.
+  The OpenVireo Sync Server is OpenVireo's own open-source server: one signed binary or Docker image that keeps
+  your encrypted KeePass files in sync across your devices.
+draft: true
+faq:
+  - q: Can my family share vaults on a self-hosted OpenVireo server?
+    a: No. Each user on a self-hosted server has their own databases, and users can't see each other's. Sharing between people works through organizations on a hosted OpenVireo account.
+  - q: Will it run on a Raspberry Pi or a small VPS?
+    a: Yes. There are signed release binaries for Linux on x64 and arm64, plus macOS and Windows, and a Docker image. It stores data in SQLite by default, or in Postgres and S3. See <a href="/docs/sync-server/install/">Installing and deploying</a>.
+  - q: Can I use Bitwarden's apps with the OpenVireo Sync Server?
+    a: No. It works with OpenVireo on the desktop, OpenVireo Web, the iPhone app and the <a href="/docs/sdk/">SDK and CLI</a>.
+  - q: What happens if my server goes down?
+    a: Nothing is lost. Every device keeps a complete KeePass file and keeps working offline. When the server is back, the devices merge their changes.
+---
+
+<h2 id="short">The short version</h2>
+<p><strong>Pick Vaultwarden</strong> if several people need to share vaults on your own server, or you need
+    Bitwarden's apps for Android, Safari and every browser.</p>
+<p><strong>Pick the OpenVireo Sync Server</strong> if you want a server that only ever stores encrypted files, and
+    a complete KeePass file on every device that any KeePass app can open, with or without the server.</p>
+
+<h2 id="different">Where OpenVireo is different</h2>
+<div class="cmp-points">
+    <div class="cmp-point">
+        <h3>The server only stores encrypted files</h3>
+        <p>Each database is one encrypted KeePass file. The server checks the file signature and nothing else: it
+            never parses your entries or merges anything. Each device downloads the file, merges and uploads it.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Your files work without it</h3>
+        <p>Every device keeps a full KDBX file, which OpenVireo, KeePassXC or any other KeePass app can open. If you
+            ever stop running the server, you still have your passwords in a standard format.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>The same project as the apps</h3>
+        <p>The sync server is built alongside the OpenVireo apps, so it doesn't have to keep up with someone
+            else's API. Vaultwarden reimplements Bitwarden's server and isn't associated with Bitwarden.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Signed releases</h3>
+        <p>Release binaries are signed and notarized for macOS, signed for Windows, and GPG-signed. There's a
+            Docker image too, and storage in SQLite, Postgres or S3.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>A hosted option when you want one</h3>
+        <p>If you'd rather not run a server, the same apps sign in to a hosted OpenVireo account with sharing and
+            organizations. Moving a database there takes a few clicks.</p>
+    </div>
+</div>
+
+<h2 id="ahead">Where Vaultwarden is ahead</h2>
+<ul class="cmp-ahead">
+    <li><strong>Sharing on your own server.</strong> Vaultwarden supports organizations, collections and groups, so
+        a family or team can share on one server. A self-hosted OpenVireo server only syncs each user's own
+        devices.</li>
+    <li><strong>Every Bitwarden app.</strong> Android, Safari and every browser, plus the bundled web vault.
+        OpenVireo has no Android app or Safari extension, and OpenVireo Web is a hosted app that can pair with
+        your server but isn't self-hostable.</li>
+    <li><strong>More features in the server.</strong> Emergency access, Send, and two-step sign-in with FIDO2,
+        YubiKey and Duo.</li>
+    <li><strong>A big community.</strong> Vaultwarden is widely used, with plenty of guides for every kind of
+        setup.</li>
+</ul>
+
+<h2 id="security">How the security compares</h2>
+<p>Neither server has had a published third-party audit. Both rely on end-to-end encryption: the server stores
+    data it can't decrypt.</p>
+<p>With Vaultwarden, the Bitwarden apps encrypt each item and the server stores them in its database. With the
+    OpenVireo Sync Server, the server stores each database as a single encrypted KeePass file and never looks
+    inside it. Each device signs in with its own access token, which you can revoke if a device is lost; see
+    <a href="/docs/sync-server/users-and-devices/">Users and devices</a>.</p>
+
+<h2 id="switch">Switching from Vaultwarden</h2>
+<ol class="cmp-steps">
+    <li>In any Bitwarden app connected to your Vaultwarden server, export your vault in the <strong>.json</strong>
+        format (not the encrypted one).</li>
+    <li><a href="/download/">Install OpenVireo</a>, choose <strong>Database › Import…</strong> and pick
+        <strong>Bitwarden</strong>. See <a href="/docs/user-guide/importing-databases/#_bitwarden">Importing from
+        Bitwarden</a>. Then securely delete the export file.</li>
+    <li>Install the <a href="/docs/sync-server/">OpenVireo Sync Server</a>, add a user and a device, and set up
+        <strong>Remote Sync</strong> in the database settings with the device's token.</li>
+</ol>

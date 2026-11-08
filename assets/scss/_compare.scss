@@ -1,0 +1,313 @@
+// Comparison pages (/compare/): data-driven tables (layouts/partials/compare-table.html), the prose
+// blocks inside the page body, and the sources footnote.
+
+.cmp-header {
+    .eyebrow {
+        margin: 1rem 0 .5rem;
+    }
+
+    .cmp-lead {
+        max-width: $prose-max-width;
+        margin: 1rem 0 0;
+        color: var(--colorNeutralForeground2);
+        font-size: #{"clamp(1.05rem, 1rem + .3vw, 1.25rem)"};
+    }
+
+    .cmp-header-actions {
+        margin-top: 1.75rem;
+        flex-wrap: wrap;
+    }
+}
+
+.cmp-section {
+    margin-block: #{"clamp(2.5rem, 5vw, 4rem)"};
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.cmp-content {
+    margin-block: #{"clamp(2.5rem, 5vw, 4rem)"};
+}
+
+.cmp-after-table,
+.cmp-scroll-hint {
+    max-width: $prose-max-width;
+    color: var(--colorNeutralForeground2);
+}
+
+.cmp-after-table {
+    margin-top: 1rem;
+}
+
+.cmp-scroll-hint {
+    font-size: var(--fontSizeBase200);
+
+    @media (min-width: $breakpoint-large) {
+        display: none;
+    }
+}
+
+// Table ------------------------------------------------------------------------------------
+
+// The table scrolls inside this frame, never the page
+.cmp-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+    border-radius: var(--mk-radius-card);
+    background: var(--colorNeutralBackground1);
+    // Edge shadows that show there is more to scroll to
+    background-image:
+        linear-gradient(to right, var(--colorNeutralBackground1) 30%, transparent),
+        linear-gradient(to left, var(--colorNeutralBackground1) 30%, transparent),
+        radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, .14), transparent),
+        radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, .14), transparent);
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-size: 2.5rem 100%, 2.5rem 100%, .9rem 100%, .9rem 100%;
+    background-attachment: local, local, scroll, scroll;
+
+    &:focus-visible {
+        outline: var(--strokeWidthThick) solid var(--colorStrokeFocus2);
+        outline-offset: 2px;
+    }
+}
+
+.cmp-table {
+    min-width: 46rem;
+    margin: 0;
+    font-size: var(--fontSizeBase300);
+
+    &.cmp-table-pair {
+        min-width: 0;
+    }
+
+    th, td {
+        padding: .8rem 1rem;
+        vertical-align: top;
+    }
+
+    thead th {
+        font-size: var(--fontSizeBase400);
+        font-weight: 800;
+    }
+
+    tbody th[scope="row"] {
+        width: 14rem;
+        min-width: 10rem;
+        font-weight: var(--fontWeightSemibold);
+
+        @media (max-width: $breakpoint-small) {
+            width: 8.5rem;
+            min-width: 8.5rem;
+        }
+    }
+
+    // Row labels stay visible while the matrix scrolls
+    th[scope="row"], .cmp-corner {
+        position: sticky;
+        inset-inline-start: 0;
+        z-index: 1;
+        background: var(--colorNeutralBackground1);
+    }
+
+    .cmp-group th {
+        position: static;
+        padding-top: 1.5rem;
+        color: var(--colorBrandForeground1);
+        font-size: var(--fontSizeBase200);
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+    }
+
+    tbody:first-of-type .cmp-group th {
+        padding-top: 1rem;
+    }
+
+    .cmp-self {
+        background: color-mix(in srgb, var(--mk-tint-green) 55%, transparent);
+    }
+
+    thead .cmp-self {
+        color: var(--colorBrandForeground1);
+    }
+
+    tbody tr:last-child > * {
+        border-bottom: 0;
+    }
+}
+
+.cmp-cell {
+    min-width: 9rem;
+}
+
+.cmp-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: .35em;
+    margin-inline-end: .35em;
+    font-weight: 800;
+    white-space: nowrap;
+
+    .cmp-yes & { color: var(--colorPaletteGreenForeground1, var(--colorBrandForeground1)); }
+    .cmp-no & { color: var(--colorStatusDangerForeground1); }
+    .cmp-partial & { color: var(--colorStatusWarningForeground1); }
+    .cmp-na & { color: var(--colorNeutralForeground3); }
+}
+
+.cmp-note {
+    display: block;
+    margin-top: .15rem;
+    color: var(--colorNeutralForeground2);
+
+    .cmp-text & {
+        color: var(--colorNeutralForeground1);
+        font-weight: var(--fontWeightSemibold);
+    }
+}
+
+// Two products on a phone: each row becomes a card with the two values side by side
+@media (max-width: $breakpoint-small) {
+    .cmp-table-pair {
+        &, thead, tbody, tr, th, td {
+            display: block;
+        }
+
+        thead {
+            display: none;
+        }
+
+        tbody tr:not(.cmp-group) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+        }
+
+        tbody th[scope="row"] {
+            position: static;
+            grid-column: 1 / -1;
+            width: auto;
+            padding-bottom: .25rem;
+            border: 0;
+            background: none;
+        }
+
+        td {
+            padding-top: .25rem;
+            border: 0;
+
+            &::before {
+                content: attr(data-product);
+                display: block;
+                margin-bottom: .2rem;
+                color: var(--colorNeutralForeground3);
+                font-size: var(--fontSizeBase200);
+                font-weight: 800;
+            }
+        }
+
+        .cmp-mark {
+            display: flex;
+        }
+
+        .cmp-cell {
+            min-width: 0;
+        }
+
+        tbody tr:last-child {
+            border-bottom: 0;
+        }
+    }
+}
+
+// Prose blocks used in the page bodies -----------------------------------------------------
+
+.page-content > .cmp-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 17rem)"}, 1fr));
+    gap: 1.25rem;
+    margin: 0 0 2.5rem;
+}
+
+.cmp-point {
+    padding: 1.5rem;
+    border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+    border-radius: var(--mk-radius-card);
+    background: var(--colorNeutralBackground1);
+
+    h3 {
+        margin: 0 0 .5rem;
+        font-size: var(--fontSizeBase500);
+        font-weight: 800;
+    }
+
+    p {
+        margin: 0;
+        color: var(--colorNeutralForeground2);
+    }
+}
+
+.page-content > .cmp-ahead {
+    padding: 1.5rem 1.5rem 1.5rem 2.75rem;
+    border-radius: var(--mk-radius-card);
+    background: var(--mk-tint-sand);
+
+    li + li {
+        margin-top: .5rem;
+    }
+}
+
+.page-content > .cmp-steps li + li {
+    margin-top: .5rem;
+}
+
+.cmp-others ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem 1.5rem;
+    padding: 0;
+    list-style: none;
+}
+
+// Footnote ---------------------------------------------------------------------------------
+
+.cmp-footnote {
+    max-width: $prose-max-width;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+    color: var(--colorNeutralForeground3);
+    font-size: var(--fontSizeBase200);
+
+    ul {
+        margin-top: .5rem;
+        overflow-wrap: anywhere;
+    }
+
+    details {
+        margin-bottom: 1em;
+    }
+}
+
+// Homepage section (layouts/_default/index.html) -------------------------------------------
+
+.mk-section-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2.5rem;
+    margin: 2.5rem 0 0;
+}
+
+// Four comparison cards: four across on desktop, two on tablets, one on phones
+.mk-section-compare .mk-cards,
+.cmp-cards {
+    grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 15rem)"}, 1fr));
+
+    .mk-card {
+        padding: 1.75rem;
+    }
+}

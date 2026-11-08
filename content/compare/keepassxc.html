@@ -1,0 +1,97 @@
+---
+title: OpenVireo vs KeePassXC
+seoTitle: "OpenVireo vs KeePassXC: what the fork adds"
+description: OpenVireo is a fork of KeePassXC. What stays the same, what OpenVireo adds (sync, sharing, iPhone and web apps) and where KeePassXC is still ahead.
+cardText: OpenVireo started as a fork of KeePassXC. See what stays the same, what it adds, and why you might stay with KeePassXC.
+icon: fa-code-fork
+tint: green
+weight: 4
+competitor: keepassxc
+lead: >-
+  OpenVireo is a fork of KeePassXC. It does everything KeePassXC does with your KeePass files, and adds optional
+  accounts for end-to-end encrypted sync and sharing, an iPhone app and a web app. KeePassXC stays focused on
+  a fast, local password manager with no accounts at all.
+draft: true
+faq:
+  - q: Is OpenVireo made by the KeePassXC Team?
+    a: No. OpenVireo is an independent project based on KeePassXC's code. It isn't affiliated with or endorsed by the KeePassXC Team.
+  - q: Will my KeePassXC databases open in OpenVireo?
+    a: Yes, unchanged. Both use the KeePass (KDBX) format, so you can open the same local file in either app.
+  - q: Do I have to create an account?
+    a: No. Without an account, OpenVireo works like KeePassXC, with local files and no servers. The account features stay out of the way until you sign in.
+  - q: Does KeePassXC have a mobile app?
+    a: No. The KeePassXC project recommends third-party apps that open the same files, such as Strongbox and KeePassium on iOS and KeePassDX and Keepass2Android on Android. OpenVireo has its own iPhone app.
+---
+
+<h2 id="short">The short version</h2>
+<p><strong>Stay with KeePassXC</strong> if you only want local files, prefer a project with a long track record and
+    an independent audit, or want the version packaged in your Linux distribution.</p>
+<p><strong>Pick OpenVireo</strong> if you want the same files and features, plus built-in sync, sharing, an iPhone
+    app and a web app, without putting together a cloud folder and third-party mobile apps yourself.</p>
+
+<h2 id="same">What stays the same</h2>
+<div class="cmp-points">
+    <div class="cmp-point">
+        <h3>Your files</h3>
+        <p>OpenVireo reads and writes the same KeePass (KDBX) files. Your existing databases open as they are, key
+            files and YubiKeys included.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>The desktop features</h3>
+        <p>Auto-type, browser integration, passkeys, the SSH agent, Secret Service on Linux, KeeShare, database
+            reports and the command-line tool all carry over.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>No account needed</h3>
+        <p>Like KeePassXC, OpenVireo works fully offline with local files and is free and open source under the
+            GPL.</p>
+    </div>
+</div>
+
+<h2 id="adds">What OpenVireo adds</h2>
+<div class="cmp-points">
+    <div class="cmp-point">
+        <h3>Built-in sync</h3>
+        <p>Sync through a free OpenVireo account or your own <a href="/docs/sync-server/">sync server</a>. Devices
+            merge changes, so two edits never overwrite each other. KeePassXC leaves sync to a cloud folder.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Sharing and organizations</h3>
+        <p>Share vaults with family or a team, with roles and an audit log, or send one item with a
+            <a href="/share-links/">share link</a>.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>iPhone and web</h3>
+        <p>The OpenVireo iPhone app, with AutoFill and passkeys, and OpenVireo Web in any browser.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Secrets for automation</h3>
+        <p>Service accounts, the <code>ov</code> CLI, a GitHub Action and an <a href="/docs/sdk/">SDK</a> give CI
+            jobs and servers their own access to a vault.</p>
+    </div>
+</div>
+
+<h2 id="ahead">Where KeePassXC is ahead</h2>
+<ul class="cmp-ahead">
+    <li><strong>Track record.</strong> KeePassXC has years of releases and a large community behind it. OpenVireo is
+        new.</li>
+    <li><strong>Audit and certification.</strong> KeePassXC had an independent audit in 2023, and version 2.7.9
+        received ANSSI's CSPN security certification. OpenVireo has neither.</li>
+    <li><strong>Simplicity.</strong> KeePassXC has no account features at all, so there's less code and nothing
+        that talks to a server unless you ask it to.</li>
+    <li><strong>Packaging.</strong> KeePassXC is in nearly every Linux distribution's repositories.</li>
+</ul>
+
+<h2 id="security">How the security compares</h2>
+<p>For local databases, the encryption is the same: both apps use the KeePass format and its key derivation.
+    OpenVireo's accounts add their own layer. Your account keys come from your password and a 128-bit Secret Key
+    made on your device, sign-in uses OPAQUE, and the server only ever stores encrypted vaults.</p>
+
+<h2 id="switch">Switching from KeePassXC</h2>
+<ol class="cmp-steps">
+    <li><a href="/download/">Install OpenVireo</a> and open your .kdbx file. There's nothing to import.</li>
+    <li>Install the <a href="/docs/getting-started/browser-integration/">OpenVireo Browser extension</a> and connect
+        it, as you did with KeePassXC-Browser.</li>
+    <li>Optionally, <a href="/docs/user-guide/openvireo-accounts/#_moving_a_database_to_your_account">move the
+        database to a free account</a> to use it on your iPhone and in the browser.</li>
+</ol>

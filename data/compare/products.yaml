@@ -1,0 +1,26 @@
+# Products on the comparison pages (/compare/). Each id has a matching values/<id>.yaml.
+# `page` is the comparison page's path; OpenVireo has none. `trademark` goes in the page footnote.
+# Order here is the column order on the hub matrix.
+- id: openvireo
+  name: OpenVireo
+  self: true
+- id: 1password
+  name: 1Password
+  page: /compare/1password/
+  site: https://1password.com/
+  trademark: 1Password is a trademark of AgileBits Inc.
+- id: bitwarden
+  name: Bitwarden
+  page: /compare/bitwarden/
+  site: https://bitwarden.com/
+  trademark: Bitwarden is a trademark of Bitwarden Inc.
+- id: vaultwarden
+  name: Vaultwarden
+  page: /compare/vaultwarden/
+  site: https://github.com/dani-garcia/vaultwarden
+  trademark: Vaultwarden is an independent project, not associated with Bitwarden Inc.
+- id: keepassxc
+  name: KeePassXC
+  page: /compare/keepassxc/
+  site: https://keepassxc.org/
+  trademark: KeePassXC is a project of the KeePassXC Team. OpenVireo is based on KeePassXC and is not affiliated with the KeePassXC Team.
