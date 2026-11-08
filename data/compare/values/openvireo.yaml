@@ -22,7 +22,7 @@ share_links: {v: "yes", note: "Share links. Free: 5 open links, up to 7 days"}
 emergency: {v: "no", note: "No. Account recovery instead"}
 machines: {v: "yes", note: "Service accounts on every plan: CLI, GitHub Action, Kubernetes"}
 price_free: {v: "yes", note: "Sync 1 vault, open shared vaults, a 2-member organization"}
-price_personal: {v: "text", note: "$3 a month, or $30 a year"}
-price_family: {v: "text", note: "$5 a month, or $50 a year, for 6 people"}
+price_personal: {v: "text", note: "$2 a month, or $18 a year"}
+price_family: {v: "text", note: "$4 a month, or $40 a year, for 6 people"}
 price_team: {v: "text", note: "$4 per member a month, or $40 a year"}
-price_business: {v: "text", note: "$8 per member a month, or $80 a year"}
+price_business: {v: "text", note: "$6 per member a month, or $60 a year"}
