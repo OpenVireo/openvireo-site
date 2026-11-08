@@ -82,6 +82,6 @@ you imported it before, refresh it (`gpg --refresh-keys`) so `gpg` knows it's re
 The release workflows, and the code they build, are public in the
 [OpenVireo repository](https://github.com/openvireo/openvireo). If you spot a problem with how we sign or ship, please
 report it through a [GitHub security advisory](https://github.com/openvireo/openvireo/security/advisories/new) or to
-security@openvireo.com.
+admin@openvireo.com.
 
 [Download OpenVireo]({{< baseurl >}}download)

@@ -1,0 +1,3 @@
+{{- /* Shows its content only once the iPhone app is live: app_store_url set in content/ios.html.
+       {{< if-app-store >}}...{{< /if-app-store >}} */ -}}
+{{- with site.GetPage "/ios" -}}{{- if .Params.app_store_url -}}{{ $.Inner }}{{- end -}}{{- end -}}

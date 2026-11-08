@@ -30,6 +30,10 @@ menu:
     </tbody>
 </table>
 
+{{< if-app-store >}}
+<p>Also available in the <a href="{{< baseurl >}}ios/">iOS app</a>; prices there are set by the App Store.</p>
+{{< /if-app-store >}}
+
 <h2 id="orgs">For families and teams</h2>
 <p>Org plans are billed to an organization. A new organization starts on Free; its owners pick a plan
     on the account website.</p>
@@ -66,6 +70,14 @@ menu:
     <p>Nothing is locked or deleted. Your vaults keep opening and syncing; you just can't add more
         vaults, people or service accounts than your plan allows until you upgrade or remove some.</p>
 </details>
+{{< if-app-store >}}
+<details>
+    <summary>Can I buy a plan in the iPhone app?</summary>
+    <p>Yes, Premium and Families, through the App Store. Apple bills it, in your currency, at the App Store's price, which
+        can be higher than here. It's the same plan with the same limits in every OpenVireo app. You change or cancel it in
+        your Apple ID settings. Teams and Business are bought here.</p>
+</details>
+{{< /if-app-store >}}
 <details>
     <summary>Can you see my passwords?</summary>
     <p>No. Vaults are encrypted on your devices before they are uploaded, on every plan. We store only
