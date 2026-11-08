@@ -16,7 +16,7 @@ ssh: {v: "yes", note: "In the desktop app"}
 hw_unlock: {v: "yes", note: "YubiKey challenge-response and key files"}
 two_secret: {v: "yes", note: "128-bit Secret Key; OPAQUE sign-in"}
 account_2fa: {v: "no", note: "Authenticator app (TOTP) only"}
-audit: {v: "no", note: "None"}
+audit: {v: "no", note: "Not yet. An independent audit is planned"}
 sharing: {v: "yes", note: "Shared vaults in organizations, with roles and an audit log"}
 share_links: {v: "yes", note: "Share links. Free: 5 open links, up to 7 days"}
 emergency: {v: "no", note: "No. Account recovery instead"}
