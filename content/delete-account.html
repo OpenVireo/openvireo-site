@@ -1,0 +1,49 @@
+---
+layout: pages
+title: "Delete Your Account"
+permalink: delete-account
+---
+
+<p>You can delete your OpenVireo account yourself, from any of our apps. Deleting locks the account at once and
+    <strong>permanently deletes it after 30 days</strong>. Until then you can sign in and restore it.</p>
+
+<h2 id="how">How to delete it</h2>
+<ul>
+    <li><strong>iPhone and iPad:</strong> <em>Settings</em> &#8594; <em>Account</em> &#8594; <em>Delete Account</em>.</li>
+    <li><strong>Web:</strong> open the <a href="{{< web-app-url "?view=account#delete-account" >}}">web app</a>, then
+        <em>Account</em> &#8594; <em>Delete account</em>.</li>
+    <li><strong>Desktop (Windows, macOS, Linux):</strong> <em>Account</em> &#8594; <em>Delete Account…</em></li>
+    <li><strong>Command line:</strong> <code>ov account delete</code>.</li>
+</ul>
+<p>Before anything is deleted, the app shows what will happen to each of your vaults, organizations, your plan and your
+    share links. You confirm by typing your account email and your master password. You need to be online.</p>
+
+<h2 id="what">What is deleted</h2>
+<ul>
+    <li><strong>Your personal vaults</strong>, with every copy and earlier version we store. People you shared one with
+        keep access until the end of the 30 days, so they have time to make a copy. Before you delete, you can also give
+        a shared vault to one of them, and it becomes theirs.</li>
+    <li><strong>Your keys and sign-in details</strong>: your encrypted keys, your email address, two-step verification and
+        your devices. You can sign up again with the same email after the account is deleted.</li>
+    <li><strong>Share links</strong> you made stop working straight away.</li>
+    <li><strong>Your access</strong> to vaults others shared with you, and to organizations you belong to.</li>
+</ul>
+
+<h2 id="orgs">Organizations</h2>
+<ul>
+    <li>If you are a member or admin, or one of several owners, you leave the organization. It keeps running.</li>
+    <li>If you are the only person in an organization, it is deleted with your account, with its vaults.</li>
+    <li>If you are the <strong>only owner</strong> and others are in it, you first make someone else an owner (an admin
+        is easiest), or delete the organization. We never choose a new owner for you.</li>
+</ul>
+
+<h2 id="billing">Billing</h2>
+<p>Your plan stops renewing as soon as you delete. There is no refund for the time left, and nothing is charged again.
+    Plans are sold for us by Stripe through Link, so your receipts and order history stay on
+    <a href="https://link.com">link.com</a>. To delete that data too, ask Link.</p>
+
+<h2 id="restore">Changed your mind?</h2>
+<p>Sign in within 30 days with your master password (and your Secret Key on a new device) and choose
+    <em>Restore account</em>. Everything comes back except share links. A plan that hasn't reached the end of its billing
+    period starts renewing again. We email you when you delete, 3 days before the account is deleted, and when it is
+    gone.</p>
