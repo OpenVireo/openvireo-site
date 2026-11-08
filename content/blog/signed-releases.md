@@ -2,7 +2,6 @@
 title: "Signed, notarized and verifiable: how OpenVireo ships"
 author: "Bongani Mbigi"
 date: 2026-11-08
-draft: true
 category: "Security"
 description: "Every OpenVireo release is signed for macOS, Windows and Linux, updates are checked before they install, and you can verify any download yourself."
 ---

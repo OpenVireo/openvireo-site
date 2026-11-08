@@ -2,7 +2,6 @@
 title: "What our servers can't see"
 author: "Bongani Mbigi"
 date: 2026-11-08
-draft: true
 category: "Security"
 description: "How OpenVireo's accounts and sync work without our servers ever being able to read your passwords, and what they do know."
 ---

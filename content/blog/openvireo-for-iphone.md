@@ -2,7 +2,6 @@
 title: "OpenVireo is coming to iPhone"
 author: "Bongani Mbigi"
 date: 2026-11-08
-draft: true
 category: "Announcements"
 description: "A first look at OpenVireo for iPhone: your KeePass files and your synced vaults, in your pocket."
 ---

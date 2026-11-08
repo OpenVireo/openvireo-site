@@ -2,7 +2,6 @@
 title: "Your passwords, with or without a connection"
 author: "Bongani Mbigi"
 date: 2026-11-08
-draft: true
 category: "Security"
 description: "How OpenVireo opens your synced vaults offline on desktop, iPhone and the web, what it keeps on your device, and the trade-offs."
 ---
