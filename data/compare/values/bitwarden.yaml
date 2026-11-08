@@ -1,5 +1,5 @@
 # Bitwarden's column. Every value needs `source` and `checked`; see 1password.yaml.
-open_source: {v: "yes", note: "GPL and AGPL; some business server features are source-available", source: "https://github.com/bitwarden/server", checked: "2026-11-08"}
+open_source: {v: "partial", note: "Code is GPL and AGPL on GitHub. Since October 2026 the store and download builds are commercially licensed", source: "https://community.bitwarden.com/t/published-version-update-in-app-stores/102750", checked: "2026-11-08"}
 no_account: {v: "no", note: "Account required", source: "https://bitwarden.com/pricing/", checked: "2026-11-08"}
 open_format: {v: "partial", note: "Exports to JSON or CSV", source: "https://bitwarden.com/help/export-your-data/", checked: "2026-11-08"}
 sync: {v: "yes", note: "Hosted, or on your own server", source: "https://bitwarden.com/pricing/", checked: "2026-11-08"}
