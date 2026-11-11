@@ -246,3 +246,98 @@
     font-size: var(--fontSizeBase500);
     color: var(--colorBrandForeground1);
 }
+
+// Brand guidelines ---------------------------------------------------------------------------
+
+.brand-logos {
+    margin-block: 1.5rem 2rem;
+
+    figure {
+        margin: 0;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+        text-align: start;
+    }
+}
+
+.brand-logo-tile {
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    border-bottom: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+
+    img {
+        width: 7rem;
+        height: 7rem;
+    }
+
+    &.brand-tile-light {
+        background: #ffffff;
+    }
+
+    &.brand-tile-dark {
+        background: map-get($brand-ramp, 30);
+    }
+}
+
+.brand-downloads {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem 1rem;
+    margin-top: .5rem;
+    font-weight: var(--fontWeightSemibold);
+}
+
+.brand-dos {
+    --grid-gap: 0 2rem;
+
+    i {
+        width: 1.25em;
+        color: var(--colorPaletteRedForeground1, #c50f1f);
+    }
+
+    li {
+        margin-bottom: .5rem;
+    }
+}
+
+.brand-swatches {
+    margin-block: 1.5rem;
+}
+
+.brand-swatch {
+    display: flex;
+    flex-direction: column;
+    gap: .125rem;
+    font-size: var(--fontSizeBase300);
+
+    .brand-swatch-chip {
+        display: block;
+        height: 4.5rem;
+        margin-bottom: .5rem;
+        border-radius: var(--borderRadiusXLarge);
+        background: var(--swatch);
+        border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+        forced-color-adjust: none;
+    }
+
+    code {
+        align-self: flex-start;
+    }
+
+    span:last-child {
+        color: var(--colorNeutralForeground3);
+    }
+}
+
+.brand-type-sample {
+    margin-block: 1rem;
+    font-size: var(--fontSizeHero900);
+    font-weight: var(--mk-display-font-weight);
+    line-height: 1.15;
+    color: var(--colorBrandForeground1);
+}
