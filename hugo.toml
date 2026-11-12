@@ -8,6 +8,8 @@ locale = 'en-us'
 webAppURL = 'https://app.openvireo.com/'
 # The account server's website (billing, account recovery). Override per build with HUGO_PARAMS_ACCOUNTSURL
 accountsURL = 'https://accounts.openvireo.com/'
+# Set to false once the browser extension is listed on Firefox Add-ons and the Chrome Web Store
+extensionInReview = true
 
 [security]
 # Hugo 0.168+ denies HTML content files by default; this site's pages are .html

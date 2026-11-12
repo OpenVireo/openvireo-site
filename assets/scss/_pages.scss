@@ -129,28 +129,212 @@
     }
 
     .browser-grid {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 11rem));
         justify-content: center;
         gap: 1rem;
+        margin: 1.75rem 0 0;
+        padding: 0;
+        list-style: none;
 
-        > div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        @media (max-width: $breakpoint-small) {
+            grid-template-columns: minmax(0, 24rem);
             gap: .75rem;
-            width: 8.5rem;
-            padding: 1.25rem 1rem 1rem;
+        }
+    }
+
+    .browser-card {
+        position: relative;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        padding: 1.5rem 1rem 1rem;
+        transition: box-shadow var(--durationNormal) var(--curveEasyEase),
+            transform var(--durationNormal) var(--curveEasyEase);
+
+        &:hover {
+            box-shadow: var(--shadow8);
+            transform: translateY(-2px);
+        }
+
+        &.is-current {
+            border-color: var(--colorBrandStroke1);
+            box-shadow: 0 0 0 1px var(--colorBrandStroke1), var(--shadow8);
         }
 
         img {
-            height: 60px;
-            width: 60px;
+            width: 56px;
+            height: 56px;
+            margin-bottom: .75rem;
+        }
+
+        .browser-name {
+            font-size: var(--fontSizeBase400);
+            font-weight: var(--fontWeightSemibold);
+            color: var(--colorNeutralForeground1);
+        }
+
+        .browser-store {
+            margin-bottom: 1rem;
+            font-size: var(--fontSizeBase200);
+            color: var(--colorNeutralForeground3);
         }
 
         .btn {
             width: 100%;
+            margin-top: auto;
         }
+
+        // Phones: compact rows (icon, name + store, button)
+        @media (max-width: $breakpoint-small) {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            grid-template-areas: "icon name btn" "icon store btn";
+            align-items: center;
+            column-gap: .875rem;
+            padding: .875rem 1rem;
+            text-align: start;
+
+            &:hover {
+                transform: none;
+            }
+
+            img {
+                grid-area: icon;
+                width: 40px;
+                height: 40px;
+                margin: 0;
+            }
+
+            .browser-name {
+                grid-area: name;
+                align-self: end;
+            }
+
+            .browser-store {
+                grid-area: store;
+                align-self: start;
+                margin: 0;
+            }
+
+            .btn {
+                grid-area: btn;
+                width: auto;
+                margin: 0;
+            }
+        }
+    }
+
+    .browser-current-badge {
+        position: absolute;
+        top: -.7rem;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: .1rem .6rem;
+        border-radius: var(--borderRadiusCircular);
+        background: var(--colorBrandBackground);
+        color: var(--colorNeutralForegroundOnBrand);
+        font-size: var(--fontSizeBase100);
+        font-weight: var(--fontWeightSemibold);
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        &[hidden] {
+            display: none;
+        }
+
+        @media (max-width: $breakpoint-small) {
+            left: 1rem;
+            transform: none;
+        }
+    }
+
+    .browser-steps .step-list {
+        padding-top: .5rem;
+    }
+
+    .browser-review,
+    .browser-more {
+        max-width: 36rem;
+        margin: 1.25rem auto 0;
+    }
+
+    .browser-review {
+        color: var(--colorNeutralForeground2);
+
+        i {
+            margin-inline-end: .35rem;
+            color: var(--colorBrandForeground1);
+        }
+
+        + .browser-more {
+            margin-top: .5rem;
+        }
+    }
+
+    // Numbered set-up steps (browser extension tab)
+    .step-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        counter-reset: step;
+
+        > li {
+            position: relative;
+            margin: 0;
+            padding: 0 0 1.25rem 2.75rem;
+            counter-increment: step;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            &::before {
+                content: counter(step);
+                position: absolute;
+                top: -.1rem;
+                left: 0;
+                display: grid;
+                place-items: center;
+                width: 1.85rem;
+                height: 1.85rem;
+                border-radius: 50%;
+                background: var(--colorBrandBackground2);
+                color: var(--colorBrandForeground1);
+                font-size: var(--fontSizeBase300);
+                font-weight: var(--fontWeightBold);
+            }
+
+            // Connector line between step numbers
+            &:not(:last-child)::after {
+                content: "";
+                position: absolute;
+                top: 1.95rem;
+                bottom: .2rem;
+                left: .9rem;
+                width: var(--strokeWidthThin);
+                background: var(--colorNeutralStroke2);
+            }
+        }
+
+        .option-title {
+            margin-bottom: .25rem;
+            font-weight: var(--fontWeightSemibold);
+            color: var(--colorNeutralForeground1);
+        }
+    }
+
+    #download-started .browser-grid {
+        margin-top: 1rem;
+    }
+
+    // Fluent's message bar sets its own display, which beats the hidden attribute
+    fluent-message-bar[hidden],
+    .ios-note[hidden] {
+        display: none;
     }
 
     #download-started {

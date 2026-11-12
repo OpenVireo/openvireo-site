@@ -25,25 +25,32 @@
 {{- end }}
 
 {{- define "partials/browser-extensions.html" }}
+    {{- /* Store cards for the browser extension. The current browser's card is highlighted by the page script. */ -}}
     {{- $cws := "https://chromewebstore.google.com/detail/ogecgkbokcjipobddojjhapbfcppghcf" }}
     {{- $amo := "https://addons.mozilla.org/firefox/addon/openvireo/" }}
-    <div class="browser-grid">
-        <div class="card">
-            <img src="{{ .base }}assets/img/browser-icons/firefox.svg" width="60" height="60" alt="Firefox logo">
-            {{ partial "button.html" (dict "href" $amo "text" "Firefox" "appearance" "primary" "size" "small") }}
-        </div>
-        <div class="card">
-            <img src="{{ .base }}assets/img/browser-icons/chrome.svg" width="60" height="60" alt="Chrome logo">
-            {{ partial "button.html" (dict "href" $cws "text" "Chrome" "appearance" "primary" "size" "small") }}
-        </div>
-        <div class="card">
-            <img src="{{ .base }}assets/img/browser-icons/edge.svg" width="60" height="60" alt="Edge logo">
-            {{ partial "button.html" (dict "href" $cws "text" "Edge" "appearance" "primary" "size" "small") }}
-        </div>
-    </div>
-    <p class="text-small text-muted">Get OpenVireo Browser from <a href="{{ $amo }}">Firefox Add-ons</a> (Firefox, Tor Browser) or the
-        <a href="{{ $cws }}">Chrome Web Store</a> (Chrome, Edge, Brave, Vivaldi, Chromium).
-        Every release is also <a href="https://github.com/openvireo/openvireo-browser/releases">on GitHub</a>.</p>
+    {{- $review := site.Params.extensionInReview | default false }}
+    {{- $browsers := slice
+        (dict "id" "firefox" "name" "Firefox" "store" "Firefox Add-ons" "url" $amo)
+        (dict "id" "chrome" "name" "Chrome" "store" "Chrome Web Store" "url" $cws)
+        (dict "id" "edge" "name" "Edge" "store" "Chrome Web Store" "url" $cws) }}
+    <ul class="browser-grid" role="list">
+        {{- range $browsers }}
+        <li class="card browser-card" data-browser="{{ .id }}">
+            <span class="browser-current-badge" hidden>Your browser</span>
+            <img src="{{ $.base }}assets/img/browser-icons/{{ .id }}.svg" width="56" height="56" alt="">
+            <div class="browser-name">{{ .name }}</div>
+            <div class="browser-store">{{ .store }}</div>
+            {{ partial "button.html" (dict "href" .url "text" (printf "Add to %s" .name) "appearance" "primary" "size" "small" "icon" "fa-solid fa-plus") }}
+        </li>
+        {{- end }}
+    </ul>
+    {{- if $review }}
+    <p class="browser-review text-small"><i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
+        The store listings are in review. If a store says the page isn't found, check back in a few days.</p>
+    {{- end }}
+    <p class="browser-more text-small text-muted">Also works in Brave, Vivaldi, Opera and other Chromium browsers (from the
+        <a href="{{ $cws }}">Chrome Web Store</a>) and in Tor Browser (from <a href="{{ $amo }}">Firefox Add-ons</a>).
+        Safari is not supported yet.</p>
 {{- end }}
 
 {{- define "main" }}
@@ -207,13 +214,38 @@
             <div id="browser">
                 <div class="download-main">
                     <h2>OpenVireo Browser Extension</h2>
-                    <p>Autofill passwords from your local OpenVireo install.</p>
+                    <p>Fill in passwords, passkeys and one-time codes on websites, straight from the OpenVireo desktop app.</p>
 
                     {{ partial "browser-extensions.html" (dict "base" $base) }}
+                </div>
 
-                    <div class="download-links">
-                        <a href="https://github.com/openvireo/openvireo-browser"><i class="fa-solid fa-code" aria-hidden="true"></i> Source Code</a>
+                <div class="card card-options browser-steps">
+                    <h3 class="card-header">How to set it up</h3>
+                    <div class="card-body">
+                        <ol class="step-list">
+                            <li>
+                                <div class="option-title">Install the OpenVireo desktop app</div>
+                                <p class="text-small text-muted mb-0">The extension has no vault of its own. It asks the desktop app on
+                                    this computer for logins, so <a href="#macos" class="js-os-tab">get OpenVireo for your computer</a> first.</p>
+                            </li>
+                            <li>
+                                <div class="option-title">Turn on browser integration</div>
+                                <p class="text-small text-muted mb-0">In OpenVireo, open <strong>Tools &rsaquo; Settings &rsaquo; Browser Integration</strong>,
+                                    tick <strong>Enable browser integration</strong>, pick your browsers and click <strong>OK</strong>.</p>
+                            </li>
+                            <li>
+                                <div class="option-title">Connect the extension</div>
+                                <p class="text-small text-muted mb-0">Unlock a database, click the OpenVireo icon in your browser's toolbar,
+                                    then <strong>Connect</strong>. Give the connection a name (for example <em>firefox-laptop</em>) when OpenVireo asks.</p>
+                            </li>
+                        </ol>
                     </div>
+                </div>
+
+                <div class="download-links">
+                    <a href="{{ $base }}docs/getting-started/browser-integration/"><i class="fa-solid fa-book" aria-hidden="true"></i> Setup guide</a>
+                    <a href="{{ $base }}docs/user-guide/passkeys/"><i class="fa-solid fa-key" aria-hidden="true"></i> Passkeys</a>
+                    <a href="https://github.com/openvireo/openvireo-browser"><i class="fa-brands fa-github" aria-hidden="true"></i> Source Code</a>
                 </div>
             </div>
         </div>
@@ -338,9 +370,29 @@
         }
         selectTab(osTabActive);
 
+        const detectedOs = (uap.os.name === 'macOS' || uap.os.name === 'Windows') ? uap.os.name.toLowerCase() : 'linux';
+        for (const a of document.querySelectorAll('.js-os-tab')) {
+            a.dataset.os = detectedOs;
+            a.href = `#${detectedOs}`;
+        }
+
         // iPhones (and iPads, which report themselves as macOS with a touch screen) can't use these downloads
         if (uap.os.name === 'iOS' || (uap.os.name === 'macOS' && navigator.maxTouchPoints > 1)) {
             document.getElementById('ios-bar').hidden = false;
+            document.querySelector('.ios-note').hidden = true;
+        }
+
+        // Highlight (and move first) the extension card for the visitor's browser
+        const b = (uap.browser.name || '').toLowerCase();
+        const current = b.includes('edge') ? 'edge'
+            : (b.includes('firefox') || b === 'tor browser') ? 'firefox'
+            : (uap.engine.name === 'Blink') ? 'chrome' : '';
+        if (current) {
+            for (const card of document.querySelectorAll(`.browser-card[data-browser="${current}"]`)) {
+                card.classList.add('is-current');
+                card.querySelector('.browser-current-badge').hidden = false;
+                card.parentElement.prepend(card);
+            }
         }
 
         // Adjust macOS download links to processor architecture
@@ -369,6 +421,15 @@
             history.pushState(null, '', `#${id}`);
         }
     });
+    for (const a of document.querySelectorAll('.js-os-tab')) {
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const id = a.dataset.os || 'macos';
+            selectTab(id);
+            history.pushState(null, '', `#${id}`);
+            tabbar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
     window.addEventListener('popstate', () => selectTab(location.hash.substring(1)));
 
     for (const btn of document.querySelectorAll('.download')) {
