@@ -1,12 +1,12 @@
 ---
-title: "OpenVireo is coming to iPhone"
+title: "A first look at OpenVireo for iPhone"
 author: "Bongani Mbigi"
 date: 2026-11-08
 category: "Announcements"
 description: "A first look at OpenVireo for iPhone: your KeePass files and your synced vaults, in your pocket."
 ---
 
-OpenVireo for iPhone is nearly here. It opens the same KeePass files as OpenVireo on your computer and the same
+OpenVireo for iPhone is here. It opens the same KeePass files as OpenVireo on your computer and the same
 encrypted vaults as the web app, and it fills your passwords and passkeys in Safari and your other apps. Here's a
 first look.
 
@@ -78,7 +78,7 @@ members after comparing their fingerprints, and choose who can open each vault.
 - **Your own server.** Point the app at the open-source sync server and keep your KeePass files in step on every
   device.
 
-## When can I get it?
+## Get it
 
-The app needs iOS 18 or later and will be on the App Store with OpenVireo 1.0. Until then, you can use
-[OpenVireo in your browser]({{< web-app-url >}}), and keep an eye on the [iPhone page]({{< baseurl >}}ios/).
+The app needs iOS 18 or later and is on the App Store with OpenVireo 1.0. Find it on the
+[iPhone page]({{< baseurl >}}ios/).

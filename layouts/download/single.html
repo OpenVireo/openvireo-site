@@ -25,19 +25,25 @@
 {{- end }}
 
 {{- define "partials/browser-extensions.html" }}
+    {{- $cws := "https://chromewebstore.google.com/detail/ogecgkbokcjipobddojjhapbfcppghcf" }}
+    {{- $amo := "https://addons.mozilla.org/firefox/addon/openvireo/" }}
     <div class="browser-grid">
         <div class="card">
             <img src="{{ .base }}assets/img/browser-icons/firefox.svg" width="60" height="60" alt="Firefox logo">
+            {{ partial "button.html" (dict "href" $amo "text" "Firefox" "appearance" "primary" "size" "small") }}
         </div>
         <div class="card">
             <img src="{{ .base }}assets/img/browser-icons/chrome.svg" width="60" height="60" alt="Chrome logo">
+            {{ partial "button.html" (dict "href" $cws "text" "Chrome" "appearance" "primary" "size" "small") }}
         </div>
         <div class="card">
             <img src="{{ .base }}assets/img/browser-icons/edge.svg" width="60" height="60" alt="Edge logo">
+            {{ partial "button.html" (dict "href" $cws "text" "Edge" "appearance" "primary" "size" "small") }}
         </div>
     </div>
-    <p class="text-small text-muted">OpenVireo Browser is not in the browser extension stores yet.</p>
-    {{ partial "button.html" (dict "href" "https://github.com/openvireo/openvireo-browser/releases" "text" "Get OpenVireo Browser on GitHub" "appearance" "primary" "icon" "fa-brands fa-github") }}
+    <p class="text-small text-muted">Get OpenVireo Browser from <a href="{{ $amo }}">Firefox Add-ons</a> (Firefox, Tor Browser) or the
+        <a href="{{ $cws }}">Chrome Web Store</a> (Chrome, Edge, Brave, Vivaldi, Chromium).
+        Every release is also <a href="https://github.com/openvireo/openvireo-browser/releases">on GitHub</a>.</p>
 {{- end }}
 
 {{- define "main" }}
@@ -48,6 +54,7 @@
 {{- $sfx := .Params.version.suffix }}
 {{- $beta := .Params.version.beta | default false }}
 {{- $base := .Site.BaseURL }}
+{{- $store := "" }}{{ with site.GetPage "/ios" }}{{ $store = .Params.app_store_url }}{{ end }}
 {{- $macArm := $releases }}{{ $macIntel := $releases }}{{ $winMsi := $releases }}{{ $winZip := $releases }}{{ $appImage := $releases }}{{ $appImageArm := $releases }}{{ $tarball := $releases }}
 {{- $rel := "" }}
 {{- with $v }}
@@ -76,8 +83,13 @@
 
         <fluent-message-bar id="ios-bar" intent="info" layout="multiline" hidden style="max-width: 42rem; margin: 0 auto 1.5rem; text-align: start">
             <i class="fa-solid fa-mobile-screen" slot="icon" aria-hidden="true"></i>
+            {{- if $store }}
+            <span><strong>On an iPhone?</strong> <a href="{{ $store }}">Get OpenVireo on the App Store</a>, or read more about
+                <a href="{{ $base }}ios/">OpenVireo for iPhone</a>.</span>
+            {{- else }}
             <span><strong>On an iPhone?</strong> <a href="{{ $base }}ios/">OpenVireo for iPhone is coming soon</a>.
                 Until then, use <a href="{{ .Site.Params.webAppURL }}">OpenVireo in your browser</a>.</span>
+            {{- end }}
         </fluent-message-bar>
 
         <fluent-tablist id="os-tabbar" aria-label="Platform">
@@ -90,7 +102,7 @@
 
         <p class="text-small text-muted ios-note">
             <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> Looking for iPhone?
-            <a href="{{ $base }}ios/">OpenVireo for iPhone is coming soon</a>
+            <a href="{{ $base }}ios/">{{ if $store }}Get OpenVireo for iPhone{{ else }}OpenVireo for iPhone is coming soon{{ end }}</a>
         </p>
 
         <div id="tab-body">
