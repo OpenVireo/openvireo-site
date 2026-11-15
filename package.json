@@ -21,7 +21,7 @@
     "check:compare": "node scripts/check-compare.mjs"
   },
   "dependencies": {
-    "@fluentui/web-components": "^3.1.3",
+    "@fluentui/web-components": "^3.2.1",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@microsoft/fast-element": "^3.1.2",
     "@microsoft/focusgroup-polyfill": "^1.6.0",
