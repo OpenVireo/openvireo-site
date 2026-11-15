@@ -1,0 +1,7 @@
+Contact: https://github.com/openvireo/openvireo/security/advisories/new
+Contact: mailto:admin@openvireo.com
+Expires: 2027-11-15T00:00:00.000Z
+Policy: https://github.com/openvireo/.github/blob/main/SECURITY.md
+Acknowledgments: https://github.com/openvireo/openvireo/security/advisories
+Preferred-Languages: en
+Canonical: https://openvireo.com/.well-known/security.txt
