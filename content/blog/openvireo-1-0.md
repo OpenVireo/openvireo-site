@@ -26,10 +26,9 @@ You don't need an account to use it. If you want sync, you can create a free acc
 
 ## The browser extension, in the stores
 
-OpenVireo Browser 1.0 is coming to [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/openvireo/) and the
+OpenVireo Browser 1.0 is on [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/openvireo/) and the
 [Chrome Web Store](https://chromewebstore.google.com/detail/ogecgkbokcjipobddojjhapbfcppghcf), which also covers Edge,
-Brave and Vivaldi. The stores are still reviewing it; until it's listed, every release is
-[on GitHub](https://github.com/openvireo/openvireo-browser/releases).
+Brave and Vivaldi.
 
 ## New since 0.9.0
 
