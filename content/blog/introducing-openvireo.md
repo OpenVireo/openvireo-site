@@ -45,7 +45,8 @@ The first time you start OpenVireo, it asks how you want to use it:
 {{< figure src="assets/img/screenshots/account_start_screen.png" alt="The start screen with three ways to use OpenVireo" >}}
 
 - **Without an account.** Open or create a `.kdbx` file and keep it wherever you like. This works exactly as KeePassXC
-  does, and it always will.
+  does, and it always will. When you want it in an account later,
+  [import the .kdbx into a vault]({{< baseurl >}}blog/import-your-keepass-database/).
 - **With your own sync server.** Run the open-source
   [OpenVireo Sync Server]({{< baseurl >}}docs/sync-server/) on your own machine, and every device stays in step with
   the same database. No account, no plans, no limits.

@@ -58,7 +58,7 @@ export const guides = {
             },
             _password_generator: {
                 weight: 40, icon: 'fa-dice',
-                summary: 'Generate strong random passwords and memorable passphrases.',
+                summary: 'Password generator options in detail: length, character sets, advanced rules, passphrase word count, separators, case, and custom word lists.',
             },
             _importing_databases: {
                 weight: 50, icon: 'fa-file-import',
@@ -124,7 +124,7 @@ export const guides = {
             },
             _downloading_openvireo: {
                 weight: 20, icon: 'fa-download',
-                summary: 'Download and install OpenVireo on Windows, macOS, or Linux.',
+                summary: 'Download and install OpenVireo on Windows, macOS, or Linux, and check the download is genuine before you run it.',
             },
             _interface_overview: {
                 weight: 30, icon: 'fa-table-columns',
@@ -140,7 +140,9 @@ export const guides = {
             },
             _password_generator: {
                 weight: 50, icon: 'fa-dice',
-                summary: 'Generate strong random passwords and memorable passphrases.',
+                summary: 'Make a strong random password or an easy-to-remember passphrase with the built-in generator, then copy it into any login.',
+                // Same text as the User Guide chapter: point search engines at that one
+                canonical: '/docs/user-guide/password-generator/',
             },
             _browser_integration: {
                 weight: 60, icon: 'fa-globe',
@@ -376,7 +378,7 @@ description: ${yaml(chapter.summary)}
 weight: ${chapter.weight}
 icon: ${yaml(chapter.icon)}
 anchor: ${yaml(chapter.id)}
-sections:${sections ? `\n${sections}` : ' []'}
+${chapter.canonical ? `canonical: ${yaml(chapter.canonical)}\n` : ''}sections:${sections ? `\n${sections}` : ' []'}
 ---
 ${banner}
 ${transform(chapter)}

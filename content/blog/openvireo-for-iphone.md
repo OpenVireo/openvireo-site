@@ -60,6 +60,7 @@ or on one bar of signal. Edits you make offline are kept and upload when you're 
 
 Already have a `.kdbx`? Import it into a vault: merge it into one you have, add it as copies under a group, or make it
 a new synced vault. The file itself is opened read-only and never changed.
+[How importing a KeePass database works]({{< baseurl >}}blog/import-your-keepass-database/).
 
 {{< figure src="assets/img/screenshots/ios/import.png" alt="Importing a .kdbx file into a vault" >}}
 

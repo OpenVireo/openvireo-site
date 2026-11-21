@@ -1,0 +1,9 @@
+{{- /* Docs chapters: add the guide's name ("– Getting Started", "– User Guide") so chapters that share a
+   name across guides get distinct <title>s. Skipped when the page title already contains it. */ -}}
+{{- if and (eq .Section "docs") .IsPage .Parent -}}
+  {{- with .Parent -}}
+    {{- if and (ne .RelPermalink "/docs/") (not (strings.Contains $.Title .Title)) -}}
+      {{- printf " – %s" .Title -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

@@ -3,6 +3,9 @@ baseURL = 'https://openvireo.com'
 locale = 'en-us'
 
 [params]
+# Homepage <title> and the default meta description (pages without their own description)
+homeTitle = 'OpenVireo: Open-Source, KeePass-Compatible Password Manager'
+homeDescription = 'Free, open-source password manager that opens your KeePass (.kdbx) files. Sync across Windows, macOS, Linux, iPhone and the web, or self-host it.'
 # The OpenVireo web app (OpenVireo Web) (accounts and synced vaults); it takes /?view=signin|signup
 # Override per build with HUGO_PARAMS_WEBAPPURL
 webAppURL = 'https://app.openvireo.com/'

@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
-    {{ block "title" . }}<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Page.Title }} – OpenVireo{{ end }}</title>{{ end }}
+    {{ block "title" . }}<title>{{ with .Params.seoTitle }}{{ . }}{{ else }}{{ if .IsHome }}{{ site.Params.homeTitle | default .Site.Title }}{{ else }}{{ .Page.Title }}{{ partial "title-guide.html" . }} – OpenVireo{{ end }}{{ end }}</title>{{ end }}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}OpenVireo, a free and open-source password manager forked from KeePassXC{{ end }}">
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.homeDescription }}{{ end }}">
     <meta name="author" content="OpenVireo">
     <meta name="theme-color" content="#3c7d20">
     <meta name="color-scheme" content="light dark">
-    <link rel="canonical" href="{{ .Permalink }}">
+    <link rel="canonical" href="{{ with .Params.canonical }}{{ . | absURL }}{{ else }}{{ .Permalink }}{{ end }}">
     <link rel="shortcut icon" href="{{ .Site.BaseURL }}favicon.ico" type="image/x-icon">
     <link rel="icon" href="{{ .Site.BaseURL }}favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="{{ .Site.BaseURL }}assets/img/apple-touch-icon-precomposed.png" sizes="192x192">
