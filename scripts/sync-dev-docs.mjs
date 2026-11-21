@@ -1,17 +1,20 @@
 #!/usr/bin/env node
-// Publish the developer docs, the Markdown in openvireo-sync-server/docs and openvireo-sdk/docs, as
-// themed guide pages, the same way sync-docs.mjs publishes the User Guide from openvireo.
+// Publish the developer docs, the Markdown in openvireo-sync-server/docs, openvireo-sdk/docs and
+// openvireo-core/docs/bindings, as themed guide pages, the same way sync-docs.mjs publishes the User Guide
+// from openvireo.
 //
-//   npm run docs:dev                                  # both repos at their latest release tag
-//   npm run docs:dev -- --ref develop                 # both at a branch, tag, or commit
-//   npm run docs:dev -- --sync-ref v1.2.0 --sdk-ref v0.3.0
+//   npm run docs:dev                                  # sync server + SDK at their latest release tag, core at develop
+//   npm run docs:dev -- --ref develop                 # all three at a branch, tag, or commit
+//   npm run docs:dev -- --sync-ref v1.2.0 --sdk-ref v0.3.0 --core-ref develop
 //   npm run docs:dev -- --only sdk --no-api           # one guide, without rebuilding the API reference
 //
-// The checkouts default to ../openvireo-sync-server and ../openvireo-sdk; OPENVIREO_SYNC_SRC and
-// OPENVIREO_SDK_SRC override them. Files are read from the ref with git, so the working trees are left
-// alone. For each guide it writes:
+// The checkouts default to ../openvireo-sync-server, ../openvireo-sdk and ../openvireo-core;
+// OPENVIREO_SYNC_SRC, OPENVIREO_SDK_SRC and OPENVIREO_CORE_SRC override them. Files are read from the ref
+// with git, so the working trees are left alone. The core publishes from develop unless --core-ref says
+// otherwise: its v* tags are the SDK's, inherited with its history, and predate the bindings docs.
+// For each guide it writes:
 //   content/docs/<guide>/_index.md          the landing page (chapter cards)
-//   content/docs/<guide>/<page>.md          one page per docs/*.md file
+//   content/docs/<guide>/<page>.md          one page per Markdown file in the guide's directory
 // plus, for the sync server, an API reference page generated from docs/openapi.yaml and a copy of that
 // file in static/docs/sync-server/, and for the SDK the TypeDoc reference in static/docs/sdk/api/.
 // Generated files are replaced wholesale; edit the docs in their own repositories.
@@ -27,7 +30,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 // Per guide: where it comes from, its landing page, and each page's order (weights in steps of 10),
 // icon and card summary. A docs file missing here still publishes, at the end, with a warning;
-// files under `unpublished` don't.
+// files under `unpublished` don't. Optional per guide: `dir`, the directory published (default docs,
+// recursively); `index`, its overview page (default <dir>/index.md); `defaultRef`, the ref used when no
+// --ref is given (default: the latest v* tag).
 const guides = {
     'sync-server': {
         repo: 'openvireo-sync-server',
@@ -56,7 +61,10 @@ const guides = {
         title: 'SDK',
         description: 'Build on OpenVireo with the TypeScript SDK, the ov CLI, ov connect and the GitHub Action.',
         product: 'OpenVireo SDK',
-        related: { title: 'API reference', url: '/docs/sdk/api/', icon: 'fa-book-open' },
+        related: [
+            { title: 'API reference', url: '/docs/sdk/api/', icon: 'fa-book-open' },
+            { title: 'Python, Kotlin, Java? Core bindings', url: '/docs/core/', icon: 'fa-gear' },
+        ],
         unpublished: [],
         typedoc: true,
         pages: {
@@ -64,6 +72,7 @@ const guides = {
             'docs/concepts.md': { slug: 'concepts', weight: 20, icon: 'fa-key', summary: 'Keys, vaults, roles, organisations, references, and what the servers see.' },
             'docs/guides/hosted-account.md': { slug: 'hosted-account', weight: 30, icon: 'fa-right-to-bracket', summary: 'Sign up, sign in, unlock and lock, sessions and storage.' },
             'docs/guides/vaults-and-sharing.md': { slug: 'vaults-and-sharing', weight: 40, icon: 'fa-vault', summary: 'Open, read and write vaults; create, share, revoke; organisations.' },
+            'docs/guides/share-links.md': { slug: 'share-links', weight: 45, icon: 'fa-link', summary: 'Give an item or some text to anyone, no account needed.' },
             'docs/guides/events.md': { slug: 'events', weight: 50, icon: 'fa-bolt', summary: 'React to changes from other devices and to access changes.' },
             'docs/guides/offline.md': { slug: 'offline', weight: 60, icon: 'fa-plane', summary: 'Keep working without the network, and catch up afterwards.' },
             'docs/guides/move-to-account.md': { slug: 'move-to-account', weight: 70, icon: 'fa-file-import', summary: 'Turn an existing database into a vault.' },
@@ -77,6 +86,24 @@ const guides = {
             'docs/errors.md': { slug: 'errors', weight: 150, icon: 'fa-triangle-exclamation', summary: 'Every error code and what to do about it.' },
             'docs/merge-behaviour.md': { slug: 'merge-behaviour', weight: 160, icon: 'fa-code-merge', summary: 'How concurrent edits are combined, exactly.' },
             'docs/lower-level.md': { slug: 'lower-level', weight: 170, icon: 'fa-layer-group', summary: 'The sync loop, HTTP clients, KDBX helpers, Argon2 and OPAQUE.' },
+            'docs/migrating-to-1.0.md': { slug: 'migrating-to-1.0', weight: 180, icon: 'fa-arrow-up-right-dots', summary: 'What changed in 1.0, on the shared Rust core, and how to upgrade.' },
+        },
+    },
+    core: {
+        repo: 'openvireo-core',
+        env: 'OPENVIREO_CORE_SRC',
+        title: 'Core bindings',
+        description: 'Use the OpenVireo core from Python, Kotlin and Java: accounts, vaults, sync, share links and .kdbx files.',
+        product: 'OpenVireo core',
+        related: { title: 'TypeScript? SDK', url: '/docs/sdk/', icon: 'fa-code' },
+        dir: 'docs/bindings',
+        index: 'docs/bindings/README.md',
+        defaultRef: 'develop',
+        unpublished: [],
+        pages: {
+            'docs/bindings/README.md': { slug: 'overview', weight: 10, icon: 'fa-layer-group', summary: 'Every language binding, what it is for, and how they differ.' },
+            'docs/bindings/python.md': { slug: 'python', weight: 20, icon: 'fa-file-code', summary: 'The openvireo package: install, sign in, vaults, sync, errors.' },
+            'docs/bindings/kotlin-java.md': { slug: 'kotlin-java', weight: 30, icon: 'fa-mug-hot', summary: 'com.openvireo.core for the JVM and Android, from Kotlin or Java.' },
         },
     },
 };
@@ -90,17 +117,19 @@ let buildApi = true;
 for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--ref') {
-        refs['sync-server'] = refs.sdk = args[++i];
+        refs['sync-server'] = refs.sdk = refs.core = args[++i];
     } else if (arg === '--sync-ref') {
         refs['sync-server'] = args[++i];
     } else if (arg === '--sdk-ref') {
         refs.sdk = args[++i];
+    } else if (arg === '--core-ref') {
+        refs.core = args[++i];
     } else if (arg === '--only') {
         only = args[++i];
     } else if (arg === '--no-api') {
         buildApi = false;
     } else if (arg === '-h' || arg === '--help') {
-        console.log('Usage: npm run docs:dev -- [--ref <ref>] [--sync-ref <ref>] [--sdk-ref <ref>] [--only sync-server|sdk] [--no-api]');
+        console.log('Usage: npm run docs:dev -- [--ref <ref>] [--sync-ref <ref>] [--sdk-ref <ref>] [--core-ref <ref>] [--only sync-server|sdk|core] [--no-api]');
         process.exit(0);
     } else {
         fail(`unknown argument ${arg}`);
@@ -165,11 +194,15 @@ function convert(markdown, file, ctx) {
             title = line.slice(2).trim().replace(/`/g, '');
             continue;
         }
-        // Prelude and no-check comments are for the SDK's sample checker
-        if (/^<!--\s*(prelude|no-check)\b/.test(line)) {
+        // HTML comments (the SDK's prelude and no-check sample-checker notes, editors' notes) aren't for
+        // readers: drop whole-line ones and inline ones
+        if (/^\s*<!--/.test(line)) {
             while (i < lines.length && !lines[i].includes('-->')) i++;
-            continue;
+            const rest = (lines[i] ?? '').slice((lines[i] ?? '').indexOf('-->') + 3);
+            if (rest.trim() === '') continue;
+            line = rest;
         }
+        line = line.replace(/<!--.*?-->/g, '');
         const heading = /^(#{2,5}) (.*)$/.exec(line);
         if (heading) {
             const id = headingId(heading[2], used);
@@ -324,7 +357,7 @@ for (const [name, guide] of Object.entries(guides)) {
     const repo = resolve(process.env[guide.env] || join(root, '..', guide.repo));
     if (!existsSync(join(repo, '.git'))) fail(`${repo} is not a ${guide.repo} checkout. Pass its path in ${guide.env}.`);
     const git = gitIn(repo);
-    let ref = refs[name];
+    let ref = refs[name] ?? guide.defaultRef;
     if (!ref) {
         ref = git('tag', '--list', 'v*', '--sort=-v:refname').split('\n')[0];
         if (!ref) fail(`${guide.repo} has no release tags; pass --ref develop`);
@@ -337,9 +370,11 @@ for (const [name, guide] of Object.entries(guides)) {
     }
     // origin/develop is develop on GitHub
     ref = ref.replace(/^origin\//, '');
-    const files = git('ls-tree', '-r', '--name-only', commit, '--', 'docs').split('\n').filter((f) => f.endsWith('.md'));
-    if (!files.includes('docs/index.md')) fail(`${guide.repo} at ${ref} has no docs/index.md (docs/ arrived after it); pass --ref develop`);
-    sources[name] = { guide, repo, git, ref, commit, files: files.filter((f) => !guide.unpublished.includes(f)) };
+    const dir = guide.dir ?? 'docs';
+    const index = guide.index ?? `${dir}/index.md`;
+    const files = git('ls-tree', '-r', '--name-only', commit, '--', dir).split('\n').filter((f) => f.endsWith('.md'));
+    if (!files.includes(index)) fail(`${guide.repo} at ${ref} has no ${index} (${dir}/ arrived after it); pass --ref develop`);
+    sources[name] = { guide, repo, git, ref, commit, dir, files: files.filter((f) => !guide.unpublished.includes(f)) };
 }
 
 const pageUrl = (repoName, file) => {
@@ -348,12 +383,12 @@ const pageUrl = (repoName, file) => {
     return page ? `/docs/${entry[0]}/${page.slug}/` : null;
 };
 
-for (const [name, { guide, repo, git, ref, commit, files }] of Object.entries(sources)) {
+for (const [name, { guide, repo, git, ref, commit, dir, files }] of Object.entries(sources)) {
     if (only && name !== only) continue;
     const contentDir = join(root, 'content', 'docs', name);
     rmSync(contentDir, { recursive: true, force: true });
     mkdirSync(contentDir, { recursive: true });
-    const updated = git('log', '-1', '--format=%cs', commit, '--', 'docs');
+    const updated = git('log', '-1', '--format=%cs', commit, '--', dir);
     const origin = `${ref}@${commit}`;
     const isDirectory = (path) => {
         try {
@@ -408,7 +443,7 @@ for (const [name, { guide, repo, git, ref, commit, files }] of Object.entries(so
         versionLabel: label,
         updated,
         origin,
-        source: `https://github.com/openvireo/${guide.repo}/tree/${ref}/docs`,
+        source: `https://github.com/openvireo/${guide.repo}/tree/${ref}/${dir}`,
         related: guide.related,
         type: 'guide',
         cascade: { type: 'guide' },

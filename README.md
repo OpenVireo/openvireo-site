@@ -82,17 +82,21 @@ New chapters publish automatically with a generic icon and a warning; give them 
 the `guides` table at the top of `scripts/build-guide.mjs`. That script can also convert a prebuilt single-file
 guide (e.g. from a release package): `node scripts/build-guide.mjs user-guide OpenVireo_UserGuide.html`.
 
-## Update the Sync Server and SDK docs
+## Update the Sync Server, SDK and core docs
 
-The developer docs under `docs/sync-server/` and `docs/sdk/` are the Markdown in `openvireo-sync-server/docs` and
-`openvireo-sdk/docs`, published by:
+The developer docs under `docs/sync-server/`, `docs/sdk/` and `docs/core/` are the Markdown in
+`openvireo-sync-server/docs`, `openvireo-sdk/docs` and `openvireo-core/docs/bindings`, published by:
 
 ```bash
-npm run docs:dev                      # ../openvireo-sync-server and ../openvireo-sdk at their latest release tags
-npm run docs:dev -- --ref develop     # or a branch, tag or commit (--sync-ref / --sdk-ref for one repo)
+npm run docs:dev                      # sync server + SDK at their latest release tags, ../openvireo-core at develop
+npm run docs:dev -- --ref develop     # or a branch, tag or commit (--sync-ref / --sdk-ref / --core-ref for one repo)
+npm run docs:dev -- --only core       # one guide
 ```
 
-It writes `content/docs/sync-server/` and `content/docs/sdk/`, an API reference page from the sync server's
+The core publishes from `develop` by default: its `v*` tags came with the SDK's history and predate the bindings
+docs. Once the core has its own release tags, pass `--core-ref <tag>` (or drop `defaultRef` in the script).
+
+It writes `content/docs/sync-server/`, `content/docs/sdk/` and `content/docs/core/`, an API reference page from the sync server's
 `docs/openapi.yaml`, and the SDK's TypeDoc reference in `static/docs/sdk/api/` (`--no-api` skips that, which needs
 `npm ci` in a copy of the SDK). Page order, icons and summaries are in `scripts/sync-dev-docs.mjs`. Edit the
 docs in their own repositories, not here.

@@ -8,7 +8,9 @@
         <div class="row guide-header-meta">
             <span class="guide-version"><i class="fa-solid fa-tag" aria-hidden="true"></i> {{ with .Params.versionLabel }}{{ . }}{{ else }}OpenVireo (based on KeePassXC {{ $.Params.version }}){{ end }}</span>
             {{- with .Params.related }}
-            {{ partial "button.html" (dict "href" (strings.TrimPrefix "/" .url | print $.Site.BaseURL) "text" .title "appearance" "primary" "size" "large" "icon" (print "fa-solid " .icon)) }}
+            {{- range $n, $r := (cond (reflect.IsSlice .) . (slice .)) }}
+            {{ partial "button.html" (dict "href" (strings.TrimPrefix "/" .url | print $.Site.BaseURL) "text" .title "appearance" (cond (eq $n 0) "primary" "outline") "size" "large" "icon" (print "fa-solid " .icon)) }}
+            {{- end }}
             {{- end }}
         </div>
     </div>
