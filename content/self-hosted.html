@@ -1,0 +1,109 @@
+---
+title: Self-hosted password manager
+seoTitle: "Self-hosted password manager with KeePass sync – OpenVireo"
+description: Run your own password sync server. OpenVireo keeps encrypted KeePass files in sync across desktop, iPhone and web from one free, open-source binary or Docker image.
+layout: landing
+draft: true
+eyebrow: Self-hosting
+lead: >-
+  Keep your passwords on hardware you control. The OpenVireo Sync Server is one free, open-source binary or Docker
+  image that keeps your encrypted KeePass files in sync across your computers, your iPhone and the web. It stores
+  files it can't read, and your passwords keep working if you ever turn it off.
+secondary:
+  href: "#set-up"
+  text: Set up a server
+faq:
+  - q: Is the self-hosted server free?
+    a: Yes. The sync server, the desktop app, the browser extension and the CLI are free with no limits. Plans only pay for the hosted service. See <a href="/pricing/">pricing</a>.
+  - q: Will it run on a Raspberry Pi or a small VPS?
+    a: Yes. There are signed release binaries for Linux on x64 and arm64, plus macOS and Windows, and a Docker image. It stores data in SQLite by default, or in Postgres and S3. See <a href="/docs/sync-server/install/">Installing and deploying</a>.
+  - q: Do I need HTTPS?
+    a: For anything other than localhost, yes. Each device's access token is sent with every request, so put the server behind a TLS reverse proxy such as Caddy or nginx. See <a href="/docs/sync-server/install/#https-and-reverse-proxies">HTTPS and reverse proxies</a>.
+  - q: What happens if my server goes down?
+    a: Nothing is lost. Every device keeps a complete KeePass file and keeps working offline. When the server is back, the devices merge their changes.
+  - q: Can my family share passwords on my server?
+    a: Not on a self-hosted server. Each user there has their own databases and can't see anyone else's. Sharing between people works through organizations on a hosted OpenVireo account.
+  - q: Can I move to a hosted account later?
+    a: Yes. The same apps sign in to a hosted OpenVireo account, and moving a database there takes a few clicks. You can also go the other way by exporting a KeePass file.
+  - q: Which apps work with my server?
+    a: OpenVireo for Windows, macOS and Linux, OpenVireo for iPhone and iPad, OpenVireo Web (which pairs with your server but isn't self-hosted itself) and the <a href="/docs/sdk/">SDK and CLI</a>. Bitwarden's apps don't work with it.
+---
+
+<h2 id="why">Why self-host with OpenVireo</h2>
+<div class="cmp-points">
+    <div class="cmp-point">
+        <h3>The server can't read your passwords</h3>
+        <p>Each database is one encrypted KeePass file. The server checks the file signature and nothing else: it
+            never parses your entries. Your master password and keys never leave your devices.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Your files work without it</h3>
+        <p>Every device keeps a full KDBX file that OpenVireo, KeePassXC or any other KeePass app can open. If you
+            stop running the server, you still have your passwords in a standard format.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>One binary, nothing else to install</h3>
+        <p>Signed builds for Linux (x64 and arm64), macOS and Windows, or a Docker image. SQLite by default, Postgres
+            and S3 when you want them. It runs happily on a Raspberry Pi or a small VPS.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Free and open source</h3>
+        <p>The sync server is GPLv3 and free with no limits on users, devices or databases. Release binaries are
+            notarized for macOS, signed for Windows and GPG-signed. See
+            <a href="/verifying-signatures/">Verifying signatures</a>.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>Apps on every device you use</h3>
+        <p>Desktop apps for Windows, macOS and Linux, an iPhone and iPad app with AutoFill, OpenVireo Web, browser
+            extensions for Firefox, Chrome and Edge, and a CLI.</p>
+    </div>
+    <div class="cmp-point">
+        <h3>A hosted option when you want one</h3>
+        <p>If you'd rather not run a server, the same apps sign in to a hosted OpenVireo account with sharing and
+            organizations. You can switch either way.</p>
+    </div>
+</div>
+
+<h2 id="how">How sync works</h2>
+<ol class="cmp-steps">
+    <li>A device downloads the server's copy of the database, still encrypted.</li>
+    <li>It decrypts and merges that copy into its own database locally, the same way KeePass merges two files, and
+        saves it.</li>
+    <li>It uploads the merged file. If another device uploaded in the meantime, the server refuses the upload and
+        the device merges again, so two devices can never overwrite each other.</li>
+    <li>The server keeps previous versions and tells your other devices about the new one straight away.</li>
+</ol>
+<p>The details, including the API, are in the <a href="/docs/sync-server/overview/">sync server docs</a>.</p>
+
+<h2 id="set-up">Set up a server</h2>
+<p>On Linux, download a release, add yourself and a first device, and start it:</p>
+{{< highlight sh "linenos=false" >}}
+v=VERSION a=x64     # the release without the v, e.g. 0.2.0; a: x64 or arm64
+curl -fLO "https://github.com/OpenVireo/openvireo-sync-server/releases/download/v$v/openvireo-sync-server-$v-linux-$a.tar.gz"
+tar -xzf "openvireo-sync-server-$v-linux-$a.tar.gz" && cd "openvireo-sync-server-$v"
+./openvireo-sync-server users add alice laptop   # prints the laptop's access token, once
+./openvireo-sync-server                          # http://127.0.0.1:8787, data in ./data
+{{< /highlight >}}
+<p>Then in OpenVireo, open your database, go to <strong>Database › Database Settings › Remote Sync</strong>, choose
+    <em>OpenVireo Sync Server</em> and enter the server URL, a database ID and the token. Add more devices with a
+    pairing code; see <a href="/docs/sync-server/users-and-devices/">Users and devices</a>.</p>
+<p><a href="/docs/sync-server/install/">Installing and deploying</a> covers macOS and Windows, Docker, systemd and
+    HTTPS with Caddy or nginx.</p>
+
+<h2 id="limits">What a self-hosted server doesn't do</h2>
+<ul class="cmp-ahead">
+    <li><strong>Sharing between people.</strong> Each user on your server has their own databases. Shared vaults and
+        organizations need a hosted account.</li>
+    <li><strong>Android.</strong> There's no OpenVireo app for Android yet. KeePass apps on Android can still open
+        your KDBX files.</li>
+    <li><strong>A self-hosted web app.</strong> OpenVireo Web is a hosted app. It can pair with your server, but you
+        can't run it yourself.</li>
+    <li><strong>An audit.</strong> OpenVireo hasn't had a published third-party audit yet; one is planned.</li>
+</ul>
+
+<h2 id="compare">Other self-hosted password managers</h2>
+<p><strong>Vaultwarden</strong> is a lightweight, unofficial server for Bitwarden's apps, with sharing between users
+    on your own server. <a href="/compare/vaultwarden/">OpenVireo vs Vaultwarden</a> goes through the differences.</p>
+<p><strong>KeePassXC</strong> with Syncthing, Nextcloud or a shared folder copies one file between devices, but if
+    two devices change it before it syncs you get a conflict copy to merge by hand. <a href="/compare/keepassxc/">OpenVireo vs KeePassXC</a> covers what
+    OpenVireo adds on top of it.</p>

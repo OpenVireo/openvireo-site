@@ -1,0 +1,68 @@
+{{- /*
+    Topic landing page (e.g. /self-hosted/): a marketing header, prose body and an FAQ.
+
+    Front matter:
+      layout      landing
+      seoTitle    the <title>
+      eyebrow     small label above the heading
+      lead        the summary under the heading (HTML allowed)
+      primary     {href, text} for the main button (defaults to Download)
+      secondary   {href, text} for the outline button (optional)
+      faq         list of {q, a}; a may hold HTML. Also emitted as FAQPage JSON-LD.
+    Reuses the /compare/ styles (cmp-header, cmp-points, cmp-section).
+*/ -}}
+{{- define "title" }}<title>{{ .Params.seoTitle | default (print .Title " – OpenVireo") }}</title>{{ end }}
+
+{{- define "head" }}
+{{- with .Params.faq }}
+{{- $items := slice }}
+{{- range . }}
+    {{- $items = $items | append (dict "@type" "Question" "name" .q "acceptedAnswer" (dict "@type" "Answer" "text" (.a | plainify | htmlUnescape))) }}
+{{- end }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $items | jsonify | safeJS }}</script>
+{{- end }}
+{{- end }}
+
+{{- define "main" }}
+<div class="page-header cmp-header">
+    <div class="container">
+        {{ partial "breadcrumbs.html" . }}
+        {{- with .Params.eyebrow }}
+        <p class="eyebrow">{{ . }}</p>
+        {{- end }}
+        <h1>{{ .Title }}</h1>
+        {{- with .Params.lead }}
+        <p class="cmp-lead">{{ . | safeHTML }}</p>
+        {{- end }}
+        <div class="row cmp-header-actions">
+            {{- $primary := .Params.primary | default (dict "href" (print site.BaseURL "download") "text" "Download OpenVireo") }}
+            {{ partial "button.html" (dict "href" (index $primary "href") "text" (index $primary "text") "appearance" "primary" "size" "large") }}
+            {{- with .Params.secondary }}
+            {{ partial "button.html" (dict "href" .href "text" .text "appearance" "outline" "size" "large") }}
+            {{- end }}
+        </div>
+    </div>
+</div>
+
+<div class="section section-small">
+    <div class="container">
+        <div class="page-content cmp-content">
+            {{ .Content }}
+        </div>
+
+        {{- with .Params.faq }}
+        <section class="cmp-section page-content" aria-labelledby="faq">
+            <h2 id="faq">Questions</h2>
+            {{- range . }}
+            <details>
+                <summary>{{ .q }}</summary>
+                <p>{{ .a | safeHTML }}</p>
+            </details>
+            {{- end }}
+        </section>
+        {{- end }}
+    </div>
+</div>
+
+{{ partial "cta-band.html" . }}
+{{- end }}
