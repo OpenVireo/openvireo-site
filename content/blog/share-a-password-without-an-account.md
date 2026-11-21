@@ -1,7 +1,7 @@
 ---
 title: "Share a password with someone who doesn't use OpenVireo"
 author: "Bongani Mbigi"
-date: 2026-11-08
+date: 2026-11-05
 category: "Features"
 description: "Share links send a copy of an entry to anyone, with no account, no app and no sign-in, encrypted so that we can't read it."
 ---

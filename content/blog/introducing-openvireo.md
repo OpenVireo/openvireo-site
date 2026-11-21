@@ -1,7 +1,7 @@
 ---
 title: "Introducing OpenVireo"
 author: "Bongani Mbigi"
-date: 2026-11-08
+date: 2026-11-01
 category: "Announcements"
 description: "OpenVireo is a free, open-source password manager built on KeePassXC, with optional end-to-end encrypted sync and sharing."
 ---

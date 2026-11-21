@@ -1,7 +1,7 @@
 ---
 title: "How account recovery works when we don't have your key"
 author: "Bongani Mbigi"
-date: 2026-11-08
+date: 2026-11-06
 category: "Security"
 description: "We can't decrypt your vaults, so we can't reset your password the usual way. Here's what OpenVireo account recovery does instead."
 ---

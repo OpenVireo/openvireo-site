@@ -1,7 +1,7 @@
 ---
 title: "Bring your KeePass database with you"
 author: "Bongani Mbigi"
-date: 2026-11-08
+date: 2026-11-03
 category: "Features"
 description: "Import a .kdbx file into OpenVireo on the web, desktop or iPhone: merge it into a vault, add it as copies, or make it a new synced vault."
 ---
