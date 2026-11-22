@@ -29,11 +29,15 @@ offline, and no lock-in.
 
 - **Your files.** OpenVireo reads and writes the same KeePass (`.kdbx`) files. Your databases open unchanged, with
   their key files and YubiKeys. Files saved by OpenVireo still open in KeePassXC and every other KeePass app.
-- **The desktop app.** Auto-type, browser integration, passkeys, the SSH agent, Secret Service on Linux, KeeShare,
-  database reports and the command-line tool all carry over.
+- **The desktop app.** Auto-type, browser integration, passkeys, the SSH agent, Secret Service on Linux, database
+  reports and the command-line tool all carry over.
 - **No account needed.** Choose "Use without an account" and OpenVireo is a local password manager. No servers, no
   sign-up, nothing leaves your computer.
 - **Free and open source.** The desktop app is GPL, like KeePassXC.
+
+> **Update, 22 November 2026:** When this post went up, KeeShare was on the list above too. OpenVireo has since removed
+> it: sharing a vault with an account replaces it. Databases that used KeeShare in KeePassXC still open and keep their
+> share settings, but OpenVireo no longer imports or exports shared containers.
 
 ## What OpenVireo adds
 

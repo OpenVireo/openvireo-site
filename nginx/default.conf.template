@@ -113,4 +113,11 @@ server {
   if ($developer_docs_path) {
     return 301 https://developer.openvireo.com$developer_docs_path$is_args$args;
   }
+
+  # The User Guide's KeeShare chapter, removed with KeeShare (vault sharing with an account replaces it), points
+  # to vault sharing in the accounts chapter. Kept here rather than in content/ because npm run docs replaces
+  # the generated guide pages.
+  location ~ ^/docs/user-guide/database-sharing-with-keeshare(/|/index\.html)?$ {
+    return 301 /docs/user-guide/openvireo-accounts/#_sharing_a_vault;
+  }
 }

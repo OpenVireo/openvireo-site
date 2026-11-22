@@ -68,10 +68,6 @@ export const guides = {
                 weight: 60, icon: 'fa-file-export',
                 summary: 'Export your database to use in other programs, to print, or to archive.',
             },
-            _database_sharing_with_keeshare: {
-                weight: 70, icon: 'fa-share-nodes',
-                summary: 'Share a subset of your credentials with other people, and receive theirs, using KeeShare.',
-            },
             _browser_integration: {
                 weight: 80, icon: 'fa-globe',
                 summary: 'Connect the OpenVireo Browser extension to fill in logins on websites automatically.',
