@@ -14,6 +14,13 @@ accountsURL = 'https://accounts.openvireo.com/'
 # Set to false once the browser extension is listed on Firefox Add-ons and the Chrome Web Store
 extensionInReview = false
 
+# Header nav entries that aren't pages on this site (pages add themselves with menu.main in their front matter)
+[[menus.main]]
+# The developer docs (SDK, ov CLI, core bindings, self-hosting the sync server); they moved off /docs/
+name = 'Developers'
+url = 'https://developer.openvireo.com/'
+weight = 6
+
 [security]
 # Hugo 0.168+ denies HTML content files by default; this site's pages are .html
 allowContent = ['! ^text/org$']

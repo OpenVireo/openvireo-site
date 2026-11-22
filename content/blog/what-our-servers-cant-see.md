@@ -85,14 +85,14 @@ can't read anything.
 
 ## Run it yourself
 
-The [sync server]({{< baseurl >}}docs/sync-server/) is open source, and you can run it on your own machine with no
+The [sync server](https://developer.openvireo.com/self-hosting/) is open source, and you can run it on your own machine with no
 account at all: one signed binary for Linux, macOS or Windows, with a token per device and your database's own
 password. The guarantees above don't depend on trusting us; on your own server, you don't have to.
 
 The clients are open source too: the [desktop app](https://github.com/openvireo/openvireo), the
 [browser extension](https://github.com/openvireo/openvireo-browser) and the
 [SDK](https://github.com/openvireo/openvireo-sdk) that the web app and command line tool are built on. The full
-protocol is described in the [SDK docs]({{< baseurl >}}docs/sdk/).
+protocol is described in the [SDK docs](https://developer.openvireo.com/sdk/).
 
 ## What this means for you
 

@@ -15,9 +15,9 @@ faq:
   - q: Can my family share vaults on a self-hosted OpenVireo server?
     a: No. Each user on a self-hosted server has their own databases, and users can't see each other's. Sharing between people works through organizations on a hosted OpenVireo account.
   - q: Will it run on a Raspberry Pi or a small VPS?
-    a: Yes. There are signed release binaries for Linux on x64 and arm64, plus macOS and Windows, and a Docker image. It stores data in SQLite by default, or in Postgres and S3. See <a href="/docs/sync-server/install/">Installing and deploying</a>.
+    a: Yes. There are signed release binaries for Linux on x64 and arm64, plus macOS and Windows, and a Docker image. It stores data in SQLite by default, or in Postgres and S3. See <a href="https://developer.openvireo.com/self-hosting/install/">Installing and deploying</a>.
   - q: Can I use Bitwarden's apps with the OpenVireo Sync Server?
-    a: No. It works with OpenVireo on the desktop, OpenVireo Web, the iPhone app and the <a href="/docs/sdk/">SDK and CLI</a>.
+    a: No. It works with OpenVireo on the desktop, OpenVireo Web, the iPhone app and the <a href="https://developer.openvireo.com/sdk/">SDK and CLI</a>.
   - q: What happens if my server goes down?
     a: Nothing is lost. Every device keeps a complete KeePass file and keeps working offline. When the server is back, the devices merge their changes.
 ---
@@ -78,7 +78,7 @@ faq:
 <p>With Vaultwarden, the Bitwarden apps encrypt each item and the server stores them in its database. With the
     OpenVireo Sync Server, the server stores each database as a single encrypted KeePass file and never looks
     inside it. Each device signs in with its own access token, which you can revoke if a device is lost; see
-    <a href="/docs/sync-server/users-and-devices/">Users and devices</a>.</p>
+    <a href="https://developer.openvireo.com/self-hosting/users-and-devices/">Users and devices</a>.</p>
 
 <h2 id="switch">Switching from Vaultwarden</h2>
 <ol class="cmp-steps">
@@ -87,6 +87,6 @@ faq:
     <li><a href="/download/">Install OpenVireo</a>, choose <strong>Database › Import…</strong> and pick
         <strong>Bitwarden</strong>. See <a href="/docs/user-guide/importing-databases/#_bitwarden">Importing from
         Bitwarden</a>. Then securely delete the export file.</li>
-    <li>Install the <a href="/docs/sync-server/">OpenVireo Sync Server</a>, add a user and a device, and set up
+    <li>Install the <a href="https://developer.openvireo.com/self-hosting/">OpenVireo Sync Server</a>, add a user and a device, and set up
         <strong>Remote Sync</strong> in the database settings with the device's token.</li>
 </ol>

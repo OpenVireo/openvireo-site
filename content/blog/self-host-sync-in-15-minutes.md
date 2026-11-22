@@ -152,5 +152,5 @@ The same apps sign in to a free OpenVireo account, and moving a database there t
 other way at any time by exporting a KeePass file.
 
 The full reference, including Postgres and S3 storage, systemd, nginx and the API, is in the
-[sync server docs]({{< baseurl >}}docs/sync-server/). Why self-host with OpenVireo at all is on the
+[sync server docs](https://developer.openvireo.com/self-hosting/). Why self-host with OpenVireo at all is on the
 [self-hosting page]({{< baseurl >}}self-hosted/).

@@ -1,4 +1,97 @@
 # The nginx image runs envsubst on this at start (/etc/nginx/templates), filling in ${HSTS}.
+# envsubst only replaces variables set in the container's environment, so nginx's own $variables below
+# ($uri, $args, ...) are left alone.
+
+# The developer docs (SDK, core bindings, sync server) moved to https://developer.openvireo.com. Every old URL
+# under /docs/sdk/, /docs/core/ and /docs/sync-server/ maps to its new path here and 301s there (permanently;
+# keep these). The page-by-page entries mirror openvireo-developer/data/redirects.json, each with and without
+# its trailing slash. Exact strings win over the regexes, which are tried in order: the SDK's TypeDoc pages keep
+# their subpath, the sync server's API pages go to /api/, and anything else lands on the section's front page.
+map $uri $developer_docs_path {
+  default "";
+
+  /docs/sync-server/                    /self-hosting/;
+  /docs/sync-server                     /self-hosting/;
+  /docs/sync-server/overview/           /self-hosting/;
+  /docs/sync-server/overview            /self-hosting/;
+  /docs/sync-server/install/            /self-hosting/install/;
+  /docs/sync-server/install             /self-hosting/install/;
+  /docs/sync-server/configuration/      /self-hosting/configuration/;
+  /docs/sync-server/configuration       /self-hosting/configuration/;
+  /docs/sync-server/users-and-devices/  /self-hosting/users-and-devices/;
+  /docs/sync-server/users-and-devices   /self-hosting/users-and-devices/;
+  /docs/sync-server/accounts/           /self-hosting/accounts/;
+  /docs/sync-server/accounts            /self-hosting/accounts/;
+  /docs/sync-server/operations/         /self-hosting/operations/;
+  /docs/sync-server/operations          /self-hosting/operations/;
+  /docs/sync-server/development/        /self-hosting/development/;
+  /docs/sync-server/development         /self-hosting/development/;
+  /docs/sync-server/api/                /api/;
+  /docs/sync-server/api                 /api/;
+  /docs/sync-server/api-reference/      /api/reference/;
+  /docs/sync-server/api-reference       /api/reference/;
+  /docs/sdk/                            /sdk/;
+  /docs/sdk                             /sdk/;
+  /docs/sdk/overview/                   /sdk/;
+  /docs/sdk/overview                    /sdk/;
+  /docs/sdk/concepts/                   /sdk/concepts/;
+  /docs/sdk/concepts                    /sdk/concepts/;
+  /docs/sdk/hosted-account/             /sdk/guides/hosted-account/;
+  /docs/sdk/hosted-account              /sdk/guides/hosted-account/;
+  /docs/sdk/vaults-and-sharing/         /sdk/guides/vaults-and-sharing/;
+  /docs/sdk/vaults-and-sharing          /sdk/guides/vaults-and-sharing/;
+  /docs/sdk/share-links/                /sdk/guides/share-links/;
+  /docs/sdk/share-links                 /sdk/guides/share-links/;
+  /docs/sdk/events/                     /sdk/guides/events/;
+  /docs/sdk/events                      /sdk/guides/events/;
+  /docs/sdk/offline/                    /sdk/guides/offline/;
+  /docs/sdk/offline                     /sdk/guides/offline/;
+  /docs/sdk/move-to-account/            /sdk/guides/move-to-account/;
+  /docs/sdk/move-to-account             /sdk/guides/move-to-account/;
+  /docs/sdk/recovery/                   /sdk/guides/recovery/;
+  /docs/sdk/recovery                    /sdk/guides/recovery/;
+  /docs/sdk/service-accounts/           /sdk/guides/service-accounts/;
+  /docs/sdk/service-accounts            /sdk/guides/service-accounts/;
+  /docs/sdk/self-hosted-sync/           /sdk/guides/self-hosted-sync/;
+  /docs/sdk/self-hosted-sync            /sdk/guides/self-hosted-sync/;
+  /docs/sdk/testing/                    /sdk/guides/testing/;
+  /docs/sdk/testing                     /sdk/guides/testing/;
+  /docs/sdk/cli/                        /cli/;
+  /docs/sdk/cli                         /cli/;
+  /docs/sdk/connect/                    /cli/connect/;
+  /docs/sdk/connect                     /cli/connect/;
+  /docs/sdk/github-action/              /cli/github-action/;
+  /docs/sdk/github-action               /cli/github-action/;
+  /docs/sdk/errors/                     /sdk/reference/errors/;
+  /docs/sdk/errors                      /sdk/reference/errors/;
+  /docs/sdk/merge-behaviour/            /sdk/reference/merge-behaviour/;
+  /docs/sdk/merge-behaviour             /sdk/reference/merge-behaviour/;
+  /docs/sdk/lower-level/                /sdk/reference/lower-level/;
+  /docs/sdk/lower-level                 /sdk/reference/lower-level/;
+  /docs/sdk/migrating-to-1.0/           /sdk/reference/migrating-to-1.0/;
+  /docs/sdk/migrating-to-1.0            /sdk/reference/migrating-to-1.0/;
+  /docs/core/                           /bindings/;
+  /docs/core                            /bindings/;
+  /docs/core/overview/                  /bindings/;
+  /docs/core/overview                   /bindings/;
+  /docs/core/python/                    /bindings/python/;
+  /docs/core/python                     /bindings/python/;
+  /docs/core/kotlin-java/               /bindings/kotlin-java/;
+  /docs/core/kotlin-java                /bindings/kotlin-java/;
+  /docs/sdk/api/                        /sdk/api/;
+  /docs/sdk/api                         /sdk/api/;
+  /docs/sync-server/openapi.yaml        /api/openapi.yaml;
+
+  # SDK API reference (TypeDoc): same subpath under /sdk/api/
+  ~^/docs/sdk/api/(?<api_rest>.*)$ /sdk/api/$api_rest;
+
+  # Anything else in a moved section: that section's landing page
+  ~^/docs/sync-server/api           /api/;
+  ~^/docs/sync-server(/|$)          /self-hosting/;
+  ~^/docs/sdk(/|$)                  /sdk/;
+  ~^/docs/core(/|$)                 /bindings/;
+}
+
 server {
   listen 1313;
   root /usr/share/nginx/html;
@@ -11,6 +104,13 @@ server {
   gzip on;
   gzip_types text/css application/javascript application/json image/svg+xml application/xml text/xml;
 
-  # Strict-Transport-Security; nginx sends no header when HSTS is empty
+  # Strict-Transport-Security; nginx sends no header when HSTS is empty. Set at server level and not
+  # overridden in any location, so it is on every response, the redirects below included.
   add_header Strict-Transport-Security "${HSTS}" always;
+
+  # Moved developer docs (see the map above), query string kept. A server-level return runs before
+  # location matching and still gets the server-level headers.
+  if ($developer_docs_path) {
+    return 301 https://developer.openvireo.com$developer_docs_path$is_args$args;
+  }
 }

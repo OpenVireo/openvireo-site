@@ -48,7 +48,7 @@ The first time you start OpenVireo, it asks how you want to use it:
   does, and it always will. When you want it in an account later,
   [import the .kdbx into a vault]({{< baseurl >}}blog/import-your-keepass-database/).
 - **With your own sync server.** Run the open-source
-  [OpenVireo Sync Server]({{< baseurl >}}docs/sync-server/) on your own machine, and every device stays in step with
+  [OpenVireo Sync Server](https://developer.openvireo.com/self-hosting/) on your own machine, and every device stays in step with
   the same database. No account, no plans, no limits.
 - **With an OpenVireo account.** Sign up for free and your vaults sync between OpenVireo on your computers,
   [OpenVireo Web]({{< web-app-url >}}) in your browser, and soon your iPhone.

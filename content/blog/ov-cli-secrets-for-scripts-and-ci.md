@@ -137,4 +137,4 @@ Service accounts belong to organizations. The free organization plan includes on
 Business unlimited. See [pricing]({{< baseurl >}}pricing/).
 
 Everything else, including `ov connect` (a local REST server for Kubernetes and other tools) and the SDK for your own
-code, is in the [SDK docs]({{< baseurl >}}docs/sdk/).
+code, is in the [SDK docs](https://developer.openvireo.com/sdk/).

@@ -15,9 +15,9 @@ faq:
   - q: Is the self-hosted server free?
     a: Yes. The sync server, the desktop app, the browser extension and the CLI are free with no limits. Plans only pay for the hosted service. See <a href="/pricing/">pricing</a>.
   - q: Will it run on a Raspberry Pi or a small VPS?
-    a: Yes. There are signed release binaries for Linux on x64 and arm64, plus macOS and Windows, and a Docker image. It stores data in SQLite by default, or in Postgres and S3. See <a href="/docs/sync-server/install/">Installing and deploying</a>.
+    a: Yes. There are signed release binaries for Linux on x64 and arm64, plus macOS and Windows, and a Docker image. It stores data in SQLite by default, or in Postgres and S3. See <a href="https://developer.openvireo.com/self-hosting/install/">Installing and deploying</a>.
   - q: Do I need HTTPS?
-    a: For anything other than localhost, yes. Each device's access token is sent with every request, so put the server behind a TLS reverse proxy such as Caddy or nginx. See <a href="/docs/sync-server/install/#https-and-reverse-proxies">HTTPS and reverse proxies</a>.
+    a: For anything other than localhost, yes. Each device's access token is sent with every request, so put the server behind a TLS reverse proxy such as Caddy or nginx. See <a href="https://developer.openvireo.com/self-hosting/install/#https-and-reverse-proxies">HTTPS and reverse proxies</a>.
   - q: What happens if my server goes down?
     a: Nothing is lost. Every device keeps a complete KeePass file and keeps working offline. When the server is back, the devices merge their changes.
   - q: Can my family share passwords on my server?
@@ -25,7 +25,7 @@ faq:
   - q: Can I move to a hosted account later?
     a: Yes. The same apps sign in to a hosted OpenVireo account, and moving a database there takes a few clicks. You can also go the other way by exporting a KeePass file.
   - q: Which apps work with my server?
-    a: OpenVireo for Windows, macOS and Linux, OpenVireo for iPhone and iPad, OpenVireo Web (which pairs with your server but isn't self-hosted itself) and the <a href="/docs/sdk/">SDK and CLI</a>. Bitwarden's apps don't work with it.
+    a: OpenVireo for Windows, macOS and Linux, OpenVireo for iPhone and iPad, OpenVireo Web (which pairs with your server but isn't self-hosted itself) and the <a href="https://developer.openvireo.com/sdk/">SDK and CLI</a>. Bitwarden's apps don't work with it.
 ---
 
 <h2 id="why">Why self-host with OpenVireo</h2>
@@ -72,7 +72,7 @@ faq:
         the device merges again, so two devices can never overwrite each other.</li>
     <li>The server keeps previous versions and tells your other devices about the new one straight away.</li>
 </ol>
-<p>The details, including the API, are in the <a href="/docs/sync-server/overview/">sync server docs</a>.</p>
+<p>The details, including the API, are in the <a href="https://developer.openvireo.com/self-hosting/">sync server docs</a>.</p>
 
 <h2 id="set-up">Set up a server</h2>
 <p>On Linux, download a release, add yourself and a first device, and start it:</p>
@@ -85,8 +85,8 @@ tar -xzf "openvireo-sync-server-$v-linux-$a.tar.gz" && cd "openvireo-sync-server
 {{< /highlight >}}
 <p>Then in OpenVireo, open your database, go to <strong>Database › Database Settings › Remote Sync</strong>, choose
     <em>OpenVireo Sync Server</em> and enter the server URL, a database ID and the token. Add more devices with a
-    pairing code; see <a href="/docs/sync-server/users-and-devices/">Users and devices</a>.</p>
-<p><a href="/docs/sync-server/install/">Installing and deploying</a> covers macOS and Windows, Docker, systemd and
+    pairing code; see <a href="https://developer.openvireo.com/self-hosting/users-and-devices/">Users and devices</a>.</p>
+<p><a href="https://developer.openvireo.com/self-hosting/install/">Installing and deploying</a> covers macOS and Windows, Docker, systemd and
     HTTPS with Caddy or nginx.</p>
 
 <h2 id="limits">What a self-hosted server doesn't do</h2>
