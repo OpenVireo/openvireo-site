@@ -60,7 +60,7 @@ On Linux, Flatpak and Snap based browsers are generally not supported. Ubuntu&#8
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Get the extension from <a href="https://addons.mozilla.org/firefox/addon/openvireo/">Firefox Add-ons</a> (Firefox, Tor Browser) or the <a href="https://chromewebstore.google.com/detail/ogecgkbokcjipobddojjhapbfcppghcf">Chrome Web Store</a> (Chrome, Chromium, Vivaldi, Brave, Microsoft Edge).</p>
+<p>Get OpenVireo Browser from <a href="https://addons.mozilla.org/firefox/addon/openvireo/">Firefox Add-ons</a> (Mozilla Firefox, Tor Browser) or the <a href="https://chromewebstore.google.com/detail/ogecgkbokcjipobddojjhapbfcppghcf">Chrome Web Store</a> (Chrome, Chromium, Vivaldi, Brave, Microsoft Edge). The KeePassXC-Browser extension from the browser stores does not connect to OpenVireo.</p>
 </li>
 <li>
 <p>Click the button to install/add the extension to the browser. Accept any confirmation dialogs.</p>
@@ -358,7 +358,7 @@ This feature is only available for Linux and macOS.</p>
 <div class="content">
 <pre>{
     "allowed_origins": [
-        "chrome-extension://bafnojkbdaiajjkkaeljcngflakgdmmk/"
+        "chrome-extension://ogecgkbokcjipobddojjhapbfcppghcf/"
     ],
     "description": "OpenVireo integration with native messaging support",
     "name": "com.openvireo.browser",
@@ -380,7 +380,7 @@ This feature is only available for Linux and macOS.</p>
 "NativeMessagingUserLevelHosts"=dword:00000000
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\ExtensionInstallAllowlist]
-"1"="bafnojkbdaiajjkkaeljcngflakgdmmk"
+"1"="ogecgkbokcjipobddojjhapbfcppghcf"
 
 [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Edge\NativeMessagingAllowlist]
 "1"="com.openvireo.browser"</pre>
