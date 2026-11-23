@@ -190,15 +190,15 @@
 // App window: the desktop database view (static/assets/img/screenshots/database_view.png) drawn
 // in HTML/CSS, in the app's light Fluent theme. Colours are sampled from that screenshot.
 .ov-window {
-    --app-bg: #f5f5f5;
-    --app-panel: #fafafa;
+    --app-bg: #f3f6f2;
+    --app-panel: #fbfcfb;
     --app-card: #ffffff;
-    --app-line: #e6e6e6;
-    --app-ink: #1a1a1a;
-    --app-muted: #5f5f5f;
-    --app-faint: #8a8a8a;
-    --app-sel: #e3e9df;
-    --app-side-sel: #ebebeb;
+    --app-line: #e0e6df;
+    --app-ink: #0b0f0c;
+    --app-muted: #4c574f;
+    --app-faint: #636e66;
+    --app-sel: #e7f1e1;
+    --app-side-sel: #e7f1e1;
     --app-key: #f2a900;
     --app-folder: #f4b400;
 
@@ -310,7 +310,7 @@
     align-items: center;
     gap: 10px;
     padding: 7px 10px;
-    border-radius: 6px;
+    border-radius: 12px;
 
     &.is-child {
         padding-inline-start: 32px;
@@ -363,7 +363,7 @@
     flex-direction: column;
     min-width: 0;
     border-inline-start: 1px solid var(--app-line);
-    border-start-start-radius: 8px;
+    border-start-start-radius: 20px;
     background: var(--app-panel);
 }
 
@@ -383,7 +383,7 @@
     height: 32px;
     padding: 0 10px;
     border: 1px solid var(--app-line);
-    border-radius: 6px;
+    border-radius: 999px;
     background: #ffffff;
     color: var(--app-faint);
 }
@@ -395,8 +395,10 @@
     padding: 14px 16px 10px;
 
     > b {
-        font-size: 20px;
-        letter-spacing: -.01em;
+        font-family: var(--fontFamilyDisplay);
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -.025em;
     }
 }
 
@@ -411,11 +413,11 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
-    border-radius: 4px;
+    padding: 6px 14px 6px 12px;
+    border-radius: 999px;
     background: var(--ov-green);
     color: #ffffff;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .ov-app-sep {
@@ -446,7 +448,7 @@
     align-items: center;
     gap: 12px;
     padding: 7px 10px;
-    border-radius: 6px;
+    border-radius: 12px;
 
     &.is-selected {
         background: var(--app-sel);
@@ -467,13 +469,13 @@
     width: 32px;
     height: 32px;
     border: 1px solid var(--app-line);
-    border-radius: 6px;
+    border-radius: 12px;
     background: #ffffff;
 
     &.is-lg {
         width: 44px;
         height: 44px;
-        border-radius: 8px;
+        border-radius: 14px;
     }
 }
 
@@ -527,7 +529,7 @@
     padding: 18px 20px;
     border: 1px solid var(--app-line);
     border-bottom: 0;
-    border-radius: 8px 8px 0 0;
+    border-radius: 18px 18px 0 0;
     background: var(--app-card);
 }
 
@@ -538,14 +540,17 @@
 
     b {
         display: block;
+        font-family: var(--fontFamilyDisplay);
         font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -.025em;
     }
 }
 
 .ov-app-fields {
     margin-top: 16px;
     border: 1px solid var(--app-line);
-    border-radius: 6px;
+    border-radius: 12px;
     background: var(--app-panel);
 }
 
@@ -589,7 +594,8 @@
 
 .ov-app-notes-title {
     margin-top: 14px;
-    font-weight: 600;
+    font-family: var(--fontFamilyDisplay);
+    font-weight: 700;
 }
 
 .ov-app-notes {
