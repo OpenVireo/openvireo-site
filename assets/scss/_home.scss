@@ -187,231 +187,456 @@
     font-size: 14px;
 }
 
-// App window mock
+// App window: the desktop database view (static/assets/img/screenshots/database_view.png) drawn
+// in HTML/CSS, in the app's light Fluent theme. Colours are sampled from that screenshot.
 .ov-window {
+    --app-bg: #f5f5f5;
+    --app-panel: #fafafa;
+    --app-card: #ffffff;
+    --app-line: #e6e6e6;
+    --app-ink: #1a1a1a;
+    --app-muted: #5f5f5f;
+    --app-faint: #8a8a8a;
+    --app-sel: #e3e9df;
+    --app-side-sel: #ebebeb;
+    --app-key: #f2a900;
+    --app-folder: #f4b400;
+
     overflow: hidden;
     border: 1px solid #26302a;
     border-bottom: 0;
     border-radius: 16px 16px 0 0;
-    background: #0f1511;
-    box-shadow: 0 -20px 80px rgba(60, 125, 32, .18);
-    color: #e6ece7;
-    font-size: 14px;
-    line-height: 1.4;
+    background: var(--app-bg);
+    box-shadow: 0 -20px 80px rgba(60, 125, 32, .22);
+    color: var(--app-ink);
+    font-size: 13.5px;
+    line-height: 1.35;
+    text-align: start;
+
+    svg {
+        flex: none;
+    }
 }
 
 .ov-window-bar {
     display: flex;
     align-items: center;
     gap: 8px;
-    height: 40px;
-    padding: 0 16px;
-    border-bottom: 1px solid #1f2a22;
+    height: 38px;
+    padding: 0 14px;
+    border-bottom: 1px solid var(--app-line);
+    background: #ececec;
 
     > span:not(.ov-window-title) {
         width: 11px;
         height: 11px;
         border-radius: 50%;
-        background: #3a443d;
+        background: #ff5f57;
+
+        &:nth-child(2) { background: #febc2e; }
+        &:nth-child(3) { background: #28c840; }
     }
 }
 
 .ov-window-title {
     flex: 1;
     margin-inline-end: 49px;
-    color: #8a968d;
-    font-size: 13px;
-    text-align: center;
-    white-space: nowrap;
     overflow: hidden;
+    color: #6b6b6b;
+    font-size: 12.5px;
+    text-align: center;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .ov-app {
     display: grid;
-    grid-template-columns: 220px 320px minmax(0, 1fr);
-    height: 440px;
-
-    @media (max-width: 900px) {
-        grid-template-columns: minmax(0, 1fr);
-        height: 380px;
-
-        .ov-app-side, .ov-app-detail {
-            display: none;
-        }
-    }
+    grid-template-columns: 248px minmax(0, 1fr);
+    height: 540px;
 }
 
 .ov-app-side {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 18px 12px;
-    border-right: 1px solid #1f2a22;
+    padding: 12px 10px 14px;
+}
+
+.ov-app-db {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 8px 14px 6px;
+
+    > span:nth-child(2) {
+        min-width: 0;
+        white-space: nowrap;
+    }
+
+    > svg:last-child {
+        margin-inline-start: auto;
+        color: var(--app-faint);
+    }
+}
+
+.ov-app-db-icon {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #dfe8da;
+}
+
+.ov-app-db-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ov-app-sub {
+    color: var(--app-muted);
+    font-size: 12px;
 }
 
 .ov-app-label {
-    padding: 6px 10px;
-    color: #7d897f;
-    font-size: 11px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
+    padding: 6px 8px;
+    color: var(--app-muted);
+    font-size: 12px;
+}
 
-    & ~ & {
-        padding-top: 18px;
+.ov-app-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    border-radius: 6px;
+
+    &.is-child {
+        padding-inline-start: 32px;
+    }
+
+    &.is-selected {
+        background: var(--app-side-sel);
+    }
+
+    > .ov-app-count {
+        margin-inline-start: auto;
+        color: var(--app-faint);
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
     }
 }
 
-.ov-app-item {
-    padding: 9px 10px;
-    border-radius: 8px;
-    color: #b9c3bb;
+.ov-app-group.is-selected::before,
+.ov-app-entry.is-selected::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: -2px;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--ov-green);
+}
 
-    &.is-selected {
-        background: #1b2a1e;
-        color: #a6d992;
-        font-weight: 600;
+.ov-app-side-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: auto;
+
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 10px;
     }
+
+    svg {
+        color: var(--app-muted);
+    }
+}
+
+.ov-app-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border-inline-start: 1px solid var(--app-line);
+    border-start-start-radius: 8px;
+    background: var(--app-panel);
+}
+
+.ov-app-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    background: var(--app-bg);
+}
+
+.ov-app-search {
+    display: flex;
+    flex: 0 1 340px;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+    padding: 0 10px;
+    border: 1px solid var(--app-line);
+    border-radius: 6px;
+    background: #ffffff;
+    color: var(--app-faint);
+}
+
+.ov-app-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px 10px;
+
+    > b {
+        font-size: 20px;
+        letter-spacing: -.01em;
+    }
+}
+
+.ov-app-tools {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-inline-start: auto;
+}
+
+.ov-app-new {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: var(--ov-green);
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.ov-app-sep {
+    width: 1px;
+    height: 20px;
+    background: var(--app-line);
+}
+
+.ov-app-panes {
+    display: grid;
+    flex: 1;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    gap: 12px;
+    min-height: 0;
+    padding: 0 12px 0 10px;
 }
 
 .ov-app-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    min-width: 0;
-    padding: 14px;
-    border-right: 1px solid #1f2a22;
-}
-
-.ov-app-search {
-    padding: 10px 12px;
-    border: 1px solid #222d25;
-    border-radius: 10px;
-    background: #151d17;
-    color: #7d897f;
+    gap: 2px;
+    padding-top: 2px;
 }
 
 .ov-app-entry {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 7px 10px;
+    border-radius: 6px;
 
     &.is-selected {
-        background: #1b2a1e;
+        background: var(--app-sel);
+
+        &::before {
+            top: 14px;
+            bottom: 14px;
+            left: -1px;
+        }
     }
 }
 
-.ov-app-icon {
-    display: flex;
+.ov-app-key {
+    position: relative;
+    display: grid;
     flex: none;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 700;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--app-line);
+    border-radius: 6px;
+    background: #ffffff;
 
-    &.ov-app-icon-lg {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        font-size: 20px;
-    }
-
-    &.ov-app-icon-sm {
-        width: 28px;
-        height: 28px;
+    &.is-lg {
+        width: 44px;
+        height: 44px;
         border-radius: 8px;
-        font-size: 12px;
     }
+}
+
+.ov-app-expired-mark {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #c42b1c;
+    color: #ffffff;
+    font-size: 8px;
+    font-weight: 700;
+    line-height: 11px;
+    text-align: center;
 }
 
 .ov-app-entry-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    flex: 1;
     min-width: 0;
+
+    > b {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    > span {
+        display: block;
+        overflow: hidden;
+        color: var(--app-muted);
+        font-size: 12.5px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 
-.ov-app-entry-name {
-    color: #eef2ef;
-    font-weight: 600;
-}
-
-.ov-app-entry-user {
-    overflow: hidden;
-    color: #8a968d;
+.ov-app-chip {
+    flex: none;
+    padding: 2px 9px;
+    border-radius: 999px;
     font-size: 12px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+
+    &.is-expired { background: #fde7e7; color: #c42b1c; }
+    &.is-weak { background: #fdf3d6; color: #8a5a00; }
 }
 
 .ov-app-detail {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    padding: 28px 32px;
+    min-width: 0;
+    padding: 18px 20px;
+    border: 1px solid var(--app-line);
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    background: var(--app-card);
 }
 
 .ov-app-detail-head {
     display: flex;
     align-items: center;
     gap: 14px;
-}
 
-.ov-app-detail-title {
-    font-family: var(--fontFamilyDisplay);
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.ov-app-detail-path {
-    color: #8a968d;
-    font-size: 13px;
+    b {
+        display: block;
+        font-size: 20px;
+    }
 }
 
 .ov-app-fields {
-    overflow: hidden;
-    border: 1px solid #222d25;
-    border-radius: 12px;
+    margin-top: 16px;
+    border: 1px solid var(--app-line);
+    border-radius: 6px;
+    background: var(--app-panel);
 }
 
 .ov-app-field {
-    display: flex;
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 16px;
+    gap: 10px;
+    min-height: 46px;
+    padding: 0 14px;
 
     & + & {
-        border-top: 1px solid #222d25;
+        border-top: 1px solid var(--app-line);
     }
 
-    > div > div:last-child {
-        margin-top: 3px;
+    > span:first-child {
+        color: var(--app-muted);
+        font-size: 12.5px;
     }
-}
 
-.ov-app-field-label {
-    color: #7d897f;
-    font-size: 12px;
+    > span:nth-child(2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    > span:last-child {
+        display: flex;
+        gap: 16px;
+    }
 }
 
 .ov-app-dots {
-    letter-spacing: .15em;
-}
-
-.ov-app-otp {
-    color: #eef2ef;
-    font-size: 18px;
+    font-size: 9px;
+    letter-spacing: .25em;
 }
 
 .ov-app-link {
-    color: #a6d992;
+    color: #2f6d16;
+}
+
+.ov-app-notes-title {
+    margin-top: 14px;
+    font-weight: 600;
+}
+
+.ov-app-notes {
+    margin-top: 6px;
+    color: var(--app-muted);
+    line-height: 1.45;
+}
+
+.ov-app-meta {
+    margin-top: 12px;
+}
+
+// Below 900px only the entry list is shown
+@media (max-width: 900px) {
+    .ov-app {
+        grid-template-columns: minmax(0, 1fr);
+        height: 420px;
+    }
+
+    .ov-app-side,
+    .ov-app-detail,
+    .ov-app-top > svg,
+    .ov-app-tools > :not(.ov-app-new) {
+        display: none;
+    }
+
+    .ov-app-panes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ov-app-search {
+        flex: 1;
+    }
+}
+
+// Letter icon, used by the browser-fill card
+.ov-app-icon {
+    display: flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .ov-app-badge {
