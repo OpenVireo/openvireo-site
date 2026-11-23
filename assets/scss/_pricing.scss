@@ -1,0 +1,431 @@
+// Pricing page (content/pricing.html, layouts/_default/pricing.html), 2026 redesign.
+
+.pr-hero {
+    padding-top: #{"clamp(56px, 8vw, 96px)"};
+    text-align: center;
+
+    h1 {
+        margin: 0;
+        color: var(--ov-ink);
+        font-size: #{"clamp(2.6rem, 1.4rem + 4.8vw, 4.5rem)"};
+        line-height: 1;
+        letter-spacing: -.035em;
+
+        span {
+            color: var(--ov-faint);
+        }
+    }
+}
+
+.pr-lead {
+    max-width: 660px;
+    margin: 24px auto 0;
+    color: var(--ov-muted);
+    font-size: #{"clamp(1.0625rem, 1rem + .3vw, 1.1875rem)"};
+    line-height: 1.55;
+
+    a {
+        color: var(--ov-green-text);
+    }
+}
+
+.pr-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.pr-seg {
+    display: flex;
+    gap: 4px;
+    max-width: 100%;
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--ov-seg);
+
+    button {
+        min-height: 44px;
+        padding: 10px 20px;
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--ov-muted);
+        font: inherit;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.2;
+        cursor: pointer;
+        transition: background var(--durationFaster), color var(--durationFaster);
+
+        &:hover {
+            color: var(--ov-ink);
+        }
+
+        &[aria-pressed="true"] {
+            background: var(--ov-ink);
+            color: var(--ov-page);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--ov-green);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 420px) {
+            padding-inline: 14px;
+            font-size: 14px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
+
+        @media (forced-colors: active) {
+            &[aria-pressed="true"] {
+                outline: 2px solid Highlight;
+            }
+        }
+    }
+}
+
+// Plans ----------------------------------------------------------------------------------------
+
+.pr-plans {
+    padding-top: 56px;
+    padding-bottom: 32px;
+
+    &[data-period="yearly"] .pr-monthly,
+    &[data-period="monthly"] .pr-yearly {
+        display: none;
+    }
+
+    // With JavaScript, only the chosen group shows; its title is then for screen readers only
+    &[data-audience="personal"] #orgs,
+    &[data-audience="orgs"] #personal {
+        display: none;
+    }
+
+    &[data-audience] .pr-panel-title {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+}
+
+.pr-panel + .pr-panel {
+    margin-top: 64px;
+}
+
+.pr-panel-title {
+    margin: 0 0 24px;
+    color: var(--ov-ink);
+    font-size: #{"clamp(1.6rem, 1.3rem + 1vw, 2.25rem)"};
+    letter-spacing: -.02em;
+    text-align: center;
+}
+
+.pr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 240px)"}, 1fr));
+    gap: 20px;
+    margin: 0 auto;
+
+    &.pr-grid-2 {
+        max-width: 760px;
+    }
+}
+
+.pr-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 32px;
+    border: 1px solid var(--ov-line);
+    border-radius: var(--ov-radius-card);
+    background: var(--ov-card);
+    color: var(--ov-text);
+
+    h3 {
+        margin: 0;
+        color: inherit;
+        font-size: 22px;
+    }
+
+    a:not(.btn) {
+        color: inherit;
+    }
+
+    &.is-featured {
+        --colorStrokeFocus2: #ffffff;
+        border-color: var(--ov-dark);
+        background: var(--ov-dark);
+        color: var(--ov-on-dark);
+
+        .pr-unit, .pr-note, .pr-blurb {
+            color: var(--ov-on-dark-muted);
+        }
+
+        .pr-features li::before {
+            color: var(--ov-on-dark-green);
+        }
+
+        .pr-cta {
+            background: var(--ov-green);
+            color: #ffffff;
+
+            &:hover {
+                background: #346d1c;
+                color: #ffffff;
+            }
+
+            &:focus-visible {
+                outline: 2px solid #ffffff;
+                outline-offset: 2px;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+.pr-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pr-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 6px;
+}
+
+.pr-amount {
+    font-family: var(--fontFamilyDisplay);
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -.035em;
+}
+
+.pr-unit {
+    color: var(--ov-muted);
+    font-size: 15px;
+}
+
+.pr-note {
+    flex-basis: 100%;
+    min-height: 18px;
+    margin-top: 4px;
+    color: var(--ov-muted);
+    font-size: 13px;
+}
+
+.pr-blurb {
+    margin: 0;
+    color: var(--ov-muted);
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+.pr-cta.btn {
+    min-height: 48px;
+    border: 0;
+    background: var(--ov-seg);
+    color: var(--ov-ink);
+
+    &:hover {
+        background: color-mix(in srgb, var(--ov-seg) 80%, var(--ov-ink));
+        color: var(--ov-ink);
+    }
+}
+
+.pr-features {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.45;
+    list-style: none;
+
+    li {
+        position: relative;
+        margin: 0;
+        padding-inline-start: 28px;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 2px;
+            width: 12px;
+            height: 7px;
+            border-bottom: 2px solid currentColor;
+            border-left: 2px solid currentColor;
+            color: var(--ov-green-text);
+            rotate: -45deg;
+            translate: 0 1px;
+        }
+    }
+}
+
+.pr-foot,
+.pr-notes p {
+    max-width: 44rem;
+    margin: 28px auto 0;
+    color: var(--ov-muted);
+    font-size: 14px;
+    text-align: center;
+
+    a {
+        color: var(--ov-green-text);
+        font-weight: 600;
+    }
+}
+
+.pr-notes {
+    margin-top: 32px;
+
+    p {
+        margin-top: 12px;
+        font-size: 15px;
+    }
+
+    strong {
+        color: var(--ov-ink);
+    }
+}
+
+// Comparison tables ----------------------------------------------------------------------------
+
+.pr-compare {
+    padding-top: 64px;
+    padding-bottom: #{"clamp(64px, 8vw, 96px)"};
+
+    > h2 {
+        margin: 0 0 24px;
+        color: var(--ov-ink);
+        font-size: #{"clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)"};
+        letter-spacing: -.02em;
+    }
+}
+
+.pr-table-wrap {
+    overflow-x: auto;
+    padding: 0 12px;
+    border: 1px solid var(--ov-line-2);
+    border-radius: 16px;
+
+    & + & {
+        margin-top: 24px;
+    }
+}
+
+.pr-table {
+    width: 100%;
+    min-width: 640px;
+    margin: 0;
+    border-collapse: collapse;
+    border: 0;
+    font-size: 15px;
+
+    caption {
+        padding: 18px 12px 6px;
+        color: var(--ov-ink);
+        font-family: var(--fontFamilyDisplay);
+        font-size: 18px;
+        font-weight: 700;
+        text-align: start;
+    }
+
+    th, td {
+        padding: 16px 12px;
+        border: 0;
+        border-bottom: 1px solid var(--ov-line-2);
+        background: transparent;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    thead th {
+        color: var(--ov-ink);
+        font-weight: 600;
+    }
+
+    tbody th {
+        color: var(--ov-text);
+        font-weight: 500;
+        text-align: start;
+    }
+
+    td {
+        color: var(--ov-muted);
+    }
+
+    tbody tr:last-child > * {
+        border-bottom: 0;
+    }
+
+    a {
+        color: var(--ov-green-text);
+    }
+}
+
+.pr-compare-links p {
+    margin: 24px 0 0;
+    color: var(--ov-muted);
+    font-size: 15px;
+}
+
+// FAQ ------------------------------------------------------------------------------------------
+
+.pr-faq {
+    padding: #{"clamp(64px, 8vw, 96px)"} 0;
+    background: var(--ov-soft);
+}
+
+.pr-faq-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 320px)"}, 1fr));
+    gap: 56px;
+
+    h2 {
+        margin: 0;
+        color: var(--ov-ink);
+        font-size: #{"clamp(2rem, 1.5rem + 1.8vw, 2.75rem)"};
+        line-height: 1.05;
+        letter-spacing: -.03em;
+    }
+}
+
+.pr-faq-list {
+    details {
+        margin: 0;
+        padding: 22px 0;
+        border: 0;
+        border-bottom: 1px solid var(--ov-line);
+        border-radius: 0;
+        background: transparent;
+    }
+
+    summary {
+        padding: 0;
+        color: var(--ov-ink);
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    p {
+        margin: 12px 0 0;
+        color: var(--ov-muted);
+        line-height: 1.6;
+    }
+}

@@ -208,6 +208,50 @@ function initGuideNav() {
     window.addEventListener('scroll', update, { passive: true });
 }
 
+// Pricing: For you / Families and teams and Monthly / Yearly switches ----------------------
+
+function initPricing() {
+    const plans = document.querySelector('.pr-plans');
+    if (!plans) {
+        return;
+    }
+    const audienceButtons = document.querySelectorAll('[data-audience-choice]');
+    const periodButtons = document.querySelectorAll('[data-period-choice]');
+
+    const setAudience = (audience) => {
+        plans.dataset.audience = audience;
+        audienceButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.audienceChoice === audience)));
+    };
+    const setPeriod = (period) => {
+        plans.dataset.period = period;
+        periodButtons.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.periodChoice === period)));
+    };
+
+    audienceButtons.forEach((b) => b.addEventListener('click', () => {
+        setAudience(b.dataset.audienceChoice);
+        history.replaceState(null, '', `#${b.dataset.audienceChoice}`);
+    }));
+    periodButtons.forEach((b) => b.addEventListener('click', () => setPeriod(b.dataset.periodChoice)));
+
+    // /pricing/#orgs (and links to anything inside that group) open on Families and teams
+    const fromHash = (scroll) => {
+        const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        const panel = target?.closest('#orgs, #personal');
+        if (!panel) {
+            return;
+        }
+        setAudience(panel.id);
+        // Hiding the other group moves this one, so put it back in view
+        if (scroll) {
+            requestAnimationFrame(() => target.scrollIntoView({ block: 'start' }));
+        }
+    };
+    setAudience('personal');
+    setPeriod(plans.dataset.period || 'yearly');
+    fromHash(true);
+    window.addEventListener('hashchange', () => fromHash(true));
+}
+
 function init() {
     initHeader();
     initNavDrawer();
@@ -217,6 +261,7 @@ function init() {
     initTooltips();
     initCopyable();
     initGuideNav();
+    initPricing();
 }
 
 if (document.readyState === 'loading') {

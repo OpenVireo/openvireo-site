@@ -520,6 +520,8 @@
 
 .brand-type-sample {
     margin-block: 1rem;
+    font-family: var(--fontFamilyDisplay);
+    letter-spacing: -.035em;
     font-size: var(--fontSizeHero900);
     font-weight: var(--mk-display-font-weight);
     line-height: 1.15;

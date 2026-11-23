@@ -6,6 +6,7 @@
 
 .mk-display {
     margin: 0 auto;
+    font-family: var(--fontFamilyDisplay);
     max-width: 20ch;
     color: var(--mk-on-dark);
     font-size: #{"clamp(2.6rem, 1.4rem + 5vw, 5.25rem)"};
@@ -33,6 +34,7 @@
 
 .mk-heading {
     margin: 0;
+    font-family: var(--fontFamilyDisplay);
     font-size: #{"clamp(2rem, 1.3rem + 2.6vw, 3.4rem)"};
     font-weight: var(--mk-display-font-weight);
     letter-spacing: -.03em;
@@ -51,7 +53,7 @@
     align-items: center;
     gap: .5em;
     color: var(--colorBrandForegroundLink);
-    font-weight: 800;
+    font-weight: 600;
     text-decoration: none;
 
     i {
@@ -437,7 +439,7 @@
     h3 {
         margin: 0 0 .5rem;
         font-size: var(--fontSizeBase600);
-        font-weight: 800;
+        font-weight: 700;
         letter-spacing: -.015em;
     }
 
@@ -458,23 +460,55 @@
     }
 }
 
-// Closing call to action -------------------------------------------------------------------
+// Closing call to action (partials/cta-band.html) -----------------------------------------
 
 .mk-cta {
-    padding-block: #{"clamp(4.5rem, 10vw, 8rem)"};
-    background: var(--mk-dark);
-    color: var(--mk-on-dark);
+    padding: 80px 0 128px;
+    background: var(--ov-page);
     text-align: center;
 
-    .mk-lead {
-        margin-bottom: 2.5rem;
+    .mk-cta-title {
+        margin: 0;
+        color: var(--ov-ink);
+        font-size: #{"clamp(2.5rem, 1.6rem + 3.6vw, 4rem)"};
+        line-height: 1;
+        letter-spacing: -.035em;
+
+        span {
+            color: var(--ov-green-text);
+        }
+    }
+
+    .mk-cta-actions {
+        margin-top: 36px;
+    }
+
+    .mk-cta-note {
+        margin: 24px 0 0;
+        color: var(--ov-muted);
+        font-size: 15px;
     }
 
     @media (max-width: $breakpoint-small) {
+        padding-bottom: 96px;
+
         .row {
             flex-direction: column;
             align-items: stretch;
         }
+    }
+}
+
+// Outline pill on white: the secondary call to action of the redesign
+.btn.btn-ghost {
+    border-color: var(--ov-line-strong);
+    color: var(--ov-ink);
+    background: transparent;
+
+    &:hover {
+        border-color: var(--ov-ink);
+        color: var(--ov-ink);
+        background: transparent;
     }
 }
 

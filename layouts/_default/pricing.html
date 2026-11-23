@@ -1,0 +1,12 @@
+{{- /*
+    Pricing page (content/pricing.html, layout: pricing). The page body holds all of the markup and
+    every price and limit; this layout only drops the generic page header and prose wrapper.
+    The For you / Families and teams and Monthly / Yearly switches are wired up in assets/js/site.js
+    (initPricing). Without JavaScript both plan groups show, with yearly prices and the monthly
+    price in each card's note.
+*/ -}}
+{{- define "main" }}
+<div class="pr-page">
+{{ .Content }}
+</div>
+{{ end }}

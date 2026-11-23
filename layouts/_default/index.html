@@ -1,202 +1,276 @@
 {{ define "main" }}
 {{- $base := .Site.BaseURL }}
-<section class="mk-hero">
-    <div class="container mk-hero-inner">
-        <h1 class="mk-display">Your passwords.<br>Your device. <span class="mk-highlight">Your rules.</span></h1>
-        <p class="mk-lead">
-            OpenVireo safely stores your passwords and auto-fills them into your favorite apps, so you can forget all about them.
-            No ads, no trackers, no cloud unless you want one&nbsp;&mdash; just a free and open-source password manager that does the heavy lifting.
-        </p>
-        <div class="row row-center mk-hero-actions">
-            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download OpenVireo" "appearance" "inverse" "size" "hero") }}
-            {{ partial "button.html" (dict "href" "#project" "text" "See how it works" "appearance" "inverse-outline" "size" "hero") }}
+{{- $webApp := .Site.Params.webAppURL }}
+<div class="ov-home">
+
+<!-- Hero (dark, under the transparent header) -->
+<section class="ov-hero" aria-labelledby="hero-heading">
+    <div class="container ov-hero-inner">
+        {{- with site.GetPage "/blog/openvireo-1-0" }}
+        <a class="ov-hero-pill" href="{{ .RelPermalink }}">
+            <span class="ov-hero-pill-tag">New</span>
+            <span>OpenVireo 1.0 is here, with the iPhone app</span>
+            <span aria-hidden="true">&rarr;</span>
+        </a>
+        {{- end }}
+        <h1 id="hero-heading" class="ov-hero-title">Your passwords.<br>Your device. <span>Your rules.</span></h1>
+        <p class="ov-hero-lead">The open-source password manager that fills your logins everywhere and syncs end to end encrypted, or never touches a server at all.</p>
+        <div class="ov-hero-actions">
+            {{ partial "button.html" (dict "href" (print $base "download") "text" "Download for free" "appearance" "primary" "size" "hero") }}
+            {{ partial "button.html" (dict "href" (print $webApp "?view=signup") "text" "Create an account" "appearance" "inverse-outline" "size" "hero") }}
         </div>
-        <p class="mk-hero-note">
-            <i class="fa-brands fa-windows" aria-hidden="true"></i>
-            <i class="fa-brands fa-apple" aria-hidden="true"></i>
-            <i class="fa-brands fa-linux" aria-hidden="true"></i>
-            Free for Windows, macOS, and Linux
-        </p>
-        <p class="mk-hero-note">
-            Want your vaults synced and shared?
-            <a href="{{ .Site.Params.webAppURL }}?view=signup">Create a free account</a> or
-            <a href="{{ .Site.Params.webAppURL }}?view=signin">sign in to the web app</a>
-        </p>
+        <p class="ov-hero-note">Windows · macOS · Linux · iOS · Web · Firefox, Chrome and Edge</p>
     </div>
-    <div class="container mk-hero-media">
-        <div class="mk-window">
-            <div class="mk-window-bar" aria-hidden="true"><span></span><span></span><span></span></div>
-            <img src="{{ $base }}assets/img/screenshots/database_view.png" width="1600" height="1220"
-                 alt="The OpenVireo main window showing a password database with groups and entries">
+
+    <!-- App window, drawn in HTML/CSS -->
+    <div class="container">
+        <div class="ov-window" role="img" aria-label="The OpenVireo app: a Personal vault with its groups, a list of logins, and the GitHub login open with its username, password and one-time code">
+            <div class="ov-window-bar" aria-hidden="true">
+                <span></span><span></span><span></span>
+                <span class="ov-window-title">Personal — OpenVireo</span>
+            </div>
+            <div class="ov-app" aria-hidden="true">
+                <div class="ov-app-side">
+                    <div class="ov-app-label">Vaults</div>
+                    <div class="ov-app-item is-selected">Personal</div>
+                    <div class="ov-app-item">Family</div>
+                    <div class="ov-app-item">Acme Inc · Shared</div>
+                    <div class="ov-app-label">Groups</div>
+                    <div class="ov-app-item">Email</div>
+                    <div class="ov-app-item">Finance</div>
+                    <div class="ov-app-item">Social</div>
+                    <div class="ov-app-item">Recycle Bin</div>
+                </div>
+                <div class="ov-app-list">
+                    <div class="ov-app-search">Search Personal</div>
+                    {{- range (slice
+                        (dict "i" "G" "name" "GitHub" "user" "octo-bongani" "color" "#24292f" "sel" true)
+                        (dict "i" "A" "name" "Amazon" "user" "bongani@example.com" "color" "#b06a00")
+                        (dict "i" "B" "name" "Bank of Austin" "user" "checking ••4021" "color" "#1f4f8f")
+                        (dict "i" "N" "name" "Netflix" "user" "family@example.com" "color" "#a3121b")
+                        (dict "i" "W" "name" "Home Wi-Fi" "user" "Secure note" "color" "#3c7d20")
+                        (dict "i" "S" "name" "Slack" "user" "acme.slack.com" "color" "#5a2a6e")) }}
+                    <div class="ov-app-entry{{ if .sel }} is-selected{{ end }}">
+                        <span class="ov-app-icon" style="background: {{ .color | safeCSS }}">{{ .i }}</span>
+                        <span class="ov-app-entry-text"><span class="ov-app-entry-name">{{ .name }}</span><span class="ov-app-entry-user">{{ .user }}</span></span>
+                    </div>
+                    {{- end }}
+                </div>
+                <div class="ov-app-detail">
+                    <div class="ov-app-detail-head">
+                        <span class="ov-app-icon ov-app-icon-lg" style="background: #24292f">G</span>
+                        <div>
+                            <div class="ov-app-detail-title">GitHub</div>
+                            <div class="ov-app-detail-path">Personal › Development</div>
+                        </div>
+                    </div>
+                    <div class="ov-app-fields">
+                        <div class="ov-app-field"><div><div class="ov-app-field-label">Username</div><div>octo-bongani</div></div></div>
+                        <div class="ov-app-field"><div><div class="ov-app-field-label">Password</div><div class="ov-mono ov-app-dots">••••••••••••••</div></div><span class="ov-app-badge">Excellent</span></div>
+                        <div class="ov-app-field"><div><div class="ov-app-field-label">One-time code</div><div class="ov-mono ov-app-otp">482 913</div></div><span class="ov-app-field-label">18s</span></div>
+                        <div class="ov-app-field"><div><div class="ov-app-field-label">Website</div><div class="ov-app-link">github.com</div></div></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section class="mk-trust" aria-label="Works with">
-    <div class="container">
-        <p class="mk-trust-label">Works with the apps and browsers you already use</p>
-        <ul class="mk-trust-logos">
-            <li><img src="{{ $base }}assets/img/browser-icons/firefox.svg" alt="" width="28" height="28"> Firefox</li>
-            <li><img src="{{ $base }}assets/img/browser-icons/chrome.svg" alt="" width="28" height="28"> Chrome</li>
-            <li><img src="{{ $base }}assets/img/browser-icons/edge.svg" alt="" width="28" height="28"> Edge</li>
+<!-- Platforms -->
+<section class="ov-platforms" aria-label="Works with">
+    <div class="container ov-platforms-inner">
+        <p>Works with the apps and browsers you already use</p>
+        <ul>
             <li><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows</li>
             <li><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS</li>
             <li><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux</li>
+            <li><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> iPhone</li>
+            <li><img src="{{ $base }}assets/img/browser-icons/firefox.svg" alt="" width="20" height="20"> Firefox</li>
+            <li><img src="{{ $base }}assets/img/browser-icons/chrome.svg" alt="" width="20" height="20"> Chrome</li>
+            <li><img src="{{ $base }}assets/img/browser-icons/edge.svg" alt="" width="20" height="20"> Edge</li>
         </ul>
     </div>
 </section>
 
-<section class="mk-section" id="project">
-    <div class="container">
-        <header class="mk-section-head">
-            <h2 class="mk-heading">A password manager that<br>answers only to you</h2>
-            <p class="mk-sublead">OpenVireo is a modern, secure, and open-source password manager for people with extremely high demands of secure personal data management. It is a fork of KeePassXC, so your KeePass databases work as they always have.</p>
-        </header>
+<!-- Intro statement -->
+<section class="container ov-intro" id="project" aria-labelledby="intro-heading">
+    <p class="ov-eyebrow">A password manager that answers only to you</p>
+    <h2 id="intro-heading" class="ov-h2">Everything you need to stay safe online. <span class="ov-faint">Nothing you didn't ask for.</span></h2>
+</section>
 
-        <div class="mk-feature">
-            <div class="mk-feature-copy">
-                <p class="eyebrow">Secure by default</p>
-                <h3>Everything stays encrypted. Everything stays yours.</h3>
-                <p>Usernames, passwords, URLs, attachments, and notes are saved in an encrypted file that you can keep anywhere, including your own private or public cloud. Without an account, nothing is ever stored on our servers; with one, only your encrypted vaults are.</p>
-                <ul class="mk-checks">
-                    <li>No ads, no trackers, no cloud required</li>
-                    <li>Open KeePass KDBX format you can take with you</li>
-                    <li>Hardware key and key file support</li>
-                </ul>
-                <a class="mk-link" href="{{ $base }}docs/user-guide/">Explore the User Guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+<!-- Bento -->
+<section class="container ov-bento-section" aria-label="Features">
+    <div class="ov-bento">
+        <article class="ov-card ov-span-4 ov-card-lg">
+            <div>
+                <h3>Encrypted on your device. Always.</h3>
+                <p>Your master password and a Secret Key only you hold lock every vault before it leaves your device. Our servers only ever see ciphertext.</p>
+                <a class="ov-more" href="{{ $base }}docs/user-guide/openvireo-accounts/">How accounts work <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <div class="mk-feature-media mk-tint-green">
-                <img src="{{ $base }}assets/img/screenshots/unlock_database.png" alt="Unlocking an OpenVireo database" loading="lazy" width="1600" height="1220">
+            <div class="ov-cipher" aria-hidden="true">
+                <div class="ov-cipher-box">
+                    <div class="ov-cipher-label">On your device</div>
+                    <div class="ov-mono">github · octo · hunter2</div>
+                </div>
+                <svg class="ov-cipher-arrow" width="40" height="16" viewBox="0 0 40 16"><path d="M0 8h36m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                <div class="ov-cipher-box is-dark">
+                    <div class="ov-cipher-label">On our servers</div>
+                    <div class="ov-mono">x8Fq…Tz0m=</div>
+                </div>
             </div>
-        </div>
+        </article>
 
-        <div class="mk-feature mk-feature-reverse">
-            <div class="mk-feature-copy">
-                <p class="eyebrow">Fill in a flash</p>
-                <h3>Auto-type and browser integration that just works</h3>
-                <p>Let OpenVireo type your credentials into any application, or connect the OpenVireo Browser extension to fill logins in Firefox, Chrome, Edge, and more with a single click.</p>
-                <a class="mk-link" href="{{ $base }}docs/getting-started/browser-integration/">Set up browser integration <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <article class="ov-card ov-span-2 ov-card-dark ov-card-zero">
+            <div class="ov-zero" aria-hidden="true">0</div>
+            <div>
+                <h3><span class="visually-hidden">Zero </span>Trackers. Ads. Required accounts.</h3>
+                <p>Use it fully offline with a local KDBX file, forever free.</p>
             </div>
-            <div class="mk-feature-media mk-tint-mint">
-                <img src="{{ $base }}assets/img/screenshots/autotype_entrylevel.png" alt="Configuring auto-type for an entry" loading="lazy" width="1600" height="1220">
-            </div>
-        </div>
+        </article>
 
-        <div class="mk-feature">
-            <div class="mk-feature-copy">
-                <p class="eyebrow">Sync and share, if you want to</p>
-                <h3>Your vaults on every device, encrypted end to end</h3>
-                <p>Sign in with a free OpenVireo account to sync your vaults between OpenVireo on your computers and OpenVireo Web in your browser, share them with family or your team, and give CI jobs and servers service accounts of their own. Everything is encrypted on your devices with your master password and a Secret Key that only you have, so our servers only ever see ciphertext.</p>
-                <ul class="mk-checks">
-                    <li>Shared vaults and organizations with roles and an audit log</li>
-                    <li>Prefer your own infrastructure? <a href="{{ .Site.BaseURL }}self-hosted/">Sync with your own OpenVireo Sync Server</a></li>
-                    <li>Or skip it entirely: OpenVireo works fully without an account</li>
-                </ul>
-                <a class="mk-link" href="{{ $base }}docs/user-guide/openvireo-accounts/">Learn about accounts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <article class="ov-card ov-span-3">
+            <div>
+                <h3>Fill in a flash</h3>
+                <p>The browser extension and Auto-Type sign you in to sites and apps with one click.</p>
+                <a class="ov-more" href="{{ $base }}docs/getting-started/browser-integration/">Set up browser integration <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <div class="mk-feature-media mk-tint-green">
-                <img src="{{ $base }}assets/img/screenshots/account_start_screen.png" alt="Signing in to an OpenVireo account on the start screen" loading="lazy" width="1600" height="1220">
+            <div class="ov-panel ov-fill" aria-hidden="true">
+                <div class="ov-fill-input">Email</div>
+                <div class="ov-fill-input is-active"><span>Password</span><span class="ov-fill-brand">OpenVireo ▾</span></div>
+                <div class="ov-fill-suggestion">
+                    <span class="ov-app-icon ov-app-icon-sm" style="background: #24292f">G</span>
+                    <span><b>GitHub</b> · octo-bongani</span>
+                </div>
             </div>
-        </div>
+        </article>
 
-        <div class="mk-feature mk-feature-reverse">
-            <div class="mk-feature-copy">
-                <p class="eyebrow">Stronger every day</p>
-                <h3>Generate, check, and fix weak passwords</h3>
-                <p>Create strong passwords and passphrases in a click, then let database reports point out weak, reused, and breached passwords so you know exactly what to fix.</p>
-                <a class="mk-link" href="{{ $base }}screenshots">See more screenshots <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        <article class="ov-card ov-span-3">
+            <div>
+                <h3>Know what to fix</h3>
+                <p>Generate strong passwords, then let reports point out weak, reused and breached ones.</p>
+                <a class="ov-more" href="{{ $base }}screenshots">See the reports <span aria-hidden="true">&rarr;</span></a>
             </div>
-            <div class="mk-feature-media mk-tint-sand">
-                <img src="{{ $base }}assets/img/screenshots/database_reports.png" alt="A database health report highlighting weak passwords" loading="lazy" width="1600" height="1220">
-            </div>
-        </div>
+            <ul class="ov-panel ov-health" aria-label="Example password report">
+                <li><span class="ov-health-site">GitHub</span><span class="ov-chip ov-chip-good"><i class="fa-solid fa-check" aria-hidden="true"></i> Strong</span></li>
+                <li><span class="ov-health-site">Amazon</span><span class="ov-chip ov-chip-warn"><i class="fa-solid fa-rotate" aria-hidden="true"></i> Reused</span></li>
+                <li><span class="ov-health-site">Old forum</span><span class="ov-chip ov-chip-bad"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i> Breached</span></li>
+            </ul>
+        </article>
+
+        <article class="ov-card ov-span-2 ov-card-sm">
+            <h3>Open KDBX format</h3>
+            <p>A fork of KeePassXC: your KeePass databases open as they always have, and leave with you any time.</p>
+            <a class="ov-more" href="{{ $base }}docs/user-guide/importing-databases/">Importing and exporting <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="ov-card ov-span-2 ov-card-sm">
+            <h3>Hardware keys</h3>
+            <p>YubiKey and key-file support for a second factor on your local databases.</p>
+            <a class="ov-more" href="{{ $base }}docs/user-guide/">Read the User Guide <span aria-hidden="true">&rarr;</span></a>
+        </article>
+        <article class="ov-card ov-span-2 ov-card-sm">
+            <h3>Share links</h3>
+            <p>Send one item to anyone, no account needed, with a link that expires on its own.</p>
+            <a class="ov-more" href="{{ $base }}share-links/">About share links <span aria-hidden="true">&rarr;</span></a>
+        </article>
     </div>
 </section>
 
-<section class="mk-stats" aria-label="OpenVireo at a glance">
-    <div class="container">
-        <dl class="mk-stats-grid">
-            <div><dt>0</dt><dd>trackers, ads, or accounts required</dd></div>
-            <div><dt>100%</dt><dd>encrypted on your device: our servers never see your passwords</dd></div>
-            <div><dt>3</dt><dd>platforms, every feature tested on each one</dd></div>
-            <div><dt>GPLv3</dt><dd>free and open source, now and forever</dd></div>
-        </dl>
-    </div>
-</section>
-
-
-<section class="mk-section">
-    <div class="container">
-        <header class="mk-section-head">
-            <h2 class="mk-heading">Get started in minutes</h2>
-            <p class="mk-sublead">Everything you need to set up OpenVireo and make the most of it.</p>
-        </header>
-        <div class="mk-cards">
-            <a class="mk-card" href="{{ $base }}docs/getting-started/">
-                <span class="mk-card-icon mk-tint-green"><i class="fa-solid fa-rocket" aria-hidden="true"></i></span>
-                <h3>Getting Started Guide</h3>
-                <p>Download, install, and create your first database on Windows, macOS, or Linux.</p>
-                <span class="mk-link">Read the guide <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-            </a>
-            <a class="mk-card" href="{{ $base }}docs/user-guide/">
-                <span class="mk-card-icon mk-tint-mint"><i class="fa-solid fa-book" aria-hidden="true"></i></span>
-                <h3>User Guide</h3>
-                <p>Detailed documentation for every feature, from accounts and sync to auto-type and SSH agent integration.</p>
-                <span class="mk-link">Open the docs <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-            </a>
-            <a class="mk-card" href="{{ $base }}docs">
-                <span class="mk-card-icon mk-tint-sand"><i class="fa-solid fa-circle-question" aria-hidden="true"></i></span>
-                <h3>Documentation &amp; FAQ</h3>
-                <p>Answers to common questions, plus notes for Linux distribution packages.</p>
-                <span class="mk-link">Browse the FAQ <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-            </a>
+<!-- Families and teams -->
+<section class="ov-dark-section" aria-labelledby="teams-heading">
+    <div class="container ov-split">
+        <div>
+            <p class="ov-eyebrow ov-eyebrow-dark">Sync and share, if you want to</p>
+            <h2 id="teams-heading" class="ov-h2 ov-h2-md">One place for the whole family, or the whole company.</h2>
+            <p class="ov-dark-lead">Shared vaults with roles, an audit log, and service accounts for CI jobs and servers. Prefer your own infrastructure? Run the open-source sync server.</p>
+            <div class="ov-actions">
+                {{ partial "button.html" (dict "href" (print $base "pricing/#orgs") "text" "Family and team plans" "appearance" "inverse" "size" "large") }}
+                {{ partial "button.html" (dict "href" (print $base "self-hosted/") "text" "Run your own server" "appearance" "inverse-outline" "size" "large") }}
+            </div>
         </div>
-    </div>
-</section>
-
-{{- /* Only once the comparison pages are published (they're drafts until the iPhone app launches) */}}
-{{- with site.GetPage "/compare" }}
-<section class="mk-section mk-section-compare" aria-labelledby="compare-heading">
-    <div class="container">
-        <header class="mk-section-head">
-            <h2 class="mk-heading" id="compare-heading">Coming from another password manager?</h2>
-            <p class="mk-sublead">See how OpenVireo compares, including where the others are ahead. Then bring your passwords with you: OpenVireo imports from 1Password, Bitwarden, Proton Pass and any KeePass app.</p>
-        </header>
-        <div class="mk-cards">
-            {{- range .Pages.ByWeight }}
-            <a class="mk-card" href="{{ .RelPermalink }}">
-                <span class="mk-card-icon mk-tint-{{ .Params.tint | default "green" }}"><i class="fa-solid {{ .Params.icon | default "fa-scale-balanced" }}" aria-hidden="true"></i></span>
-                <h3>{{ .Title }}</h3>
-                <p>{{ .Params.cardText | default .Description }}</p>
-                <span class="mk-link">Compare <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-            </a>
+        <div class="ov-org" role="img" aria-label="An example organization, Acme Inc on the Teams plan, with an owner, an admin, a member and a read-only service account">
+            <div class="ov-org-head" aria-hidden="true"><span class="ov-org-name">Acme Inc</span><span class="ov-app-badge">Teams</span></div>
+            {{- range (slice
+                (dict "i" "B" "name" "Bongani" "vaults" "Engineering, Infra, Billing" "role" "Owner" "color" "#a6d992")
+                (dict "i" "T" "name" "Thandi" "vaults" "Engineering, Design" "role" "Admin" "color" "#9cc7f0")
+                (dict "i" "J" "name" "Jordan" "vaults" "Engineering" "role" "Member" "color" "#f0c38a")
+                (dict "i" "C" "name" "ci-deploy" "vaults" "Infra · service account" "role" "Read only" "color" "#c9d1cb")) }}
+            <div class="ov-org-member" aria-hidden="true">
+                <span class="ov-org-avatar" style="background: {{ .color | safeCSS }}">{{ .i }}</span>
+                <span class="ov-org-text"><span class="ov-org-member-name">{{ .name }}</span><span class="ov-org-vaults">{{ .vaults }}</span></span>
+                <span class="ov-org-role">{{ .role }}</span>
+            </div>
             {{- end }}
         </div>
-        <p class="mk-section-foot">
-            <a class="mk-link" href="{{ .RelPermalink }}">All of them in one table <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-            <a class="mk-link" href="{{ $base }}docs/user-guide/importing-databases/">How importing works <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-        </p>
     </div>
 </section>
-{{- end }}
 
-{{- with where .Site.RegularPages "Section" "blog" }}
-<section class="mk-section mk-section-tinted">
-    <div class="container">
-        <div class="mk-section-head mk-section-head-split">
-            <h2 class="mk-heading">What's new</h2>
-            <a class="mk-link" href="{{ $base }}blog/">See all posts <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-        </div>
-        <div class="grid grid-2 grid-match">
-            {{- block "index-post-teasers" . }}
-                {{- range first 4 .ByPublishDate.Reverse }}
-                    {{ partial "article-teaser" . }}
-                {{- end }}
-            {{ end }}
-        </div>
+<!-- Principles -->
+<section class="container ov-principles" aria-label="What we stand by">
+    <div class="ov-principle">
+        <h3>GPLv3</h3>
+        <p>Free and open source, now and forever. <a href="https://github.com/openvireo/openvireo">Read every line</a>.</p>
+    </div>
+    <div class="ov-principle">
+        <h3>OPAQUE</h3>
+        <p>Sign-in never sends your password, not even a hash of it. {{ with site.GetPage "/blog/what-our-servers-cant-see" }}<a href="{{ .RelPermalink }}">What our servers can't see</a>.{{ end }}</p>
+    </div>
+    <div class="ov-principle">
+        <h3>Signed</h3>
+        <p>Every release is signed for macOS, Windows and Linux, and updates are checked before they install. <a href="{{ $base }}verifying-signatures/">Verify a download</a>.</p>
+    </div>
+    <div class="ov-principle">
+        <h3>Self-host</h3>
+        <p>Run your own sync server with no plans and no limits. <a href="{{ $base }}self-hosted/">Self-hosting</a>.</p>
     </div>
 </section>
-{{- end }}
+
+<!-- Pricing teaser -->
+<section class="ov-soft-section" aria-labelledby="pricing-heading">
+    <div class="container">
+        <div class="ov-section-head">
+            <h2 id="pricing-heading" class="ov-h2 ov-h2-md">Security is never a paid extra.</h2>
+            <a class="ov-more ov-more-lg" href="{{ $base }}pricing/">Compare all plans <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <div class="ov-price-grid">
+            <a class="ov-price-card" href="{{ $base }}pricing/#personal">
+                <span class="ov-price-name">Free</span>
+                <span class="ov-price">$0</span>
+                <span class="ov-price-text">Desktop, extension, CLI and sync for one vault.</span>
+            </a>
+            <a class="ov-price-card is-dark" href="{{ $base }}pricing/#personal">
+                <span class="ov-price-name">Premium</span>
+                <span class="ov-price">$18<span class="ov-price-unit"> /year</span></span>
+                <span class="ov-price-text">Unlimited vaults, 1 GB each, and sharing with up to 5 people.</span>
+            </a>
+            <a class="ov-price-card" href="{{ $base }}pricing/#orgs">
+                <span class="ov-price-name">Families</span>
+                <span class="ov-price">$40<span class="ov-price-unit"> /year</span></span>
+                <span class="ov-price-text">Six members, unlimited shared vaults.</span>
+            </a>
+        </div>
+        {{- with site.GetPage "/compare" }}
+        <p class="ov-soft-note">Coming from another password manager? <a href="{{ .RelPermalink }}">See how OpenVireo compares</a>, then bring your passwords with you: OpenVireo imports from 1Password, Bitwarden, Proton Pass and any KeePass app (<a href="{{ $base }}docs/user-guide/importing-databases/">how importing works</a>).</p>
+        {{- end }}
+    </div>
+</section>
+
+<!-- Developers -->
+<section class="container ov-dev-section" aria-labelledby="dev-heading">
+    <div class="ov-dev">
+        <div>
+            <p class="ov-eyebrow ov-eyebrow-dark">For developers</p>
+            <h2 id="dev-heading" class="ov-h2 ov-h2-sm">Secrets in your scripts, CI and servers.</h2>
+            <p class="ov-dark-lead">The <code>ov</code> CLI, SDKs and a GitHub Action, all built on one Rust core.</p>
+            <a class="ov-more ov-more-dark" href="https://developer.openvireo.com/">developer.openvireo.com <span aria-hidden="true">&rarr;</span></a>
+        </div>
+        <pre class="ov-code" tabindex="0" aria-label="Example ov commands"><span class="ov-code-prompt">$</span> ov login --email you@example.com
+<span class="ov-code-prompt">$</span> ov read <span class="ov-code-str">"ov://Personal/GitHub/password"</span>
+••••••••••••••••
+<span class="ov-code-prompt">$</span> ov run --env-file .env.tpl -- npm start</pre>
+    </div>
+</section>
+
+</div>
 
 {{ partial "cta-band.html" . }}
 {{ end }}

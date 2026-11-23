@@ -1,4 +1,5 @@
-// Site header: sticky solid bar with bold navigation and a Download call to action.
+// Site header: sticky bar with quiet navigation and a pill Download call to action.
+// On the homepage it takes the hero's near-black (site-header-dark), so it reads as transparent.
 
 .site-header {
     position: sticky;
@@ -18,8 +19,27 @@
         }
 
         .logo img {
-            height: 2rem;
+            height: 28px;
         }
+    }
+}
+
+.site-header-dark {
+    // Fluent tokens are inherited custom properties, so these reach the nav toggle's shadow DOM too
+    --colorNeutralForeground1: var(--mk-on-dark);
+    --colorNeutralForeground2: var(--mk-on-dark);
+    --colorNeutralForeground2Hover: #ffffff;
+    --colorNeutralForeground2Pressed: #ffffff;
+    --colorSubtleBackgroundHover: rgba(255, 255, 255, .08);
+    --colorSubtleBackgroundPressed: rgba(255, 255, 255, .12);
+    --colorStrokeFocus2: #ffffff;
+    --ov-nav-muted: var(--mk-on-dark-muted);
+    background: var(--ov-hero);
+    color: var(--mk-on-dark);
+
+    &[data-stuck] {
+        border-bottom-color: rgba(255, 255, 255, .08);
+        box-shadow: none;
     }
 }
 
@@ -45,18 +65,16 @@
     }
 
     .announce-tag {
-        padding: .05rem .5rem;
-        border-radius: var(--borderRadiusCircular);
-        background: var(--mk-accent);
-        color: var(--mk-dark-deep);
+        padding: .1rem .55rem;
+        border-radius: 999px;
+        background: var(--ov-green);
+        color: #ffffff;
         font-size: var(--fontSizeBase200);
-        font-weight: 800;
-        letter-spacing: .04em;
-        text-transform: uppercase;
+        font-weight: 600;
     }
 
     .announce-text {
-        font-weight: 700;
+        font-weight: 500;
     }
 
     .announce-more {
@@ -83,9 +101,10 @@
     gap: .75rem;
     margin-inline-end: auto;
     color: var(--colorNeutralForeground1);
-    font-size: var(--fontSizeBase600);
-    font-weight: 900;
-    letter-spacing: -.03em;
+    font-family: var(--fontFamilyDisplay);
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -.01em;
     text-decoration: none;
 
     &:hover {
@@ -93,9 +112,8 @@
     }
 
     img {
-        height: 2.6rem;
+        height: 32px;
         width: auto;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .2));
         transition: height var(--durationNormal) var(--curveEasyEase);
     }
 }
@@ -124,9 +142,9 @@
         display: flex;
         align-items: center;
         padding: 0 var(--spacingHorizontalM);
-        color: var(--colorNeutralForeground1);
-        font-size: var(--fontSizeBase400);
-        font-weight: 700;
+        color: var(--ov-nav-muted, var(--ov-muted));
+        font-size: 15px;
+        font-weight: 500;
         text-decoration: none;
         border-radius: var(--borderRadiusMedium);
         transition: color var(--durationFaster) var(--curveEasyEase);
@@ -135,28 +153,32 @@
             content: "";
             position: absolute;
             inset-inline: var(--spacingHorizontalM);
-            bottom: 10px;
-            height: 3px;
+            bottom: 14px;
+            height: 2px;
             border-radius: var(--borderRadiusCircular);
-            background: var(--colorNeutralStroke1Hover);
+            background: currentColor;
             scale: 0 1;
             transition: scale var(--durationNormal) var(--curveDecelerateMax);
         }
 
         &:hover {
-            color: var(--colorNeutralForeground2Hover);
+            color: var(--colorNeutralForeground1);
+        }
+
+        &[aria-current] {
+            color: var(--colorNeutralForeground1);
+            font-weight: 600;
 
             &::after {
                 scale: 1 1;
             }
         }
 
-        &[aria-current] {
-            color: var(--colorNeutralForeground1);
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
 
             &::after {
-                background: var(--colorBrandBackground);
-                scale: 1 1;
+                transition: none;
             }
         }
 
@@ -175,6 +197,20 @@
         @media (max-width: $breakpoint-small) {
             display: none;
         }
+    }
+}
+
+.header-signin {
+    padding: 10px 8px;
+    border-radius: var(--borderRadiusMedium);
+    color: var(--colorNeutralForeground1);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--colorNeutralForeground1);
+        text-decoration: underline;
     }
 }
 

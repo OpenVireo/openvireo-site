@@ -1,54 +1,64 @@
-// Dark green mega-footer (palette from _marketing.scss).
+// Light four-column footer with a hairline top border (2026 redesign).
 
 .global-footer {
-    padding-block: #{"clamp(3.5rem, 8vw, 5.5rem)"} 2rem;
-    background: var(--mk-dark-deep);
-    color: var(--mk-on-dark-muted);
-    font-size: var(--fontSizeBase400);
+    padding-block: 56px 40px;
+    border-top: 1px solid var(--ov-line-2);
+    background: var(--ov-page);
+    color: var(--ov-muted);
+    font-size: 14px;
 
-    .footer-grid {
-        display: grid;
-        gap: 2.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 11rem)"}, 1fr));
+    .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem 2rem;
+        margin-bottom: 40px;
 
-        @media (min-width: $breakpoint-medium) {
-            grid-template-columns: 2fr 1fr 1fr 1fr;
+        p {
+            max-width: 30rem;
+            margin: 0;
         }
-    }
-
-    .footer-about p {
-        max-width: 22rem;
-        margin: 1rem 0 1.5rem;
     }
 
     .footer-brand {
         display: inline-flex;
         align-items: center;
-        gap: .6rem;
-        color: var(--mk-on-dark);
-        font-size: var(--fontSizeBase600);
-        font-weight: 900;
-        letter-spacing: -.03em;
+        gap: 10px;
+        color: var(--ov-ink);
+        font-family: var(--fontFamilyDisplay);
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -.01em;
         text-decoration: none;
 
         &:hover {
-            color: var(--mk-on-dark);
-            text-decoration: none;
+            color: var(--ov-ink);
         }
     }
 
     .footer-logo {
-        height: 2.25rem;
+        height: 28px;
         width: auto;
     }
 
+    .footer-grid {
+        display: grid;
+        gap: 32px;
+        grid-template-columns: repeat(auto-fit, minmax(#{"min(100%, 160px)"}, 1fr));
+
+        @media (max-width: $breakpoint-small) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
     h2 {
-        margin: 0 0 1rem;
-        color: var(--mk-on-dark);
-        font-size: var(--fontSizeBase300);
-        font-weight: 800;
-        letter-spacing: .1em;
-        text-transform: uppercase;
+        margin: 0 0 14px;
+        color: var(--ov-ink);
+        font-family: var(--fontFamilyBase);
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0;
     }
 
     ul {
@@ -57,16 +67,16 @@
         list-style: none;
 
         li + li {
-            margin-top: .6rem;
+            margin-top: 10px;
         }
     }
 
     a:not(.btn) {
-        color: var(--mk-on-dark-muted);
+        color: var(--ov-muted);
         text-decoration: none;
 
         &:hover {
-            color: var(--mk-on-dark);
+            color: var(--ov-ink);
             text-decoration: underline;
         }
     }
@@ -80,10 +90,9 @@
         flex-wrap: wrap;
         justify-content: space-between;
         gap: .5rem 2rem;
-        margin-top: #{"clamp(3rem, 6vw, 4.5rem)"};
-        padding-top: 1.5rem;
-        border-top: 1px solid rgba(255, 255, 255, .15);
-        font-size: var(--fontSizeBase300);
-        opacity: .85;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--ov-line-2);
+        font-size: 13px;
     }
 }

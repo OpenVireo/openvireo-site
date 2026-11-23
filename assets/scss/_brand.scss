@@ -3,11 +3,12 @@
 // radius and display-type values. All colours derive from $brand-ramp (_fluent-theme.scss).
 
 :root {
-    --mk-dark: #{map-get($brand-ramp, 30)};
-    --mk-dark-deep: #{map-get($brand-ramp, 20)};
-    --mk-on-dark: #ffffff;
-    --mk-on-dark-muted: #{map-get($brand-ramp, 150)};
-    --mk-accent: #{map-get($brand-ramp, 120)};
+    // Near-black green surfaces (2026 redesign): hero, dark sections, bands
+    --mk-dark: #0b0f0c;
+    --mk-dark-deep: #07100a;
+    --mk-on-dark: #eef2ef;
+    --mk-on-dark-muted: #a3ada6;
+    --mk-accent: #8fd16f;
     --mk-surface-tint: #{map-get($brand-ramp, 160)};
     --mk-tint-green: #e3f0dc;
     --mk-tint-mint: #dff0ea;
@@ -21,10 +22,35 @@
     --mk-lift: -4px;
 
     // Radii: cards, media panels
-    --mk-radius-card: var(--borderRadius3XLarge);
+    --mk-radius-card: 24px;
     --mk-radius-panel: var(--borderRadius4XLarge);
 
-    --mk-display-font-weight: 900;
+    --mk-display-font-weight: 700;
+    --fontFamilyDisplay: 'Inter Tight', Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
+
+    // Redesign palette (homepage, pricing, header, footer). Light values here, dark below.
+    --ov-ink: #0b0f0c;              // headings and strong text
+    --ov-text: #0b0f0c;
+    --ov-muted: #4c574f;            // body copy on white and on --ov-soft (AA)
+    --ov-faint: #6b766d;            // secondary headline tint, large text only
+    --ov-page: #ffffff;
+    --ov-card: #ffffff;
+    --ov-soft: #f3f6f2;             // soft card fill
+    --ov-seg: #eef2ed;              // segmented control track
+    --ov-line: #e0e6df;
+    --ov-line-2: #e6ebe6;
+    --ov-line-strong: #c9d2cb;
+    --ov-green: #3c7d20;            // brand fill (white text on it is AA)
+    --ov-green-text: #2f6a18;       // green text on white
+    --ov-dark: #0b0f0c;             // dark sections (same in both themes)
+    --ov-dark-raised: #111713;
+    --ov-dark-line: #222925;
+    --ov-on-dark: #eef2ef;
+    --ov-on-dark-muted: #a3ada6;
+    --ov-on-dark-green: #a6d992;
+    --ov-hero: #07100a;
+    --ov-radius-card: 24px;
+    --ov-radius-pill: 999px;
 }
 
 // Dark mode: Fluent's neutral greys, nudged toward the brand green and a step darker, so
@@ -58,6 +84,21 @@
     --mk-badge-surface: #e4ebe1;
     --mk-shadow-raised: 0 2px 4px rgba(0, 0, 0, .35), 0 18px 40px rgba(0, 0, 0, .45);
     --mk-shadow-lift: 0 2px 4px rgba(0, 0, 0, .35), 0 24px 48px rgba(0, 0, 0, .55);
+
+    --ov-ink: #eef2ef;
+    --ov-text: #e3e9e4;
+    --ov-muted: #a9b3ab;
+    --ov-faint: #86918a;
+    --ov-page: var(--colorNeutralBackground1);
+    --ov-card: #161c18;
+    --ov-soft: #121813;
+    --ov-seg: #1b221d;
+    --ov-line: #2a332d;
+    --ov-line-2: #242c26;
+    --ov-line-strong: #3a453d;
+    --ov-green-text: #8fd16f;
+    --ov-dark: #050806;
+    --ov-dark-raised: #0d120e;
 }
 
 @media (prefers-color-scheme: dark) {

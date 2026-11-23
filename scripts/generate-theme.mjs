@@ -88,9 +88,10 @@ for (const [step, ref] of Object.entries(brandWeb)) {
 
 // --- Themes ---------------------------------------------------------------------------------
 
-const fontFamilyBase = `'Nunito Sans', 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif`;
-const light = { ...createLightTheme(brand), fontFamilyBase };
-const dark = { ...createDarkTheme(brand), fontFamilyBase };
+const fontFamilyBase = `Inter, 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif`;
+const fontFamilyMonospace = `'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, 'Courier New', monospace`;
+const light = { ...createLightTheme(brand), fontFamilyBase, fontFamilyMonospace };
+const dark = { ...createDarkTheme(brand), fontFamilyBase, fontFamilyMonospace };
 
 // The dark theme's brand foreground tokens are tuned for blue; nudge them one step lighter
 // so green links stay comfortably readable on the dark neutral backgrounds.

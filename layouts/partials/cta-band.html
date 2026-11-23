@@ -1,10 +1,11 @@
 <section class="mk-cta" aria-labelledby="cta-heading">
     <div class="container mk-cta-inner">
-        <h2 id="cta-heading" class="mk-display mk-display-sm">Take back control of your passwords</h2>
-        <p class="mk-lead">Free, open source, and ready in minutes.</p>
-        <div class="row row-center">
-            {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download OpenVireo" "appearance" "inverse" "size" "hero") }}
-            {{ partial "button.html" (dict "href" "https://github.com/openvireo/openvireo/blob/develop/.github/CONTRIBUTING.md" "text" "Contribute" "appearance" "inverse-outline" "size" "hero") }}
+        <h2 id="cta-heading" class="mk-cta-title">Forget your passwords.<br><span>Not your privacy.</span></h2>
+        <div class="row row-center mk-cta-actions">
+            {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download OpenVireo" "appearance" "ink" "size" "hero") }}
+            {{ partial "button.html" (dict "href" (print .Site.Params.webAppURL "?view=signup") "text" "Try the web app" "appearance" "outline" "size" "hero" "class" "btn-ghost") }}
         </div>
+        <p class="mk-cta-note">Free and open source, and ready in minutes.
+            <a href="https://github.com/openvireo/openvireo/blob/develop/.github/CONTRIBUTING.md">Contribute on GitHub</a></p>
     </div>
 </section>

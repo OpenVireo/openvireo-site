@@ -1,5 +1,5 @@
 ---
-layout: pages
+layout: pricing
 title: Pricing
 permalink: pricing
 menu:
@@ -7,83 +7,222 @@ menu:
     weight: 4
 ---
 
-<p>OpenVireo is free and open source. The desktop app, the browser extension, the CLI, your local
-    databases and a <a href="{{< baseurl >}}self-hosted/">self-hosted sync server</a> are free, with no limits,
-    always. Plans pay for the hosted service: storage on our servers, sharing and teams.</p>
+<section class="pr-hero container">
+    <h1>Free on your device.<br><span>Fair for the cloud.</span></h1>
+    <p class="pr-lead">OpenVireo is free and open source. The desktop app, the browser extension, the CLI, your local
+        databases and a <a href="{{< baseurl >}}self-hosted/">self-hosted sync server</a> are free, with no limits,
+        always. Plans pay for the hosted service: storage on our servers, sharing and teams.</p>
 
-<p>Security is never a paid extra. Two-step verification, account recovery, the Emergency Kit, device
-    management, key rotation and export are in every plan, including Free.</p>
+    <div class="pr-controls js-only">
+        <div class="pr-seg" role="group" aria-label="Who the plans are for">
+            <button type="button" data-audience-choice="personal" aria-pressed="true">For you</button>
+            <button type="button" data-audience-choice="orgs" aria-pressed="false">Families and teams</button>
+        </div>
+        <div class="pr-seg" role="group" aria-label="Billing period">
+            <button type="button" data-period-choice="monthly" aria-pressed="false">Monthly</button>
+            <button type="button" data-period-choice="yearly" aria-pressed="true">Yearly · save up to 25%</button>
+        </div>
+    </div>
+</section>
 
-<h2 id="personal">For you</h2>
-<table>
-    <thead>
-    <tr><th></th><th>Free</th><th>Premium</th></tr>
-    </thead>
-    <tbody>
-    <tr><td>Price</td><td>$0</td><td>$2 a month, or $18 a year</td></tr>
-    <tr><td>Sync on all your devices</td><td>Yes</td><td>Yes</td></tr>
-    <tr><td>Personal vaults</td><td>1</td><td>Unlimited</td></tr>
-    <tr><td>Storage per vault</td><td>25 MB</td><td>1 GB</td></tr>
-    <tr><td>Share a vault with other people</td><td>—</td><td>Up to 5 per vault</td></tr>
-    <tr><td>Open vaults others share with you</td><td>Yes</td><td>Yes</td></tr>
-    <tr><td><a href="/share-links/">Share links</a> (open without an account)</td><td>5 open links, up to 7 days</td><td>Unlimited, up to 30 days</td></tr>
-    </tbody>
-</table>
+<section class="pr-plans container" data-period="yearly" aria-label="Plans">
+    <div class="pr-panel" id="personal">
+        <h2 class="pr-panel-title">For you</h2>
+        <div class="pr-grid pr-grid-2">
+            <article class="pr-card">
+                <div class="pr-card-head"><h3>Free</h3></div>
+                <div class="pr-price">
+                    <span class="pr-amount">$0</span>
+                    <span class="pr-note">Free forever</span>
+                </div>
+                <p class="pr-blurb">Sync one vault across all your devices.</p>
+                <a class="btn btn-large pr-cta" href="{{< web-app-url "?view=signup" >}}">Create an account</a>
+                <ul class="pr-features">
+                    <li>Sync on all your devices</li>
+                    <li>1 personal vault, 25 MB</li>
+                    <li>Open vaults others share with you</li>
+                    <li>5 open <a href="{{< baseurl >}}share-links/">share links</a>, up to 7 days</li>
+                </ul>
+            </article>
+            <article class="pr-card is-featured">
+                <div class="pr-card-head"><h3>Premium</h3></div>
+                <div class="pr-price">
+                    <span class="pr-yearly"><span class="pr-amount">$18</span> <span class="pr-unit">/ year</span></span>
+                    <span class="pr-monthly"><span class="pr-amount">$2</span> <span class="pr-unit">/ month</span></span>
+                    <span class="pr-note"><span class="pr-yearly">Or $2 a month</span><span class="pr-monthly">Or $18 a year</span></span>
+                </div>
+                <p class="pr-blurb">For people who keep their whole life in a vault.</p>
+                <a class="btn btn-large pr-cta" href="{{< accounts-url "subscription/pricing" >}}">Start 14-day trial</a>
+                <ul class="pr-features">
+                    <li>Everything in Free</li>
+                    <li>Unlimited personal vaults, 1 GB each</li>
+                    <li>Share a vault with up to 5 people</li>
+                    <li>Unlimited <a href="{{< baseurl >}}share-links/">share links</a>, up to 30 days</li>
+                </ul>
+            </article>
+        </div>
+        {{< if-app-store >}}
+        <p class="pr-foot">Premium is also in the <a href="{{< baseurl >}}ios/">iOS app</a>; prices there are set by the App Store.</p>
+        {{< /if-app-store >}}
+    </div>
 
-{{< if-app-store >}}
-<p>Also available in the <a href="{{< baseurl >}}ios/">iOS app</a>; prices there are set by the App Store.</p>
-{{< /if-app-store >}}
+    <div class="pr-panel" id="orgs">
+        <h2 class="pr-panel-title">For families and teams</h2>
+        <div class="pr-grid pr-grid-4">
+            <article class="pr-card">
+                <div class="pr-card-head"><h3>Free</h3></div>
+                <div class="pr-price">
+                    <span class="pr-amount">$0</span>
+                    <span class="pr-note">Free forever</span>
+                </div>
+                <p class="pr-blurb">Try it with one other person.</p>
+                <a class="btn btn-large pr-cta" href="{{< web-app-url "?view=signup" >}}">Create an account</a>
+                <ul class="pr-features">
+                    <li>2 members</li>
+                    <li>2 shared vaults, 25 MB each</li>
+                    <li>1 service account</li>
+                    <li>7-day audit log</li>
+                    <li>Unlimited share links, up to 30 days</li>
+                </ul>
+            </article>
+            <article class="pr-card is-featured">
+                <div class="pr-card-head"><h3>Families</h3></div>
+                <div class="pr-price">
+                    <span class="pr-yearly"><span class="pr-amount">$40</span> <span class="pr-unit">/ year</span></span>
+                    <span class="pr-monthly"><span class="pr-amount">$4</span> <span class="pr-unit">/ month</span></span>
+                    <span class="pr-note">For up to 6 people. <span class="pr-yearly">Or $4 a month</span><span class="pr-monthly">Or $40 a year</span></span>
+                </div>
+                <p class="pr-blurb">The whole household, one bill.</p>
+                <a class="btn btn-large pr-cta" href="{{< accounts-url "subscription/pricing" >}}">Start 14-day trial</a>
+                <ul class="pr-features">
+                    <li>6 members</li>
+                    <li>Unlimited shared vaults, 1 GB each</li>
+                    <li>1 service account</li>
+                    <li>30-day audit log</li>
+                </ul>
+            </article>
+            <article class="pr-card">
+                <div class="pr-card-head"><h3>Teams</h3></div>
+                <div class="pr-price">
+                    <span class="pr-yearly"><span class="pr-amount">$40</span> <span class="pr-unit">/ member / year</span></span>
+                    <span class="pr-monthly"><span class="pr-amount">$4</span> <span class="pr-unit">/ member / month</span></span>
+                    <span class="pr-note"><span class="pr-yearly">Or $4 per member a month</span><span class="pr-monthly">Or $40 per member a year</span></span>
+                </div>
+                <p class="pr-blurb">Roles, shared vaults and CI secrets.</p>
+                <a class="btn btn-large pr-cta" href="{{< accounts-url "subscription/pricing" >}}">Start 14-day trial</a>
+                <ul class="pr-features">
+                    <li>Unlimited members</li>
+                    <li>Unlimited shared vaults, 1 GB each</li>
+                    <li>10 service accounts</li>
+                    <li>90-day audit log</li>
+                </ul>
+            </article>
+            <article class="pr-card">
+                <div class="pr-card-head"><h3>Business</h3></div>
+                <div class="pr-price">
+                    <span class="pr-yearly"><span class="pr-amount">$60</span> <span class="pr-unit">/ member / year</span></span>
+                    <span class="pr-monthly"><span class="pr-amount">$6</span> <span class="pr-unit">/ member / month</span></span>
+                    <span class="pr-note"><span class="pr-yearly">Or $6 per member a month</span><span class="pr-monthly">Or $60 per member a year</span></span>
+                </div>
+                <p class="pr-blurb">More storage and a year of history.</p>
+                <a class="btn btn-large pr-cta" href="{{< accounts-url "subscription/pricing" >}}">Start 14-day trial</a>
+                <ul class="pr-features">
+                    <li>Unlimited members</li>
+                    <li>Unlimited shared vaults, 5 GB each</li>
+                    <li>Unlimited service accounts</li>
+                    <li>1-year audit log</li>
+                </ul>
+            </article>
+        </div>
+        <p class="pr-foot">Org plans are billed to an organization. A new organization starts on Free; its owners pick a plan
+            on the account website.{{< if-app-store >}} Families is also in the <a href="{{< baseurl >}}ios/">iOS app</a>.{{< /if-app-store >}}</p>
+    </div>
 
-<h2 id="orgs">For families and teams</h2>
-<p>Org plans are billed to an organization. A new organization starts on Free; its owners pick a plan
-    on the account website.</p>
-<table>
-    <thead>
-    <tr><th></th><th>Free</th><th>Families</th><th>Teams</th><th>Business</th></tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Price</td>
-        <td>$0</td>
-        <td>$4 a month, or $40 a year</td>
-        <td>$4 per member a month, or $40 a year</td>
-        <td>$6 per member a month, or $60 a year</td>
-    </tr>
-    <tr><td>Members</td><td>2</td><td>6</td><td>Unlimited</td><td>Unlimited</td></tr>
-    <tr><td>Shared vaults</td><td>2</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
-    <tr><td>Storage per vault</td><td>25 MB</td><td>1 GB</td><td>1 GB</td><td>5 GB</td></tr>
-    <tr><td>Service accounts (CLI, GitHub Action, Kubernetes)</td><td>1</td><td>1</td><td>10</td><td>Unlimited</td></tr>
-    <tr><td>Audit log</td><td>7 days</td><td>30 days</td><td>90 days</td><td>1 year</td></tr>
-    <tr><td><a href="/share-links/">Share links</a> from org vaults</td><td>Unlimited, up to 30 days</td><td>Unlimited, up to 30 days</td><td>Unlimited, up to 30 days</td><td>Unlimited, up to 30 days</td></tr>
-    </tbody>
-</table>
+    <div class="pr-notes">
+        <p>Paid plans start with a 14-day free trial (once per account or organization), and you can cancel any time.
+            <a href="{{< accounts-url "subscription/pricing" >}}">Choose a plan</a></p>
+        <p><strong>Security is never a paid extra.</strong> Two-step verification, account recovery, the Emergency Kit, device
+            management, key rotation and export are in every plan, including Free.</p>
+    </div>
+</section>
 
-<p>Paid plans start with a 14-day free trial (once per account or organization), and you can cancel any time.</p>
+<section class="pr-compare container" aria-labelledby="compare-plans">
+    <h2 id="compare-plans">Compare plans</h2>
 
-<p><a href="{{< accounts-url "subscription/pricing" >}}">Choose a plan</a></p>
+    <div class="pr-table-wrap" tabindex="0" role="region" aria-labelledby="table-personal">
+        <table class="pr-table">
+            <caption id="table-personal">For you</caption>
+            <thead>
+            <tr><th scope="col"><span class="visually-hidden">Feature</span></th><th scope="col">Free</th><th scope="col">Premium</th></tr>
+            </thead>
+            <tbody>
+            <tr><th scope="row">Price</th><td>$0</td><td>$2 a month, or $18 a year</td></tr>
+            <tr><th scope="row">Sync on all your devices</th><td>Yes</td><td>Yes</td></tr>
+            <tr><th scope="row">Personal vaults</th><td>1</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Storage per vault</th><td>25 MB</td><td>1 GB</td></tr>
+            <tr><th scope="row">Share a vault with other people</th><td>—</td><td>Up to 5 per vault</td></tr>
+            <tr><th scope="row">Open vaults others share with you</th><td>Yes</td><td>Yes</td></tr>
+            <tr><th scope="row"><a href="{{< baseurl >}}share-links/">Share links</a> (open without an account)</th><td>5 open links, up to 7 days</td><td>Unlimited, up to 30 days</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-{{< compare-links >}}
+    <div class="pr-table-wrap" tabindex="0" role="region" aria-labelledby="table-orgs">
+        <table class="pr-table">
+            <caption id="table-orgs">For families and teams</caption>
+            <thead>
+            <tr><th scope="col"><span class="visually-hidden">Feature</span></th><th scope="col">Free</th><th scope="col">Families</th><th scope="col">Teams</th><th scope="col">Business</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Price</th>
+                <td>$0</td>
+                <td>$4 a month, or $40 a year</td>
+                <td>$4 per member a month, or $40 a year</td>
+                <td>$6 per member a month, or $60 a year</td>
+            </tr>
+            <tr><th scope="row">Members</th><td>2</td><td>6</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Shared vaults</th><td>2</td><td>Unlimited</td><td>Unlimited</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Storage per vault</th><td>25 MB</td><td>1 GB</td><td>1 GB</td><td>5 GB</td></tr>
+            <tr><th scope="row">Service accounts (CLI, GitHub Action, Kubernetes)</th><td>1</td><td>1</td><td>10</td><td>Unlimited</td></tr>
+            <tr><th scope="row">Audit log</th><td>7 days</td><td>30 days</td><td>90 days</td><td>1 year</td></tr>
+            <tr><th scope="row"><a href="{{< baseurl >}}share-links/">Share links</a> from org vaults</th><td>Unlimited, up to 30 days</td><td>Unlimited, up to 30 days</td><td>Unlimited, up to 30 days</td><td>Unlimited, up to 30 days</td></tr>
+            <tr><th scope="row">Two-step verification, recovery, export</th><td>Included</td><td>Included</td><td>Included</td><td>Included</td></tr>
+            </tbody>
+        </table>
+    </div>
 
-<h2 id="faq">Questions</h2>
-<details>
-    <summary>What happens if I cancel or go over a limit?</summary>
-    <p>Nothing is locked or deleted. Your vaults keep opening and syncing; you just can't add more
-        vaults, people or service accounts than your plan allows until you upgrade or remove some.</p>
-</details>
-{{< if-app-store >}}
-<details>
-    <summary>Can I buy a plan in the iPhone app?</summary>
-    <p>Yes, Premium and Families, through the App Store, with a 2-week free trial. Apple bills it, in your currency, at the App Store's price, which
-        can be higher than here. It's the same plan with the same limits in every OpenVireo app. You change or cancel it in
-        your Apple ID settings. Teams and Business are bought here.</p>
-</details>
-{{< /if-app-store >}}
-<details>
-    <summary>Can you see my passwords?</summary>
-    <p>No. Vaults are encrypted on your devices before they are uploaded, on every plan. We store only
-        encrypted files.</p>
-</details>
-<details>
-    <summary>Can I run it all myself?</summary>
-    <p>Yes. The sync server is open source; on your own server there are no plans and no limits.</p>
-</details>
+    <div class="pr-compare-links">
+    {{< compare-links >}}
+    </div>
+</section>
+
+<section class="pr-faq" aria-labelledby="faq">
+    <div class="container pr-faq-inner">
+        <h2 id="faq">Questions, answered.</h2>
+        <div class="pr-faq-list">
+            <details open>
+                <summary>What happens if I cancel or go over a limit?</summary>
+                <p>Nothing is locked or deleted. Your vaults keep opening and syncing; you just can't add more
+                    vaults, people or service accounts than your plan allows until you upgrade or remove some.</p>
+            </details>
+            {{< if-app-store >}}
+            <details>
+                <summary>Can I buy a plan in the iPhone app?</summary>
+                <p>Yes, Premium and Families, through the App Store, with a 2-week free trial. Apple bills it, in your currency, at the App Store's price, which
+                    can be higher than here. It's the same plan with the same limits in every OpenVireo app. You change or cancel it in
+                    your Apple ID settings. Teams and Business are bought here.</p>
+            </details>
+            {{< /if-app-store >}}
+            <details>
+                <summary>Can you see my passwords?</summary>
+                <p>No. Vaults are encrypted on your devices before they are uploaded, on every plan. We store only
+                    encrypted files.</p>
+            </details>
+            <details>
+                <summary>Can I run it all myself?</summary>
+                <p>Yes. The sync server is open source; on your own server there are no plans and no limits.</p>
+            </details>
+        </div>
+    </div>
+</section>
