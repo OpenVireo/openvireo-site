@@ -251,24 +251,54 @@
 
 .ov-app {
     display: grid;
-    grid-template-columns: 248px minmax(0, 1fr);
-    height: 540px;
+    grid-template-rows: auto minmax(0, 1fr);
+    height: 620px;
+}
+
+// Title bar across the window: database picker, search in the middle, notifications
+.ov-app-top {
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 10px 16px 10px 10px;
+}
+
+.ov-app-searchbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: var(--app-muted);
+    // Centred on the window rather than on the space beside the picker
+    transform: translateX(-118px);
+}
+
+.ov-app-bell {
+    color: var(--app-muted);
+}
+
+.ov-app-body {
+    display: grid;
+    grid-template-columns: 236px minmax(0, 1fr);
+    min-height: 0;
 }
 
 .ov-app-side {
     display: flex;
     flex-direction: column;
-    padding: 12px 10px 14px;
+    padding: 0 10px 14px;
 }
 
 .ov-app-db {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 4px 8px 14px 6px;
+    min-width: 0;
+    padding: 2px 8px 2px 6px;
 
     > span:nth-child(2) {
         min-width: 0;
+        overflow: hidden;
         white-space: nowrap;
     }
 
@@ -284,13 +314,14 @@
     place-items: center;
     width: 32px;
     height: 32px;
-    border-radius: 8px;
-    background: #dfe8da;
+    border-radius: 10px;
+    background: #e3f0dc;
 }
 
 .ov-app-db-name {
+    font-family: var(--fontFamilyDisplay);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .ov-app-sub {
@@ -358,30 +389,28 @@
     }
 }
 
+// The main surface: a rounded card on the canvas, as in the app
 .ov-app-main {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    border-inline-start: 1px solid var(--app-line);
-    border-start-start-radius: 20px;
+    min-height: 0;
+    margin: 0 14px 14px 0;
+    overflow: hidden;
+    border: 1px solid var(--app-line);
+    border-radius: 20px;
     background: var(--app-panel);
-}
-
-.ov-app-top {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 10px 14px;
-    background: var(--app-bg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04), 0 8px 24px rgba(14, 25, 10, .05);
 }
 
 .ov-app-search {
     display: flex;
-    flex: 0 1 340px;
+    flex: 0 1 300px;
     align-items: center;
     justify-content: space-between;
+    width: 300px;
     height: 32px;
-    padding: 0 10px;
+    padding: 0 12px 0 14px;
     border: 1px solid var(--app-line);
     border-radius: 999px;
     background: #ffffff;
@@ -390,15 +419,19 @@
 
 .ov-app-head {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 10px;
-    padding: 14px 16px 10px;
+    padding: 14px 16px 12px 18px;
 
     > b {
         font-family: var(--fontFamilyDisplay);
-        font-size: 22px;
+        font-size: 24px;
         font-weight: 700;
         letter-spacing: -.025em;
+    }
+
+    > .ov-app-sub {
+        color: var(--app-faint);
     }
 }
 
@@ -406,7 +439,9 @@
     display: flex;
     align-items: center;
     gap: 18px;
+    align-self: center;
     margin-inline-start: auto;
+    color: var(--app-ink);
 }
 
 .ov-app-new {
@@ -429,10 +464,10 @@
 .ov-app-panes {
     display: grid;
     flex: 1;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: 12px;
     min-height: 0;
-    padding: 0 12px 0 10px;
+    padding: 0 12px 12px 8px;
 }
 
 .ov-app-list {
@@ -526,10 +561,11 @@
 
 .ov-app-detail {
     min-width: 0;
-    padding: 18px 20px;
+    min-height: 0;
+    overflow: hidden;
+    padding: 18px 18px 16px;
     border: 1px solid var(--app-line);
-    border-bottom: 0;
-    border-radius: 18px 18px 0 0;
+    border-radius: 18px;
     background: var(--app-card);
 }
 
@@ -548,9 +584,9 @@
 }
 
 .ov-app-fields {
-    margin-top: 16px;
+    margin-top: 14px;
     border: 1px solid var(--app-line);
-    border-radius: 12px;
+    border-radius: 16px;
     background: var(--app-panel);
 }
 
@@ -559,7 +595,7 @@
     grid-template-columns: 112px minmax(0, 1fr) auto;
     align-items: center;
     gap: 10px;
-    min-height: 46px;
+    min-height: 40px;
     padding: 0 14px;
 
     & + & {
@@ -592,10 +628,13 @@
     color: #2f6d16;
 }
 
-.ov-app-notes-title {
+// "Additional attributes" and "Notes"
+.ov-app-section {
     margin-top: 14px;
     font-family: var(--fontFamilyDisplay);
+    font-size: 14.5px;
     font-weight: 700;
+    letter-spacing: -.02em;
 }
 
 .ov-app-notes {
@@ -605,29 +644,44 @@
 }
 
 .ov-app-meta {
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 // Below 900px only the entry list is shown
 @media (max-width: 900px) {
     .ov-app {
-        grid-template-columns: minmax(0, 1fr);
-        height: 420px;
+        height: 440px;
     }
 
     .ov-app-side,
     .ov-app-detail,
-    .ov-app-top > svg,
+    .ov-app-bell,
+    .ov-app-searchbar > svg,
     .ov-app-tools > :not(.ov-app-new) {
         display: none;
     }
 
+    .ov-app-top {
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    .ov-app-searchbar {
+        transform: none;
+    }
+
+    .ov-app-body,
     .ov-app-panes {
         grid-template-columns: minmax(0, 1fr);
     }
 
+    .ov-app-main {
+        margin-inline-start: 10px;
+    }
+
     .ov-app-search {
         flex: 1;
+        width: auto;
     }
 }
 
