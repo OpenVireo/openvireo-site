@@ -93,7 +93,7 @@
 // Plans ----------------------------------------------------------------------------------------
 
 .pr-plans {
-    padding-top: 56px;
+    padding-top: 40px;
     padding-bottom: 32px;
 
     &[data-period="yearly"] .pr-monthly,
@@ -117,7 +117,9 @@
     }
 }
 
-.pr-panel + .pr-panel {
+// Space between the two groups only when both show (no JavaScript). With JavaScript one group
+// is hidden, and a sibling rule would still push the Families and teams group down.
+.pr-plans:not([data-audience]) .pr-panel + .pr-panel {
     margin-top: 64px;
 }
 
