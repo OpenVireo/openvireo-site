@@ -170,14 +170,17 @@ On Windows, you will be prompted to authenticate to Windows Hello after unlockin
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Click <em>New Entry</em> in the command bar, navigate to Entries &gt; New Entry, or press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>N</kbd></span>. The entry opens in a window over the database:</p>
+<p>Click <em>New Entry</em> in the command bar, navigate to Entries &gt; New Entry, or press <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>N</kbd></span>. The new entry opens in place of the entry details, so the groups and the entry list stay in view:</p>
 <figure class="guide-figure" data-lightbox>
 <a href="/docs/getting-started/images/edit_entry.png" data-caption="Adding a new entry"><img src="/docs/getting-started/images/edit_entry.png" alt="edit entry" width="1600" height="1031" loading="lazy"></a>
 <figcaption>Adding a new entry</figcaption>
 </figure>
 </li>
 <li>
-<p>Enter a desired title for the entry, username, password, URL, and notes on this screen.</p>
+<p><em>(Optional)</em> Pick what kind of entry it is: <em>Login</em>, <em>Secure note</em>, <em>Card</em>, <em>Wi-Fi</em>, <em>SSH key</em> or <em>API key</em>. The type only decides which fields the entry starts with. A card, for example, starts with Cardholder, Number, Expires and Security code attributes and no username or password. The entry stays an ordinary KeePass entry, and you can add or remove any field later.</p>
+</li>
+<li>
+<p>Enter a title, username, password and URL. Each field has its name on the left, and the name moves above the field when the window is narrow.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha">
 <li>
@@ -187,7 +190,7 @@ On Windows, you will be prompted to authenticate to Windows Hello after unlockin
 <p>You can generate a secure random password by clicking the dice icon in the password field to launch the password generator. Reveal the password by clicking the eye icon.</p>
 </li>
 <li>
-<p>After you add a URL to an entry you can press the download button to automatically download the website&#8217;s icon for this entry.</p>
+<p>When you type a URL into a new entry, the title follows the site&#8217;s name until you type a title of your own. After you add a URL you can press the download button to download the website&#8217;s icon for this entry.</p>
 </li>
 </ol>
 </div>
@@ -196,12 +199,34 @@ On Windows, you will be prompted to authenticate to Windows Hello after unlockin
 <p><em>(Optional)</em> Add tags to the entry to quickly find it using the tags in the sidebar. You can easily add new tags or select existing ones from the drop-down list.</p>
 </li>
 <li>
-<p><em>(Optional)</em> Select the <em>Expires</em> check-box to set the expiry date for the password. You can manually enter the date and time or click the <em>Presets</em> button to select an expiry date and time for your password.</p>
+<p><em>(Optional)</em> Choose when the entry expires: <em>Never</em>, <em>In 3 months</em>, <em>In 1 year</em>, or <em>Pick a date…</em> to enter a date and time of your own.</p>
 </li>
 <li>
-<p>Click <strong>Save</strong> to add the entry to your database.</p>
+<p><em>(Optional)</em> Click <em>Add field</em> to add more to the entry:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><em>One-time code</em>: paste the secret or the <code>otpauth://</code> link the website shows when you turn on two-step sign-in. The current code appears under the field, so you can check it before saving. See <a href="#_adding_totp_to_an_entry">Adding TOTP to an Entry</a>.</p>
+</li>
+<li>
+<p><em>Another URL</em>: another address the entry works on, for example a second sign-in page. The browser extension offers the entry on these sites too.</p>
+</li>
+<li>
+<p><em>Text attribute</em> and <em>Hidden attribute</em>: a field of your own, such as an account number or a PIN. Type its name in place of the caption. The lock button hides a value and stores it protected; a hidden attribute starts out that way.</p>
+</li>
+<li>
+<p><em>Attachment…</em>: attach a file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Click <strong>Save</strong> in the command bar to add the entry to your database, or <strong>Cancel</strong> to set it aside.</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Auto-Type, browser integration, the SSH agent, colours, the entry&#8217;s properties and its history are under <em>More options</em> at the bottom of the entry. Each opens in place of the entry; the back button returns to it.</p>
 </div>
 </div>
 <div class="sect3">
@@ -215,10 +240,10 @@ On Windows, you will be prompted to authenticate to Windows Hello after unlockin
 <p>Select the entry you want to edit.</p>
 </li>
 <li>
-<p>Press <kbd>Enter</kbd>, click the <em>Edit Entry</em> (pencil) button in the command bar, or right-click and select Edit Entry from the menu. The entry details become editable in place.</p>
+<p>Press <kbd>Enter</kbd>, click the <em>Edit Entry</em> (pencil) button in the command bar, or right-click and select Edit Entry from the menu. The entry details become editable in place, in the same groups as the details: sign-in, additional attributes, details and notes.</p>
 </li>
 <li>
-<p>Make the desired changes.</p>
+<p>Make the desired changes. The remove button beside a one-time code, an extra URL, an attribute or an attachment takes it off the entry.</p>
 </li>
 <li>
 <p>Click <strong>Save</strong> in the command bar, or <strong>Cancel</strong> to discard the changes.</p>
@@ -253,7 +278,10 @@ Storing TOTP codes in the same database as the password will eliminate the advan
 <figcaption>Example TOTP Secret</figcaption>
 </figure>
 <div class="paragraph">
-<p>Once obtained, right-click the desired entry <strong>(1)</strong>, choose <em>TOTP</em> &#8594; <em>Set up TOTP&#8230;&#8203;</em> <strong>(2)</strong>, and the setup dialog will appear. In that dialog, paste the secret code from the website <strong>(3)</strong>, setup any custom settings (rare) <strong>(4)</strong>, then press OK to save the settings.</p>
+<p>Once obtained, edit the entry, click <em>Add field</em>, choose <em>One-time code</em>, and paste the secret. OpenVireo stores it as an <code>otpauth://</code> link and shows the current code under the field.</p>
+</div>
+<div class="paragraph">
+<p>You can also right-click the desired entry <strong>(1)</strong>, choose <em>TOTP</em> &#8594; <em>Set up TOTP&#8230;&#8203;</em> <strong>(2)</strong>, and the setup dialog will appear. In that dialog, paste the secret code from the website <strong>(3)</strong>, setup any custom settings (rare) <strong>(4)</strong>, then press OK to save the settings.</p>
 </div>
 <figure class="guide-figure" data-lightbox>
 <a href="/docs/getting-started/images/totp_setup.png" data-caption="TOTP Setup Process"><img src="/docs/getting-started/images/totp_setup.png" alt="totp setup" width="824" height="645" loading="lazy"></a>
