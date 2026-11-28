@@ -26,10 +26,10 @@
             <div class="mk-cards cmp-cards">
                 {{- range .ByWeight }}
                 <a class="mk-card" href="{{ .RelPermalink }}">
-                    <span class="mk-card-icon mk-tint-{{ .Params.tint | default "green" }}"><i class="fa-solid {{ .Params.icon | default "fa-scale-balanced" }}" aria-hidden="true"></i></span>
+                    <span class="mk-card-icon mk-tint-{{ .Params.tint | default "green" }}"><i class="ic {{ .Params.icon | default "ic-scales" }}" aria-hidden="true"></i></span>
                     <h3>{{ .Title }}</h3>
                     <p>{{ .Params.cardText | default .Description }}</p>
-                    <span class="mk-link">Read the comparison <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+                    <span class="mk-link">Read the comparison <i class="ic ic-arrow-right" aria-hidden="true"></i></span>
                 </a>
                 {{- end }}
             </div>

@@ -2,7 +2,7 @@
 title: "SSH Agent Integration"
 description: "Keep SSH keys in your database and add them to your SSH agent automatically."
 weight: 120
-icon: "fa-key"
+icon: "ic-key"
 anchor: "_ssh_agent_integration"
 sections:
   - id: "_openssh_agent_on_linux"
@@ -53,14 +53,14 @@ One of the easiest ways to achieve this is to enable <em>GNOME Keyring</em> whic
 <p>There are many guides on the internet how to hack your login shell to start an agent but it is very prone to errors and is not a supported configuration. If you prefer the login shell startup hack you need to set it up with a static socket path and use the <em>SSH_AUTH_SOCK override</em> option in SSH Agent settings to match that.</p>
 </div>
 <aside class="callout callout-warning">
-<i class="fa-solid fa-triangle-exclamation callout-icon" aria-hidden="true"></i>
+<i class="ic ic-warning callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Warning</p>
 <em>GNU Privacy Guard (gpg)</em> with its SSH agent implementation is <strong>not</strong> compatible with OpenVireo as it does not support <em>removing</em> keys that have been added to it making it impossible to use any external tool to manage key lifetime.
 </div>
 </aside>
 <aside class="callout callout-warning">
-<i class="fa-solid fa-triangle-exclamation callout-icon" aria-hidden="true"></i>
+<i class="ic ic-warning callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Warning</p>
 <em>GNOME Keyring</em> prior to release 3.27.92 had its own custom implementation of an agent which does not support modern key types and was known to be buggy.

@@ -3,7 +3,7 @@
     <li data-asset="{{ .pattern }}">
         <div class="option-title">{{ .title | safeHTML }}</div>
         <div class="option-actions">
-            {{ partial "button.html" (dict "href" .release "text" "Download" "size" "small" "icon" "fa-solid fa-download") }}
+            {{ partial "button.html" (dict "href" .release "text" "Download" "size" "small" "icon" "ic ic-arrow-download") }}
             <span class="text-muted text-small asset-size"></span>
         </div>
     </li>
@@ -25,7 +25,7 @@
         </div>
 
         <fluent-message-bar intent="warning" layout="multiline" style="max-width: 42rem; margin: 0 auto; text-align: start">
-            <i class="fa-solid fa-triangle-exclamation" slot="icon" aria-hidden="true"></i>
+            <i class="ic ic-warning" slot="icon" aria-hidden="true"></i>
             <span><strong>Nightly builds are untested.</strong> They may have bugs that damage or lose your data. Back up your
                 databases before opening them with a nightly build, and use the <a href="{{ $base }}download">stable release</a>
                 for passwords you can't afford to lose.</span>
@@ -34,7 +34,7 @@
         <p id="nightly-error" class="text-small text-muted" style="margin-top: 1rem" hidden></p>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="fa-brands fa-apple" aria-hidden="true"></i> macOS 12+</h2>
+            <h2 class="card-header"><i class="ic ic-apple" aria-hidden="true"></i> macOS 12+</h2>
             <div class="card-body">
                 <ul class="option-list">
                     {{ partial "nightly-option.html" (dict "title" "Apple Silicon" "pattern" `-arm64(-unsigned)?\.dmg$` "release" $release) }}
@@ -44,7 +44,7 @@
         </div>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="fa-brands fa-windows" aria-hidden="true"></i> Windows 10 / 11</h2>
+            <h2 class="card-header"><i class="ic ic-windows" aria-hidden="true"></i> Windows 10 / 11</h2>
             <div class="card-body">
                 <ul class="option-list">
                     {{ partial "nightly-option.html" (dict "title" "Installer (64-bit)" "pattern" `-(x64|AMD64)\.msi$` "release" $release) }}
@@ -58,7 +58,7 @@
         </div>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="fa-brands fa-linux" aria-hidden="true"></i> Linux</h2>
+            <h2 class="card-header"><i class="ic ic-linux" aria-hidden="true"></i> Linux</h2>
             <div class="card-body">
                 <ul class="option-list">
                     {{ partial "nightly-option.html" (dict "title" "AppImage (x86_64)" "pattern" `-x86_64\.AppImage$` "release" $release) }}
@@ -68,7 +68,7 @@
         </div>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Checking your download</h2>
+            <h2 class="card-header"><i class="ic ic-shield-checkmark" aria-hidden="true"></i> Checking your download</h2>
             <div class="card-body">
                 <ul class="option-list">
                     {{ partial "nightly-option.html" (dict "title" "Checksums (SHA256SUMS.txt)" "pattern" `^SHA256SUMS\.txt$` "release" $release) }}
@@ -80,7 +80,7 @@
         </div>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i> Staying up to date</h2>
+            <h2 class="card-header"><i class="ic ic-arrow-sync" aria-hidden="true"></i> Staying up to date</h2>
             <div class="card-body">
                 <p class="text-small mb-0">On macOS and Windows, a nightly build updates itself to the next week's build. To go back to
                     stable releases, choose <strong>Stable releases</strong> under <strong>Settings &rarr; General &rarr; Update

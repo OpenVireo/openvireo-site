@@ -56,7 +56,3 @@ style  = "nord"
   [[module.mounts]]
   source = "static"
   target = "static"
-
-  [[module.mounts]]
-  source = "node_modules/@fortawesome/fontawesome-free/webfonts"
-  target = "static/assets/fonts/fontawesome"

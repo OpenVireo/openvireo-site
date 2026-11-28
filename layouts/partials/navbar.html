@@ -13,7 +13,7 @@
 <a class="announce-bar" href="{{ .Permalink }}">
     <span class="announce-tag">New</span>
     <span class="announce-text">{{ .Title }}</span>
-    <span class="announce-more">Read more <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+    <span class="announce-more">Read more <i class="ic ic-arrow-right" aria-hidden="true"></i></span>
 </a>
 {{- end }}{{ end }}
 {{- end }}
@@ -33,12 +33,12 @@
 
         <div class="header-actions">
             <a class="btn btn-subtle btn-icon btn-large" href="https://github.com/openvireo/openvireo" aria-label="OpenVireo on GitHub" title="OpenVireo on GitHub">
-                <i class="fa-brands fa-github" aria-hidden="true"></i>
+                <i class="ic ic-github" aria-hidden="true"></i>
             </a>
             <a class="header-signin header-cta" href="{{ print $webApp "?view=signin" }}">Sign in</a>
             {{ partial "button.html" (dict "href" (print .Site.BaseURL "download") "text" "Download" "appearance" (cond .IsHome "inverse" "ink") "size" "large" "class" "header-cta header-download") }}
             <fluent-button class="nav-toggle js-only" appearance="subtle" size="large" icon-only aria-label="Open navigation" aria-controls="nav-drawer" aria-expanded="false">
-                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                <i class="ic ic-navigation" aria-hidden="true"></i>
             </fluent-button>
         </div>
     </div>
@@ -48,7 +48,7 @@
     <fluent-drawer-body>
         <span slot="title">Menu</span>
         <fluent-button slot="close" appearance="transparent" icon-only aria-label="Close navigation">
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            <i class="ic ic-dismiss" aria-hidden="true"></i>
         </fluent-button>
         <nav aria-label="Main">
             <ul class="drawer-nav">

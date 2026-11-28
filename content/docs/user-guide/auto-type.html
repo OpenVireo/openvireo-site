@@ -2,7 +2,7 @@
 title: "Auto-Type"
 description: "Let OpenVireo type your usernames and passwords into any application or website."
 weight: 100
-icon: "fa-keyboard"
+icon: "ic-keyboard"
 anchor: "_auto_type"
 sections:
   - id: "_configure_global_auto_type"
@@ -21,7 +21,7 @@ sections:
 <p>The Auto-Type feature acts like a virtual keyboard to populate data from your entries directly into the corresponding websites or applications that you use. You can use the Auto-Type feature on a global level or entry level. Each entry can be configured to be associated with a particular window title and multiple Auto-Type sequences can be pre-defined and selected upon use.</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 Auto-Type is a completely separate feature from Browser Integration. You do not need to have the OpenVireo browser extension installed in your browser to use Auto-Type.
@@ -52,14 +52,14 @@ Auto-Type is a completely separate feature from Browser Integration. You do not 
 <p>Each entry in your database can have multiple Auto-Type sequences associated with various window titles. Simulated key presses can be sent to any other currently open window of your choice (web browser windows, login dialogs boxes, and so on). When the Global Auto-Type hotkey is pressed, OpenVireo will search your database for entries matching the current selected window title.</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 The default Auto-Type sequence is <code>{USERNAME}{TAB}{PASSWORD}{ENTER}</code>. This means that it first types the username of the selected entry, then presses the <kbd>Tab</kbd> key, then types the password of the entry and finally presses the <kbd>Enter</kbd> key.
 </div>
 </aside>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 To change the default Auto-Type sequence for all entries of your database, edit the root (top-most) group of your database and set a specific sequence. Child groups and entries will inherit this sequence by default.
@@ -73,14 +73,14 @@ To change the default Auto-Type sequence for all entries of your database, edit 
 <li>
 <p>Navigate to the entries list and open the desired entry for editing. Click the <em>Auto-Type</em> item from the left-hand menu bar <strong>(1)</strong>. Press the <kbd>+</kbd> button <strong>(2)</strong> to add a new sequence entry. Select the desired window using the drop-down menu, or simply type a window title in the box <strong>(3)</strong>.</p>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 You can use an asterisk (<code>*</code>) as a wildcard (e.g., when a window title contains a dynamic file or website name). Set the window title to <code>*</code> to match all windows. Leave the window title blank to offer additional sequences for every matching window. This is useful for typing individual custom attributes, for example.
 </div>
 </aside>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 To use a standard regular expression for window title matching, the window title must start and end with two forward slashes (e.g., <code>//^Secure Login - .*$//</code>).
@@ -225,7 +225,7 @@ To use a standard regular expression for window title matching, the window title
 </ol>
 </div>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 Use modifiers to hold down special keys before typing the next character. For example, to type <strong>CTRL+SHIFT+D</strong> use: <code>^+d</code>. This is useful if you need to activate certain actions in a program or on your desktop.
@@ -262,7 +262,7 @@ Use modifiers to hold down special keys before typing the next character. For ex
 <p>The option to type just the username, password, or current TOTP value is available by right-clicking the desired row or expanding the Type Sequence button options. You can also copy these values to the clipboard.</p>
 </div>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 On Windows, you will see an option to use a virtual keyboard in this sub-menu. This is an experimental feature that allows you to type into virtual machines by simulating actual keyboard presses. Some international keyboards may be unsupported due to limitations in the Windows API.
@@ -275,7 +275,7 @@ On Windows, you will see an option to use a virtual keyboard in this sub-menu. T
 <p>You can quickly activate the default Auto-Type sequence for a particular entry using Entry-Level Auto-Type. For this operation, the OpenVireo window will be minimized and the Auto-Type sequence occurs in the previously selected window. You can perform Entry-Level Auto-Type from the <em>Perform Auto-Type</em> button in the command bar <strong>(A)</strong>, the entry context menu <strong>(B)</strong>, or by pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></span>.</p>
 </div>
 <aside class="callout callout-warning">
-<i class="fa-solid fa-triangle-exclamation callout-icon" aria-hidden="true"></i>
+<i class="ic ic-warning callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Warning</p>
 Be careful when using Entry-Level Auto-Type as you can inadvertently type into the wrong window. For example, a chat window or email.

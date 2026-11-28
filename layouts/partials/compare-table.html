@@ -39,10 +39,10 @@
         {{- range $products }}
         {{- $val := index $data.values .id $rid }}
         <td class="cmp-cell cmp-{{ $val.v }}{{ if .self }} cmp-self{{ end }}" data-product="{{ .name }}">
-            {{- if eq $val.v "yes" }}<span class="cmp-mark"><i class="fa-solid fa-check" aria-hidden="true"></i> Yes</span>
-            {{- else if eq $val.v "no" }}<span class="cmp-mark"><i class="fa-solid fa-xmark" aria-hidden="true"></i> No</span>
-            {{- else if eq $val.v "partial" }}<span class="cmp-mark"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i> Partly</span>
-            {{- else if eq $val.v "na" }}<span class="cmp-mark"><i class="fa-solid fa-minus" aria-hidden="true"></i> N/A</span>
+            {{- if eq $val.v "yes" }}<span class="cmp-mark"><i class="ic ic-checkmark" aria-hidden="true"></i> Yes</span>
+            {{- else if eq $val.v "no" }}<span class="cmp-mark"><i class="ic ic-dismiss" aria-hidden="true"></i> No</span>
+            {{- else if eq $val.v "partial" }}<span class="cmp-mark"><i class="ic ic-circle-half-fill" aria-hidden="true"></i> Partly</span>
+            {{- else if eq $val.v "na" }}<span class="cmp-mark"><i class="ic ic-subtract" aria-hidden="true"></i> N/A</span>
             {{- end }}
             <span class="cmp-note">{{ $val.note }}</span>
         </td>

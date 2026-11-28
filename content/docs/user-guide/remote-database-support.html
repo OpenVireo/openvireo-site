@@ -2,7 +2,7 @@
 title: "Remote database support"
 description: "Sync a database stored elsewhere using your own download and upload commands, such as scp or rsync."
 weight: 35
-icon: "fa-arrows-rotate"
+icon: "ic-arrow-sync"
 anchor: "_remote_database_support"
 sections:
   - id: "_sync_with_remote_database"
@@ -21,7 +21,7 @@ sections:
 <p>Define a name for your sync command and specify a download <strong>(A)</strong> as well as an upload command <strong>(B)</strong>. The command and/or input need a <code>{TEMP_DATABASE}</code> placeholder specified where the remote database is temporarily stored. Do not forget to save the command settings with the save button <strong>(C)</strong>. Remote settings are added as menu entries below the <em>Remote Sync…</em> menu for quick access.</p>
 </div>
 <aside class="callout callout-warning">
-<i class="fa-solid fa-triangle-exclamation callout-icon" aria-hidden="true"></i>
+<i class="ic ic-warning callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Warning</p>
 If your download or upload command require a password prompt, the command will most likely not succeed. In case of an SSH connection (e.g. sftp), it is recommended to use <a href="../ssh-agent-integration/#_ssh_agent_integration">SSH agent</a> so that no password prompt is needed.
@@ -35,7 +35,7 @@ If your download or upload command require a password prompt, the command will m
 <p>Select the remote sync command from the <em>Database &gt; Remote Sync…</em> menu to start the syncing process. The sync status chip at the far right of the header shows its progress.</p>
 </div>
 <aside class="callout callout-warning">
-<i class="fa-solid fa-triangle-exclamation callout-icon" aria-hidden="true"></i>
+<i class="ic ic-warning callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Warning</p>
 In case the remote database is changed by another user/process after the downloading command finishes and before uploading again, those changes will be overwritten. Syncing is not an atomic operation.

@@ -4,7 +4,7 @@ async function copyText(e) {
     const textNode = btn.previousElementSibling;
     try {
         await navigator.clipboard.writeText(textNode.textContent);
-        icon.classList.replace('fa-copy', 'fa-check');
+        icon.classList.replace('ic-copy', 'ic-checkmark');
         btn.title = 'Copied!';
     } catch (err) {
         alert(`Error copying text to clipboard: ${err.message}\n\nPlease copy manually instead.`);
@@ -15,7 +15,7 @@ async function copyText(e) {
         selection.addRange(range);
     }
     setTimeout(() => {
-        icon.classList.replace('fa-check', 'fa-copy');
+        icon.classList.replace('ic-checkmark', 'ic-copy');
         btn.title = 'Copy to clipboard';
     }, 1000);
 }
@@ -27,7 +27,7 @@ export function initCopyable() {
         btn.setAttribute('aria-label', 'Copy to clipboard');
         btn.title = 'Copy to clipboard';
         const icon = document.createElement('i');
-        icon.classList.add('fa-solid', 'fa-copy');
+        icon.classList.add('ic', 'ic-copy');
         icon.setAttribute('aria-hidden', 'true');
         btn.appendChild(icon);
         btn.addEventListener('click', copyText);

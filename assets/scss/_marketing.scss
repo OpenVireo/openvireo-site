@@ -313,20 +313,24 @@
         padding-inline-start: 2rem;
         font-weight: 700;
 
-        &::before {
-            content: "\f00c";
+        &::before, &::after {
+            content: "";
             position: absolute;
             inset-inline-start: 0;
             top: .1em;
-            display: grid;
-            place-items: center;
             width: 1.35rem;
             height: 1.35rem;
+        }
+
+        &::before {
             border-radius: 50%;
             background: var(--colorBrandBackground);
-            color: var(--colorNeutralForegroundOnBrand);
-            font: var(--fa-font-solid);
-            font-size: .7rem;
+        }
+
+        &::after {
+            background: var(--colorNeutralForegroundOnBrand);
+            -webkit-mask: $ic-checkmark center / .85rem no-repeat;
+            mask: $ic-checkmark center / .85rem no-repeat;
         }
     }
 }

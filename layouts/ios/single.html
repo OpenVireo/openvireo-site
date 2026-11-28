@@ -39,16 +39,16 @@
         </p>
         <div class="row row-center mk-hero-actions">
             {{- if $store }}
-            {{ partial "button.html" (dict "href" $store "text" "Download on the App Store" "appearance" "inverse" "size" "hero" "icon" "fa-brands fa-apple") }}
+            {{ partial "button.html" (dict "href" $store "text" "Download on the App Store" "appearance" "inverse" "size" "hero" "icon" "ic ic-apple") }}
             {{- else }}
             <span class="btn btn-inverse btn-hero btn-disabled" aria-disabled="true">
-                <i class="fa-brands fa-apple" aria-hidden="true"></i> Coming soon to the App Store
+                <i class="ic ic-apple" aria-hidden="true"></i> Coming soon to the App Store
             </span>
             {{- end }}
             {{ partial "button.html" (dict "href" .Site.Params.webAppURL "text" "Use OpenVireo in your browser" "appearance" "inverse-outline" "size" "hero") }}
         </div>
         <p class="mk-hero-note">
-            <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> For iPhone with iOS 18 or later
+            <i class="ic ic-phone" aria-hidden="true"></i> For iPhone with iOS 18 or later
         </p>
     </div>
     <div class="container ios-hero-phones">
@@ -87,7 +87,7 @@
                 <p class="eyebrow">Sync if you want to</p>
                 <h3>An account that can't read your passwords</h3>
                 <p>Create a free account to sync your vaults between your iPhone, your computers and the web app. Everything is encrypted on your device with your master password and a Secret Key that only you hold, on your Emergency Kit.</p>
-                <a class="mk-link" href="{{ $base }}pricing/">Compare plans <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <a class="mk-link" href="{{ $base }}pricing/">Compare plans <i class="ic ic-arrow-right" aria-hidden="true"></i></a>
             </div>
             <div class="mk-feature-media mk-tint-mint ios-feature-phones">
                 {{ partial "ios-phone.html" (dict "name" "create_account" "alt" "Creating an OpenVireo account") }}
@@ -137,17 +137,17 @@
 
         <div class="mk-cards ios-cards">
             <div class="mk-card">
-                <span class="mk-card-icon mk-tint-green"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
+                <span class="mk-card-icon mk-tint-green"><i class="ic ic-key" aria-hidden="true"></i></span>
                 <h3>AutoFill</h3>
                 <p>Fill passwords and passkeys in Safari and your apps, from your account vaults and your KeePass files.</p>
             </div>
             <div class="mk-card">
-                <span class="mk-card-icon mk-tint-mint"><i class="fa-solid fa-face-smile" aria-hidden="true"></i></span>
+                <span class="mk-card-icon mk-tint-mint"><i class="ic ic-emoji" aria-hidden="true"></i></span>
                 <h3>Face ID</h3>
                 <p>Unlock with a glance. OpenVireo locks itself again when you leave it, after the time you choose.</p>
             </div>
             <div class="mk-card">
-                <span class="mk-card-icon mk-tint-sand"><i class="fa-solid fa-server" aria-hidden="true"></i></span>
+                <span class="mk-card-icon mk-tint-sand"><i class="ic ic-server" aria-hidden="true"></i></span>
                 <h3>Your own server</h3>
                 <p>Run the open-source sync server yourself and keep your KeePass files in step on every device.</p>
             </div>

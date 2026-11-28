@@ -2,7 +2,7 @@
 title: "Database Operations"
 description: "Create, store, and unlock databases, manage entries, search, merge, and keep backups."
 weight: 20
-icon: "fa-database"
+icon: "ic-database"
 anchor: "_database_operations"
 sections:
   - id: "_creating_your_first_database"
@@ -71,7 +71,7 @@ sections:
 <strong>(B)</strong> Toggle password visibility</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 Keep this password for your database safe. Either memorize it or note it down somewhere. Losing the database password might result in permanent locking of your database and you will not be able to retrieve information stored in the database.
@@ -93,7 +93,7 @@ Keep this password for your database safe. Either memorize it or note it down so
 <p>Make sure that you or someone else does not accidentally delete the database file. Deletion of the database file will result in the total loss of all your information (including all your passwords!) and a lot of inconvenience to manually retrieve your logins for various web applications. Do not share the credentials to access your database file with anyone unless you absolutely trust them (spouse, child, etc.).</p>
 </div>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 You can safely store your database file in the cloud (OneDrive, Dropbox, Google Drive, Nextcloud, Syncthing, etc.). The database file is always fully encrypted; unencrypted data is never written to disk and is never accessible to your cloud storage provider. We recommend using a storage service that keeps automatic backups (version history) of your database file in the event of corruption or accidental deletion.
@@ -146,7 +146,7 @@ You can safely store your database file in the cloud (OneDrive, Dropbox, Google 
 <p>On Windows and macOS, subject to hardware availability, your credentials can be securely stored to enable subsequent unlocking of your database through biometric authentication. This is enabled by default on Windows using <em>Windows Hello</em> and on macOS using <em>Touch ID or Apple Watch</em> services. You can disable this feature in the Application Settings under the Security section.</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 On Windows, you will be prompted to authenticate to Windows Hello after unlocking your database with full credentials. This is required to setup Quick Unlock. If you cancel this prompt then Quick Unlock will not be enabled and your database will continue to unlock.
@@ -164,7 +164,7 @@ On Windows, you will be prompted to authenticate to Windows Hello after unlockin
 <figcaption>Quick Unlock</figcaption>
 </figure>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 By default, OpenVireo will show entries that are expired or will be expiring within 3 days after unlocking the database. This feature allows you to change your passwords before they expire and be aware of passwords that are no longer valid. You can disable or change this feature in the Application Settings.
@@ -274,14 +274,14 @@ By default, OpenVireo will show entries that are expired or will be expiring wit
 <p>Timed One-Time Passwords (TOTP) are a popular choice for two-factor authentication methods. These codes are typically six digits long and change every 30 seconds. They are derived from a shared secret value and the current time. Once set up, OpenVireo can calculate TOTP codes like any authenticator app, such as Google Authenticator. The codes can be used with copy/paste, browser extension, and Auto-Type.</p>
 </div>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 Your computer time must be synchronized with an internet time source to generate valid TOTP codes, <a href="https://www.nist.gov/pml/time-and-frequency-division/time-distribution/internet-time-service-its">read more here</a>.
 </div>
 </aside>
 <aside class="callout callout-warning">
-<i class="fa-solid fa-triangle-exclamation callout-icon" aria-hidden="true"></i>
+<i class="ic ic-warning callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Warning</p>
 Storing TOTP codes in the same database as the password will eliminate the advantages of two-factor authentication. If you desire maximum security, we recommend keeping TOTP codes in a separate database that you only unlock when needed.
@@ -318,7 +318,7 @@ Storing TOTP codes in the same database as the password will eliminate the advan
 <p>You can select an icon to be displayed with each entry for easy identification. OpenVireo comes with a set of default icons that you can use or you can use your own custom icons. If you defined a URL with an entry, you can also download the favorite icon for that particular website.</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 To delete a custom icon, go to <a href="../database-settings/#_database_maintenance">Database Maintenance</a> where you can purge unused icons and delete one or more icons at a time.
@@ -329,7 +329,7 @@ To delete a custom icon, go to <a href="../database-settings/#_database_maintena
 <figcaption>Entry icon selection</figcaption>
 </figure>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 Each KeePass application has different default icons. If you use a mobile app or KeePass2, be aware that the default icons may not be exactly correspond to the OpenVireo icons.
@@ -349,7 +349,7 @@ Each KeePass application has different default icons. If you use a mobile app or
 <li>
 <p>You will be prompted to move the entry to the Recycle Bin (if enabled).</p>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 You can disable the recycle bin within the Database Settings. If the recycle bin is disabled then deleted entries will be permanently removed from the database.
@@ -474,7 +474,7 @@ You can disable the recycle bin within the Database Settings. If the recycle bin
 <p>You can attach files to any entry in your database with <em>Add field</em> &gt; <em>Attachment…</em> while editing it; attachments are listed under <em>Details</em>, each with a button to remove it. To open or save one, use the <em>Advanced</em> page under <em>More options</em>, where the <em>Add</em> button <strong>(A)</strong> attaches files too. These files are added to the database and stored as encrypted binaries. You can open, save, or delete attachments from this interface <strong>(B)</strong>.</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 When you try to open the attached file, OpenVireo extracts the attachment to a temporary file and opens it using the default application associated with the file type. After finishing viewing or editing the file, you can choose between importing or discarding the changes that you made to the temporary file. OpenVireo securely deletes the temporary file by overwriting it.
@@ -531,7 +531,7 @@ When you try to open the attached file, OpenVireo extracts the attachment to a t
 <figcaption>Entry history view</figcaption>
 </figure>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 Restoring an old history item will store the current entry settings as a new history item.
@@ -700,7 +700,7 @@ Restoring an old history item will store the current entry settings as a new his
 <p>OpenVireo allows you to merge entries from one database into another through the <em>Database</em> &#8594; <em>Merge From Database</em> menu item. When merging, entries from the specified database will be imported into your currently open database. The merge process compares entries based on their unique identifiers (UUIDs) and modified timestamp. When an entry UUID matches, no matter which group it is in, the most recently modified version will be made the current and the previous version will be placed into the entry&#8217;s history. Any new entries and/or groups will be added to the open database. This feature is useful for consolidating multiple databases or synchronizing databases from conflict files in a cloud storage system.</p>
 </div>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 When you delete entries, a record of that deletion (the entry UUID) is stored to prevent that entry from reappearing from a merge operation. An existing entry that has the same UUID as a deleted item will be removed from the database without prompt.
@@ -748,7 +748,7 @@ When you delete entries, a record of that deletion (the entry UUID) is stored to
 <p>You can setup one or more databases to open automatically when you unlock a single database. This is done by <strong>(1)</strong> defining a special group named <code>AutoOpen</code> with <strong>(2)</strong> entries that contain the file path and credentials for each database that should be opened. There is no limit to the number of databases that can be opened.</p>
 </div>
 <aside class="callout callout-tip">
-<i class="fa-solid fa-lightbulb callout-icon" aria-hidden="true"></i>
+<i class="ic ic-lightbulb callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Tip</p>
 Case matters with auto open, the group name must be exactly <code>AutoOpen</code> and it must be a child of the root group.
@@ -801,7 +801,7 @@ Case matters with auto open, the group name must be exactly <code>AutoOpen</code
 <figcaption>Auto open IfDevice example</figcaption>
 </figure>
 <aside class="callout callout-note">
-<i class="fa-solid fa-circle-info callout-icon" aria-hidden="true"></i>
+<i class="ic ic-info callout-icon" aria-hidden="true"></i>
 <div class="callout-body">
 <p class="callout-label">Note</p>
 You can setup an entry to open on double click of the URL field by prepending <code>kdbx://</code> to the relative or absolute path to the database file. You may also have to add <code>file://</code> to access network shares (e.g., <code>kdbx://file://share/database.kdbx</code>).
