@@ -30,30 +30,30 @@ export const guides = {
         title: 'User Guide',
         description: 'Everything OpenVireo can do, explained chapter by chapter.',
         oldFile: 'OpenVireo_UserGuide.html',
-        related: { title: 'New here? Getting Started', url: '/docs/getting-started/', icon: 'ic-rocket' },
+        related: { title: 'New here? Getting Started', url: '/docs/getting-started/', icon: 'ic-rocket-launch' },
         chapters: {
             _interface_overview: {
-                weight: 10, icon: 'ic-layout-column-two',
+                weight: 10, icon: 'ic-view-column',
                 summary: 'Find your way around the main window, database picker, command bar, themes, settings, shortcuts, and command-line options.',
             },
             _database_operations: {
-                weight: 20, icon: 'ic-database',
+                weight: 20, icon: 'ic-storage',
                 summary: 'Create, store, and unlock databases, manage entries, search, merge, and keep backups.',
             },
             _database_settings: {
-                weight: 30, icon: 'ic-options',
+                weight: 30, icon: 'ic-tune',
                 summary: 'Change a database’s name, encryption, and other settings, and keep it in good shape.',
             },
             _remote_database_support: {
-                weight: 35, icon: 'ic-arrow-sync',
+                weight: 35, icon: 'ic-sync',
                 summary: 'Sync a database stored elsewhere using your own download and upload commands, such as scp or rsync.',
             },
             _openvireo_sync_server: {
-                weight: 36, icon: 'ic-server',
+                weight: 36, icon: 'ic-dns',
                 summary: 'Sync a database automatically with your own OpenVireo Sync Server, pair devices, and open older versions.',
             },
             _openvireo_accounts: {
-                weight: 37, icon: 'ic-shield-person',
+                weight: 37, icon: 'ic-admin-panel-settings',
                 summary: 'Sign in to sync your vaults everywhere, share them with people and organizations, and set up service accounts.',
             },
             _password_generator: {
@@ -61,15 +61,15 @@ export const guides = {
                 summary: 'Password generator options in detail: length, character sets, advanced rules, passphrase word count, separators, case, and custom word lists.',
             },
             _importing_databases: {
-                weight: 50, icon: 'ic-arrow-import',
+                weight: 50, icon: 'ic-input',
                 summary: 'Bring in passwords from CSV files, other password managers, and KeePass 1 databases.',
             },
             _exporting_databases: {
-                weight: 60, icon: 'ic-arrow-export',
+                weight: 60, icon: 'ic-output',
                 summary: 'Export your database to use in other programs, to print, or to archive.',
             },
             _browser_integration: {
-                weight: 80, icon: 'ic-globe',
+                weight: 80, icon: 'ic-public',
                 summary: 'Connect the OpenVireo Browser extension to fill in logins on websites automatically.',
             },
             _passkeys: {
@@ -81,7 +81,7 @@ export const guides = {
                 summary: 'Let OpenVireo type your usernames and passwords into any application or website.',
             },
             _secret_service_integration: {
-                weight: 110, icon: 'ic-incognito',
+                weight: 110, icon: 'ic-visibility-off',
                 summary: 'Use OpenVireo as the Secret Service provider for other applications on Linux.',
             },
             _ssh_agent_integration: {
@@ -89,7 +89,7 @@ export const guides = {
                 summary: 'Keep SSH keys in your database and add them to your SSH agent automatically.',
             },
             _command_line_tool: {
-                weight: 130, icon: 'ic-window-console',
+                weight: 130, icon: 'ic-terminal',
                 summary: 'Access and manage your database from a terminal with openvireo-kdbx.',
             },
             _reference: {
@@ -97,7 +97,7 @@ export const guides = {
                 summary: 'Placeholders, auto-type actions, cross-references, backup paths, and other details.',
             },
             _license_and_disclaimers: {
-                weight: 150, icon: 'ic-scales',
+                weight: 150, icon: 'ic-balance',
                 summary: 'OpenVireo’s licence, warranty disclaimer, and limitation of liability.',
             },
         },
@@ -115,23 +115,23 @@ export const guides = {
         related: { title: 'Read the full User Guide', url: '/docs/user-guide/', icon: 'ic-book' },
         chapters: {
             _welcome: {
-                weight: 10, icon: 'ic-door-arrow-right',
+                weight: 10, icon: 'ic-waving-hand',
                 summary: 'What OpenVireo is, how it keeps your information safe, and the features it offers.',
             },
             _downloading_openvireo: {
-                weight: 20, icon: 'ic-arrow-download',
+                weight: 20, icon: 'ic-download',
                 summary: 'Download and install OpenVireo on Windows, macOS, or Linux, and check the download is genuine before you run it.',
             },
             _interface_overview: {
-                weight: 30, icon: 'ic-layout-column-two',
+                weight: 30, icon: 'ic-view-column',
                 summary: 'Find your way around the main window, database picker, command bar, view options, settings, and shortcuts.',
             },
             _openvireo_accounts: {
-                weight: 35, icon: 'ic-shield-person',
+                weight: 35, icon: 'ic-admin-panel-settings',
                 summary: 'Choose how to use OpenVireo: with an account, with your own sync server, or without an account.',
             },
             _database_operations: {
-                weight: 40, icon: 'ic-database',
+                weight: 40, icon: 'ic-storage',
                 summary: 'Create your first database, store and unlock it, and add and find your entries.',
             },
             _password_generator: {
@@ -141,15 +141,15 @@ export const guides = {
                 canonical: '/docs/user-guide/password-generator/',
             },
             _browser_integration: {
-                weight: 60, icon: 'ic-globe',
+                weight: 60, icon: 'ic-public',
                 summary: 'Install and connect the OpenVireo Browser extension to fill in logins on websites.',
             },
             _contact_us: {
-                weight: 70, icon: 'ic-chat-multiple',
+                weight: 70, icon: 'ic-forum',
                 summary: 'Report bugs, request features, and get in touch with the OpenVireo project.',
             },
             _license_and_disclaimers: {
-                weight: 80, icon: 'ic-scales',
+                weight: 80, icon: 'ic-balance',
                 summary: 'OpenVireo\u2019s licence, warranty disclaimer, and limitation of liability.',
             },
         },
@@ -164,9 +164,9 @@ export const guides = {
 const callouts = {
     note: 'ic-info',
     tip: 'ic-lightbulb',
-    important: 'ic-error-circle',
+    important: 'ic-error',
     warning: 'ic-warning',
-    caution: 'ic-fire',
+    caution: 'ic-local-fire-department',
 };
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -224,7 +224,7 @@ export function buildGuide(name, source, { assetDir, origin, updated: updatedDat
             const intro = decode(stripTags(body.match(/<div class="paragraph">\s*<p>([\s\S]*?)<\/p>/)?.[1] ?? ''));
             meta = {
                 weight: 1000 + parts.indexOf(part),
-                icon: 'ic-book-open',
+                icon: 'ic-menu-book',
                 summary: intro.length > 160 ? `${intro.slice(0, 160).replace(/\s+\S*$/, '')}\u2026` : intro,
             };
         }

@@ -22,7 +22,7 @@
 <ul>
     {{- $currentPageNumber := .PageNumber }}
     {{- $first := "" }}{{ if ne $currentPageNumber .First.PageNumber }}{{ $first = .First.URL }}{{ end }}
-    <li>{{ partial "pagination-link.html" (dict "url" $first "label" "First page" "text" `<i class="ic ic-chevron-double-left" aria-hidden="true"></i>`) }}</li>
+    <li>{{ partial "pagination-link.html" (dict "url" $first "label" "First page" "text" `<i class="ic ic-keyboard-double-arrow-left" aria-hidden="true"></i>`) }}</li>
     {{- $prev := "" }}{{ with .Prev }}{{ $prev = .URL }}{{ end }}
     <li>{{ partial "pagination-link.html" (dict "url" $prev "label" "Previous page" "text" `<i class="ic ic-chevron-left" aria-hidden="true"></i>`) }}</li>
 
@@ -44,7 +44,7 @@
     {{- $next := "" }}{{ with .Next }}{{ $next = .URL }}{{ end }}
     <li>{{ partial "pagination-link.html" (dict "url" $next "label" "Next page" "text" `<i class="ic ic-chevron-right" aria-hidden="true"></i>`) }}</li>
     {{- $last := "" }}{{ if ne $currentPageNumber .Last.PageNumber }}{{ $last = .Last.URL }}{{ end }}
-    <li>{{ partial "pagination-link.html" (dict "url" $last "label" "Last page" "text" `<i class="ic ic-chevron-double-right" aria-hidden="true"></i>`) }}</li>
+    <li>{{ partial "pagination-link.html" (dict "url" $last "label" "Last page" "text" `<i class="ic ic-keyboard-double-arrow-right" aria-hidden="true"></i>`) }}</li>
 </ul>
 </nav>
 {{- end }}

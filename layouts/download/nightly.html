@@ -3,7 +3,7 @@
     <li data-asset="{{ .pattern }}">
         <div class="option-title">{{ .title | safeHTML }}</div>
         <div class="option-actions">
-            {{ partial "button.html" (dict "href" .release "text" "Download" "size" "small" "icon" "ic ic-arrow-download") }}
+            {{ partial "button.html" (dict "href" .release "text" "Download" "size" "small" "icon" "ic ic-download") }}
             <span class="text-muted text-small asset-size"></span>
         </div>
     </li>
@@ -68,7 +68,7 @@
         </div>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="ic ic-shield-checkmark" aria-hidden="true"></i> Checking your download</h2>
+            <h2 class="card-header"><i class="ic ic-verified-user" aria-hidden="true"></i> Checking your download</h2>
             <div class="card-body">
                 <ul class="option-list">
                     {{ partial "nightly-option.html" (dict "title" "Checksums (SHA256SUMS.txt)" "pattern" `^SHA256SUMS\.txt$` "release" $release) }}
@@ -80,7 +80,7 @@
         </div>
 
         <div class="card card-options">
-            <h2 class="card-header"><i class="ic ic-arrow-sync" aria-hidden="true"></i> Staying up to date</h2>
+            <h2 class="card-header"><i class="ic ic-sync" aria-hidden="true"></i> Staying up to date</h2>
             <div class="card-body">
                 <p class="text-small mb-0">On macOS and Windows, a nightly build updates itself to the next week's build. To go back to
                     stable releases, choose <strong>Stable releases</strong> under <strong>Settings &rarr; General &rarr; Update

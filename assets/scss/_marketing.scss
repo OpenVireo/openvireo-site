@@ -329,8 +329,8 @@
 
         &::after {
             background: var(--colorNeutralForegroundOnBrand);
-            -webkit-mask: $ic-checkmark center / .85rem no-repeat;
-            mask: $ic-checkmark center / .85rem no-repeat;
+            -webkit-mask: $ic-check center / .85rem no-repeat;
+            mask: $ic-check center / .85rem no-repeat;
         }
     }
 }

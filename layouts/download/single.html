@@ -1,8 +1,8 @@
 {{- define "partials/download-sidecars.html" }}
     {{- /* Checksum list + its PGP signature for a release directory URL (one pair per release) */ -}}
-    <a href="{{ .rel }}SHA256SUMS.txt"><i class="ic ic-number-symbol" aria-hidden="true"></i> SHA-256 Checksums</a>
+    <a href="{{ .rel }}SHA256SUMS.txt"><i class="ic ic-tag" aria-hidden="true"></i> SHA-256 Checksums</a>
     <a href="{{ .rel }}SHA256SUMS.txt.asc"><i class="ic ic-key" aria-hidden="true"></i> PGP Signature</a>
-    <a href="{{ .base }}verifying-signatures"><i class="ic ic-question-circle" aria-hidden="true"></i> Verifying Signatures</a>
+    <a href="{{ .base }}verifying-signatures"><i class="ic ic-help" aria-hidden="true"></i> Verifying Signatures</a>
 {{- end }}
 
 {{- define "partials/download-option.html" }}
@@ -10,7 +10,7 @@
     <li>
         <div class="option-title">{{ .title | safeHTML }}</div>
         <div class="option-actions">
-            {{ partial "button.html" (dict "href" .url "text" (.label | default "Download") "size" "small" "icon" "ic ic-arrow-download") }}
+            {{ partial "button.html" (dict "href" .url "text" (.label | default "Download") "size" "small" "icon" "ic ic-download") }}
         </div>
         {{- with .note }}<p class="text-muted text-small mb-0" style="margin-top: .5rem">{{ . }}</p>{{ end }}
     </li>
@@ -45,7 +45,7 @@
         {{- end }}
     </ul>
     {{- if $review }}
-    <p class="browser-review text-small"><i class="ic ic-hourglass-half" aria-hidden="true"></i>
+    <p class="browser-review text-small"><i class="ic ic-hourglass-bottom" aria-hidden="true"></i>
         The store listings are in review. If a store says the page isn't found, check back in a few days.</p>
     {{- end }}
     <p class="browser-more text-small text-muted">Also works in Brave, Vivaldi, Opera and other Chromium browsers (from the
@@ -81,7 +81,7 @@
 
         {{- if and $v $beta }}
         <fluent-message-bar intent="warning" layout="multiline" style="max-width: 42rem; margin: 0 auto 1.5rem; text-align: start">
-            <i class="ic ic-beaker" slot="icon" aria-hidden="true"></i>
+            <i class="ic ic-science" slot="icon" aria-hidden="true"></i>
             <span><strong>OpenVireo {{ $v }} is a beta.</strong> It is built on KeePassXC's tested code, but OpenVireo's own
                 features are new. Back up your databases before opening them, and
                 <a href="https://github.com/openvireo/openvireo/issues">report any problems</a> you find.</span>
@@ -89,7 +89,7 @@
         {{- end }}
 
         <fluent-message-bar id="ios-bar" intent="info" layout="multiline" hidden style="max-width: 42rem; margin: 0 auto 1.5rem; text-align: start">
-            <i class="ic ic-phone" slot="icon" aria-hidden="true"></i>
+            <i class="ic ic-smartphone" slot="icon" aria-hidden="true"></i>
             {{- if $store }}
             <span><strong>On an iPhone?</strong> <a href="{{ $store }}">Get OpenVireo on the App Store</a>, or read more about
                 <a href="{{ $base }}ios/">OpenVireo for iPhone</a>.</span>
@@ -104,11 +104,11 @@
             <fluent-tab id="tab-windows" aria-controls="windows"><i class="ic ic-windows" slot="start" aria-hidden="true"></i>Windows</fluent-tab>
             <fluent-tab id="tab-linux" aria-controls="linux"><i class="ic ic-linux" slot="start" aria-hidden="true"></i>Linux</fluent-tab>
             <fluent-tab id="tab-code" aria-controls="code"><i class="ic ic-code" slot="start" aria-hidden="true"></i>Source Code</fluent-tab>
-            <fluent-tab id="tab-browser" aria-controls="browser"><i class="ic ic-globe" slot="start" aria-hidden="true"></i>Browser Extension</fluent-tab>
+            <fluent-tab id="tab-browser" aria-controls="browser"><i class="ic ic-public" slot="start" aria-hidden="true"></i>Browser Extension</fluent-tab>
         </fluent-tablist>
 
         <p class="text-small text-muted ios-note">
-            <i class="ic ic-phone" aria-hidden="true"></i> Looking for iPhone?
+            <i class="ic ic-smartphone" aria-hidden="true"></i> Looking for iPhone?
             <a href="{{ $base }}ios/">{{ if $store }}Get OpenVireo for iPhone{{ else }}OpenVireo for iPhone is coming soon{{ end }}</a>
         </p>
 
@@ -119,7 +119,7 @@
                     <h2>OpenVireo for macOS 12+ (<span class="apple-arch">Apple Silicon</span>)</h2>
                     <p>Keep your passwords safe on the computer you trust, and sync them only if you want to.</p>
 
-                    {{ partial "button.html" (dict "href" $macArm "text" "Download for macOS" "appearance" "primary" "size" "hero" "icon" "ic ic-arrow-download" "class" (cond (ne $v "") "download" "")) }}
+                    {{ partial "button.html" (dict "href" $macArm "text" "Download for macOS" "appearance" "primary" "size" "hero" "icon" "ic ic-download" "class" (cond (ne $v "") "download" "")) }}
                     {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     {{- if $v }}
                     <div class="download-links">
@@ -145,7 +145,7 @@
                     <h2>OpenVireo for Windows <span class="windows-version">10 / 11</span></h2>
                     <p>Keep your passwords safe on the computer you trust, and sync them only if you want to.</p>
 
-                    {{ partial "button.html" (dict "href" $winMsi "text" "Download for Windows" "appearance" "primary" "size" "hero" "icon" "ic ic-arrow-download" "class" (cond (ne $v "") "download" "")) }}
+                    {{ partial "button.html" (dict "href" $winMsi "text" "Download for Windows" "appearance" "primary" "size" "hero" "icon" "ic ic-download" "class" (cond (ne $v "") "download" "")) }}
                     {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     <p class="text-bold requires-msvc">Requires <a href="https://aka.ms/vc14/vc_redist.x64.exe">MSVC Redistributable</a></p>
                     {{- if $v }}
@@ -172,7 +172,7 @@
                     <h2>OpenVireo for Linux Desktops</h2>
                     <p>Keep your passwords safe on the computer you trust, and sync them only if you want to.</p>
 
-                    {{ partial "button.html" (dict "href" $appImage "text" "Download AppImage" "appearance" "primary" "size" "hero" "icon" "ic ic-arrow-download" "class" (cond (ne $v "") "download" "")) }}
+                    {{ partial "button.html" (dict "href" $appImage "text" "Download AppImage" "appearance" "primary" "size" "hero" "icon" "ic ic-download" "class" (cond (ne $v "") "download" "")) }}
                     {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     {{- if $v }}
                     <div class="download-links">
@@ -200,7 +200,7 @@
                     <h2>OpenVireo Source Code</h2>
                     <p>OpenVireo is free and open source under the GPLv3. Build it yourself, or browse the code on GitHub.</p>
 
-                    {{ partial "button.html" (dict "href" (cond (ne $v "") $tarball "https://github.com/openvireo/openvireo") "text" (cond (ne $v "") "Download Source Code" "View Source on GitHub") "appearance" "primary" "size" "hero" "icon" (cond (ne $v "") "ic ic-arrow-download" "ic ic-github")) }}
+                    {{ partial "button.html" (dict "href" (cond (ne $v "") $tarball "https://github.com/openvireo/openvireo") "text" (cond (ne $v "") "Download Source Code" "View Source on GitHub") "appearance" "primary" "size" "hero" "icon" (cond (ne $v "") "ic ic-download" "ic ic-github")) }}
                     {{ partial "download-version.html" (dict "v" $v "beta" $beta "releases" $releases) }}
                     {{- if $v }}
                     <div class="download-links">

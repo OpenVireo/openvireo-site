@@ -27,7 +27,7 @@
     "ua-parser-js": "^2.0.10"
   },
   "devDependencies": {
-    "@fluentui/svg-icons": "1.1.347",
+    "@material-design-icons/svg": "0.14.15",
     "yaml": "2.9.1"
   }
 }
